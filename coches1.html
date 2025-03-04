@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fantastisch Automobiles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 6px 0;
+            background-color: #222;
+        }
+
+        main {
+            padding: 14px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 6px auto;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 8px;
+            border-bottom: 1px solid #555;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .product {
+            text-align: left;
+            font-style: italic;
+            font-size: 11px;
+            color: lightgrey;
+        }
+
+        .price {
+            text-align: right;
+            font-style: italic;
+            font-size: 11px;
+            color: lightgrey;
+        }
+
+        h1 {
+            font-style: italic;
+            font-size: 30px;
+            color: grey;
+            margin-top: 24px;
+        }
+
+        footer {
+            font-style: italic;
+            font-size: 13px;
+            color: grey;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fantastisch Automobiles</h1>
+    </header>
+    <main>
+        <div class="container" id="product-list">
+            <div class="row">
+                <div class="product">mini cooper e essential</div>
+                <div class="price">31,200 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini cooper e classic</div>
+                <div class="price">35,200 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini cooper e favoured</div>
+                <div class="price">39,200 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini cooper se classic</div>
+                <div class="price">40,800 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini cooper se favoured</div>
+                <div class="price">42,400 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini aceman e</div>
+                <div class="price">36,800 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini aceman se</div>
+                <div class="price">41,600 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini countryman e classic</div>
+                <div class="price">42,400 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini countryman e favoured</div>
+                <div class="price">47,200 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini countryman se all 4 classic</div>
+                <div class="price">50,400 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mini countryman se all 4 favoured</div>
+                <div class="price">52,000 €</div>
+            </div>
+            <div class="row">
+                <div class="product">audi q4 sportback etron 45 genuine edition 82kWh</div>
+                <div class="price">56,000 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mercedes benz eqe berlina 350</div>
+                <div class="price">60,800 €</div>
+            </div>
+            <div class="row">
+                <div class="product">bmw ix xdrive 40 76kWh</div>
+                <div class="price">66,400 €</div>
+            </div>
+            <div class="row">
+                <div class="product">hyundai ioniq 5 n 84kWh awd 650cv</div>
+                <div class="price">68,800 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mercedes benz eqe suv 350 4matic edition</div>
+                <div class="price">77,600 €</div>
+            </div>
+            <div class="row">
+                <div class="product">nissan ariya evolve 4x2 87kWh</div>
+                <div class="price">47,200 €</div>
+            </div>
+            <div class="row">
+                <div class="product">mercedes benz eqe suv 500 4matic edition</div>
+                <div class="price">82,400 €</div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        © 2024 - fantastischautomobiles.com
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('product-list');
+            const rows = Array.from(container.getElementsByClassName('row'));
+
+            // Parse prices and sort rows
+            const sortedRows = rows.sort((a, b) => {
+                const priceA = parseFloat(a.querySelector('.price').textContent.replace('€', '').replace(',', ''));
+                const priceB = parseFloat(b.querySelector('.price').textContent.replace('€', '').replace(',', ''));
+                return priceA - priceB;
+            });
+
+            // Clear container and append sorted rows
+            container.innerHTML = '';
+            sortedRows.forEach(row => {
+                const priceElement = row.querySelector('.price');
+                const price = parseFloat(priceElement.textContent.replace('€', '').replace(',', ''));
+                const priceDivided = (price / 80).toFixed(2);
+
+                // Update the price with the divided value
+                priceElement.textContent = `${price.toLocaleString('es-ES')} € (${priceDivided} €)`;
+                container.appendChild(row);
+            });
+        });
+    </script>
+</body>
+</html>

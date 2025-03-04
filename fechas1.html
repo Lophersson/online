@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Fechas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        body {
+            background: url('https://i.pinimg.com/1200x/ee/1b/40/ee1b4054beee009bc76643ffe4785777.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .fecha-hora {
+            text-align: center;
+            position: absolute;
+            top: 35px;
+            width: 100%;
+        }
+
+        .fecha {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        .hora {
+            font-size: 6rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        .contenedor {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-style: italic;
+            font-size: 1.6rem;
+            text-shadow: -3px 3px 5px gray;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-contenedor {
+            position: absolute;
+            bottom: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            backdrop-filter: blur(5px);
+            font-size: 0.8rem;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fecha-hora">
+        <div class="fecha" id="fecha"></div>
+        <div class="hora" id="hora"></div>
+    </div>
+
+    <div class="contenedor">
+        <h1>Calculadora de Fechas</h1>
+        <input type="date" id="fechaInicio" placeholder="Fecha de inicio">
+        <input type="date" id="fechaFinal" placeholder="Fecha final">
+        <input type="text" id="diferenciaDias" placeholder="Días de diferencia" readonly>
+        <input type="text" id="fechaResultado" placeholder="Fecha resultante" readonly>
+    </div>
+    
+    <footer class="footer-contenedor">
+        <p>© 2025 Mi Calculadora de Fechas | Creado por Humberto López Rodríguez</p>
+    </footer>
+
+    <script>
+        function actualizarFechaHora() {
+            const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+            let ahora = new Date();
+
+            // Fecha
+            let diaSemana = diasSemana[ahora.getDay()];
+            let dia = ahora.getDate();
+            let mes = ahora.toLocaleString("es-ES", { month: "long" });
+            let año = ahora.getFullYear();
+            document.getElementById("fecha").textContent = `${diaSemana}, ${dia} de ${mes} de ${año}`;
+
+            // Hora
+            let horas = String(ahora.getHours()).padStart(2, '0');
+            let minutos = String(ahora.getMinutes()).padStart(2, '0');
+            document.getElementById("hora").textContent = `${horas}:${minutos}`;
+        }
+
+        function calcularFechas() {
+            let fechaInicio = new Date(document.getElementById("fechaInicio").value);
+            let fechaFinal = new Date(document.getElementById("fechaFinal").value);
+
+            if (!isNaN(fechaInicio) && !isNaN(fechaFinal)) {
+                let diferencia = Math.floor((fechaFinal - fechaInicio) / (1000 * 60 * 60 * 24));
+                let fechaResultado = new Date(fechaFinal);
+                fechaResultado.setDate(fechaResultado.getDate() + diferencia);
+
+                document.getElementById("diferenciaDias").value = `${diferencia} días`;
+                document.getElementById("fechaResultado").value = fechaResultado.toLocaleDateString();
+            } else {
+                document.getElementById("diferenciaDias").value = "";
+                document.getElementById("fechaResultado").value = "";
+            }
+        }
+
+        document.getElementById("fechaInicio").addEventListener("input", calcularFechas);
+        document.getElementById("fechaFinal").addEventListener("input", calcularFechas);
+
+        actualizarFechaHora();
+        setInterval(actualizarFechaHora, 1000);
+    </script>
+</body>
+</html>

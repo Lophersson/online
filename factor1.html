@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Factor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            background-color: #1c1c1c;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #111;
+            text-align: center;
+            padding: 10px 0;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculator {
+            background-color: #2c2c2c;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+        }
+        .calculator input {
+            width: 90%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 20px;
+            color: black;
+            background-color: #AABBCC;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .output {
+            background-color: #AABBCC;
+            color: black;
+            font-weight: bold;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Calculadora de Factor</h1>
+    </header>
+    <main>
+        <div class="calculator">
+            <input type="number" id="precio" placeholder="Precio" oninput="calcularFactor()">
+            <input type="number" id="cuota" placeholder="Cuota" oninput="calcularFactor()">
+            <input type="text" id="factor" class="output" placeholder="Factor" readonly>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Calculadora de Factor</p>
+    </footer>
+
+    <script>
+        function calcularFactor() {
+            const precio = parseFloat(document.getElementById('precio').value);
+            const cuota = parseFloat(document.getElementById('cuota').value);
+            const factor = cuota ? (precio / cuota).toFixed(2) : "";
+            document.getElementById('factor').value = factor;
+        }
+    </script>
+</body>
+</html>

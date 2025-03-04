@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7eae4;
+            color: #333;
+            font-style: italic;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #d08370;
+            font-size: 26px;
+        }
+        .category {
+            margin: 20px;
+            padding: 15px;
+            background-color: #f2d9c4;
+            border-radius: 8px;
+        }
+        .category h2 {
+            color: #d08370;
+            font-size: 20px;
+        }
+        .product-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #555;
+            list-style-type: none;
+        }
+  
+  li {
+  list-style-type: '😛 ';
+}
+        .selected-products {
+            background-color: #fde4d4;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px;
+        }
+        .generate-pdf {
+            margin-top: 20px;
+            background-color: #d08370;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #d08370;
+            color: white;
+            font-size: 12px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Reprist Supermercados Online</h1>
+
+    <!-- Categorías con productos -->
+    <div class="category">
+        <h2>lácteos</h2>
+        <ul class="product-list">
+            <li class="product-item">kéfir<input type="checkbox" onclick="toggleProduct(this, 'kéfir')"></li>
+            <li class="product-item">yogur griego<input type="checkbox" onclick="toggleProduct(this, 'yogur griego')"></li>
+            <li class="product-item">skyr<input type="checkbox" onclick="toggleProduct(this, 'skyr')"></li>
+          </ul>
+    </div>
+
+    <div class="category">
+        <h2>Chocolates, desayunos y meriendas</h2>
+        <ul class="product-list">
+            <li class="product-item">tableta de chocolate negro lindt o dolca<input type="checkbox" onclick="toggleProduct(this, 'tableta de chocolate negro lindt o dolca')"></li>
+            <li class="product-item">after eight<input type="checkbox" onclick="toggleProduct(this, 'after eight')"></li>
+            <li class="product-item">nocilla cookies & cream<input type="checkbox" onclick="toggleProduct(this, 'nocilla')"></li>
+            <li class="product-item">eclairs<input type="checkbox" onclick="toggleProduct(this, 'eclairs')"></li>
+            <li class="product-item">croissants rellenos choco<input type="checkbox" onclick="toggleProduct(this, 'croissants rellenos de chocolate')"></li>
+            <li class="product-item">napolitanas de chocolate<input type="checkbox" onclick="toggleProduct(this, 'napolitanas rellenas de chocolate')"></li>
+            <li class="product-item">donuts de azúcar o chocolate<input type="checkbox" onclick="toggleProduct(this, 'donuts de azúcar o chocolate')"></li>
+           <li class="product-item">american donuts<input type="checkbox" onclick="toggleProduct(this, 'american donuts')"></li>
+           <li class="product-item">brownie milka<input type="checkbox" onclick="toggleProduct(this, 'brownie milka')"></li>
+           <li class="product-item">galletas de chocolate milka<input type="checkbox" onclick="toggleProduct(this, 'galletas de chocolate milka')"></li>
+           <li class="product-item">tableta chocolate milka 270g<input type="checkbox" onclick="toggleProduct(this, 'tableta chocolate milka 270g')"></li>
+            </ul>
+    </div>
+  
+  <!-- Categoría: Cereales -->
+<div class="category">
+    <h2>Cereales</h2>
+    <ul class="product-list">
+      <li class="product-item">bizcochitos all bran<input type="checkbox" onclick="toggleProduct(this, 'bizcochitos all bran')"></li>
+      <li class="product-item">avena<input type="checkbox" onclick="toggleProduct(this, 'avena')"></li>
+        <li class="product-item">semillas de chía<input type="checkbox" onclick="toggleProduct(this, 'semillas de chía')"></li>
+        <li class="product-item">quinoa<input type="checkbox" onclick="toggleProduct(this, 'quinoa')"></li>
+        <li class="product-item">bulgur<input type="checkbox" onclick="toggleProduct(this, 'bulgur')"></li>
+        <li class="product-item">arroz integral<input type="checkbox" onclick="toggleProduct(this, 'arroz integral')"></li>
+        <li class="product-item">cuscús<input type="checkbox" onclick="toggleProduct(this, 'cuscús')"></li>
+        <li class="product-item">kelloggs<input type="checkbox" onclick="toggleProduct(this, 'kelloggs')"></li>
+        <li class="product-item">cereales nestlé<input type="checkbox" onclick="toggleProduct(this, 'cereales nestlé')"></li>
+    </ul>
+</div>
+
+<!-- Categoría: Bebidas -->
+<div class="category">
+    <h2>Bebidas</h2>
+    <ul class="product-list">
+      <li class="product-item">té negro hornimans<input type="checkbox" onclick="toggleProduct(this, 'té negro')"></li>
+      <li class="product-item">cacao negro soluble en leche<input type="checkbox" onclick="toggleProduct(this, 'cacao negro soluble')"></li>
+        <li class="product-item">agua de coco <input type="checkbox" onclick="toggleProduct(this, 'agua de coco')"></li>
+      <li class="product-item">té verde<input type="checkbox" onclick="toggleProduct(this, 'té verde')"></li>
+            <li class="product-item">té moruno hierbabuena<input type="checkbox" onclick="toggleProduct(this, 'té moruno')"></li>
+            <li class="product-item">té negro twinings<input type="checkbox" onclick="toggleProduct(this, 'té negro twinings')"></li>
+      <li class="product-item">leche desnatada<input type="checkbox" onclick="toggleProduct(this, 'leche desnatada')"></li>
+          <li class="product-item">leche de almendras<input type="checkbox" onclick="toggleProduct(this, 'leche de almendras')"></li>
+        </ul>
+</div>
+
+<!-- Categoría: Carbohidratos -->
+<div class="category">
+    <h2>Carbohidratos</h2>
+    <ul class="product-list">
+      <li class="product-item">pan fresco integral<input type="checkbox" onclick="toggleProduct(this, 'barra de pan integral')"></li>
+      <li class="product-item">pan de molde blanco grueso<input type="checkbox" onclick="toggleProduct(this, 'pan de molde')"></li>
+            <li class="product-item">crackers<input type="checkbox" onclick="toggleProduct(this, 'crackers')"></li>
+        <li class="product-item">spaghetti/rigatoni/mafalda corta<input type="checkbox" onclick="toggleProduct(this, 'spaghetti/rigatoni/mafalda corta')"></li>
+        <li class="product-item">ravioli/tortelloni/fiorellini<input type="checkbox" onclick="toggleProduct(this, 'ravioli/tortelloni/fiorellini')"></li>
+        <li class="product-item">galletas finas milka<input type="checkbox" onclick="toggleProduct(this, 'galletas finas milka')"></li>
+      <li class="product-item">pan crujiente integral<input type="checkbox" onclick="toggleProduct(this, 'pan crujiente integral')"></li>
+      <li class="product-item">pan de leche<input type="checkbox" onclick="toggleProduct(this, 'pan de leche')"></li>
+        <li class="product-item">rosegones<input type="checkbox" onclick="toggleProduct(this, 'rosegones')"></li>
+        <li class="product-item">pan de pasas<input type="checkbox" onclick="toggleProduct(this, 'pan de pasas')"></li>
+        <li class="product-item">tortillas de trigo<input type="checkbox" onclick="toggleProduct(this, 'tortillas de trigo')"></li>
+    </ul>
+</div>
+
+<!-- Categoría: Proteínas -->
+<div class="category">
+    <h2>Proteínas</h2>
+    <ul class="product-list">
+        <li class="product-item">jamón curado<input type="checkbox" onclick="toggleProduct(this, 'jamón curado')"></li>
+        <li class="product-item">pechuga de pavo fresca<input type="checkbox" onclick="toggleProduct(this, 'pechuga de pavo fresco')"></li>
+        <li class="product-item">lonchas de pechuga de pavo<input type="checkbox" onclick="toggleProduct(this, 'lonchas de pechuga de pavo')"></li>
+        <li class="product-item">pastrami<input type="checkbox" onclick="toggleProduct(this, 'pastrami')"></li>
+        <li class="product-item">tofu<input type="checkbox" onclick="toggleProduct(this, 'tofu')"></li>
+        <li class="product-item">huevos<input type="checkbox" onclick="toggleProduct(this, 'huevos')"></li>
+        <li class="product-item">legumbres<input type="checkbox" onclick="toggleProduct(this, 'legumbres')"></li>
+        <li class="product-item">almendras<input type="checkbox" onclick="toggleProduct(this, 'almendras')"></li>
+        <li class="product-item">atún<input type="checkbox" onclick="toggleProduct(this, 'atún')"></li>
+        <li class="product-item">salmón<input type="checkbox" onclick="toggleProduct(this, 'salmón')"></li>
+        <li class="product-item">queso<input type="checkbox" onclick="toggleProduct(this, 'queso')"></li>
+        <li class="product-item">queso feta<input type="checkbox" onclick="toggleProduct(this, 'queso feta')"></li>
+      <li class="product-item">ternera<input type="checkbox" onclick="toggleProduct(this, 'ternera')"></li>
+      <li class="product-item">hamburguesa<input type="checkbox" onclick="toggleProduct(this, 'hamburguesa')"></li>
+      <li class="product-item">morcilla<input type="checkbox" onclick="toggleProduct(this, 'morcilla')"></li>
+    <li class="product-item">langostinos<input type="checkbox" onclick="toggleProduct(this, 'langostinos')"></li>
+    
+    
+    </ul>
+</div>
+  
+  <!-- Categoría: Frutas -->
+<div class="category">
+    <h2>Frutas</h2>
+    <ul class="product-list">
+        <li class="product-item">kiwi<input type="checkbox" onclick="toggleProduct(this, 'kiwi')"></li>
+        <li class="product-item">plátano<input type="checkbox" onclick="toggleProduct(this, 'plátano')"></li>
+        <li class="product-item">tomate<input type="checkbox" onclick="toggleProduct(this, 'tomate')"></li>
+        <li class="product-item">naranjas<input type="checkbox" onclick="toggleProduct(this, 'naranjas')"></li>
+        <li class="product-item">limones<input type="checkbox" onclick="toggleProduct(this, 'limones')"></li>
+        <li class="product-item">arándanos<input type="checkbox" onclick="toggleProduct(this, 'arándanos')"></li>
+        <li class="product-item">fresas<input type="checkbox" onclick="toggleProduct(this, 'fresas')"></li>
+        <li class="product-item">grosellas rojas<input type="checkbox" onclick="toggleProduct(this, 'grosellas rojas')"></li>
+        <li class="product-item">chirimoya<input type="checkbox" onclick="toggleProduct(this, 'chirimoya')"></li>
+        <li class="product-item">manzana granny smith<input type="checkbox" onclick="toggleProduct(this, 'manzana granny smith')"></li>
+      <li class="product-item">pitaya<input type="checkbox" onclick="toggleProduct(this, 'pitaya')"></li>
+    <li class="product-item">aguacate<input type="checkbox" onclick="toggleProduct(this, 'aguacate')"></li>
+    </ul>
+</div>
+  <div class="category">
+    <h2>Varios</h2>
+    <ul class="product-list">
+        <li class="product-item">orégano<input type="checkbox" onclick="toggleProduct(this, 'orégano')"></li>
+        <li class="product-item">salsa de soja<input type="checkbox" onclick="toggleProduct(this, 'salsa de soja')"></li>
+        <li class="product-item">mostaza dijon/anciene<input type="checkbox" onclick="toggleProduct(this, 'mostaza dijon')"></li>
+        <li class="product-item">salsa pesto<input type="checkbox" onclick="toggleProduct(this, 'salsa pesto')"></li>
+      <li class="product-item">queso en polvo<input type="checkbox" onclick="toggleProduct(this, 'queso en polvo')"></li>
+      <li class="product-item">queso philadelphia<input type="checkbox" onclick="toggleProduct(this, 'queso philadelphia')"></li>
+      <li class="product-item">azúcar moreno<input type="checkbox" onclick="toggleProduct(this, 'azúcar moreno')"></li>
+   <li class="product-item">sal<input type="checkbox" onclick="toggleProduct(this, 'sal')"></li>
+      <li class="product-item">aceite de oliva<input type="checkbox" onclick="toggleProduct(this, 'aceite de oliva')"></li>
+        <li class="product-item">miel<input type="checkbox" onclick="toggleProduct(this, 'miel')"></li>
+    </ul>
+</div>
+
+<!-- Categoría: Vegetales -->
+<div class="category">
+    <h2>Vegetales</h2>
+    <ul class="product-list">
+        <li class="product-item">brócoli <input type="checkbox" onclick="toggleProduct(this, 'brócoli')"></li>
+        <li class="product-item">grelos <input type="checkbox" onclick="toggleProduct(this, 'grelos')"></li>
+        <li class="product-item">espinacas <input type="checkbox" onclick="toggleProduct(this, 'espinacas')"></li>
+        <li class="product-item">acelgas <input type="checkbox" onclick="toggleProduct(this, 'acelgas')"></li>
+        <li class="product-item">apio <input type="checkbox" onclick="toggleProduct(this, 'apio')"></li>
+        <li class="product-item">batavia roja <input type="checkbox" onclick="toggleProduct(this, 'batavia roja')"></li>
+        <li class="product-item">lechuga <input type="checkbox" onclick="toggleProduct(this, 'lechuga')"></li>
+        <li class="product-item">berza gallega <input type="checkbox" onclick="toggleProduct(this, 'berza gallega')"></li>
+        <li class="product-item">pepino<input type="checkbox" onclick="toggleProduct(this, 'pepino')"></li>
+        <li class="product-item">calabacín<input type="checkbox" onclick="toggleProduct(this, 'calabacín')"></li>
+        <li class="product-item">pimiento rojo<input type="checkbox" onclick="toggleProduct(this, 'pimiento rojo')"></li>
+      <li class="product-item">tatayoyo<input type="checkbox" onclick="toggleProduct(this, 'tatayoyo')"></li>
+    <li class="product-item">zuquiolo<input type="checkbox" onclick="toggleProduct(this, 'zuquiolo')"></li>
+    <li class="product-item">chayote<input type="checkbox" onclick="toggleProduct(this, 'chayote')"></li>
+    <li class="product-item">batata/boniato<input type="checkbox" onclick="toggleProduct(this, 'batata/boniato')"></li>
+      <li class="product-item">flor de calabacín<input type="checkbox" onclick="toggleProduct(this, 'flor de calabacín')"></li>
+    
+    
+      
+    </ul>
+</div>
+
+    <!-- Repite la estructura anterior para las otras categorías -->
+
+    <!-- Div para mostrar productos seleccionados -->
+    <div class="selected-products">
+        <h2>Productos Seleccionados</h2>
+        <ul id="selectedProductsList"></ul>
+        <button class="generate-pdf" onclick="generatePDF()">Imprimir en PDF</button>
+    </div>
+  <br>
+  <br>
+  <br>
+
+    <footer>
+        © 2024 Reprist Supermercados Online. Todos los derechos reservados.
+    </footer>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+<script>
+    const selectedProducts = [];
+
+    function toggleProduct(checkbox, productName) {
+        if (checkbox.checked) {
+            selectedProducts.push(productName);
+        } else {
+            const index = selectedProducts.indexOf(productName);
+            if (index !== -1) {
+                selectedProducts.splice(index, 1);
+            }
+        }
+        displaySelectedProducts();
+    }
+
+    function displaySelectedProducts() {
+        const selectedProductsList = document.getElementById('selectedProductsList');
+        selectedProductsList.innerHTML = '';
+        selectedProducts.forEach(product => {
+            const li = document.createElement('li');
+            li.textContent = product;
+            selectedProductsList.appendChild(li);
+        });
+    }
+
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Configuración del título
+        doc.setFont("Courier", "bold");
+        doc.setFontSize(26);
+        doc.text(20, 20, "Lista de Productos Seleccionados:");
+
+        // Cambiar el tamaño de la fuente para los productos
+        doc.setFontSize(22);
+        selectedProducts.forEach((product, index) => {
+            // Agregar el texto de cada producto en una nueva línea
+            doc.text(20, 40 + (index * 10), `${index + 1}. ${product}`);
+        });
+
+        // Guardar el PDF
+        doc.save('myMarketList.pdf');
+    }
+</script>
+</body>
+</html

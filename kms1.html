@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Kilómetros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        body {
+            background: url('https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3Jhd3BpeGVsX29mZmljZV8zN19waG90b19vZl9nYWxheHlfd2FsbHBhcGVyX2Flc3RoZXRpY19taW5pbWFsX2Y1NWFjNGU1LTkxOWQtNGEwZS1hNzA2LTlhMGExMTI1YzAxZS5qcGc.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .fecha-hora {
+            text-align: center;
+            position: absolute;
+            top: 35px;
+            width: 100%;
+        }
+
+        .fecha {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+    
+        .hora {
+            font-size: 6rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        .contenedor {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-style: italic;
+            font-size: 1.6rem;
+            text-shadow: -3px 3px 5px gray;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+        }
+    
+            .footer-contenedor {
+            position: absolute;
+            bottom: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            backdrop-filter: blur(5px);
+            font-size: 0.8rem;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="fecha-hora">
+        <div class="fecha" id="fecha"></div>
+        <div class="hora" id="hora"></div>
+    </div>
+
+    <div class="contenedor">
+        <h1>Calculadora de Kilómetros</h1>
+        <input type="number" id="inicio" placeholder="Kilómetros iniciales">
+        <input type="number" id="final" placeholder="Kilómetros finales">
+        <input type="text" id="recorridos" placeholder="Kilómetros recorridos" readonly>
+        <input type="text" id="coste" placeholder="Coste en euros (€)" readonly>
+    </div>
+    
+    <footer class="footer-contenedor">
+        <p>© 2025 Mi Calculadora de Kilómetros | Creado por Humberto López Rodríguez</p>
+    </footer>
+
+    <script>
+        function actualizarFechaHora() {
+            const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+            let ahora = new Date();
+
+            // Fecha
+            let diaSemana = diasSemana[ahora.getDay()];
+            let dia = ahora.getDate();
+            let mes = ahora.toLocaleString("es-ES", { month: "long" });
+            let año = ahora.getFullYear();
+            document.getElementById("fecha").textContent = `${diaSemana}, ${dia} de ${mes} de ${año}`;
+
+            // Hora
+            let horas = String(ahora.getHours()).padStart(2, '0');
+            let minutos = String(ahora.getMinutes()).padStart(2, '0');
+            document.getElementById("hora").textContent = `${horas}:${minutos}`;
+        }
+
+        function calcularKilometros() {
+            let inicio = parseFloat(document.getElementById("inicio").value);
+            let final = parseFloat(document.getElementById("final").value);
+
+            if (!isNaN(inicio) && !isNaN(final) && final >= inicio) {
+                let recorridos = final - inicio;
+                let coste = (recorridos / 100) * 10.20;
+
+                document.getElementById("recorridos").value = `${recorridos} km`;
+                document.getElementById("coste").value = `${coste.toFixed(2)} €`;
+            } else {
+                document.getElementById("recorridos").value = "";
+                document.getElementById("coste").value = "";
+            }
+        }
+
+        document.getElementById("inicio").addEventListener("input", calcularKilometros);
+        document.getElementById("final").addEventListener("input", calcularKilometros);
+
+        actualizarFechaHora();
+        setInterval(actualizarFechaHora, 1000);
+    </script>
+</body>
+</html>

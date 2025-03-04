@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Casa</title>
+    <style>
+        body {
+            background-color: #333;
+            color: #FFD700;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #FFD700;
+        }
+        table {
+            width: 90%;
+            margin: 10px 0;
+            border-collapse: collapse;
+            color: #FFD700;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #FFD700;
+        }
+        th {
+            background-color: #444;
+        }
+        .total {
+            font-weight: bold;
+            text-align: right;
+        }
+        .grand-total {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Inventario de Casa</h1>
+
+    <!-- Tabla Habitación -->
+    <h2>Habitación</h2>
+    <table>
+        <tr><th>Concepto</th><th>Importe</th></tr>
+        <tr><td>Somier + patas</td><td>120,00 €</td></tr>
+        <tr><td>Colchón</td><td>720,00 €</td></tr>
+        <tr><td>Funda colchón</td><td>60,00 €</td></tr>
+        <tr><td>Sábanas bajeras</td><td>40,00 €</td></tr>
+        <tr><td>Almohadas</td><td>40,00 €</td></tr>
+        <tr><td>Fundas almohadas</td><td>20,00 €</td></tr>
+        <tr><td>Edredón</td><td>80,00 €</td></tr>
+        <tr><td>Funda edredón</td><td>60,00 €</td></tr>
+        <tr><td>Mesillas x2</td><td>80,00 €</td></tr>
+        <tr><td>Lamparitas x2</td><td>40,00 €</td></tr>
+        <tr><td>Cajoneras x2</td><td>160,00 €</td></tr>
+        <tr><td>Estantería</td><td>60,00 €</td></tr>
+        <tr><td>Mesa</td><td>80,00 €</td></tr>
+        <tr><td>Silla</td><td>40,00 €</td></tr>
+        <tr><td>Luz techo</td><td>30,00 €</td></tr>
+        <tr><td>Cortina</td><td>40,00 €</td></tr>
+        <tr><td>Reloj</td><td>20,00 €</td></tr>
+        <tr><td>Colgador</td><td>20,00 €</td></tr>
+        <tr><td>Espejo</td><td>40,00 €</td></tr>
+        <tr><td>TV 43"</td><td>720,00 €</td></tr>
+        <tr><td>Home-Cinema</td><td>120,00 €</td></tr>
+        <tr><td>Perchas</td><td>20,00 €</td></tr>
+        <tr><td>Zapatero</td><td>60,00 €</td></tr>
+        <tr><td>Cojines</td><td>20,00 €</td></tr>
+        <tr><td>Otros</td><td>110,00 €</td></tr>
+        <tr class="total"><td>Total Habitación</td><td>2.800,00 €</td></tr>
+    </table>
+
+    <!-- Tabla Cocina -->
+    <h2>Cocina</h2>
+    <table>
+        <tr><th>Concepto</th><th>Importe</th></tr>
+        <tr><td>Microondas</td><td>80,00 €</td></tr>
+        <tr><td>Tostadora</td><td>50,00 €</td></tr>
+        <tr><td>Cubiertos</td><td>72,00 €</td></tr>
+        <tr><td>Juego cuchillos</td><td>70,00 €</td></tr>
+        <tr><td>Platos</td><td>24,00 €</td></tr>
+        <tr><td>Tazas</td><td>24,00 €</td></tr>
+        <tr><td>Bowls</td><td>12,00 €</td></tr>
+        <tr><td>Sartenes</td><td>40,00 €</td></tr>
+        <tr><td>Ollas</td><td>40,00 €</td></tr>
+        <tr><td>Cazo</td><td>12,00 €</td></tr>
+        <tr><td>Palas madera</td><td>16,00 €</td></tr>
+        <tr><td>Vasos</td><td>12,00 €</td></tr>
+        <tr><td>Paños de cocina</td><td>8,00 €</td></tr>
+        <tr><td>Otros</td><td>40,00 €</td></tr>
+        <tr class="total"><td>Total Cocina</td><td>500,00 €</td></tr>
+    </table>
+
+    <!-- Tabla Salón -->
+    <h2>Salón</h2>
+    <table>
+        <tr><th>Concepto</th><th>Importe</th></tr>
+        <tr><td>Mueble salón</td><td>240,00 €</td></tr>
+        <tr><td>TV 43"</td><td>720,00 €</td></tr>
+        <tr><td>Home Cinema</td><td>120,00 €</td></tr>
+        <tr><td>Cortinas</td><td>80,00 €</td></tr>
+        <tr><td>Luz techo</td><td>30,00 €</td></tr>
+        <tr><td>Estanterías x2</td><td>120,00 €</td></tr>
+        <tr><td>Sofá</td><td>400,00 €</td></tr>
+        <tr><td>Sillones x2</td><td>200,00 €</td></tr>
+        <tr><td>Lámpara</td><td>40,00 €</td></tr>
+        <tr><td>Mesitas cafés</td><td>50,00 €</td></tr>
+        <tr><td>Mantitas x2</td><td>30,00 €</td></tr>
+        <tr><td>Mesa</td><td>180,00 €</td></tr>
+        <tr><td>Sillas x4</td><td>160,00 €</td></tr>
+        <tr><td>Cojines</td><td>30,00 €</td></tr>
+        <tr><td>Otros</td><td>100,00 €</td></tr>
+        <tr class="total"><td>Total Salón</td><td>2.500,00 €</td></tr>
+    </table>
+
+    <!-- Tabla Baño -->
+    <h2>Baño</h2>
+    <table>
+        <tr><th>Concepto</th><th>Importe</th></tr>
+        <tr><td>Colgador toallas</td><td>60,00 €</td></tr>
+        <tr><td>Alfombrillas x2</td><td>10,00 €</td></tr>
+        <tr><td>Otros</td><td>130,00 €</td></tr>
+        <tr class="total"><td>Total Baño</td><td>200,00 €</td></tr>
+    </table>
+
+    <!-- Gran Total -->
+    <div class="grand-total">
+        <p><strong>Suma Total de Todas las Tablas: 6.000,00 €</strong></p>
+    </div>
+
+</body>
+</html>

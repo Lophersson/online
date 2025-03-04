@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Gestión de Tareas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+:root {
+    --fondo: #121212;
+    --fondo-claro: #1e1e1e;
+    --texto: #e0e0e0;
+    --primario: #ffcc00;
+    --secundario: #ffa500;
+    --gris: #3a3a3a;
+    --rojo: #e63946;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--fondo);
+    color: var(--texto);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1, h2 {
+    font-weight: 600;
+    color: var(--primario);
+}
+
+.contenedor {
+    text-align: center;
+    /*width: 80%;*/
+}
+
+.seccion {
+    display: block;
+    background: var(--fondo-claro);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    margin: 15px auto;
+    box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.2);
+}
+
+.oculto {
+    display: none;
+}
+
+/* Estilos para inputs y select */
+input, select {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid var(--primario);
+    background: var(--gris);
+    color: var(--texto);
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: var(--secundario);
+    box-shadow: 0px 0px 8px var(--secundario);
+}
+
+/* Botones elegantes */
+button {
+    background: var(--primario);
+    color: #121212;
+    border: none;
+    padding: 10px 15px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: var(--secundario);
+}
+
+/* Botones de acción */
+button.editar {
+    background: #2196F3;
+}
+
+button.editar:hover {
+    background: #1e88e5;
+}
+
+button.eliminar {
+    background: var(--rojo);
+}
+
+button.eliminar:hover {
+    background: #c62828;
+}
+
+/* Lista de tareas */
+ul {
+    list-style: none;
+    padding: 0;
+    width: 60%;
+    margin: 20px auto;
+}
+
+li {
+    background: var(--gris);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 5px rgba(255, 255, 255, 0.1);
+    position: relative;
+    text-align: left;
+}
+
+li strong {
+    color: var(--primario);
+}
+
+li button {
+    float: right;
+    margin-left: 5px;
+}
+    
+    .lista-tareas {
+    display: block;
+    background: var(--fondo-claro);
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    margin: 15px auto;
+    box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.2);
+    text-align: center;
+}
+
+.lista-tareas h2 {
+    color: var(--primario);
+    font-weight: 600;
+}
+
+.lista-tareas ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    width: 100%;
+}
+    </style>
+</head>
+<body>
+
+    <h1>Gestión de Tareas</h1>
+
+    <div class="contenedor">
+        <div id="seccion1" class="seccion">
+            <h2>1️⃣ Crear Tarea</h2>
+            <input type="text" id="tareaNombre" placeholder="Nombre de la tarea">
+            <select id="tareaEstado">
+                <option value="0">Pendiente</option>
+                <option value="1">En Progreso</option>
+                <option value="2">Completada</option>
+                <option value="3">Cancelada</option>
+            </select>
+            <button onclick="siguiente(2)">Siguiente</button>
+        </div>
+
+        <div id="seccion2" class="seccion oculto">
+            <h2>2️⃣ Asignar Persona</h2>
+            <input type="text" id="personaNombre" placeholder="Nombre">
+            <input type="text" id="personaDNI" placeholder="DNI">
+            <input type="email" id="personaCorreo" placeholder="Correo">
+            <button onclick="anterior(1)">Anterior</button>
+            <button onclick="siguiente(3)">Siguiente</button>
+        </div>
+
+        <div id="seccion3" class="seccion oculto">
+            <h2>3️⃣ Agregar Nota</h2>
+            <input type="text" id="notaTexto" placeholder="Escribe una nota">
+            <button onclick="anterior(2)">Anterior</button>
+            <button onclick="grabarTarea()">Aceptar</button>
+        </div>
+    </div>
+
+    <section class="lista-tareas">
+    <h2>📋 Lista de Tareas</h2>
+    <ul id="listaTareas"></ul>
+</section>
+
+    <script>
+    let tareas = [];
+
+function siguiente(seccion) {
+    document.querySelectorAll(".seccion").forEach(div => div.classList.add("oculto"));
+    document.getElementById("seccion" + seccion).classList.remove("oculto");
+}
+
+function anterior(seccion) {
+    document.querySelectorAll(".seccion").forEach(div => div.classList.add("oculto"));
+    document.getElementById("seccion" + seccion).classList.remove("oculto");
+}
+
+function grabarTarea() {
+    let nombreTarea = document.getElementById("tareaNombre").value;
+    let estadoTarea = document.getElementById("tareaEstado").value;
+    let personaNombre = document.getElementById("personaNombre").value;
+    let personaDNI = document.getElementById("personaDNI").value;
+    let personaCorreo = document.getElementById("personaCorreo").value;
+    let notaTexto = document.getElementById("notaTexto").value;
+
+    if (!nombreTarea || !personaNombre || !personaDNI || !personaCorreo || !notaTexto) {
+        alert("Completa todos los campos antes de aceptar.");
+        return;
+    }
+
+    let codigo = "T" + (tareas.length + 1);
+
+    let nuevaTarea = {
+        codigo,
+        nombre: nombreTarea,
+        estado: estadoTarea,
+        persona: { nombre: personaNombre, dni: personaDNI, correo: personaCorreo },
+        nota: notaTexto
+    };
+
+    tareas.push(nuevaTarea);
+    actualizarListaTareas();
+    limpiarFormulario();
+    siguiente(1);
+}
+
+function limpiarFormulario() {
+    document.getElementById("tareaNombre").value = "";
+    document.getElementById("personaNombre").value = "";
+    document.getElementById("personaDNI").value = "";
+    document.getElementById("personaCorreo").value = "";
+    document.getElementById("notaTexto").value = "";
+    document.getElementById("tareaEstado").selectedIndex = 0;
+}
+
+function actualizarListaTareas() {
+    let lista = document.getElementById("listaTareas");
+    lista.innerHTML = "";
+
+    tareas.forEach((tarea, index) => {
+        let li = document.createElement("li");
+        li.style.background = "#333";
+        li.style.margin = "10px auto";
+        li.style.padding = "15px";
+        li.style.borderRadius = "8px";
+
+        // Contenedor general de la tarea
+        let contenedorTarea = document.createElement("div");
+        contenedorTarea.style.display = "flex";
+        contenedorTarea.style.justifyContent = "space-between";
+        contenedorTarea.style.alignItems = "center";
+        contenedorTarea.style.flexWrap = "wrap";
+
+        // Contenido de la tarea
+        let contenido = document.createElement("div");
+        contenido.innerHTML = `<strong>${tarea.nombre}</strong> - Estado: ${tarea.estado}
+                               <br>📌 Asignado a: ${tarea.persona.nombre} (${tarea.persona.dni})
+                               <br>📝 Nota: ${tarea.nota}`;
+
+        // Contenedor de botones
+        let botones = document.createElement("div");
+        botones.style.display = "flex";
+        botones.style.gap = "10px";
+
+        // Botón Editar
+        let btnEditar = document.createElement("button");
+        btnEditar.textContent = "✏ Editar";
+        btnEditar.style.backgroundColor = "#3498db";
+        btnEditar.style.color = "white";
+        btnEditar.style.border = "none";
+        btnEditar.style.padding = "8px 12px";
+        btnEditar.style.borderRadius = "5px";
+        btnEditar.style.cursor = "pointer";
+        btnEditar.style.transition = "0.3s";
+        btnEditar.onmouseover = () => btnEditar.style.backgroundColor = "#2980b9";
+        btnEditar.onmouseleave = () => btnEditar.style.backgroundColor = "#3498db";
+        btnEditar.onclick = () => editarTarea(index);
+
+        // Botón Eliminar
+        let btnEliminar = document.createElement("button");
+        btnEliminar.textContent = "🗑 Eliminar";
+        btnEliminar.style.backgroundColor = "#e74c3c";
+        btnEliminar.style.color = "white";
+        btnEliminar.style.border = "none";
+        btnEliminar.style.padding = "8px 12px";
+        btnEliminar.style.borderRadius = "5px";
+        btnEliminar.style.cursor = "pointer";
+        btnEliminar.style.transition = "0.3s";
+        btnEliminar.onmouseover = () => btnEliminar.style.backgroundColor = "#c0392b";
+        btnEliminar.onmouseleave = () => btnEliminar.style.backgroundColor = "#e74c3c";
+        btnEliminar.onclick = () => eliminarTarea(index);
+
+        botones.appendChild(btnEditar);
+        botones.appendChild(btnEliminar);
+
+        // Agregar elementos al contenedor principal
+        contenedorTarea.appendChild(contenido);
+        contenedorTarea.appendChild(botones);
+
+        li.appendChild(contenedorTarea);
+        lista.appendChild(li);
+    });
+}
+
+function editarTarea(index) {
+    let tarea = tareas[index];
+
+    document.getElementById("tareaNombre").value = tarea.nombre;
+    document.getElementById("tareaEstado").value = tarea.estado;
+    document.getElementById("personaNombre").value = tarea.persona.nombre;
+    document.getElementById("personaDNI").value = tarea.persona.dni;
+    document.getElementById("personaCorreo").value = tarea.persona.correo;
+    document.getElementById("notaTexto").value = tarea.nota;
+
+    eliminarTarea(index);
+    siguiente(1);
+}
+
+function eliminarTarea(index) {
+    tareas.splice(index, 1);
+    actualizarListaTareas();
+}
+    </script>
+</body>
+</html>

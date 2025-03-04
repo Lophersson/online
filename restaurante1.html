@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>du soleil restaurante</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Para los iconos -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            overflow: hidden; /* Evitar las barras de desplazamiento */
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Estilo para el nav */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            z-index: 10;
+        }
+
+        /* Logo */
+        .logo {
+            width: 50px;
+            height: 50px;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        /* Links */
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        /* Iconos de redes sociales */
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+        }
+
+        /* Estilo para el menú de las rayitas */
+        .menu-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: white;
+        }
+
+        .menu-toggle.active div:nth-child(1) {
+            transform: rotate(45deg);
+            position: relative;
+            top: 6px;
+        }
+
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active div:nth-child(3) {
+            transform: rotate(-45deg);
+            position: relative;
+            top: -6px;
+        }
+
+        /* Estilo del menú desplegable */
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            width: 200px;
+            z-index: 9;
+        }
+
+        .menu.active {
+            display: block;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Carrusel */
+        .carousel-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .carousel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 3s ease-in-out;
+        }
+
+        .carousel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        h1, h2, p {
+            position: relative;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 84px;
+            color: white;
+            text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+        }
+
+        h2 {
+            font-size: 60px;
+            color: white;
+            text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+        }
+
+        p {
+            font-size: 20px;
+            color: white;
+            text-shadow: 3px 3px 7px rgba(0, 0, 0, 0.7);
+        }
+
+        .title, .sub-title, .description {
+            opacity: 0;
+            animation-duration: 5s;
+            animation-timing-function: ease-out;
+        }
+
+        .title {
+            font-size: 84px;
+        }
+
+        .sub-title {
+            font-size: 60px;
+        }
+
+        .description {
+            font-size: 20px;
+        }
+
+        .look-menu-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid white;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            opacity: 0;
+            animation-duration: 5s;
+            animation-timing-function: ease-out;
+            animation-delay: 5s;
+        }
+
+        .look-menu-btn:hover {
+            background-color: rgba(255, 0, 0, 0.5);
+            color: white;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(100%);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                opacity: 0;
+                transform: rotate(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav>
+        <div class="logo"></div>
+        <div class="nav-links">
+            <a href="#">Inicio</a>
+            <a href="#">Menú</a>
+            <a href="#">Reservas</a>
+            <a href="#">Fotos</a>
+            <a href="#">Sobre Nosotros</a>
+            <a href="#">Contacto</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-whatsapp"></a>
+        </div>
+        <div class="menu-toggle">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </nav>
+
+    <!-- Menú desplegable -->
+    <div class="menu">
+        <a href="#">Inicio</a>
+        <a href="#">Menú</a>
+        <a href="#">Reservas</a>
+        <a href="#">Fotos</a>
+        <a href="#">Sobre Nosotros</a>
+        <a href="#">Contacto</a>
+    </div>
+
+    <!-- Carrusel de imágenes -->
+    <div class="carousel-container">
+        <div class="carousel">
+            <img src="https://t4.ftcdn.net/jpg/02/94/26/33/360_F_294263329_1IgvqNgDbhmQNgDxkhlW433uOFuIDar4.jpg" class="carousel-image" style="opacity: 1;">
+            <img src="https://t3.ftcdn.net/jpg/09/50/96/38/360_F_950963890_DQN2uk1R722Ttz9QjaUkfmrSLPHHBkBB.jpg" class="carousel-image">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D" class="carousel-image">
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="content">
+        <h1 class="title">Bienvenidos a</h1>
+        <h2 class="sub-title">du Soleil Restaurante</h2>
+        <p class="description">Disfruta de una experiencia y ambiente únicos</p>
+        <button class="look-menu-btn">Ver Menú</button>
+    </div>
+
+    <!-- Scripts para menú y carrusel -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const menu = document.querySelector('.menu');
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            menu.classList.toggle('active');
+        });
+    
+        const carouselImages = document.querySelectorAll('.carousel-image');
+        const elements = document.querySelectorAll('.title, .sub-title, .description, .look-menu-btn');
+    
+        // Función para mostrar la siguiente imagen del carrusel
+        const showNextImage = () => {
+            const currentImage = [...carouselImages].find(img => img.style.opacity === '1');
+            const nextImage = currentImage.nextElementSibling || carouselImages[0];
+            currentImage.style.opacity = 0;
+            nextImage.style.opacity = 1;
+        };
+    
+        // Función para aplicar animación aleatoria a los elementos de texto
+        function randomizeAnimation(element, isButton = false) {
+            const animations = ['fadeIn', 'bounce', 'zoomIn', 'slideLeft', 'slideRight', 'rotate', 'scaleUp'];
+            const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+            
+            element.style.animationName = randomAnimation;
+            element.style.animationDuration = '3s'; // Duración de la animación
+            element.style.animationTimingFunction = 'ease-out';
+            element.style.animationDelay = '0s';  // No hay retraso para los textos
+            element.style.opacity = 1;
+        }
+    
+        // Función para iniciar las animaciones de texto y carrusel
+        const initializeAnimations = () => {
+            // Animar elementos de texto al principio
+            elements.forEach((element) => {
+                randomizeAnimation(element);
+            });
+    
+            // Iniciar el carrusel
+            carouselImages[0].style.opacity = 1;
+            setInterval(showNextImage, 5000); // Cambiar imagen cada 5 segundos
+    
+            // Aplicar animaciones aleatorias a los elementos de texto cada 5 segundos
+            setInterval(() => {
+                elements.forEach((element) => {
+                    randomizeAnimation(element);
+                });
+            }, 5000); // Animar cada 5 segundos
+        };
+    
+        // Iniciar las animaciones cuando se carga la página
+        window.addEventListener('load', initializeAnimations);
+    </script>
+    
+</body>
+</html>

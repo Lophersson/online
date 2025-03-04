@@ -1,0 +1,481 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
+
+
+
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>Animated Stock Widgets</title>
+
+    <link rel="canonical" href="https://codepen.io/jkantner/pen/myddybg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap'>
+  
+<style>
+* {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --hue: 223;
+  --hue-positive: 133;
+  --hue-warning: 33;
+  --hue-negative: 3;
+  --sat: 10%;
+  --light-gray1: hsl(var(--hue),var(--sat),95%);
+  --light-gray2: hsl(var(--hue),var(--sat),90%);
+  --light-gray3: hsl(var(--hue),var(--sat),85%);
+  --light-gray4: hsl(var(--hue),var(--sat),80%);
+  --light-gray5: hsl(var(--hue),var(--sat),75%);
+  --light-gray6: hsl(var(--hue),var(--sat),70%);
+  --light-gray7: hsl(var(--hue),var(--sat),65%);
+  --dark-gray4: hsl(var(--hue),var(--sat),30%);
+  --dark-gray5: hsl(var(--hue),var(--sat),25%);
+  --dark-gray6: hsl(var(--hue),var(--sat),20%);
+  --dark-gray7: hsl(var(--hue),var(--sat),15%);
+  --dark-gray8: hsl(var(--hue),var(--sat),10%);
+  --dark-gray9: hsl(var(--hue),var(--sat),5%);
+  --positive1: hsl(var(--hue-positive),90%,50%);
+  --positive2: hsl(var(--hue-positive),90%,20%);
+  --warning1: hsl(var(--hue-warning),90%,55%);
+  --warning2: hsl(var(--hue-warning),90%,40%);
+  --negative1: hsl(var(--hue-negative),90%,65%);
+  --negative2: hsl(var(--hue-negative),90%,35%);
+  --trans-dur: 0.3s;
+  font-size: clamp(1rem,0.9rem + 0.5vw,1.5rem);
+}
+
+body {
+  background-color: var(--light-gray6);
+  color: var(--dark-gray8);
+  display: grid;
+  place-items: center;
+  font: 1em/1.5 Outfit, sans-serif;
+  height: 100vh;
+  transition: background-color var(--trans-dur), color var(--trans-dur);
+}
+
+.icon {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+.icon--large {
+  font-size: 4.5em;
+}
+.icon--warning {
+  color: var(--warning2);
+}
+
+.widget {
+  background-color: var(--light-gray4);
+  border-radius: 1.5em;
+  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15), 0 0 0 0.25em var(--light-gray6), 0 0 0 0.375em var(--light-gray5);
+  overflow: hidden;
+  padding: 1em;
+  position: relative;
+  width: 10.5em;
+  height: 10.5em;
+  transition: background-color var(--trans-dur), box-shadow var(--trans-dur);
+}
+.widget__content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+.widget__symbol, .widget__name, .widget__change, .widget__price {
+  animation: fade-fly-in 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+  opacity: 0;
+}
+.widget__symbol, .widget__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.widget__symbol {
+  font-size: 1em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.widget__name, .widget__change {
+  transition: color var(--trans-dur);
+}
+.widget__name {
+  color: var(--dark-gray4);
+  animation-delay: 0.1s;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1.3333;
+}
+.widget__change {
+  animation-delay: 0.2s;
+  display: flex;
+  font-weight: 300;
+  gap: 0.375em;
+  align-items: center;
+  font-size: 0.875em;
+  line-height: 1.7;
+}
+.widget__change--negative {
+  color: var(--negative2);
+}
+.widget__change--positive {
+  color: var(--positive2);
+}
+.widget__error {
+  font-size: 0.75em;
+  margin: auto;
+  text-align: center;
+}
+.widget__error .icon {
+  margin: 0 auto 0.75rem auto;
+  transition: color var(--trans-dur);
+}
+.widget__graph {
+  display: block;
+  position: absolute;
+  top: 1.5em;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+.widget__graph-clip {
+  transition: transform 1s linear;
+}
+.widget__graph-line {
+  fill: var(--light-gray3);
+  stroke: var(--light-gray2);
+  transition: fill var(--trans-dur), stroke var(--trans-dur);
+}
+[dir=rtl] .widget__graph {
+  transform: scaleX(-1);
+}
+.widget__placeholder {
+  animation: placeholder 1s infinite;
+  background-color: currentColor;
+  border-radius: 0.75em;
+  opacity: 0.3;
+  height: 1.5em;
+}
+.widget__placeholder--symbol {
+  border-radius: 0.5em;
+  margin: 0.25em 0;
+  width: 30%;
+  height: 1em;
+}
+.widget__placeholder--name {
+  border-radius: 0.375em;
+  margin: 0.125em 0;
+  width: 75%;
+  height: 0.75em;
+}
+.widget__placeholder--change {
+  border-radius: 0.4375em;
+  margin: 0.25em 0;
+  width: 40%;
+  height: 0.875em;
+}
+.widget__placeholder--price {
+  margin-top: auto;
+  width: 55%;
+}
+.widget__price {
+  animation-delay: 0.3s;
+  font-size: 1.5em;
+  line-height: 1;
+  margin-top: auto;
+}
+.widget:hover .widget__graph-line {
+  fill: var(--light-gray2);
+  stroke: var(--light-gray1);
+}
+.widget-grid {
+  display: grid;
+  gap: 1.5em;
+  padding: 1.5em;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--dark-gray9);
+    color: var(--light-gray2);
+  }
+
+  .icon--warning {
+    color: var(--warning1);
+  }
+
+  .widget {
+    background-color: var(--dark-gray7);
+    box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15), 0 0 0 0.25em var(--dark-gray9), 0 0 0 0.375em var(--dark-gray8);
+  }
+  .widget__change--negative {
+    color: var(--negative1);
+  }
+  .widget__change--positive {
+    color: var(--positive1);
+  }
+  .widget__graph-line {
+    fill: var(--dark-gray6);
+    stroke: var(--dark-gray5);
+  }
+  .widget__name {
+    color: var(--light-gray7);
+  }
+  .widget:hover .widget__graph-line {
+    fill: var(--dark-gray5);
+    stroke: var(--dark-gray4);
+  }
+}
+/* Beyond mobile */
+@media (min-width: 480px) {
+  .widget-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Animations */
+@keyframes fade-fly-in {
+  from {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes placeholder {
+  from, to {
+    animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0);
+    opacity: 0.3;
+  }
+  50% {
+    animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+    opacity: 0.1;
+  }
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <div id="root"></div>
+  
+      <script id="rendered-js" type="module">
+import React, { StrictMode, useEffect, useRef, useState } from "https://esm.sh/react";
+import { createRoot } from "https://esm.sh/react-dom/client";
+createRoot(document.getElementById("root")).render(React.createElement(StrictMode, null,
+    React.createElement(IconSprites, null),
+    React.createElement("div", { className: "widget-grid" },
+        React.createElement(StockWidget, { symbol: "IBM", name: "IBM" }),
+        React.createElement(StockWidget, { symbol: "MSFT", name: "Microsoft Corporation" }))));
+function Icon({ icon, color = "", size = "" }) {
+    const _color = color ? ` icon--${color}` : '';
+    const _size = size ? ` icon--${size}` : '';
+    return (React.createElement("svg", { className: `icon${_color}${_size}`, width: "16px", height: "16px", "aria-hidden": "true" },
+        React.createElement("use", { href: `#${icon}` })));
+}
+function IconSprites() {
+    const viewBox = "0 0 16 16";
+    return (React.createElement("svg", { width: "0", height: "0", display: "none" },
+        React.createElement("symbol", { id: "up", viewBox: viewBox },
+            React.createElement("g", { fill: "none", stroke: "currentcolor", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "1" },
+                React.createElement("polyline", { points: "2 8,8 2,14 8" }),
+                React.createElement("polyline", { points: "8 2,8 14" }))),
+        React.createElement("symbol", { id: "down", viewBox: viewBox },
+            React.createElement("g", { fill: "none", stroke: "currentcolor", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "1" },
+                React.createElement("polyline", { points: "8 2,8 14" }),
+                React.createElement("polyline", { points: "2 8,8 14,14 8" }))),
+        React.createElement("symbol", { id: "warning", viewBox: viewBox },
+            React.createElement("g", { fill: "none", stroke: "currentcolor", strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "1" },
+                React.createElement("polygon", { points: "8 1,15 14,1 14" }),
+                React.createElement("polyline", { points: "8 6,8 10" }),
+                React.createElement("polyline", { points: "8 12,8 12" })))));
+}
+function StockWidget({ symbol, name }) {
+    const [fetching, setFetching] = useState(false);
+    const [status, setStatus] = useState("loading");
+    const [data, setData] = useState([]);
+    const LOCALE = "en-US";
+    const CURRENCY = "USD";
+    const currencyFormat = new Intl.NumberFormat(LOCALE, {
+        currency: CURRENCY,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        notation: "compact"
+    });
+    const percentFormat = new Intl.NumberFormat(LOCALE, {
+        maximumFractionDigits: 2,
+        style: "percent"
+    });
+    const prices = data.map(price => price.value);
+    while (prices.length < 2) {
+        // force a minimum of two values
+        prices.unshift(0);
+    }
+    const lastTwo = prices.slice(-2);
+    const difference = lastTwo.reduce((a, b) => b - a);
+    const ratio = lastTwo.reduce((a, b) => b / a);
+    const change = ratio === Infinity ? 1 : (isNaN(ratio) ? 0 : ratio - 1);
+    const isDown = difference < 0;
+    // formatted values
+    const changeAsSymbol = isDown ? "-" : "+";
+    const changeAsWord = isDown ? "down" : "up";
+    const priceAbs = currencyFormat.format(Math.abs(difference));
+    const changeAbs = percentFormat.format(Math.abs(change));
+    const visibleLabel = `${changeAsSymbol}${priceAbs} (${changeAsSymbol}${changeAbs})`;
+    const ariaLabel = `${changeAsWord} ${priceAbs} points (${changeAbs})`;
+    const mostRecentPrice = currencyFormat.format(lastTwo.slice(-1)[0]);
+    useEffect(() => {
+        // prevent multiple requests for the same data
+        setFetching(true);
+    }, []);
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                // first allow the placeholder to be seen
+                await new Promise((res) => setTimeout(res, 1e3));
+                // then do the request
+                const func = "TIME_SERIES_DAILY";
+                const apiKey = "demo"; // EFPI1W0IT64YLBB4
+                const url = `https://www.alphavantage.co/query?function=${func}&symbol=${symbol}&apikey=${apiKey}`;
+                const response = await fetch(url);
+                if (response.ok) {
+                    // parameters to get from JSON
+                    const seriesKey = "Time Series (Daily)";
+                    const valueKey = "4. close";
+                    const dayRange = 14;
+                    const offset = 0;
+                    // get the JSON
+                    const result = await response.json();
+                    const daily = result[seriesKey];
+                    // use data from the last n days
+                    const dates = Object.keys(daily).slice(offset, dayRange + offset);
+                    const dataArray = [];
+                    // build the data array
+                    dates.forEach(date => {
+                        dataArray.unshift({
+                            date: new Date(date),
+                            value: +daily[date][valueKey]
+                        });
+                    });
+                    setData(dataArray);
+                    setStatus("ok");
+                }
+                else {
+                    setStatus("error");
+                }
+            }
+            catch (_a) {
+                setStatus("error");
+            }
+        }
+        if (fetching)
+            fetchData();
+    }, [fetching]);
+    const statusMap = {
+        error: React.createElement(StockWidgetError, { symbol: symbol }),
+        loading: React.createElement(StockWidgetPlaceholder, null),
+        ok: React.createElement(React.Fragment, null,
+            React.createElement(StockWidgetGraph, { data: prices }),
+            React.createElement("div", { className: "widget__content" },
+                React.createElement("h2", { className: "widget__symbol" }, symbol),
+                React.createElement("h3", { className: "widget__name" }, name),
+                React.createElement("div", { className: `widget__change ${isDown ? "widget__change--negative" : "widget__change--positive"}`, "aria-label": ariaLabel }, data.length ? React.createElement(React.Fragment, null,
+                    React.createElement(Icon, { icon: changeAsWord }),
+                    visibleLabel) : "-"),
+                React.createElement("div", { className: "widget__price" }, data.length ? mostRecentPrice : "-")))
+    };
+    return (React.createElement("div", { className: "widget" }, statusMap[status]));
+}
+function StockWidgetError({ symbol }) {
+    return (React.createElement("div", { className: "widget__content" },
+        React.createElement("div", { className: "widget__error" },
+            React.createElement(Icon, { icon: "warning", color: "warning", size: "large" }),
+            React.createElement("p", null,
+                "Couldn\u2019t get data for ",
+                React.createElement("strong", null, symbol),
+                ". Try again later."))));
+}
+function StockWidgetGraph({ data }) {
+    const [animated, setAnimated] = useState(false);
+    const animationRef = useRef(0);
+    const lowestPrice = data.reduce((a, b) => b < a ? b : a);
+    const highestPrice = data.reduce((a, b) => b > a ? b : a);
+    const difference = highestPrice - lowestPrice;
+    const graphWidth = 105;
+    const graphHeight = 90;
+    const graphPoints = data.map((n, i) => {
+        const x = graphWidth * (i / (data.length - 1));
+        let y = (1 - (n - lowestPrice) / difference) * graphHeight;
+        if (isNaN(y)) {
+            y = graphHeight;
+        }
+        return [+x.toFixed(2), +y.toFixed(2)];
+    });
+    const graphPointsDrawn = [
+        [-1, graphHeight],
+        ...graphPoints,
+        [graphWidth + 1, graphHeight]
+    ];
+    const graphPointsToString = graphPointsDrawn.map(point => point.join(" ")).join(",");
+    const graphClipStyle = {
+        transform: `translate(${-graphWidth}px,0)`
+    };
+    const clipID = `line-clip-${randomHash()}`;
+    useEffect(() => {
+        // allow the animation to run on mount
+        animationRef.current = setTimeout(() => setAnimated(true), 400);
+    }, []);
+    return (React.createElement("svg", { className: "widget__graph", viewBox: `0 0 ${graphWidth} ${graphHeight}`, width: `${graphWidth}px`, height: `${graphHeight}px`, "aria-hidden": "true" },
+        React.createElement("defs", null,
+            React.createElement("clipPath", { id: clipID },
+                React.createElement("rect", { className: "widget__graph-clip", width: graphWidth, height: graphHeight, style: !animated ? graphClipStyle : {} }))),
+        React.createElement("polyline", { className: "widget__graph-line", clipPath: `url(#${clipID})`, strokeWidth: "1", points: graphPointsToString })));
+}
+function StockWidgetPlaceholder() {
+    return (React.createElement("div", { className: "widget__content" },
+        React.createElement("div", { className: "widget__placeholder widget__placeholder--symbol" }),
+        React.createElement("div", { className: "widget__placeholder widget__placeholder--name" }),
+        React.createElement("div", { className: "widget__placeholder widget__placeholder--change" }),
+        React.createElement("div", { className: "widget__placeholder widget__placeholder--price" })));
+}
+function randomHash() {
+    const random = crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
+    return Math.round(0xffff * random).toString(16);
+}
+;
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>

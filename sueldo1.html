@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gastos mensuales</title>
+    <style>
+        body {
+            background-color: #333333;
+            color: #ffffff;
+            font-family: Calibri, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 80vh;
+            margin: 0;
+            padding-top: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            margin: 0 auto;
+            padding: 0 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            margin: 0;
+        }
+
+        th, td {
+            padding: 4px;
+            text-align: center;
+            border: 0px solid #888888;
+        }
+
+        th {
+            background-color: #444444;
+            color: #ffffff;
+            border-radius: 10px;
+        }
+
+        td input {
+            width: 80px;
+            padding: 4px;
+            text-align: center;
+            background-color: #cccccc;
+            border: 0px solid #888888;
+            border-radius: 10px;
+        }
+  
+  /* CSS para estilizar el texto en los campos de entrada y los placeholders */
+input {
+    font-weight: bold;      /* Aplica negrita al texto escrito */
+    font-style: italic;     /* Aplica cursiva al texto escrito */
+}
+
+input::placeholder {
+    font-weight: bold;      /* Aplica negrita al placeholder */
+    font-style: italic;     /* Aplica cursiva al placeholder */
+}
+
+        .sum-row td, .total-row td {
+            font-weight: bold;
+        }
+
+        .total-row {
+            text-align: right;
+        }
+
+        .result-cell {
+            padding: 6px;
+            background-color: #555555;
+            color: #ffffff;
+            font-weight: bold;
+            width: 100px;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function calculateSums() {
+            // Itera sobre cada columna
+            for (let col = 0; col < 4; col++) {
+                let sum = 0;
+                // Suma los valores en la columna
+                for (let row = 0; row < 5; row++) {
+                    const cellValue = parseFloat(document.querySelector(`#importe-${row}-${col}`).value) || 0;
+                    sum += cellValue;
+                }
+                // Coloca el resultado en la celda de sumatorio correspondiente
+                document.querySelector(`#suma-col-${col}`).value = sum;
+            }
+            // Calcula el total de todas las sumas
+            updateTotalSum();
+        }
+
+        function updateTotalSum() {
+            let totalSum = 0;
+            for (let col = 0; col < 4; col++) {
+                totalSum += parseFloat(document.querySelector(`#suma-col-${col}`).value) || 0;
+            }
+            document.querySelector("#total-sum").value = totalSum;
+            document.querySelector("#total-x14").value = totalSum * 14;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Gastos Mensuales</h1>
+        <table>
+            <tr>
+                <th>Vivienda</th>
+                <th>Coche</th>
+                <th>Personal</th>
+                <th>Familia</th>
+            </tr>
+
+            <!-- Celdas de importe -->
+            <tr>
+                <td><input type="number" id="importe-0-0" oninput="calculateSums()" placeholder="Importe 1"></td>
+                <td><input type="number" id="importe-0-1" oninput="calculateSums()" placeholder="Importe 6"></td>
+                <td><input type="number" id="importe-0-2" oninput="calculateSums()" placeholder="Importe 11"></td>
+                <td><input type="number" id="importe-0-3" oninput="calculateSums()" placeholder="Importe 16"></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="importe-1-0" oninput="calculateSums()" placeholder="Importe 2"></td>
+                <td><input type="number" id="importe-1-1" oninput="calculateSums()" placeholder="Importe 7"></td>
+                <td><input type="number" id="importe-1-2" oninput="calculateSums()" placeholder="Importe 12"></td>
+                <td><input type="number" id="importe-1-3" oninput="calculateSums()" placeholder="Importe 17"></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="importe-2-0" oninput="calculateSums()" placeholder="Importe 3"></td>
+                <td><input type="number" id="importe-2-1" oninput="calculateSums()" placeholder="Importe 8"></td>
+                <td><input type="number" id="importe-2-2" oninput="calculateSums()" placeholder="Importe 13"></td>
+                <td><input type="number" id="importe-2-3" oninput="calculateSums()" placeholder="Importe 18"></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="importe-3-0" oninput="calculateSums()" placeholder="Importe 4"></td>
+                <td><input type="number" id="importe-3-1" oninput="calculateSums()" placeholder="Importe 9"></td>
+                <td><input type="number" id="importe-3-2" oninput="calculateSums()" placeholder="Importe 14"></td>
+                <td><input type="number" id="importe-3-3" oninput="calculateSums()" placeholder="Importe 19"></td>
+            </tr>
+            <tr>
+                <td><input type="number" id="importe-4-0" oninput="calculateSums()" placeholder="Importe 5"></td>
+                <td><input type="number" id="importe-4-1" oninput="calculateSums()" placeholder="Importe 10"></td>
+                <td><input type="number" id="importe-4-2" oninput="calculateSums()" placeholder="Importe 15"></td>
+                <td><input type="number" id="importe-4-3" oninput="calculateSums()" placeholder="Importe 20"></td>
+            </tr>
+
+            <!-- Sumatorios de cada columna -->
+            <tr class="sum-row">
+                <td><input type="number" id="suma-col-0" placeholder="total" readonly></td>
+                <td><input type="number" id="suma-col-1" placeholder="total" readonly></td>
+                <td><input type="number" id="suma-col-2" placeholder="total" readonly></td>
+                <td><input type="number" id="suma-col-3" placeholder="total" readonly></td>
+            </tr>
+
+            <!-- Resultados finales -->
+            <tr class="total-row">
+                <td colspan="2"></td>
+                <td class="result-cell">al mes:</td>
+                <td><input type="number" id="total-sum" placeholder="al mes" readonly></td>
+            </tr>
+            <tr class="total-row">
+                <td colspan="2"></td>
+                <td class="result-cell">al año:</td>
+                <td><input type="number" id="total-x14" placeholder="al año" readonly></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

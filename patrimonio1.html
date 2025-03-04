@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>patrimoine</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            justify-content: space-evenly;
+        }
+        .input-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: space-evenly;
+        }
+        .input-container div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input {
+            background-color: #333;
+            color: grey;
+            border: 1px solid #555;
+            padding: 4px;
+            text-align: right;
+            max-width: 80px;
+            font-style: italic;
+            font-weight: 500;
+            border-radius: 10px;
+        }
+        input[readonly] {
+            background-color: #222;
+            cursor: not-allowed;
+        }
+        .output {
+            font-weight: 600;
+            margin-top: 10px;
+            display: flex;
+    justify-content: flex-end;
+            font-style: italic;
+            color: grey;
+}
+    
+    label {
+        margin-top: 5px;
+        margin-right: 10px;
+        font-style: italic;
+            color: grey;
+        font-weight: 600;
+    }
+    </style>
+</head>
+<body>
+    <h1>Gastos mensuales</h1>
+    <div class="container">
+        <!-- Primer div con 20 inputs -->
+        <div class="input-container" id="inputs1">
+            <div>
+                <input type="number" value="560">
+                <input type="number" value="160">
+                <input type="number" value="80">
+                <input type="number" value="100">
+                <input type="number" value="240">
+            </div>
+            <div>
+                <input type="number" value="160">
+                <input type="number" value="300">
+                <input type="number" value="400">
+                <input type="number" value="500">
+                <input type="number" value="200">
+            </div>
+            <div>
+                <input type="number" value="80">
+                <input type="number" value="40">
+                <input type="number" value="80">
+                <input type="number" value="40">
+                <input type="number" value="40">
+            </div>
+            <div>
+                <input type="number" value="360">
+                <input type="number" value="300">
+                <input type="number" value="600">
+                <input type="number" value="600">
+                <input type="number" value="160">
+            </div>
+        </div>
+
+        <div class="output" id="suma-div">
+            <label for="total-sum">Gasto mensual:</label>
+            <input type="number" id="total-sum" readonly>
+        </div>
+
+        <div class="output" id="gasto-anual-div">
+            <label for="gasto-anual">Gasto anual:</label>
+            <input type="number" id="gasto-anual" readonly>
+        </div>
+
+        <!-- Segundo div con 30 inputs -->
+        <h1>Rentas anuales</h1>
+        <div class="input-container" id="inputs2"> 
+            <div>
+                <input type="number" id="input2-1" readonly>
+                <input type="number" id="input2-2" readonly>
+                <input type="number" id="input2-3" readonly>
+                <input type="number" id="input2-4" readonly>
+                <input type="number" id="input2-5" readonly>
+                <input type="number" id="input2-6" readonly>
+                <input type="number" id="input2-7" readonly>
+                <input type="number" id="input2-8" readonly>
+                <input type="number" id="input2-9" readonly>
+                <input type="number" id="input2-10" readonly>
+            </div>
+            <div>
+                <input type="number" id="input2-11" readonly>
+                <input type="number" id="input2-12" readonly>
+                <input type="number" id="input2-13" readonly>
+                <input type="number" id="input2-14" readonly>
+                <input type="number" id="input2-15" readonly>
+                <input type="number" id="input2-16" readonly>
+                <input type="number" id="input2-17" readonly>
+                <input type="number" id="input2-18" readonly>
+                <input type="number" id="input2-19" readonly>
+                <input type="number" id="input2-20" readonly>
+            </div>
+            <div>
+                <input type="number" id="input2-21" readonly>
+                <input type="number" id="input2-22" readonly>
+                <input type="number" id="input2-23" readonly>
+                <input type="number" id="input2-24" readonly>
+                <input type="number" id="input2-25" readonly>
+                <input type="number" id="input2-26" readonly>
+                <input type="number" id="input2-27" readonly>
+                <input type="number" id="input2-28" readonly>
+                <input type="number" id="input2-29" readonly>
+                <input type="number" id="input2-30" readonly>
+            </div>
+        </div>
+
+        <div class="output" id="suma2-div">
+            <label for="total-sum2">Gastos a 30 años:</label>
+            <input type="number" id="total-sum2" readonly>
+        </div>
+    </div>
+    
+    <!--Tercer bloque-->
+        <h1>Properties</h1>
+    <div class="container">
+        <!-- Primer div con 20 inputs -->
+        <div class="input-container" id="inputs3">
+            <div>
+                <input type="number" value="400000">
+                <input type="number" value="60000">
+                <input type="number" value="12000">
+                <input type="number" value="15000">
+                <input type="number" value="18000">
+            </div>
+            <div>
+                <input type="number" value="400000">
+                <input type="number" value="60000">
+                <input type="number" value="12000">
+                <input type="number" value="15000">
+                <input type="number" value="18000">
+            </div>
+            <div>
+                <input type="number" value="46000">
+                <input type="number" value="124000">
+                <input type="number" value="220000">
+                <input type="number" value="230000">
+                <input type="number" value="0">
+            </div>
+            <div>
+                <input type="number" value="120000">
+                <input type="number" value="30000">
+                <input type="number" value="45000">
+                <input type="number" value="60000">
+                <input type="number" value="362514">
+            </div>
+        </div>
+
+        <div class="output" id="suma3-div">
+            <label for="total-sum3">Properties:</label>
+            <input type="number" id="total-sum3" readonly>
+        </div>
+        
+        <h1>Total Patrimonio</h1>
+        <div class="output" id="suma4-div">
+            <label for="total-sum4">Total patrimonio:</label>
+            <input type="number" id="total-sum4" readonly>
+        </div>
+
+  <script>
+    // Función para calcular la suma de los primeros 20 inputs
+    function calcularSuma() {
+        let suma1 = 0;
+        const inputs1 = document.querySelectorAll('#inputs1 input');
+        inputs1.forEach(input => {
+            suma1 += Math.round(parseFloat(input.value) || 0); // Redondeamos cada valor a entero
+        });
+
+        // Mostrar la suma
+        document.getElementById('total-sum').value = suma1;
+
+        let suma3 = 0;
+        const inputs3 = document.querySelectorAll('#inputs3 input');
+        inputs3.forEach(input => {
+            suma3 += Math.round(parseFloat(input.value) || 0); // Redondeamos cada valor a entero
+        });
+
+        // Mostrar la suma
+        document.getElementById('total-sum3').value = suma3;
+
+        // Calcular el gasto anual (multiplicando por 14)
+        const gastoAnual = Math.round(suma1 * 14); // Redondeamos a entero
+        document.getElementById('gasto-anual').value = gastoAnual;
+
+        // Llenar los 30 inputs con el incremento del 1.8% y redondeamos los valores
+        let valorAnterior = gastoAnual;
+        for (let i = 1; i <= 30; i++) {
+            const input = document.getElementById('input2-' + i);
+            if (i === 1) {
+                input.value = valorAnterior;
+            } else {
+                valorAnterior = Math.round(valorAnterior * 1.018); // Incremento del 1.8% redondeado
+                input.value = valorAnterior;
+            }
+        }
+
+        // Calcular el sumatorio de los 30 inputs
+        let suma2 = 0;
+        const inputs2 = document.querySelectorAll('#inputs2 input');
+        inputs2.forEach(input => {
+            suma2 += Math.round(parseFloat(input.value) || 0); // Redondeamos cada valor a entero
+        });
+
+        // Mostrar la suma de los 30 inputs
+        document.getElementById('total-sum2').value = suma2;
+
+        // Finalmente, actualizamos el total patrimonio
+        actualizarTotalPatrimonio();
+    }
+
+    // Función para actualizar el total patrimonio
+    function actualizarTotalPatrimonio() {
+        // Verificar que los campos total-sum2 y total-sum3 no estén vacíos o a cero
+        const totalSum2 = parseFloat(document.getElementById("total-sum2").value) || 0;
+        const totalSum3 = parseFloat(document.getElementById("total-sum3").value) || 0;
+
+        // Calcular la suma de los valores
+        const totalPatrimonio = totalSum2 + totalSum3;
+
+        // Asignar el resultado solo al campo total-sum4 sin tocar los demás campos
+        document.getElementById("total-sum4").value = totalPatrimonio;
+    }
+
+    // Función para agregar event listeners a los inputs
+    function agregarListeners() {
+        // Agregar listener a los inputs del primer conjunto
+        const inputs1 = document.querySelectorAll('#inputs1 input');
+        inputs1.forEach(input => {
+            input.addEventListener('input', calcularSuma);
+        });
+
+        // Agregar listener a los inputs del segundo conjunto
+        const inputs2 = document.querySelectorAll('#inputs2 input');
+        inputs2.forEach(input => {
+            input.addEventListener('input', calcularSuma);
+        });
+
+        // Agregar listener a los inputs del tercer conjunto
+        const inputs3 = document.querySelectorAll('#inputs3 input');
+        inputs3.forEach(input => {
+            input.addEventListener('input', calcularSuma);
+        });
+    }
+
+    // Ejecutar la función de cálculo cuando la página cargue
+    window.onload = function() {
+        calcularSuma(); // Llamamos a la función de cálculo para que se ejecute al cargar la página
+        agregarListeners(); // Agregar los listeners para que se actualicen las sumas al cambiar cualquier input
+    };
+</script>
+        
+        
+</body>
+</html>

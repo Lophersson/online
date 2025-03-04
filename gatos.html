@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es" >
+
+<head>
+<meta charset="UTF-8">
+<link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Image gallery with View Transitions API & Scroll-Driven Animation" />
+  <meta name="author" content="Humberto" />
+  <meta name="keywords" content="gatos, imágenes, galería, animación" />
+
+  <title>Gatos Chulos</title>
+
+  <!-- Fuentes y Estilos -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/open-props@1.7.0/open-props.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/open-props@1.7.0/normalize.dark.min.css" />
+
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200..900&family=Lobster&display=swap");
+
+    :root {
+      font-family: "Inter", sans-serif;
+      --surface-1: oklch(0 0 0);
+      --text-1: oklch(0.97 0 0);
+      --text-2: oklch(0.73 0 0);
+      --link-visited: oklch(0.73 0 0);
+    }
+
+    body {
+      background-color: #151515;
+      color: var(--text-1);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  padding-top: 36px;
+      padding-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px; /* Tamaño de fuente ajustado a 20px */
+  font-style: italic; /* Estilo cursiva */
+  margin: 0; /* Elimina márgenes */
+  text-align: center; /* Asegura que el texto se alinee horizontalmente */
+}
+
+footer {
+  font-size: 30px; /* Tamaño de fuente ajustado a 16px */
+  font-style: italic; /* Cursiva */
+  text-align: center; /* Alinea el texto en el centro */
+  padding: 10px;
+  color: fuchsia;
+}
+
+    .imageGallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      justify-items: center;
+      padding: 20px;
+    }
+
+    .imageGallery button {
+      border: none;
+      background: none;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .carousel img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      display: none; /* Inicialmente ocultamos todas las imágenes */
+    }
+
+    .dialogContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      heigth: 60px;
+      padding: 0px;
+    }
+
+    .controls-btn {
+      padding: 0px;
+      font-size: 3rem;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      cursor: pointer;
+      width: 170px;
+    }
+
+    .controls-btn:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .closeDialog {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 3rem;
+    }
+
+    .closeDialog:hover {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    /* Estilos para el diálogo */
+    dialog {
+      width: 80%;
+      max-width: 800px;
+      height: 80%;
+      max-height: 387px;
+      background-color: #FFF;
+      border: none;
+      border-radius: 8px;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Showcase de Gatos Chulos</h1>
+  </header>
+
+  <main>
+    <section>
+      <div class="imageGallery">
+        <button onclick="openDialog(0)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-1.webp" alt="Gato curioso" loading="lazy" /></button>
+        <button onclick="openDialog(1)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-2.webp" alt="Gato durmiendo" loading="lazy" /></button>
+        <button onclick="openDialog(2)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-3.webp" alt="Gato jugando" loading="lazy" /></button>
+        <button onclick="openDialog(3)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-4.webp" alt="Gato mirando" loading="lazy" /></button>
+        <button onclick="openDialog(4)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-5.webp" alt="Gato feliz" loading="lazy" /></button>
+        <button onclick="openDialog(5)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-6.webp" alt="Gato curioso" loading="lazy" /></button>
+        <button onclick="openDialog(6)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-7.webp" alt="Gato con gafas" loading="lazy" /></button>
+        <button onclick="openDialog(7)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-8.webp" alt="Gato durmiendo" loading="lazy" /></button>
+        <button onclick="openDialog(8)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-9.webp" alt="Gato jugando" loading="lazy" /></button>
+        <button onclick="openDialog(9)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-10.webp" alt="Gato mirando" loading="lazy" /></button>
+        <button onclick="openDialog(10)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-11.webp" alt="Gato feliz" loading="lazy" /></button>
+        <button onclick="openDialog(11)"><img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-12.webp" alt="Gato durmiendo" loading="lazy" /></button>
+      </div>
+
+      <dialog id="dialog">
+        <div class="dialogContainer">
+          <div class="carousel" id="carousel">
+            <!-- Todas las imágenes estarán aquí, pero solo una se mostrará a la vez -->
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-1.webp" alt="Gato curioso" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-2.webp" alt="Gato durmiendo" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-3.webp" alt="Gato jugando" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-4.webp" alt="Gato mirando" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-5.webp" alt="Gato feliz" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-6.webp" alt="Gato curioso" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-7.webp" alt="Gato con gafas" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-8.webp" alt="Gato durmiendo" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-9.webp" alt="Gato jugando" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-10.webp" alt="Gato mirando" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-11.webp" alt="Gato feliz" />
+            <img src="https://raw.githubusercontent.com/mobalti/open-props-interfaces/main/image-gallery/images/img-12.webp" alt="Gato durmiendo" />
+          </div>
+
+          <div class="controls">
+            <button class="controls-btn preview" onclick="showImage(currentIndex - 1)">
+              <i class="ri-arrow-left-circle-fill"></i>
+            </button>
+            <button class="controls-btn next" onclick="showImage(currentIndex + 1)">
+              <i class="ri-arrow-right-circle-fill"></i>
+            </button>
+          </div>
+
+          <button id="closeDialogBtn" class="closeDialog">
+            <i class="ri-close-line"></i>
+          </button>
+        </div>
+      </dialog>
+    </section>
+  </main>
+
+  <footer>
+    <small>&copy;2025 - Web creada por Humberto - Ferrol</small>
+  </footer>
+
+  <script>
+    const dialog = document.getElementById('dialog');
+    const images = document.querySelectorAll('.imageGallery button');
+    const closeDialogBtn = document.getElementById('closeDialogBtn');
+    const carousel = document.getElementById('carousel');
+    const imageElements = carousel.querySelectorAll('img');
+    let currentIndex = 0;
+
+    function openDialog(index) {
+      currentIndex = index;
+      dialog.showModal();
+      showImage(currentIndex);
+    }
+
+    function showImage(index) {
+      currentIndex = (index + imageElements.length) % imageElements.length;
+      imageElements.forEach((img, i) => {
+        img.style.display = i === currentIndex ? 'block' : 'none';
+      });
+    }
+
+    closeDialogBtn.addEventListener('click', () => {
+      dialog.close();
+    });
+  </script>
+</body>

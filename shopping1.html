@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
+
+
+
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>shopping list</title>
+
+    <link rel="canonical" href="https://codepen.io/yogiman/pen/Bpzjer">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  
+  
+  
+<style>
+body {
+  font-family: sans-serif;
+}
+
+#shopping-list {
+  font-family: 'Indie Flower';
+  font-size: 22px;
+  background: rgba(255,150,150, 0.3);
+  width: 300px;
+  padding: 20px;
+  margin: 20px auto;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 5px #ccc; 
+}
+
+#shopping-list:hover {
+  box-shadow: 0 1px 15px #aaa;
+}
+
+#shopping-list h2 {
+  text-align: center;
+  color: #555;
+}
+
+#shopping-list h2 span {
+/*   border-sizing: border-box; */
+  font-size: 12px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #000;
+  text-align: center;
+  display: inline-block;
+  height: 18px;
+  width: 20px;
+  padding: 5px 2px 0 2px;
+  border: 1px solid #777;
+  border-radius: 50%;
+  position: relative;
+  top: -3px;
+  margin-left: 10px;
+}
+
+#shopping-list li {
+  color: darkblue;
+  line-height: 10px;
+  padding: 10px 0 0 2px;
+  border-bottom: 1px solid;
+  margin-left: -20px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.btn-area {
+  text-align: center;
+}
+
+.btn {
+  background: inherit;
+  font-size: 18px;
+  margin: 10px auto;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+li .btn {
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0;
+  border: 1px solid black;
+  border: 0;
+  position: absolute;
+  top: -8px;
+}
+
+li .btn:hover {
+  cursor: pointer;
+}
+
+.edit-item-btn {
+  color: blue;
+  right: 20px;
+}
+
+.remove-item-btn {
+  color: red;
+  right: 0;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <section id="shopping-list">
+  <h2>Shopping list</h2>
+  <ol>
+  </ol>
+</section>
+
+<section class="btn-area">
+  <button id="add-item-btn" class="btn">Add item</button>
+  <button id="add-item-at-number-btn" class="btn">Add item to number</button>
+  <button id="remove-all-items-btn" class="btn">Remove all items</button>
+</section>
+  
+      <script id="rendered-js" >
+// GLOBAL VARIABLES
+var list = document.querySelector('ol'); // ul element
+var listItems = document.getElementsByTagName('li'); // all li elements
+var title = document.querySelector('h2'); // h2 element (title)
+
+// ADD ITEM
+function addItem() {
+  var item = prompt('What do you want to add to the list?');
+  var itemNumber = listItems.length;
+  list.innerHTML += '<li>' + item + '<div class ="li-btn-area"><button class="btn remove-item-btn">X</button><button class="btn edit-item-btn">edit</button></div></li>';
+  title.innerHTML = 'Shopping list <span>' + listItems.length + '</span>';
+} // function
+var addItemBtn = document.getElementById('add-item-btn'); // button element
+addItemBtn.addEventListener('click', addItem, false); // click event listener
+
+// ADD ITEM AT SPECIFIC NUMBER
+function addItemAtNumber() {
+  var item = prompt('What do you want to add to the list?');
+  var index = prompt('Which number should it be on the list?');
+  var newEl = document.createElement('li');
+  newEl.innerHTML = item + '<div class ="li-btn-area"><button class="btn remove" onclick="removeItem(this)">X</button><button class="btn edit-item-btn" onclick="editItem(this)">edit</button></div>';
+  list.insertBefore(newEl, listItems[index - 1]);
+  title.innerHTML = 'Shopping list <span>' + listItems.length + '</span>';
+} // function
+var addItemAtNumberBtn = document.getElementById('add-item-at-number-btn'); // button element
+addItemAtNumberBtn.addEventListener('click', addItemAtNumber, false); // click event listener
+
+// REMOVE ALL ITEMS
+function removeAll() {
+  list.textContent = '';
+  updateItemsAmount();
+} // function
+var removeAllItemsBtn = document.getElementById('remove-all-items-btn'); // button element
+removeAllItemsBtn.addEventListener('click', removeAll, false); // click event listener
+
+// REMOVE ITEM (BUTTON SHOWN NEXT TO ITEM)
+function removeItem() {
+  var item = this.parentNode.parentNode;
+  list.removeChild(item);
+  updateItemsAmount();
+}
+// var removeItemBtn =
+// removeItemBtn.
+
+// EDIT ITEM (BUTTON SHOWN NEXT TO ITEM)
+function editItem(button) {
+  var item = button.parentNode.parentNode;
+  var btnArea = button.parentNode;
+  var newText = prompt('Enter the new text');
+  item.textContent = newText;
+  item.appendChild(btnArea);
+}
+
+// HELPER FUNCTION FOR UPDATING ITEMS AMOUNT IN TITLE
+function updateItemsAmount() {
+  if (listItems.length > 0) {
+    title.innerHTML = 'Shopping list <span>' + listItems.length + '</span>';
+  } else {
+    title.textContent = "Shopping list";
+  }
+}
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>

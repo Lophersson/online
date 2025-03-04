@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Horas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        body {
+            background: url('https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTEyL3Jhd3BpeGVsX29mZmljZV8zN19waG90b19vZl9nYWxheHlfd2FsbHBhcGVyX2Flc3RoZXRpY19taW5pbWFsX2Y1NWFjNGU1LTkxOWQtNGEwZS1hNzA2LTlhMGExMTI1YzAxZS5qcGc.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+        }
+
+        .fecha-hora {
+            text-align: center;
+            position: absolute;
+            top: 15px;
+            width: 100%;
+        }
+
+        .fecha {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+    
+        .hora {
+            font-size: 6rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        .contenedor {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            width: 320px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-style: italic;
+            font-size: 2rem;
+            text-shadow: -3px 3px 5px gray;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="fecha-hora">
+        <div class="fecha" id="fecha"></div>
+        <div class="hora" id="hora"></div>
+    </div>
+
+    <div class="contenedor">
+        <h1>Calculadora de Horas</h1>
+        <input type="time" id="inicio" placeholder="Hora de inicio">
+        <input type="time" id="final" placeholder="Hora final">
+        <input type="text" id="duracion" placeholder="Duración" readonly>
+        <input type="text" id="media" placeholder="Hora media" readonly>
+    </div>
+
+    <script>
+        function actualizarFechaHora() {
+            const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+            let ahora = new Date();
+
+            // Fecha
+            let diaSemana = diasSemana[ahora.getDay()];
+            let dia = ahora.getDate();
+            let mes = ahora.toLocaleString("es-ES", { month: "long" });
+            let año = ahora.getFullYear();
+            document.getElementById("fecha").textContent = `${diaSemana}, ${dia} de ${mes} de ${año}`;
+
+            // Hora (sin segundos)
+            let horas = String(ahora.getHours()).padStart(2, '0');
+            let minutos = String(ahora.getMinutes()).padStart(2, '0');
+            document.getElementById("hora").textContent = `${horas}:${minutos}`;
+        }
+
+        function calcularTiempo() {
+            let inicio = document.getElementById("inicio").value;
+            let final = document.getElementById("final").value;
+
+            if (inicio && final) {
+                let [h1, m1] = inicio.split(":").map(Number);
+                let [h2, m2] = final.split(":").map(Number);
+
+                let minutosInicio = h1 * 60 + m1;
+                let minutosFinal = h2 * 60 + m2;
+
+                if (minutosFinal < minutosInicio) {
+                    minutosFinal += 24 * 60;
+                }
+
+                // Duración
+                let duracionTotal = minutosFinal - minutosInicio;
+                let duracionHoras = Math.floor(duracionTotal / 60);
+                let duracionMinutos = duracionTotal % 60;
+                document.getElementById("duracion").value = `${String(duracionHoras).padStart(2, '0')}:${String(duracionMinutos).padStart(2, '0')} h`;
+
+                // Hora media
+                let mediaMinutos = minutosInicio + Math.floor(duracionTotal / 2);
+                let mediaHoras = Math.floor(mediaMinutos / 60) % 24;
+                let mediaMin = mediaMinutos % 60;
+                document.getElementById("media").value = `${String(mediaHoras).padStart(2, '0')}:${String(mediaMin).padStart(2, '0')}`;
+            }
+        }
+
+        document.getElementById("inicio").addEventListener("input", calcularTiempo);
+        document.getElementById("final").addEventListener("input", calcularTiempo);
+
+        actualizarFechaHora();
+        setInterval(actualizarFechaHora, 1000);
+    </script>
+</body>
+</html>

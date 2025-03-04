@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>budgets1</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        body {
+            background: url('https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/619.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Asegura que el contenido está alineado en la parte superior */
+            height: 100vh;
+            color: white;
+        }
+
+        .tabla-container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px; /* Ancho mayor */
+            backdrop-filter: blur(5px);
+            margin-top: 1px; /* Ajuste para estar más cerca de la parte superior */
+        }
+
+        h1 {
+            font-style: italic;
+            font-size: 1.6rem;
+            text-shadow: -3px 3px 5px gray;
+            margin-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 0px 2px; /* Menor padding para reducir altura de las filas */
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            text-align: center;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .total-row {
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        td:first-child {
+            text-align: left; /* Alineación izquierda para los conceptos */
+        }
+
+        td:last-child {
+            text-align: right; /* Alineación derecha para los importes */
+        }
+
+        input {
+            width: 100%;
+            padding: 0px; /* Menor padding para reducir altura de los inputs */
+            margin: 2px 0;
+            border: none;
+            border-radius: 5px;
+            text-align: right;
+            font-size: 1rem;
+            background: transparent;
+            color: white;
+        }
+
+        input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-contenedor {
+            position: absolute;
+            bottom: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            backdrop-filter: blur(5px);
+            font-size: 0.7rem;
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tabla-container">
+        <h1>presupuestos 2025</h1>
+        <table id="tablaImportes">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Importe (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>entregas</td><td><input type="text" class="importe" value="700,00"></td></tr>
+                <tr><td>nike killshot 2 azul y amarillo</td><td><input type="text" class="importe" value="95,00"></td></tr>
+                <tr><td>ahorros</td><td><input type="text" class="importe" value="300,00"></td></tr>
+                <tr><td>estor ikea</td><td><input type="text" class="importe" value="40,00"></td></tr>
+                <tr><td>espejo</td><td><input type="text" class="importe" value="1,49"></td></tr>
+                <tr><td>marco espejo</td><td><input type="text" class="importe" value="1,49"></td></tr>
+                <tr><td>bermudas beige</td><td><input type="text" class="importe" value="16,00"></td></tr>
+                <tr><td>cargo beige lefties 18,00e</td><td><input type="text" class="importe" value="0,00"></td></tr>
+                <tr><td>chino beige</td><td><input type="text" class="importe" value="18,00"></td></tr>
+                <tr><td>polo blanco</td><td><input type="text" class="importe" value="12,00"></td></tr>
+                <tr><td>polo azul</td><td><input type="text" class="importe" value="12,00"></td></tr>
+                <tr><td>vida social</td><td><input type="text" class="importe" value="8,02"></td></tr>
+                <tr><td>residual</td><td><input type="text" class="importe" value="0,53"></td></tr>
+                <tr><td>jack and jones liam x2</td><td><input type="text" class="importe" value="60,00"></td></tr>
+                <tr><td>-</td><td><input type="text" class="importe" value="0,00"></td></tr>
+                <tr><td>-</td><td><input type="text" class="importe" value="0,00"></td></tr>
+                <tr class="total-row"><td>Total</td><td id="total"> </td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="footer-contenedor">
+        <p>© 2025 Mis presupuestos | Creado por Humberto López Rodríguez</p>
+    </footer>
+
+    <script>
+        function actualizarTotal() {
+            let importes = document.querySelectorAll('.importe');
+            let total = 0;
+
+            importes.forEach(input => {
+                // Reemplazar coma por punto para la suma y luego volver a mostrarlo con coma
+                let valor = input.value.replace(',', '.');
+                total += parseFloat(valor) || 0;
+            });
+
+            // Mostrar el total con coma como separador decimal
+            document.getElementById("total").textContent = `${total.toFixed(2).replace('.', ',')} €`;
+        }
+
+        // Añadir evento para actualizar el total cuando cambie un importe
+        document.querySelectorAll('.importe').forEach(input => {
+            input.addEventListener('input', actualizarTotal);
+        });
+
+        // Inicializar el total al cargar la página
+        actualizarTotal();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,475 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+
+    <link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+
+    <link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+
+
+
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>Menús para el cuidado de la vesícula biliar</title>
+
+    <link rel="canonical" href="https://codepen.io/scharan/pen/mqjLrz">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet">
+  
+  
+  
+<style>
+:root {
+  --wesbos: #ffc600;
+}
+
+.menu {
+  display: none;
+}
+.menu--is-visible {
+  display: grid;
+}
+@media (min-width: 768px) {
+  .menu {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 80px;
+  }
+}
+
+.item__header {
+  display: flex;
+  align-items: baseline;
+}
+.item__title {
+  font: 35px cookie, cursive;
+  color: var(--wesbos);
+  letter-spacing: 2px;
+  margin: 0;
+}
+.item__dots {
+  flex: 1;
+  border-bottom: 1px dashed #aaa;
+  margin: 0 15px;
+}
+.item__price {
+  color: var(--wesbos);
+  font: 31px cookie, cursive;
+}
+.item__description {
+  margin-bottom: 40px;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 35px;
+}
+@media (min-width: 768px) {
+  .buttons-container {
+    margin-bottom: 60px;
+  }
+}
+
+.button {
+  margin: 5px 15px;
+  padding: 10px 20px;
+  border: 1px solid var(--wesbos);
+  border-radius: 3px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.highlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  background: var(--wesbos);
+  border-radius: 3px;
+  z-index: -1;
+  transition: 0.24s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("https://i.imgur.com/er8DtBW.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: #fff;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  display: inline-block;
+  border-bottom: 4px solid var(--wesbos);
+  margin-top: 0;
+  font: 50px cookie, cursive;
+}
+
+h3 {
+font-size: 10px;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #222;
+  color: white;
+}
+
+footer a {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <div class="wrapper">
+
+  <h2>Menús para el cuidado de la vesícula biliar</h2>
+
+  <div class="buttons-container">
+    <a href="#" class="button button--is-active" data-target="breakfastMenu">Desayunos</a>
+    <a href="#" class="button" data-target="lunchMenu">Almuerzos</a>
+    <a href="#" class="button" data-target="dinnerMenu">Cenas</a>
+  </div>
+
+<!-- Start Breakfast Menu -->
+<div class="menu menu--is-visible" id="breakfastMenu">
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Avena con manzana y canela</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañado de té de manzanilla.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Yogur desnatado con frutas</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con semillas de chía.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Batido de plátano con avena</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Preparado con leche vegetal.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Pan integral con aguacate</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañado de té de jengibre.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Porridge de avena con fresas</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con almendras.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Tostadas de pan integral</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con queso fresco y miel.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Batido de mango y plátano</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Preparado con leche de almendras.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Pan de centeno con aguacate</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con queso fresco.</p>
+  </div>
+</div>
+<!-- End Breakfast Menu -->
+
+  <!-- Start Lunch Menu -->
+<div class="menu menu--is-visible" id="lunchMenu">
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Merluza al horno</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañada de arroz integral y calabacín al vapor.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Pechuga de pollo a la plancha</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con quinoa y espárragos.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Pescado blanco al vapor</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañado de puré de patata.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Lentejas con arroz integral</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Preparadas con verduras.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Ensalada de garbanzos</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con espinacas y zanahoria rallada.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Salmón al horno</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañado de puré de boniato y espárragos.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Pechuga de pavo</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con arroz integral y brócoli.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Ensalada de quinoa</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con pepino, tomate y atún al natural.</p>
+  </div>
+</div>
+<!-- End Lunch Menu -->
+
+<!-- Start Dinner Menu -->
+<div class="menu menu--is-visible" id="dinnerMenu">
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Puré de zanahoria y calabaza</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañado de tostadas de pan integral.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Crema de calabacín</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Servida con pan integral.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Ensalada de pepino, tomate y zanahoria</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Con aliño ligero.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Sopa de verduras</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañada de pan integral tostado.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Crema de calabaza</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Servida con pan de centeno.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Arroz con verduras</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañado de pechuga de pollo.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Sopa de zanahoria</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Servida con pan integral tostado.</p>
+  </div>
+
+  <div class="item">
+    <div class="item__header">
+      <h3 class="item__title">Crema de espinacas</h3>
+      <span class="item__dots"></span>
+      <span class="item__price"></span>
+    </div>
+    <p class="item__description">Acompañada de pan integral.</p>
+  </div>
+</div>
+<!-- End Dinner Menu -->
+
+
+<footer>
+  <p>&copy; 2025 | Web creada por Humberto López Rodríguez</p>
+  <p><a href="https://lophersson.github.io/omniweb/" target="_blank">Visita mi web</a></p>
+</footer>
+
+</div> <!-- End Wrapper -->
+
+  
+      <script id="rendered-js" >
+const buttons = document.querySelectorAll('.button');
+const menus = document.querySelectorAll('.menu');
+
+const highlight = document.createElement('span');
+document.body.appendChild(highlight);
+highlight.classList.add('highlight');
+
+// Set initial dimensions and position of 'highlight' based on activeButton coords 
+function initialHightlightLocation() {
+  const activeButton = document.querySelector('.button--is-active');
+  const activeButtonCoords = activeButton.getBoundingClientRect();
+
+  const initialCoords = {
+    width: activeButtonCoords.width,
+    height: activeButtonCoords.height,
+    left: activeButtonCoords.left + window.scrollX,
+    top: activeButtonCoords.top + window.scrollY };
+
+
+  highlight.style.width = `${initialCoords.width}px`;
+  highlight.style.height = `${initialCoords.height}px`;
+  highlight.style.transform = `translate(${initialCoords.left}px, ${initialCoords.top}px)`;
+}
+
+function handleClick(e) {
+  e.preventDefault();
+
+  buttons.forEach(button => button.classList.remove('button--is-active'));
+  this.classList.add('button--is-active');
+
+  // Set current dimensions and position of 'highlight' based on the clicked button 
+  const buttonCoords = this.getBoundingClientRect();
+  const coords = {
+    width: buttonCoords.width,
+    height: buttonCoords.height,
+    left: buttonCoords.left + window.scrollX,
+    top: buttonCoords.top + window.scrollY };
+
+  highlight.style.width = `${coords.width}px`;
+  highlight.style.height = `${coords.height}px`;
+  highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+
+  // Show the menu associated to the clicked button
+  const targetMenu = document.querySelector(`#${this.dataset.target}`);
+  menus.forEach(menu => {
+    menu.classList.remove('menu--is-visible');
+    targetMenu.classList.add('menu--is-visible');
+  });
+}
+
+window.addEventListener('load', initialHightlightLocation);
+window.addEventListener('resize', initialHightlightLocation);
+buttons.forEach(button => button.addEventListener('click', handleClick));
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>

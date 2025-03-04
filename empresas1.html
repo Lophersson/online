@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mis empresas</title>
+    <style>
+        /* Asegurarse de eliminar márgenes y padding de todos los elementos */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilos del body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2f2f2f;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Alineación superior */
+            height: 100vh; /* Ocupa toda la altura de la pantalla */
+            width: 100%;
+            overflow: hidden; /* Eliminar cualquier desplazamiento innecesario */
+        }
+
+        /* Contenedor principal para centrar el contenido */
+        .container {
+            width: 100%;
+            max-width: 600px; /* Limitar el ancho máximo */
+            padding: 0; /* Sin padding */
+            text-align: center;
+        }
+
+        /* Estilos del header para que quede en la parte superior */
+        header {
+            background-color: #444;
+            width: 100%;
+            padding: 10px 0; /* Solo padding vertical */
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0; /* Eliminar margen */
+            font-style: italic;
+            color: lightblue;
+        }
+
+        /* Contenedor de los departamentos */
+        .departments-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 10px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Estilos de cada botón de departamento */
+        .department {
+            width: 100%;
+            height: 92px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 0.65rem;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            color: #555; /* Gris oscuro para el texto */
+            font-weight: bold;
+            font-style: italic; /* Cursiva */
+            padding: 2px;
+        }
+
+        .department:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Colores pastel para los departamentos */
+        .department:nth-child(1) { background-color: #f8d7da; } /* Rosa pastel */
+        .department:nth-child(2) { background-color: #d1ecf1; } /* Azul pastel */
+        .department:nth-child(3) { background-color: #d4edda; } /* Verde pastel */
+        .department:nth-child(4) { background-color: #fff3cd; } /* Amarillo pastel */
+        .department:nth-child(5) { background-color: #e2d6f9; } /* Lavanda pastel */
+        .department:nth-child(6) { background-color: #b8e0d2; } /* Aqua pastel */
+        .department:nth-child(7) { background-color: #d9e6f2; } /* Gris claro pastel */
+        .department:nth-child(8) { background-color: #d0f0c0; } /* Verde menta pastel */
+        .department:nth-child(9) { background-color: #f8e4a0; } /* Amarillo pálido */
+        .department:nth-child(10) { background-color: #e4e4e4; } /* Gris muy claro */
+        .department:nth-child(11) { background-color: #f1d4e1; } /* Rosa suave pastel */
+        .department:nth-child(12) { background-color: #c7e8f1; } /* Azul suave pastel */
+        .department:nth-child(13) { background-color: #f5c8c0; } /* Melocotón pastel */
+        .department:nth-child(14) { background-color: #cde3f6; } /* Azul muy claro pastel */
+        .department:nth-child(15) { background-color: #f4e1f1; } /* Rosa lavanda pastel */
+        .department:nth-child(16) { background-color: #d2d2f7; } /* Azul lila pastel */
+        .department:nth-child(17) { background-color: #d6f0d4; } /* Verde pálido pastel */
+        .department:nth-child(18) { background-color: #f8d7da; }
+        .department:nth-child(19) { background-color: #d1ecf1; } /* Azul pastel */
+        .department:nth-child(20) { background-color: #d4edda; } /* Verde pastel */
+        
+        /* Estilo del footer */
+        footer {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #f39c12;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Encabezado -->
+        <header>
+            <h1>mis empresas</h1>
+        </header>
+
+        <!-- Contenedor de los botones de departamentos -->
+        <div class="departments-container">
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/Depayser.png'">Depayser Boulangerie</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/Wheaton%20Coffee%20Jazz.png'">Wheaton Coffee Jazz</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/Logo%20Boutique%20de%20Ropa%20Moderno%20Rosa_20241228_174210_0000.png'">La Petite Nouvelle</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/Coccolone.png'">Coccolone</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_autoPlitz_241231.png'">autoPlitz Automobiles</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/Copia%20de%20Sparkle.png'">Lophersson Consulting</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/bluepirateship.png'">Blue Pirate Ship Delicattessen</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/Gr%C3%B6no_20241222_180946_0000.png'">Gröno Chocolate</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_insigne_241231.png'">Insigne Restaurant</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/Minimalist%20House%20Line%20Real%20Estate%20Logo_20241228_171001_0000.png'">Arvendium Inmobiliaria</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/20241228_181006.png'">Terra Mirai Casa Rural</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_ursaeMajoris_241231.png'">Ursae Majoris Art & Social</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/bangalorelogooficialJPG.jpg'">Bangalore Coffe Ferrol</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_virtuosity_241231.png'">Virtuosity Night Club</button>
+            <button class="department" onclick="window.location.href='https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_eleganz_241231.png'">Elegance</button>
+            <button class="department" onclick="window.location.href='https://www.example.com/sanidad'">-</button>
+            <button class="department" onclick="window.location.href='https://www.example.com/archivo'">-</button>
+            <button class="department" onclick="window.location.href='https://www.example.com/'">-</button>
+            <button class="department" onclick="window.location.href='https://www.example.com/'">-</button>
+            <button class="department" onclick="window.location.href='https://www.example.com/'">-</button>
+        </div>
+
+        <!-- Pie de página -->
+        <footer>
+            <p>&copy; 2024 Lophersson Group | <a href="#">Elaborado por @Lophersson</a></p>
+        </footer>
+    </div>
+</body>
+</html>
