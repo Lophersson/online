@@ -1,7 +1,0 @@
-Comandos interesantes en git:
-git init
-git status
-git add .
-git commit -m "blablabla"
-git remote add origin https://github.com/nombre_usuario/nombre_proyecto.git
-git push -u origin name (si da error probar cambiando -u por -f)
