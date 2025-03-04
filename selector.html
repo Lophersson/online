@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>enlaces</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 30px 0;
+            font-size: 36px;
+            color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+            background-color: #f0f0f0;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 18px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .card:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enlaces</h1>
+        <div class="cards">
+            <!-- Los enlaces se generan dinámicamente en JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Lista de enlaces que proporcionaste
+        const links = [
+            "aboutme.html", "aboutme2.html", "bruto1.html", "coches1.html", 
+            "empresas1.html", "factor1.html", "fechas1.html", "financiacion1.html", 
+            "gatos.html", "hipoteca1.html", "hogar1.html", "horas1.html", 
+            "kms1.html", "list1.html", "listatareas.html", "menu1.html", 
+            "menu2.html", "money1.html", "mylist3.html", "patrimonio1.html", 
+            "periodico1.html", "presupuestos1.html", "restaurante1.html", 
+            "schedule3.html", "shopping1.html", "skyline.html", "stocks1.html", 
+            "store1.html", "store2.html", "sueldo1.html", "supermercado1.html", 
+            "tareas4.html", "tareashumberto.html"
+        ];
+
+        // Función para generar un color pastel aleatorio
+        function getRandomPastelColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r + 200}, ${g + 200}, ${b + 200})`; // Colores pastel (valores más altos)
+        }
+
+        // Función para crear los cards dinámicamente
+        function createCards() {
+            const cardsContainer = document.querySelector('.cards');
+            
+            links.forEach(link => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.style.backgroundColor = getRandomPastelColor();
+
+                const cardLink = document.createElement('a');
+                cardLink.href = `https://lophersson.github.io/online/${link}`;
+                cardLink.textContent = link;
+
+                card.appendChild(cardLink);
+                cardsContainer.appendChild(card);
+            });
+        }
+
+        // Llamamos a la función para crear las tarjetas cuando la página cargue
+        window.onload = createCards;
+    </script>
+</body>
+</html>
