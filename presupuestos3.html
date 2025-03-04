@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Restringido</title>
+    <style>
+        .login-body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #1f1f1f;
+        }
+
+        .container {
+            display: none; /* Ocultar por defecto */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+        }
+
+        .active {
+            display: flex; /* Mostrar contenedor activo */
+        }
+
+        /* Estilos de login */
+        .login-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background: #1f1f1f;
+            box-shadow: 0 8px 16px rgba(82, 82, 82, 0.938);
+            max-width: 80%;
+            width: 360px;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 10px 0 20px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-container img {
+            width: 240px;
+            height: 240px;
+            border-radius: 15px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 90%;
+            color: #ffffff;
+        }
+
+        .form-container input {
+            margin: 4px 30px 4px 30px;
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            font-size: 16px;
+            background-color: #1f1f1f;
+            color: #ffffff;
+            font-style: italic;
+        }
+
+        .botonera {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            align-items: center;
+        }
+
+        .btn-ok {
+            background-color: #28a745;
+            width: 110px;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 40px 10px 40px;
+            margin: 10px;
+        }
+
+        .btn-cancel {
+            background-color: #dc3545;
+            width: 110px;
+            border: none;
+            border-radius: 15px;
+            padding: 10px 40px 10px 40px;
+            margin: 10px;
+        }
+
+        /* Estilos de contactos */
+        body.contacts {
+            margin: 0;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f;
+            color: #cccccc;
+        }
+
+        .contacts .container {
+            max-width: 100%;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contacts h1 {
+            text-align: center;
+            color: #ec6816;
+            font-style: italic;
+            font-size: 30px;
+            margin: 24px 0;
+        }
+
+        .alphabet-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .letter {
+            background-color: #555555;
+            color: #acacac;
+            padding: 8px 10px;
+            margin: 2px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s, color 0.2s;
+            font-size: 30px;
+            font-weight: 900;
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        .letter:hover {
+            background-color: #ffd700; 
+            color: #1e90ff; 
+            transform: scale(1.1); 
+        }
+
+        #contact-list {
+            display: flex; 
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .contact-card {
+            background-color: #4d4d4d;
+            color: #757575;
+            padding-left: 12px;
+            border-radius: 10px;
+            width: 360px;
+            text-align: left;
+            font-family: 'Tahoma', Courier, monospace;
+            font-style: italic;
+            font-weight: 900;
+            font-size: 16px;
+            line-height: 0.15;
+            transition: color 0.3s;
+            display: none; /* Ocultar las tarjetas inicialmente */
+        }
+
+        .contact-card:hover {
+            background-color: #2b2b2b;
+            color: grey;
+        }
+
+        /* Sección de tabla (presupuestos) */
+        .tabla-container {
+            display: none; /* Ocultar los presupuestos por defecto */
+            margin-top: 20px;
+            color: #ffffff;
+        }
+    </style>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    /* Asegúrate de que la sección de presupuestos tenga la clase correcta */
+.presupuestos-body {
+    background: url('https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/619.jpg') no-repeat center center;
+    background-size: cover; /* Esto hace que la imagen cubra todo el fondo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Asegura que no esté cubierto por otras capas */
+}
+
+/* Si hay alguna capa de color gris oscuro, intenta sobrescribirlo */
+.presupuestos-body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Esto asegura que no haya color de fondo por encima */
+    z-index: -1; /* Coloca el fondo por debajo de todo */
+}
+
+.tabla-container {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    width: 400px; /* Ancho ajustado para centrarse mejor */
+    backdrop-filter: blur(5px);
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    h1 {
+        font-size: 1.6rem;
+        text-shadow: -3px 3px 5px gray;
+        margin-bottom: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        color: #000;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    th, td {
+        padding: 0px 2px; /* Menor padding para reducir altura de las filas */
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        text-align: center;
+        width: 70%;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        color: #000;
+    }
+
+    th {
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .total-row {
+        font-weight: bold;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    td:first-child {
+        text-align: left; /* Alineación izquierda para los conceptos */
+    }
+
+    td:last-child {
+        text-align: right; /* Alineación derecha para los importes */
+    }
+
+    .importe {
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        color: #000;
+    }
+
+    input {
+        width: 100%;
+        padding: 0px; /* Menor padding para reducir altura de los inputs */
+        margin: 2px 0;
+        border: none;
+        border-radius: 5px;
+        text-align: right;
+        font-size: 1rem;
+        background: transparent;
+        color: white;
+    }
+
+    input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.3);
+    }
+
+    .footer-contenedor {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%); /* Centra el footer horizontalmente */
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 15px;
+            text-align: center;
+            width: 400px;
+            backdrop-filter: blur(5px);
+            font-size: 0.7rem;
+            margin-bottom: 0px;
+            color: #000;
+        }
+</style>
+</head>
+<body>
+    <!-- Sección de Login -->
+    <body class="login-body">
+    <div id="login" class="container active">
+        <div class="login-container">
+            <h2>Acceso Restringido</h2>
+            <div class="content-container">
+                <img src="https://kfscdn.api.np.km.playstation.net/6815296913124930757/1573311615669.png" alt="foto">
+                <div class="form-container">
+                    <input type="text" id="username" placeholder="Usuario">
+                    <input type="password" id="password" placeholder="Contraseña">
+                    <div style="display: flex; gap: 10px;">
+                        <div class="botonera">
+                            <button class="btn-ok" onclick="handleLogin()">✔</button>
+                            <button class="btn-cancel" onclick="handleCancel()">✖</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Contactos y Presupuestos -->
+    <body class="presupuestos-body"></body>
+    <div id="presupuestos" class="tabla-container">
+        <h1>Presupuestos 2025</h1>
+        <table id="tablaImportes">
+            <thead>
+                <tr>
+                    <th>Concepto</th>
+                    <th>Importe (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>entregas</td><td><input type="text" class="importe" value="700,00"></td></tr>
+                <tr><td>nike killshot 2 azul y amarillo</td><td><input type="text" class="importe" value="95,00"></td></tr>
+                <tr><td>ahorros</td><td><input type="text" class="importe" value="300,00"></td></tr>
+                <tr><td>estor ikea</td><td><input type="text" class="importe" value="40,00"></td></tr>
+                <tr><td>espejo</td><td><input type="text" class="importe" value="1,49"></td></tr>
+                <tr><td>marco espejo</td><td><input type="text" class="importe" value="1,49"></td></tr>
+                <tr><td>bermudas beige</td><td><input type="text" class="importe" value="16,00"></td></tr>
+                <tr><td>cargo beige lefties 18,00e</td><td><input type="text" class="importe" value="0,00"></td></tr>
+                <tr><td>chino beige</td><td><input type="text" class="importe" value="18,00"></td></tr>
+                <tr><td>polo blanco</td><td><input type="text" class="importe" value="12,00"></td></tr>
+                <tr><td>polo azul</td><td><input type="text" class="importe" value="12,00"></td></tr>
+                <tr><td>vida social</td><td><input type="text" class="importe" value="8,02"></td></tr>
+                <tr><td>residual</td><td><input type="text" class="importe" value="0,53"></td></tr>
+                <tr><td>jack and jones liam x2</td><td><input type="text" class="importe" value="60,00"></td></tr>
+                <tr><td>-</td><td><input type="text" class="importe" value="0,00"></td></tr>
+                <tr><td>-</td><td><input type="text" class="importe" value="0,00"></td></tr>
+                <tr class="total-row"><td>Total</td><td id="total"> </td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="footer-contenedor">
+        <p>© 2025 Mis presupuestos | Creado por Humberto López Rodríguez</p>
+    </footer>
+
+    <script>
+    function showSection(sectionId) {
+        const sections = document.querySelectorAll('.container');
+        sections.forEach(section => section.classList.remove('active'));
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+    // Validar Login
+    function handleLogin() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === 'bbert' && password === '718!911+') {
+            alert('Usuario y password correctos! Bienvenido!');
+            
+            // Ocultar login y mostrar presupuestos
+            document.getElementById('login').style.display = 'none';
+            document.getElementById('presupuestos').style.display = 'block';
+        } else {
+            alert('Usuario o password incorrectos!');
+        }
+    }
+
+    // Cancelar Login
+    function handleCancel() {
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        alert('¡Hasta luego!');
+    }
+</script>
+<script>
+    function actualizarTotal() {
+        let importes = document.querySelectorAll('.importe');
+        let total = 0;
+
+        importes.forEach(input => {
+            // Reemplazar coma por punto para la suma y luego volver a mostrarlo con coma
+            let valor = input.value.replace(',', '.');
+            total += parseFloat(valor) || 0;
+        });
+
+        // Mostrar el total con coma como separador decimal
+        document.getElementById("total").textContent = `${total.toFixed(2).replace('.', ',')} €`;
+    }
+
+    // Añadir evento para actualizar el total cuando cambie un importe
+    document.querySelectorAll('.importe').forEach(input => {
+        input.addEventListener('input', actualizarTotal);
+    });
+
+    // Inicializar el total al cargar la página
+    actualizarTotal();
+</script>
+</body>
+</html>
