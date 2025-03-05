@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>Gestión de Tareas</title>
+<style>
+body {
+font-family: 'Montserrat', sans-serif;
+background-color: #121212;
+color: #e0e0e0;
+margin: 0;
+padding: 20px;
+text-align: center;
+}
+
+h1, h2 {
+color: #ffcc00;
+}
+
+.contenedor-flex {
+width: 1100px; /* Asegura que el contenedor no sea más ancho que la pantalla */
+display: flex;
+justify-content: center; /* Centra los elementos horizontalmente */
+align-items: center; /* Alinea los elementos verticalmente */
+flex-wrap: wrap; /* Permite que los elementos se acomoden en varias líneas si es necesario */
+gap: 15px; /* Ajusta la separación entre elementos */
+margin: 0 auto; /* Centra el contenedor en la página */
+padding: 10px; /* Añade un poco de espacio interno */
+}
+
+.seccion {
+background: #1e1e1e;
+padding: 5px;
+border-radius: 10px;
+width: 25%;
+box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.2);
+text-align: center;
+}
+
+.lista-tareas, .lista-empleados {
+background: #1e1e1e;
+padding: 20px;
+border-radius: 10px;
+max-width: 550px;
+margin: 15px auto;
+box-shadow: 0px 4px 10px rgba(255, 204, 0, 0.2);
+}
+
+input {
+width: 250px; /* O el ancho que desees */
+padding: 10px;
+margin: 8px 0;
+border: 1px solid #ffcc00;
+background: #3a3a3a;
+color: #e0e0e0;
+border-radius: 5px;
+font-size: 16px;
+outline: none;
+}
+
+#tareaEstado,
+#empleadoAsignado {
+width: 270px; /* O el ancho que desees */
+padding: 10px;
+margin: 8px 0;
+border: 1px solid #ffcc00;
+background: #3a3a3a;
+color: #e0e0e0;
+border-radius: 5px;
+font-size: 16px;
+outline: none;
+}
+
+button {
+background: #ffcc00;
+color: #121212;
+border: none;
+padding: 10px 15px;
+margin: 10px;
+font-size: 16px;
+font-weight: 600;
+cursor: pointer;
+border-radius: 5px;
+transition: 0.3s;
+}
+</style>
+</head>
+<body>
+<h1>Gestión de Tareas</h1>
+
+<section class="lista-tareas">
+<h2>📋 Lista de Tareas</h2>
+<ul id="listaTareas"></ul>
+</section>
+
+<div class="contenedor-flex">
+<div class="seccion">
+<h2>1️⃣ Crear Tarea</h2>
+<input type="text" id="tareaNombre" placeholder="Nombre de la tarea">
+<select id="tareaEstado">
+<option value="0">Pendiente</option>
+<option value="1">En Progreso</option>
+<option value="2">Completada</option>
+<option value="3">Cancelada</option>
+</select>
+<select id="empleadoAsignado">
+<option value="">Seleccionar empleado</option>
+</select>
+<button onclick="grabarTarea()">Aceptar</button>
+</div>
+
+<div class="seccion">
+<h2>👤 Alta de Empleados</h2>
+<input type="text" id="empleadoNombre" placeholder="Nombre del empleado">
+<input type="text" id="empleadoDNI" placeholder="DNI">
+<input type="email" id="empleadoCorreo" placeholder="Correo">
+<button onclick="registrarEmpleado()">Registrar</button>
+</div>
+</div>
+
+<section class="lista-empleados">
+<h2>👥 Lista de Empleados</h2>
+<ul id="listaEmpleados"></ul>
+</section>
+
+<script>
+let empleados = [];
+
+function grabarTarea() {
+    let nombreTarea = document.getElementById("tareaNombre").value;
+    let empleadoAsignado = document.getElementById("empleadoAsignado").value;
+
+    if (!nombreTarea || !empleadoAsignado) {
+        return; // No muestra alertas, solo evita continuar
+    }
+
+    let lista = document.getElementById("listaTareas");
+
+    let divTarea = document.createElement("div");
+    divTarea.style.display = "flex";
+    divTarea.style.justifyContent = "space-between";
+    divTarea.style.alignItems = "left";
+    divTarea.style.width = "100%";
+    divTarea.style.padding = "5px 5px";
+    divTarea.style.borderBottom = "1px solid #444";
+
+    let textoTarea = document.createElement("span");
+    textoTarea.textContent = `${nombreTarea} - ${empleadoAsignado}`;
+    textoTarea.style.flexGrow = "1";
+
+    let btnEditar = document.createElement("button");
+    btnEditar.textContent = "Editar";
+    btnEditar.style.marginLeft = "5px";
+    btnEditar.onclick = function () {
+        editarTarea(nombreTarea, empleadoAsignado, divTarea);
+    };
+
+    let btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "Eliminar";
+    btnEliminar.style.marginLeft = "5px";
+    btnEliminar.onclick = function () {
+        divTarea.remove();
+    };
+
+    divTarea.appendChild(textoTarea);
+    divTarea.appendChild(btnEditar);
+    divTarea.appendChild(btnEliminar);
+    lista.appendChild(divTarea);
+
+    // Limpiar los campos después de registrar la tarea
+    document.getElementById("tareaNombre").value = "";
+    document.getElementById("tareaEstado").selectedIndex = 0;
+    document.getElementById("empleadoAsignado").selectedIndex = 0;
+}
+
+function registrarEmpleado() {
+    let nombre = document.getElementById("empleadoNombre").value;
+    let dni = document.getElementById("empleadoDNI").value;
+    let correo = document.getElementById("empleadoCorreo").value;
+
+    if (!nombre || !dni || !correo) {
+        return; // No muestra alertas, solo evita continuar
+    }
+
+    empleados.push(nombre);
+    actualizarListaEmpleados();
+
+    // Limpiar los campos después de registrar el empleado
+    document.getElementById("empleadoNombre").value = "";
+    document.getElementById("empleadoDNI").value = "";
+    document.getElementById("empleadoCorreo").value = "";
+}
+
+function actualizarListaEmpleados() {
+    let lista = document.getElementById("listaEmpleados");
+    let select = document.getElementById("empleadoAsignado");
+
+    lista.innerHTML = "";
+    select.innerHTML = '<option value="">Seleccionar empleado</option>';
+
+    empleados.forEach((empleado, index) => {
+        let divEmpleado = document.createElement("div");
+        divEmpleado.style.display = "flex";
+        divEmpleado.style.justifyContent = "space-between";
+        divEmpleado.style.alignItems = "left";
+        divEmpleado.style.width = "100%";
+        divEmpleado.style.padding = "5px 5px";
+        divEmpleado.style.borderBottom = "1px solid #444";
+
+        let textoEmpleado = document.createElement("span");
+        textoEmpleado.textContent = empleado;
+        textoEmpleado.style.flexGrow = "1";
+
+        let btnEditar = document.createElement("button");
+        btnEditar.textContent = "Editar";
+        btnEditar.style.marginLeft = "5px";
+        btnEditar.onclick = function () {
+            let nuevoNombre = prompt("Editar nombre del empleado:", empleado);
+            if (nuevoNombre) {
+                empleados[index] = nuevoNombre;
+                actualizarListaEmpleados();
+            }
+        };
+
+        let btnEliminar = document.createElement("button");
+        btnEliminar.textContent = "Eliminar";
+        btnEliminar.style.marginLeft = "5px";
+        btnEliminar.onclick = function () {
+            empleados.splice(index, 1);
+            actualizarListaEmpleados();
+        };
+
+        divEmpleado.appendChild(textoEmpleado);
+        divEmpleado.appendChild(btnEditar);
+        divEmpleado.appendChild(btnEliminar);
+        lista.appendChild(divEmpleado);
+
+        let option = document.createElement("option");
+        option.value = empleado;
+        option.textContent = empleado;
+        select.appendChild(option);
+    });
+}
+</script>
+</body>
+</html>
