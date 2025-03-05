@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tareas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #ffcc00;
+    text-align: center;
+    margin: 0;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 24px;
+}
+
+/*.section {
+    background: #222;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}*/
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 400px; /* Limita el ancho máximo para que se vea centrado */
+    align-items: center;
+    margin: 0 auto; /* Centra el contenedor en la pantalla */
+}
+
+.formulario {
+    background: #333;
+    padding: 15px;
+    border-radius: 8px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    width: 350px; /* Limita el ancho */
+    padding: 8px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+    
+    select {
+    width: 365px;  /* Ajustado para que no sobresalga */
+    padding: 8px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+    
+    button {
+    width: 150px; /* Limita el ancho */
+    padding: 8px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+input, select {
+    background: #222;
+    color: #fff;
+    border: 1px solid #ffcc00;
+    text-align: center;
+}
+
+button {
+    background: #ffcc00;
+    color: #111;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.section {
+    background: #222;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.section h2 {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    max-width: 400px;
+}
+
+li {
+    background: #444;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los botones bajen si es necesario */
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+button.editar, button.borrar {
+    background: #ff6600;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    flex-shrink: 0; /* Evita que los botones se achiquen */
+}
+
+button.borrar {
+    background: #cc0000;
+}
+    </style>
+</head>
+<body>
+
+    <h1>Gestión de Tareas</h1>
+
+    <div class="section">
+        <h2>📋 Lista de Tareas</h2>
+        <ul id="lista-tareas"></ul>
+    </div>
+
+    <div class="contenedor">
+        <div class="formulario">
+            <h2>🔵 Crear Tarea</h2>
+            <input type="text" id="nombre-tarea" placeholder="Nombre de la tarea">
+            <select id="estado-tarea">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Completada">Completada</option>
+            </select>
+            <select id="empleado-tarea">
+                <option value="">Seleccionar empleado</option>
+            </select>
+            <button onclick="crearTarea()">Aceptar</button>
+        </div>
+
+        <div class="formulario">
+            <h2>👤 Alta de Empleados</h2>
+            <input type="text" id="nombre-empleado" placeholder="Nombre del empleado">
+            <input type="text" id="dni-empleado" placeholder="DNI">
+            <input type="email" id="correo-empleado" placeholder="Correo">
+            <button onclick="registrarEmpleado()">Registrar</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>👥 Lista de Empleados</h2>
+        <ul id="lista-empleados"></ul>
+    </div>
+
+    <script>
+    let empleados = [];
+let tareas = [];
+
+function registrarEmpleado() {
+    const nombre = document.getElementById("nombre-empleado").value.trim();
+    const dni = document.getElementById("dni-empleado").value.trim();
+    const correo = document.getElementById("correo-empleado").value.trim();
+
+    if (nombre === "" || dni === "" || correo === "") {
+        alert("Todos los campos son obligatorios.");
+        return;
+    }
+
+    empleados.push({ nombre, dni, correo });
+    actualizarListaEmpleados();
+    limpiarCampos(["nombre-empleado", "dni-empleado", "correo-empleado"]);
+}
+
+function crearTarea() {
+    const nombre = document.getElementById("nombre-tarea").value.trim();
+    const estado = document.getElementById("estado-tarea").value;
+    const empleadoSeleccionado = document.getElementById("empleado-tarea").value;
+
+    if (nombre === "" || empleadoSeleccionado === "") {
+        alert("Debe ingresar un nombre de tarea y asignar un empleado.");
+        return;
+    }
+
+    tareas.push({ nombre, estado, empleado: empleadoSeleccionado });
+    actualizarListaTareas();
+    limpiarCampos(["nombre-tarea"]);
+}
+
+function actualizarListaEmpleados() {
+    const lista = document.getElementById("lista-empleados");
+    const select = document.getElementById("empleado-tarea");
+
+    lista.innerHTML = "";
+    select.innerHTML = '<option value="">Seleccionar empleado</option>';
+
+    empleados.forEach((empleado, index) => {
+        let li = document.createElement("li");
+        li.innerHTML = `${empleado.nombre} - ${empleado.dni} 
+                        <button class="editar" onclick="editarEmpleado(${index})">✏</button> 
+                        <button class="borrar" onclick="borrarEmpleado(${index})">❌</button>`;
+        lista.appendChild(li);
+
+        let option = document.createElement("option");
+        option.value = empleado.nombre;
+        option.textContent = empleado.nombre;
+        select.appendChild(option);
+    });
+}
+
+function actualizarListaTareas() {
+    const lista = document.getElementById("lista-tareas");
+    lista.innerHTML = "";
+
+    tareas.sort((a, b) => (a.estado === "Completada" ? -1 : 1));
+
+    tareas.forEach((tarea, index) => {
+        let li = document.createElement("li");
+        li.innerHTML = `${tarea.nombre} - ${tarea.estado} - ${tarea.empleado} 
+                        <button class="editar" onclick="editarTarea(${index})">✏</button> 
+                        <button class="borrar" onclick="borrarTarea(${index})">❌</button>`;
+        lista.appendChild(li);
+    });
+}
+
+function editarEmpleado(index) {
+    let nuevoNombre = prompt("Nuevo nombre del empleado:", empleados[index].nombre);
+    let nuevoDni = prompt("Nuevo DNI:", empleados[index].dni);
+    let nuevoCorreo = prompt("Nuevo Correo:", empleados[index].correo);
+
+    if (nuevoNombre && nuevoDni && nuevoCorreo) {
+        empleados[index] = { nombre: nuevoNombre, dni: nuevoDni, correo: nuevoCorreo };
+        actualizarListaEmpleados();
+    }
+}
+
+function borrarEmpleado(index) {
+    if (confirm("¿Seguro que deseas eliminar este empleado?")) {
+        empleados.splice(index, 1);
+        actualizarListaEmpleados();
+    }
+}
+
+function editarTarea(index) {
+    let nuevoNombre = prompt("Nuevo nombre de la tarea:", tareas[index].nombre);
+    let nuevoEstado = prompt("Nuevo estado (Pendiente/Completada):", tareas[index].estado);
+
+    if (nuevoNombre && (nuevoEstado === "Pendiente" || nuevoEstado === "Completada")) {
+        tareas[index] = { ...tareas[index], nombre: nuevoNombre, estado: nuevoEstado };
+        actualizarListaTareas();
+    }
+}
+
+function borrarTarea(index) {
+    if (confirm("¿Seguro que deseas eliminar esta tarea?")) {
+        tareas.splice(index, 1);
+        actualizarListaTareas();
+    }
+}
+
+function limpiarCampos(ids) {
+    ids.forEach(id => document.getElementById(id).value = "");
+}
+    </script>
+</body>
+</html>
