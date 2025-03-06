@@ -68,6 +68,26 @@ section {
   padding: 10px;
 }
 
+  @media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;  /* Ajusta el tamaño del encabezado en móvil */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Ajusta el tamaño del subtítulo en móvil */
+  }
+
+  section {
+    width: 100%;         /* Ajusta el ancho de la sección a 100% en móvil */
+    height: auto;        /* Ajusta la altura para que sea más flexible */
+    column-gap: 2rem;    /* Reduce el espacio entre las columnas */
+    -moz-column-width: 100%; /* Establece las columnas a un solo bloque en móvil */
+    column-width: 100%;  /* Coloca el contenido en una sola columna */
+    margin: 1rem;        /* Reduce el margen en pantallas pequeñas */
+    padding: 5px;        /* Reduce el padding */
+  }
+}
+
 
 </style>
 
