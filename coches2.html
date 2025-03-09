@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>autoplitz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+        }
+
+        header, footer {
+            text-align: center;
+            padding: 6px 0;
+            background-color: #222;
+        }
+
+        main {
+            padding: 14px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 6px auto;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 8px;
+            border-bottom: 1px solid #555;
+        }
+
+        .row:last-child {
+            border-bottom: none;
+        }
+
+        .product {
+            text-align: left;
+            font-style: italic;
+            font-size: 11px;
+            color: lightgrey;
+        }
+
+        .price {
+            text-align: right;
+            font-style: italic;
+            font-size: 11px;
+            color: lightgrey;
+        }
+
+        h1 {
+            font-style: italic;
+            font-size: 30px;
+            color: grey;
+            margin-top: 24px;
+        }
+
+        footer {
+            font-style: italic;
+            font-size: 13px;
+            color: grey;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            margin: 20px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #444;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Fantastisch Automobiles</h1>
+    </header>
+  <img src="https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_autoPlitz_241231.png" alt="Logo" class="header-image">
+    <main>
+        <div class="container" id="product-list">
+            <div class="row">
+                <div class="product">Peugeot e5008 Allure 7 plazas</div>
+                <div class="price">39,200 €</div>
+            </div>
+            <div class="row">
+                <div class="product">Hyundai Santa Fe Maxx 7 plazas</div>
+                <div class="price">55,915 €</div>
+            </div>
+            <div class="row">
+                <div class="product">Mazda CX-80 eSKYACTIV</div>
+                <div class="price">64,990 €</div>
+            </div>
+            <div class="row">
+                <div class="product">Kia EV9 GT Line</div>
+                <div class="price">67,000 €</div>
+            </div>
+            <div class="row">
+                <div class="product">Volvo XC90 T8 Core Recharge</div>
+                <div class="price">69,900 €</div>
+            </div>
+        </div>
+    </main>
+    <div class="button-container">
+        <a href="https://lophersson.github.io/online/coches1.html" class="btn">Ver más coches</a>
+    </div>
+    <footer>
+        © 2025 - autoplitz.com
+    </footer>
+</body>
+</html>
