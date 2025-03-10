@@ -1,0 +1,487 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+  <link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+  <title>Balance</title>
+  <link rel="canonical" href="https://codepen.io/jkantner/pen/myddybg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap">
+
+  <style>
+    * {
+      border: 0;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --hue: 223;
+      --hue-positive: 133;
+      --hue-warning: 33;
+      --hue-negative: 3;
+      --sat: 10%;
+      --light-gray1: hsl(var(--hue), var(--sat), 95%);
+      --light-gray2: hsl(var(--hue), var(--sat), 90%);
+      --light-gray3: hsl(var(--hue), var(--sat), 85%);
+      --light-gray4: hsl(var(--hue), var(--sat), 80%);
+      --light-gray5: hsl(var(--hue), var(--sat), 75%);
+      --light-gray6: hsl(var(--hue), var(--sat), 70%);
+      --light-gray7: hsl(var(--hue), var(--sat), 65%);
+      --dark-gray4: hsl(var(--hue), var(--sat), 30%);
+      --dark-gray5: hsl(var(--hue), var(--sat), 25%);
+      --dark-gray6: hsl(var(--hue), var(--sat), 20%);
+      --dark-gray7: hsl(var(--hue), var(--sat), 15%);
+      --dark-gray8: hsl(var(--hue), var(--sat), 10%);
+      --dark-gray9: hsl(var(--hue), var(--sat), 5%);
+      --positive1: hsl(var(--hue-positive), 90%, 50%);
+      --positive2: hsl(var(--hue-positive), 90%, 20%);
+      --warning1: hsl(var(--hue-warning), 90%, 55%);
+      --warning2: hsl(var(--hue-warning), 90%, 40%);
+      --negative1: hsl(var(--hue-negative), 90%, 65%);
+      --negative2: hsl(var(--hue-negative), 90%, 35%);
+      --trans-dur: 0.3s;
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
+    }
+
+    body {
+      background-color: var(--light-gray6);
+      color: var(--dark-gray8);
+      display: grid;
+      place-items: center;
+      font: 1em/1.5 Outfit, sans-serif;
+      height: 100vh;
+      transition: background-color var(--trans-dur), color var(--trans-dur);
+    }
+
+    .icon {
+      display: block;
+      width: 1em;
+      height: 1em;
+    }
+
+    .icon--large {
+      font-size: 4.5em;
+    }
+
+    .icon--warning {
+      color: var(--warning2);
+    }
+
+    .widget {
+      background-color: var(--light-gray4);
+      border-radius: 1.5em;
+      box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15), 0 0 0 0.25em var(--light-gray6), 0 0 0 0.375em var(--light-gray5);
+      overflow: hidden;
+      padding: 1em;
+      position: relative;
+      width: 10.5em;
+      height: 10.5em;
+      transition: background-color var(--trans-dur), box-shadow var(--trans-dur);
+    }
+
+    .widget__content {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      height: 100%;
+    }
+
+    .widget__symbol,
+    .widget__name,
+    .widget__change,
+    .widget__price {
+      animation: fade-fly-in 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+      opacity: 0;
+    }
+
+    .widget__symbol,
+    .widget__name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .widget__symbol {
+      font-size: 1em;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .widget__name,
+    .widget__change {
+      transition: color var(--trans-dur);
+    }
+
+    .widget__name {
+      color: var(--dark-gray4);
+      animation-delay: 0.1s;
+      font-size: 0.75em;
+      font-weight: 400;
+      line-height: 1.3333;
+    }
+
+    .widget__change {
+      animation-delay: 0.2s;
+      display: flex;
+      font-weight: 300;
+      gap: 0.375em;
+      align-items: center;
+      font-size: 0.875em;
+      line-height: 1.7;
+    }
+
+    .widget__change--negative {
+      color: var(--negative2);
+    }
+
+    .widget__change--positive {
+      color: var(--positive2);
+    }
+
+    .widget__error {
+      font-size: 0.75em;
+      margin: auto;
+      text-align: center;
+    }
+
+    .widget__error .icon {
+      margin: 0 auto 0.75rem auto;
+      transition: color var(--trans-dur);
+    }
+
+    .widget__graph {
+      display: block;
+      position: absolute;
+      top: 1.5em;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    .widget__graph-clip {
+      transition: transform 1s linear;
+    }
+
+    .widget__graph-line {
+      fill: var(--light-gray3);
+      stroke: var(--light-gray2);
+      transition: fill var(--trans-dur), stroke var(--trans-dur);
+    }
+
+    [dir=rtl] .widget__graph {
+      transform: scaleX(-1);
+    }
+
+    .widget__placeholder {
+      animation: placeholder 1s infinite;
+      background-color: currentColor;
+      border-radius: 0.75em;
+      opacity: 0.3;
+      height: 1.5em;
+    }
+
+    .widget__placeholder--symbol {
+      border-radius: 0.5em;
+      margin: 0.25em 0;
+      width: 30%;
+      height: 1em;
+    }
+
+    .widget__placeholder--name {
+      border-radius: 0.375em;
+      margin: 0.125em 0;
+      width: 75%;
+      height: 0.75em;
+    }
+
+    .widget__placeholder--change {
+      border-radius: 0.4375em;
+      margin: 0.25em 0;
+      width: 40%;
+      height: 0.875em;
+    }
+
+    .widget__placeholder--price {
+      margin-top: auto;
+      width: 55%;
+    }
+
+    .widget__price {
+      animation-delay: 0.3s;
+      font-size: 1.5em;
+      line-height: 1;
+      margin-top: auto;
+    }
+
+    .widget:hover .widget__graph-line {
+      fill: var(--light-gray2);
+      stroke: var(--light-gray1);
+    }
+
+    /*.widget-grid {
+      display: grid;
+      gap: 1.5em;
+      padding: 1.5em;
+    }*/
+
+    .widget-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Máximo 5 columnas, ajustable */
+  gap: 1.5em;
+  padding: 1.5em;
+  width: 100%; /* Asegura que se adapte al ancho del body */
+}
+
+    /* Dark theme */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: var(--dark-gray9);
+        color: var(--light-gray2);
+      }
+
+      .icon--warning {
+        color: var(--warning1);
+      }
+
+      .widget {
+        background-color: var(--dark-gray7);
+        box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.15), 0 0 0 0.25em var(--dark-gray8), 0 0 0 0.375em var(--dark-gray7);
+      }
+
+      .widget__name {
+        color: var(--light-gray6);
+      }
+
+      .widget__change--positive {
+        color: var(--positive1);
+      }
+
+      .widget__change--negative {
+        color: var(--negative1);
+      }
+
+      .widget__price {
+        color: var(--light-gray1);
+      }
+
+      .widget:hover .widget__graph-line {
+        fill: var(--dark-gray8);
+        stroke: var(--light-gray2);
+      }
+    }
+
+    @keyframes fade-fly-in {
+      0% {
+        opacity: 0;
+        transform: translateY(20%);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+    }
+
+    @keyframes placeholder {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(0.98);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="widget-grid">
+    <!-- Existing companies -->
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">AAPL</div>
+        <div class="widget__name">Apple Inc.</div>
+        <div class="widget__change widget__change--positive">
+          <span class="icon">&#x25B2;</span>
+          <span>+4.3%</span>
+        </div>
+        <div class="widget__price">125.56 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">GOOG</div>
+        <div class="widget__name">Alphabet Inc.</div>
+        <div class="widget__change widget__change--negative">
+          <span class="icon">&#x25BC;</span>
+          <span>-2.1%</span>
+        </div>
+        <div class="widget__price">1523.56 €</div>
+      </div>
+    </div>
+    <!-- New companies -->
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">AMZN</div>
+        <div class="widget__name">Amazon.com</div>
+        <div class="widget__change widget__change--positive">
+          <span class="icon">&#x25B2;</span>
+          <span>+3.2%</span>
+        </div>
+        <div class="widget__price">1450.50 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">MSFT</div>
+        <div class="widget__name">Microsoft</div>
+        <div class="widget__change widget__change--positive">
+          <span class="icon">&#x25B2;</span>
+          <span>+1.8%</span>
+        </div>
+        <div class="widget__price">295.40 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">TSLA</div>
+        <div class="widget__name">Tesla Inc.</div>
+        <div class="widget__change widget__change--negative">
+          <span class="icon">&#x25BC;</span>
+          <span>-1.5%</span>
+        </div>
+        <div class="widget__price">755.60 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">NVDA</div>
+        <div class="widget__name">NVIDIA</div>
+        <div class="widget__change widget__change--positive">
+          <span class="icon">&#x25B2;</span>
+          <span>+5.7%</span>
+        </div>
+        <div class="widget__price">540.30 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">META</div>
+        <div class="widget__name">Meta Platforms</div>
+        <div class="widget__change widget__change--negative">
+          <span class="icon">&#x25BC;</span>
+          <span>-0.9%</span>
+        </div>
+        <div class="widget__price">322.10 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">DIS</div>
+        <div class="widget__name">Walt Disney</div>
+        <div class="widget__change widget__change--positive">
+          <span class="icon">&#x25B2;</span>
+          <span>+2.4%</span>
+        </div>
+        <div class="widget__price">142.75 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">NFLX</div>
+        <div class="widget__name">Netflix Inc.</div>
+        <div class="widget__change widget__change--negative">
+          <span class="icon">&#x25BC;</span>
+          <span>-4.8%</span>
+        </div>
+        <div class="widget__price">305.20 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">INTC</div>
+        <div class="widget__name">Intel Corporation</div>
+        <div class="widget__change widget__change--positive">
+          <span class="icon">&#x25B2;</span>
+          <span>+0.9%</span>
+        </div>
+        <div class="widget__price">59.40 €</div>
+      </div>
+    </div>
+    <div class="widget">
+      <div class="widget__content">
+        <div class="widget__symbol">BA</div>
+        <div class="widget__name">Boeing Co.</div>
+        <div class="widget__change widget__change--negative">
+          <span class="icon">&#x25BC;</span>
+          <span>-3.1%</span>
+        </div>
+        <div class="widget__price">210.80 €</div>
+      </div>
+    </div>
+
+    <div class="widget">
+        <div class="widget__content">
+          <div class="widget__symbol">GASTOS</div>
+          <div class="widget__name">25/03/10</div>
+          <div class="widget__change widget__change--negative">
+            <span class="icon">&#x25BC;</span>
+            <span>-3.1%</span>
+          </div>
+          <div class="widget__price">355.80 €</div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget__content">
+          <div class="widget__symbol">INGRESOS</div>
+          <div class="widget__name">25/03/10</div>
+          <div class="widget__change widget__change--positive">
+            <span class="icon">&#x25BC;</span>
+            <span>+13.1%</span>
+          </div>
+          <div class="widget__price">1210.80 €</div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget__content">
+          <div class="widget__symbol">EFECTIVO</div>
+          <div class="widget__name">25/03/10</div>
+          <div class="widget__change widget__change--positive">
+            <span class="icon">&#x25BC;</span>
+            <span>+6.1%</span>
+          </div>
+          <div class="widget__price">235.80 €</div>
+        </div>
+      </div>
+
+      <div class="widget">
+        <div class="widget__content">
+          <div class="widget__symbol">BANCOS</div>
+          <div class="widget__name">25/03/10</div>
+          <div class="widget__change widget__change--negative">
+            <span class="icon">&#x25BC;</span>
+            <span>-6.75%</span>
+          </div>
+          <div class="widget__price">1197.20 €</div>
+        </div>
+      </div>
+
+  </div>
+</body>
+
+</html>
