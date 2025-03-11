@@ -177,69 +177,69 @@ color: white;
 font-weight: bold;
 }
 
-  /* ======== ESTILOS PARA MÓVILES ======== */
+/* ======== ESTILOS PARA MÓVILES ======== */
 @media (max-width: 480px) {
-  /* Estilo general para el contenedor de tablas */
-  .tabla-container {
-    padding-top: 0px;
-    margin-bottom: 20px;
-    width: 100%;
-    padding: 0 6px; /* Margen de 6px a ambos lados */
-    box-sizing: border-box;
-    overflow-x: auto; /* Permite desplazarse horizontalmente si la tabla es muy ancha */
-  }
+/* Estilo general para el contenedor de tablas */
+.tabla-container {
+padding-top: 0px;
+margin-bottom: 20px;
+width: 100%;
+padding: 0 6px; /* Margen de 6px a ambos lados */
+box-sizing: border-box;
+overflow-x: auto; /* Permite desplazarse horizontalmente si la tabla es muy ancha */
+}
 
-  h2 {
-    padding-top: 10px;
-  }
+h2 {
+padding-top: 10px;
+}
 
-  /* Estilo general para todas las tablas */
-  table {
-    width: 100%;
-    border-collapse: collapse; /* Elimina el espacio entre celdas */
-    margin-bottom: 10px; /* Espacio entre tablas */
-  }
+/* Estilo general para todas las tablas */
+table {
+width: 100%;
+border-collapse: collapse; /* Elimina el espacio entre celdas */
+margin-bottom: 10px; /* Espacio entre tablas */
+}
 
-  /* Estilo para los encabezados de las tablas */
-  table th, table td {
-    padding: 2px; /* Espaciado interno igual para todas las celdas */
-    line-height: 0.4; /* Espacio vertical entre filas */
-    font-size: 12px; /* Tamaño de fuente uniforme */
-    text-align: left; /* Alineación por defecto a la izquierda para todos */
-  }
+/* Estilo para los encabezados de las tablas */
+table th, table td {
+padding: 2px; /* Espaciado interno igual para todas las celdas */
+line-height: 0.4; /* Espacio vertical entre filas */
+font-size: 12px; /* Tamaño de fuente uniforme */
+text-align: left; /* Alineación por defecto a la izquierda para todos */
+}
 
-  /* Estilo de los encabezados (th) */
-  table th {
-    font-weight: bold; /* Negrita para los encabezados */
-  }
+/* Estilo de los encabezados (th) */
+table th {
+font-weight: bold; /* Negrita para los encabezados */
+}
 
-  /* Estilo para las filas de datos (td) */
-  table td {
-    text-align: left; /* Alineación a la izquierda por defecto */
-  }
+/* Estilo para las filas de datos (td) */
+table td {
+text-align: left; /* Alineación a la izquierda por defecto */
+}
 
-  /* Estilo para los inputs de importe (columna de la derecha) */
-  table td input.importe {
-    width: 100%; /* Los inputs ocupan todo el ancho de la celda */
-    padding: 2px; /* Espaciado interno en el input */
-    font-size: 12px; /* Tamaño adecuado para texto en los inputs */
-    text-align: right; /* Alineación a la derecha para los números */
-    border: 0px solid #ccc; /* Borde sutil para los inputs */
-    box-sizing: border-box;
-  }
+/* Estilo para los inputs de importe (columna de la derecha) */
+table td input.importe {
+width: 100%; /* Los inputs ocupan todo el ancho de la celda */
+padding: 2px; /* Espaciado interno en el input */
+font-size: 12px; /* Tamaño adecuado para texto en los inputs */
+text-align: right; /* Alineación a la derecha para los números */
+border: 0px solid #ccc; /* Borde sutil para los inputs */
+box-sizing: border-box;
+}
 
-  /* Alineación especial para la columna de conceptos (izquierda) */
-  table td:first-child, table th:first-child {
-    text-align: left; /* Alineación a la izquierda para los conceptos */
-    width: 70%; /* Ajustamos el ancho de la columna de conceptos */
-    white-space: nowrap; /* Evita que los conceptos se dividan en varias líneas */
-  }
+/* Alineación especial para la columna de conceptos (izquierda) */
+table td:first-child, table th:first-child {
+text-align: left; /* Alineación a la izquierda para los conceptos */
+width: 70%; /* Ajustamos el ancho de la columna de conceptos */
+white-space: nowrap; /* Evita que los conceptos se dividan en varias líneas */
+}
 
-  /* Alineación especial para la columna de importes (derecha) */
-  table td:last-child, table th:last-child {
-    text-align: right; /* Alineación a la derecha para los importes */
-    width: 30%; /* Ajustamos el ancho de la columna de importes */
-  }
+/* Alineación especial para la columna de importes (derecha) */
+table td:last-child, table th:last-child {
+text-align: right; /* Alineación a la derecha para los importes */
+width: 30%; /* Ajustamos el ancho de la columna de importes */
+}
 
 }
 
@@ -318,8 +318,8 @@ color: #ffffff;
 <table id="tabla2">
 <thead>
 <tr>
-    <th></th>
-    <th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -346,8 +346,8 @@ color: #ffffff;
 <table id="tabla3">
 <thead>
 <tr>
-    <th></th>
-    <th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -369,8 +369,8 @@ color: #ffffff;
 <h2>Gastos corrientes</h2>
 <table id="tabla4">
 <tr>
-    <th></th>
-    <th></th>
+<th></th>
+<th></th>
 </tr>
 </thead>
 <tbody>
@@ -390,6 +390,82 @@ color: #ffffff;
 <tr><td>pérdidas desconocidas</td><td><input type="text" class="importe" value="6,00"></td></tr>
 <tr><td>regalos</td><td><input type="text" class="importe" value="24,00"></td></tr>
 <tr><td>guardado de monedas</td><td><input type="text" class="importe" value="6,00"></td></tr>
+<tr><td></td><td><input type="text" class="importe" value=""></td></tr>
+<tr class="total-row"><td>Total</td><td id="total"></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tabla-container">
+<h2>Hogar</h2>
+<table id="tabla5">
+<tr>
+<th>Descripción</th>
+<th>Importe</th>
+</tr>
+<tbody>
+<tr><td>Ambientador casa Jysk/otros</td><td><input type="text" class="importe" value="5,00 €"></td></tr>
+<tr><td>Toalla grande Zara Home</td><td><input type="text" class="importe" value="30,00 €"></td></tr>
+<tr><td>Funda edredón</td><td><input type="text" class="importe" value="30,00 €"></td></tr>
+<tr><td>Funda almohadas 50x75 x2</td><td><input type="text" class="importe" value="13,00 €"></td></tr>
+<tr><td>Sábana blanca 150x200 Zara Home</td><td><input type="text" class="importe" value="20,00 €"></td></tr>
+<tr><td>Protector de colchón</td><td><input type="text" class="importe" value="18,00 €"></td></tr>
+<tr><td>Cucharas postre doradas x4</td><td><input type="text" class="importe" value="8,00 €"></td></tr>
+<tr><td>Bricolaje hogar</td><td><input type="text" class="importe" value="12,00 €"></td></tr>
+<tr><td>Lavandería app</td><td><input type="text" class="importe" value="2,00 €"></td></tr>
+<tr><td>Juego PS5</td><td><input type="text" class="importe" value="24,00 €"></td></tr>
+<tr><td>Festina azul celeste diver F20664/5</td><td><input type="text" class="importe" value="95,36 €"></td></tr>
+<tr><td>Lotus vortex rojo 18943/5</td><td><input type="text" class="importe" value="0,00 €"></td></tr>
+<tr><td>Reloj Timberland Sherbrook TDWGFO009404</td><td><input type="text" class="importe" value="0,00 €"></td></tr>
+<tr><td>Reloj Fossil</td><td><input type="text" class="importe" value="0,00 €"></td></tr>
+<tr><td>Funda móvil</td><td><input type="text" class="importe" value="15,00 €"></td></tr>
+<tr><td>Funda tablet</td><td><input type="text" class="importe" value="0,00 €"></td></tr>
+<tr><td></td><td><input type="text" class="importe" value=""></td></tr>
+<tr class="total-row"><td>Total</td><td id="total"></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tabla-container">
+<h2>Vida Social</h2>
+<table id="tabla6">
+<tr>
+<th>Descripción</th>
+<th>Importe</th>
+</tr>
+<tbody>
+<tr><td>Bares y cafeterías</td><td><input type="text" class="importe" value="240,00 €"></td></tr>
+<tr><td>Bares y cafeterías resto</td><td><input type="text" class="importe" value="0,00 €"></td></tr>
+<tr><td>Supermercado</td><td><input type="text" class="importe" value="120,00 €"></td></tr>
+<tr><td>Comidas</td><td><input type="text" class="importe" value="120,00 €"></td></tr>
+<tr><td>Cenas</td><td><input type="text" class="importe" value="120,00 €"></td></tr>
+<tr><td>Boulangerie</td><td><input type="text" class="importe" value="12,00 €"></td></tr>
+<tr><td>Vending machine</td><td><input type="text" class="importe" value="12,00 €"></td></tr>
+<tr><td>Cine</td><td><input type="text" class="importe" value="36,00 €"></td></tr>
+<tr><td>Cultura y turismo</td><td><input type="text" class="importe" value="12,00 €"></td></tr>
+<tr><td></td><td><input type="text" class="importe" value=""></td></tr>
+<tr class="total-row"><td>Total</td><td id="total"></td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="tabla-container">
+<h2>Coche</h2>
+<table id="tabla7">
+<tr>
+<th>Descripción</th>
+<th>Importe</th>
+</tr>
+<tbody>
+<tr><td>Gasoil</td><td><input type="text" class="importe" value="557,67 €"></td></tr>
+<tr><td>Gasoil Waylet cta virtual</td><td><input type="text" class="importe" value="42,33 €"></td></tr>
+<tr><td>Parking</td><td><input type="text" class="importe" value="104,00 €"></td></tr>
+<tr><td>Peajes</td><td><input type="text" class="importe" value="108,00 €"></td></tr>
+<tr><td>Taller coche</td><td><input type="text" class="importe" value="240,00 €"></td></tr>
+<tr><td>IMVT</td><td><input type="text" class="importe" value="60,00 €"></td></tr>
+<tr><td>Coche varios</td><td><input type="text" class="importe" value="20,00 €"></td></tr>
+<tr><td>ITV coche</td><td><input type="text" class="importe" value="60,00 €"></td></tr>
+<tr><td>Ambientador coche</td><td><input type="text" class="importe" value="8,00 €"></td></tr>
 <tr><td></td><td><input type="text" class="importe" value=""></td></tr>
 <tr class="total-row"><td>Total</td><td id="total"></td></tr>
 </tbody>
