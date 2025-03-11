@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceso Restringido</title>
+<style>
+/* ======= ESTILOS GENERALES ======= */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Roboto Condensed', sans-serif;
+}
+
+body {
+font-family: Arial, sans-serif;
+background-color: #1f1f1f;
+color: white;
+text-align: center;
+}
+
+h1 {
+font-size: 26px;
+font-weight: 600;
+margin-bottom: 10px;
+margin-bottom: 20px;
+color: #ffffff;
+text-align: center;
+}
+
+h2 {
+font-size: 20px;
+font-weight: 500;
+margin-bottom: 10px;
+margin-bottom: 10px;
+color: #ffffff;
+text-align: center;
+}
+
+/* ======= LOGIN ======= */
+.container {
+display: none; /* Ocultar hasta que se active */
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+.active {
+display: flex; /* Mostrar contenedor activo */
+}
+
+.login-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 8px;
+background: #1f1f1f;
+box-shadow: 0 8px 16px rgba(82, 82, 82, 0.938);
+max-width: 360px;
+}
+
+.login-container img {
+width: 240px;
+height: 240px;
+border-radius: 15px;
+border: 0px solid #ccc;
+}
+
+.acceso {
+margin: 10px 0 20px;
+font-size: 24px;
+font-weight: 700;
+color: #ffffff;
+letter-spacing: 3px;
+font-style: italic;
+}
+
+/* ======== CAMPOS DE TEXTO (USUARIO Y CONTRASEÑA) ======== */
+.form-container input {
+margin: 4px 0;
+padding: 12px;
+width: 100%;
+font-size: 18px;
+font-weight: bold;
+text-align: center;
+background-color: transparent;
+color: white;
+border: none;
+outline: none;
+}
+
+.form-container input::placeholder {
+color: rgba(255, 255, 255, 0.5);
+}
+
+/* ======= BOTONERA ======= */
+.botonera {
+display: flex;
+width: 100%;
+}
+
+.btn-ok,
+.btn-cancel {
+border: none;
+border-radius: 0px;
+padding: 12px;
+cursor: pointer;
+color: white;
+width: 50%;
+text-align: center;
+font-size: 18px;
+}
+
+.btn-ok {
+background-color: #28a745;
+}
+
+.btn-cancel {
+background-color: #dc3545;
+}
+
+/* ======== ESTILOS PARA LAS TABLAS ======== */
+#tablas-container {
+width: 100%;
+max-width: 768px;
+margin: auto;
+text-align: left;
+padding: 20px;
+}
+
+.tabla-container {
+background: rgb(71, 71, 71);
+padding: 20px;
+border-radius: 12px;
+margin-bottom: 8px;
+overflow-x: auto;
+}
+
+table {
+width: 100%;
+table-layout: fixed;
+}
+
+th, td {
+padding: 2px;
+font-weight: 600;
+font-size: 14px;
+color: #fff;
+text-align: left;
+word-wrap: break-word;
+}
+
+td:last-child, th:last-child {
+text-align: right;
+}
+
+/* ======== IMPORTES (INPUTS) ======== */
+.importe {
+width: 100%;
+padding: 2px;
+border: none;
+background: transparent;
+text-align: right;
+font-weight: 600;
+font-size: 14px;
+color: #fff;
+outline: none;
+}
+
+/* ======== ESTILO PARA EL TOTAL ======== */
+.total-row {
+color: white;
+font-weight: bold;
+}
+
+  /* ======== ESTILOS PARA MÓVILES ======== */
+@media (max-width: 480px) {
+  /* Estilo general para el contenedor de tablas */
+  .tabla-container {
+    padding-top: 0px;
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 0 6px; /* Margen de 6px a ambos lados */
+    box-sizing: border-box;
+    overflow-x: auto; /* Permite desplazarse horizontalmente si la tabla es muy ancha */
+  }
+
+  h2 {
+    padding-top: 10px;
+  }
+
+  /* Estilo general para todas las tablas */
+  table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    margin-bottom: 10px; /* Espacio entre tablas */
+  }
+
+  /* Estilo para los encabezados de las tablas */
+  table th, table td {
+    padding: 2px; /* Espaciado interno igual para todas las celdas */
+    line-height: 0.4; /* Espacio vertical entre filas */
+    font-size: 12px; /* Tamaño de fuente uniforme */
+    text-align: left; /* Alineación por defecto a la izquierda para todos */
+  }
+
+  /* Estilo de los encabezados (th) */
+  table th {
+    font-weight: bold; /* Negrita para los encabezados */
+  }
+
+  /* Estilo para las filas de datos (td) */
+  table td {
+    text-align: left; /* Alineación a la izquierda por defecto */
+  }
+
+  /* Estilo para los inputs de importe (columna de la derecha) */
+  table td input.importe {
+    width: 100%; /* Los inputs ocupan todo el ancho de la celda */
+    padding: 2px; /* Espaciado interno en el input */
+    font-size: 12px; /* Tamaño adecuado para texto en los inputs */
+    text-align: right; /* Alineación a la derecha para los números */
+    border: 0px solid #ccc; /* Borde sutil para los inputs */
+    box-sizing: border-box;
+  }
+
+  /* Alineación especial para la columna de conceptos (izquierda) */
+  table td:first-child, table th:first-child {
+    text-align: left; /* Alineación a la izquierda para los conceptos */
+    width: 70%; /* Ajustamos el ancho de la columna de conceptos */
+    white-space: nowrap; /* Evita que los conceptos se dividan en varias líneas */
+  }
+
+  /* Alineación especial para la columna de importes (derecha) */
+  table td:last-child, table th:last-child {
+    text-align: right; /* Alineación a la derecha para los importes */
+    width: 30%; /* Ajustamos el ancho de la columna de importes */
+  }
+
+}
+
+/* ======= FOOTER ======= */
+.footer-contenedor {
+position: fixed;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+background: rgba(81, 81, 81, 0.2);
+padding: 10px;
+border-radius: 15px;
+text-align: center;
+width: 400px;
+backdrop-filter: blur(5px);
+font-size: 0.7rem;
+color: #ffffff;
+}
+</style>
+
+</head>
+<body>
+<!-- Sección de Login -->
+<div id="login" class="container active">
+<div class="login-container">
+<h2 class="acceso">Acceso Restringido</h2>
+<div class="content-container">
+<img src="https://lophersson.github.io/online/theshard.png" alt="foto">
+<div class="form-container">
+<input type="text" id="username" placeholder="Usuario">
+<input type="password" id="password" placeholder="Contraseña">
+<div class="botonera">
+<button class="btn-ok" onclick="handleLogin()">✔</button>
+<button class="btn-cancel" onclick="handleCancel()">✖</button>
+</div>
+</div>
+</div>            
+</div>
+</div>
+
+<div id="tablas-container" class="container">
+<h1>Resumen de Datos</h1>
+
+<!-- Tabla 1 -->
+<div class="tabla-container">
+<h2>Presupuestos 2025</h2>
+<table id="tabla1">
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr><td>entregas</td><td><input type="text" class="importe" value="700,00"></td></tr>
+<tr><td>ahorros</td><td><input type="text" class="importe" value="300,00"></td></tr>
+<tr><td>nike killshot 2 azul y amarillo</td><td><input type="text" class="importe" value="95,00"></td></tr>
+<tr><td>estor ikea</td><td><input type="text" class="importe" value="40,00"></td></tr>
+<tr><td>gasoil_250306</td><td><input type="text" class="importe" value="37,65"></td></tr>
+<tr><td>bermudas beige</td><td><input type="text" class="importe" value="26,50"></td></tr>
+<tr><td>vida social</td><td><input type="text" class="importe" value="12,87"></td></tr>
+<tr><td>polo blanco</td><td><input type="text" class="importe" value="12,00"></td></tr>
+<tr><td>polo azul</td><td><input type="text" class="importe" value="12,00"></td></tr>
+<tr><td>espejo</td><td><input type="text" class="importe" value="1,49"></td></tr>
+<tr><td>marco espejo</td><td><input type="text" class="importe" value="1,49"></td></tr>
+<tr><td>residual</td><td><input type="text" class="importe" value="0,23"></td></tr>
+<tr><td></td><td><input type="text" class="importe" value=""></td></tr>
+<tr class="total-row"><td>Total</td><td id="total"></td></tr>
+</tbody>                
+</table>
+</div>
+
+<!-- Tabla 2 -->
+<div class="tabla-container">
+<h2>Ropa</h2>
+<table id="tabla2">
+<thead>
+<tr>
+    <th></th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+<tr><td>pantalón chino beige skinny lefties</td><td><input type="text" class="importe" value="18,00"></td></tr>
+<tr><td>camiseta lefties mc</td><td><input type="text" class="importe" value="4,00"></td></tr>
+<tr><td>pantalón cargo beige lefties</td><td><input type="text" class="importe" value="16,00"></td></tr>
+<tr><td>camiseta lefties mc</td><td><input type="text" class="importe" value="4,00"></td></tr>
+<tr><td>polo fucsia</td><td><input type="text" class="importe" value="16,00"></td></tr>
+<tr><td>vaquero blanco lefties</td><td><input type="text" class="importe" value="12,00"></td></tr>
+<tr><td>polo verde manzana gran smith</td><td><input type="text" class="importe" value="16,00"></td></tr>
+<tr><td>vaquero verde billy mango</td><td><input type="text" class="importe" value="12,00"></td></tr>
+<tr><td>bermudas celeste</td><td><input type="text" class="importe" value="15,00"></td></tr>
+<tr><td>camiseta lefties mc</td><td><input type="text" class="importe" value="4,00"></td></tr>
+<tr><td>cinturón trenzado azul, rojo y blanco decathlon</td><td><input type="text" class="importe" value="6,00"></td></tr>
+<tr><td></td><td><input type="text" class="importe" value=""></td></tr>
+<tr class="total-row"><td>Total</td><td id="total-tabla2"></td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- Tabla 2 -->
+<div class="tabla-container">
+<h2>Calzado</h2>
+<table id="tabla3">
+<thead>
+<tr>
+    <th></th>
+    <th></th>
+</tr>
+</thead>
+<tbody>
+<tr><td>polo ralph lauren HRT court II blanca y verde</td><td><input type="text" class="importe" value="65,00"></td></tr>
+<tr><td>fred perry kingston serraje burgundy/bronce/gris</td><td><input type="text" class="importe" value="48,00"></td></tr>
+<tr><td>nike air jordan 1 mid negras y roja</td><td><input type="text" class="importe" value="140,00"></td></tr>
+<tr><td>dr. Martens 1460 cereza</td><td><input type="text" class="importe" value="160,00"></td></tr>
+<tr><td>nike cortez blancas con logo y apliques en rojo</td><td><input type="text" class="importe" value="70,00"></td></tr>
+<tr><td>blucher serraje marron mango/massimo dutti</td><td><input type="text" class="importe" value="40,00"></td></tr>
+<tr><td>botas chelsea mango piel marrón</td><td><input type="text" class="importe" value="70,00"></td></tr>
+<tr><td></td><td><input type="text" class="importe" value=""></td></tr>
+<tr class="total-row"><td>Total</td><td id="total-tabla3"></td></tr>
+</tbody>
+</table>
+</div>
+
+<footer class="footer-contenedor">
+<p>© 2025 Mis presupuestos | Creado por Humberto López Rodríguez</p>
+</footer>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+document.querySelectorAll('.importe').forEach(input => {
+input.addEventListener('input', actualizarTotal);
+});
+
+actualizarTotal();
+});
+
+function handleLogin() {
+const username = document.getElementById('username').value;
+const password = document.getElementById('password').value;
+
+if (username === '000' && password === '000') {
+/*alert('Usuario y password correctos! Bienvenido!')*/;
+
+document.getElementById('login').classList.remove('active');
+document.getElementById('tablas-container').classList.add('active');
+
+actualizarTotal();
+} else {
+alert('Usuario o password incorrectos!');
+}
+}
+
+function handleCancel() {
+document.getElementById('username').value = '';
+document.getElementById('password').value = '';
+alert('¡Hasta luego!');
+}
+
+function actualizarTotales() {
+document.querySelectorAll('[id^="tabla"]').forEach(tabla => {
+let total = 0;
+tabla.querySelectorAll('.importe').forEach(input => {
+let valor = input.value.replace(',', '.'); 
+total += parseFloat(valor) || 0;
+});
+
+let totalCelda = tabla.querySelector('.total-row td:last-child');
+if (totalCelda) {
+totalCelda.textContent = `${total.toFixed(2).replace('.', ',')}`;
+}
+});
+}
+
+// Ejecutar al cargar y cada vez que se cambia un input
+document.addEventListener("DOMContentLoaded", actualizarTotales);
+document.querySelectorAll('.importe').forEach(input => {
+input.addEventListener('input', actualizarTotales);
+});
+</script>
+
+</body>
+</html>
