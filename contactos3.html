@@ -19,10 +19,10 @@ box-sizing: border-box;
 }
 
 body {
-min-heigth: 100vh;
-max-heigth: 600vh;
 width: 100vw;
-background: linear-gradient(to bottom, rgba(0, 50, 130, 0.9), rgba(200, 230, 255, 0.7));
+min-height: 100vh; /* Asegura que el degradado cubra toda la pantalla */
+background: linear-gradient(to bottom, rgba(0, 50, 130, 0.9), rgb(0, 121, 219));
+background-attachment: fixed; /* Evita que el fondo se repita cuando se desplaza */
 font-family: 'Abel', sans-serif;
 display: flex;
 flex-direction: column;
