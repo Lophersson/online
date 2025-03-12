@@ -1,0 +1,587 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>contactos</title>
+<style>
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+body {
+width: 100vw;
+min-height: 100vh; /* Asegura que el degradado cubra toda la pantalla */
+background: linear-gradient(to bottom, rgba(0, 50, 130, 0.9), rgb(0, 121, 219));
+background-attachment: fixed; /* Evita que el fondo se repita cuando se desplaza */
+font-family: 'Abel', sans-serif;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+overflow-x: hidden;
+}
+
+header {
+text-align: center;
+margin-top: 20px;
+color: white;
+}
+
+h1 {
+font-size: 2.5rem;
+margin-bottom: 20px;
+}
+
+.category-buttons {
+display: flex;
+gap: 5px;
+margin-bottom: 20px;
+}
+
+.category-buttons button {
+background: linear-gradient(to top, rgba(28, 171, 238, 0.7), rgba(253, 252, 252, 0.21));
+border: none;
+color: white;
+padding: 6px 12px;
+cursor: pointer;
+font-size: 0.9rem;
+border-radius: 5px;
+}
+
+.category-buttons button:hover {
+transform: scale(1.05);
+}
+
+.main {
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 20px;
+padding-bottom: 30px;
+}
+
+.container {
+height: 300px; /* Ajustamos la altura */
+width: 200px; /* Ajustamos el ancho */
+box-shadow: 0 10px 20px black;
+background-size: cover;
+background-image: url("");
+position: relative;
+display: none; /* Ocultamos las tarjetas al cargar */
+}
+
+.gradient {
+height: 100%;
+width: 100%;
+top: 0;
+background: linear-gradient(to top, rgba(28, 171, 238, 0.7), rgba(253, 252, 252, 0.21));
+color: white;
+}
+
+.content {
+padding: 20px;
+}
+
+h2 {
+font-size: 20px;
+letter-spacing: -1px;
+margin-bottom: 10px;
+text-align: left;
+}
+
+p {
+font-size: 16px;
+text-align: left;
+}
+
+.details {
+font-style: italic;
+color: rgb(185, 206, 224);
+margin-top: 15px;
+}
+
+.icons {
+position: absolute;
+top: 20px;
+right: 20px;
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+}
+
+.icons i {
+font-size: 20px;
+margin-bottom: 15px;
+color: rgb(202, 215, 226);
+transition: 0.3s;
+}
+
+.icons i:hover {
+color: white;
+}
+
+footer {
+margin-top: 30px;
+color: white;
+font-size: 1rem;
+text-align: center;
+width: 100%;
+position: absolute;
+bottom: 10px;
+}
+
+.contact-card {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 10px;
+max-width: 900px;
+}
+
+.contact-card .container {
+margin: 0px;
+transition: transform 0.3s ease;
+}
+
+.contact-card .container:hover {
+transform: scale(1.05);
+}
+
+.hidden {
+display: none;
+}
+
+@media screen and (max-width: 768px) {
+body {
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: flex-start;
+}
+
+h1 {
+font-size: 2.0rem;
+margin-top: 40px;
+/*margin-bottom: 20px;
+margin-right: 35px;*/
+}
+
+p {
+font-size: 13px;
+}
+
+.main {
+width: 90%;
+display: flex;
+flex-direction: column;
+align-items: center; /* Centra las tarjetas */
+gap: 15px;
+padding-left: 0px;
+/*padding-right: 32px;*/
+margin-left: 10px;
+margin-right: 10px;
+}
+
+.container {
+width: 80%; /* Ocupará casi todo el ancho */
+width: 180px; /* Evita que sea demasiado ancha */
+margin: 0 auto; /* Centra horizontalmente */
+height: 290px;
+position: relative; /* Para que los iconos se posicionen en relación con este */
+}
+
+.category-buttons {
+display: flex;
+flex-wrap: wrap;
+justify-content: center; /* Centra los botones */
+gap: 8px;
+width: 100%;
+/*margin-right: 0px;
+margin-right: 50px;*/
+}
+
+.category-buttons button {
+font-size: 0.8rem;
+/*padding: 5px 10px;*/
+}
+
+.icons {
+position: absolute;
+top: 40%;
+right: 10px; /* Ajusta según necesites */
+transform: translateY(-50%); /* Centra verticalmente con respecto al h2 */
+display: flex;
+gap: 2px;
+}
+
+.icons i {
+font-size: 20px;
+}
+
+footer {
+font-size: 0.9rem;
+padding: 10px;
+position: relative;
+}
+}
+</style>
+</head>
+
+<body>
+<header>
+<h1>Contactos Febrero 2025</h1>
+<div id="category-buttons" class="category-buttons">
+<button onclick="filterCards('all')">todos</button>
+<button onclick="filterCards('001')">principales</button>
+<button onclick="filterCards('002')">secundarios</button>
+<button onclick="filterCards('003')">terciarios</button>
+<button onclick="filterCards('zzz')">reciclaje</button>
+<!-- Añadir más botones según sea necesario -->
+</div>
+</header>
+
+<div class="main" id="contact-list">
+<!-- Tarjetas de contacto -->
+<div class="contact-card">
+<div class="container 001">
+<div class="gradient">
+<div class="content">
+<h2>Anet</h2>
+<p>604003196</p>
+<p>A Coruña - A Gaiteira</p>
+<p>12/05/1978</p>
+<p>Tauro</p>
+<p>Agente de viajes</p>
+<p>Divorciada</p>
+<p>Sin hijos</p>
+<p>Tinder</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/34604003196" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://www.atlantisbyanet.com/" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/atlantis_byanet/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/atlantisbyanet/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container 002">
+<div class="gradient">
+<div class="content">
+<h2>Elizabeth</h2>
+<p>613401736</p>
+<p>Carballo</p>
+<p>14/02/1989</p>
+<p>Acuario</p>
+<p>Belleza</p>
+<p>Soltera</p>
+<p>Una hija de 2009</p>
+<p>Badoo</p>
+<br>
+<p class="details">Venezolana</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container 002">
+<div class="gradient">
+<div class="content">
+<h2>Lorena</h2>
+<p>615056636</p>
+<p>Sarria - Lugo</p>
+<p>00/00/1982</p>
+<p>Aries</p>
+<p>Geriatría</p>
+<p>Soltera</p>
+<p>Sin hijos</p>
+<p>Badoo</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container zzz">
+<div class="gradient">
+<div class="content">
+<h2>Bea</h2>
+<p>número de teléfono</p>
+<p>A Coruña</p>
+<p>00/00/1900</p>
+<p>Horóscopo</p>
+<p>Profesión</p>
+<p>Soltera</p>
+<p>Sin hijos?</p>
+<p>Bumble</p>
+<br>
+<p class="details">@bea.vila.c Instagram</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/bea.vila.c" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container 002">
+<div class="gradient">
+<div class="content">
+<h2>Helga</h2>
+<p>626436668</p>
+<p>A Coruña - Matogrande</p>
+<p>00/00/1983</p>
+<p>Tauro</p>
+<p>Profesora de infantil</p>
+<p>Soltera</p>
+<p>Sin hijos</p>
+<p>Tinder</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container 002">
+<div class="gradient">
+<div class="content">
+<h2>Candela</h2>
+<p>662210269</p>
+<p>A Coruña - ???</p>
+<p>00/00/1983</p>
+<p>Géminis</p>
+<p>Financiera</p>
+<p>Soltera</p>
+<p>Sin hijos</p>
+<p>Bumble</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/34662210269" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container zzz">
+<div class="gradient">
+<div class="content">
+<h2>Ana</h2>
+<p>Número de móvil</p>
+<p>Narón</p>
+<p>00/00/1979</p>
+<p>Leo</p>
+<p>Enfermera</p>
+<p>Divorciada</p>
+<p>Dos hijas</p>
+<p>Tinder</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container zzz">
+<div class="gradient">
+<div class="content">
+<h2>Anita</h2>
+<p>Número de móvil</p>
+<p>Betanzos</p>
+<p>00/00/1979</p>
+<p>Cáncer</p>
+<p>Fotógrafa</p>
+<p>Divorciada/Soltera</p>
+<p>Un hijo</p>
+<p>Tinder</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container zzz">
+<div class="gradient">
+<div class="content">
+<h2>Máriam</h2>
+<p>Número de móvil</p>
+<p>A Coruña - ???</p>
+<p>00/00/1988 - 1989</p>
+<p>Horóscopo</p>
+<p>Profesión</p>
+<p>Divorciada/Soltera</p>
+<p>Descendencia</p>
+<p>Tinder</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container 002">
+<div class="gradient">
+<div class="content">
+<h2>Patricia</h2>
+<p>Número de móvil</p>
+<p>Arteixo</p>
+<p>00/00/1989</p>
+<p>Aries</p>
+<p>Teleoperadora</p>
+<p>Divorciada/Soltera</p>
+<p>Descendencia</p>
+<p>Badoo</p>
+<br>
+<p class="details">Venezolana</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/patricia.patite" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container 002">
+<div class="gradient">
+<div class="content">
+<h2>Pau</h2>
+<p>660302889</p>
+<p>A Coruña</p>
+<p>00/00/1989</p>
+<p>Tauro</p>
+<p>Salud Deportiva</p>
+<p>Soltera</p>
+<p>Sin hijos</p>
+<p>Bumble</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container 002">
+<div class="gradient">
+<div class="content">
+<h2>Natalia</h2>
+<p>679874815</p>
+<p>A Coruña</p>
+<p>00/00/1985</p>
+<p>Horóscopo</p>
+<p>Profesión</p>
+<p>Soltera</p>
+<p>Sin hijos?</p>
+<p>Tinder</p>
+<br>
+<p class="details">-</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<script>
+// Filtra las tarjetas por categoría
+function filterCards(category) {
+const allCards = document.querySelectorAll('.contact-card .container');
+allCards.forEach(card => {
+if (category === 'all') {
+card.style.display = 'block';  // Muestra todas las tarjetas
+} else {
+if (card.classList.contains(category)) {
+card.style.display = 'block';  // Muestra las tarjetas de esa categoría
+} else {
+card.style.display = 'none';  // Oculta las tarjetas que no pertenecen a la categoría
+}
+}
+});
+}
+
+// Inicializar para que no se muestren las tarjetas al cargar
+window.onload = function() {
+filterCards('all'); // Opcional: mostrar todas las tarjetas al inicio, si lo prefieres
+};
+</script>
+</body>
+
+</html>
