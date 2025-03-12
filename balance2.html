@@ -195,6 +195,10 @@ width: 30%;
 height: 1em;
 }
 
+  .widget__change span:not(.icon) {
+    font-size: 0.7em;
+}
+
 .widget__placeholder--name {
 border-radius: 0.375em;
 margin: 0.125em 0;
@@ -235,7 +239,7 @@ padding: 1.5em;
 .widget-grid {
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Máximo 5 columnas, ajustable */
-gap: 4em;
+gap: 2em;
 padding: 1.5em;
 width: 100%; /* Asegura que se adapte al ancho del body */
 }
@@ -322,6 +326,7 @@ transform: scale(1);
 <div class="widget__price">1,239.23 €</div>
 </div>
 </div>
+  
 <div class="widget">
 <div class="widget__content">
 <div class="widget__symbol">Billetera</div>
