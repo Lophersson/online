@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>mis contactos</title>
+<style>
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+body {
+min-heigth: 100vh;
+max-heigth: 600vh;
+width: 100vw;
+background: linear-gradient(to bottom, rgba(0, 50, 130, 0.9), rgba(200, 230, 255, 0.7));
+font-family: 'Abel', sans-serif;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+align-items: center;
+overflow-x: hidden;
+}
+
+header {
+text-align: center;
+margin-top: 20px;
+color: white;
+}
+
+h1 {
+font-size: 2.5rem;
+margin-bottom: 20px;
+}
+
+.category-buttons {
+display: flex;
+gap: 5px;
+margin-bottom: 20px;
+}
+
+.category-buttons button {
+background: linear-gradient(to top, rgba(28, 171, 238, 0.7), rgba(253, 252, 252, 0.21));
+border: none;
+color: white;
+padding: 6px 12px;
+cursor: pointer;
+font-size: 0.9rem;
+border-radius: 5px;
+}
+
+.category-buttons button:hover {
+background: linear-gradient(to top, rgba(28, 171, 238, 0.7), rgba(253, 252, 252, 0.21));
+transform: scale(1.05);
+}
+
+.main {
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 20px;
+padding-bottom: 30px;
+}
+
+.container {
+height: 250px; /* Ajustamos la altura */
+width: 250px; /* Ajustamos el ancho */
+box-shadow: 0 10px 20px black;
+background-size: cover;
+background-image: url("");
+position: relative;
+display: none; /* Ocultamos las tarjetas al cargar */
+}
+
+.gradient {
+height: 100%;
+width: 100%;
+top: 0;
+background: linear-gradient(to top, rgba(28, 171, 238, 0.7), rgba(253, 252, 252, 0.21));
+color: white;
+}
+
+.content {
+padding: 20px;
+}
+
+h2 {
+font-size: xx-large;
+letter-spacing: -1px;
+margin-bottom: 10px;
+text-align: left;
+}
+
+p {
+font-size: medium;
+text-align: left;
+}
+
+.details {
+font-style: italic;
+color: rgb(185, 206, 224);
+margin-top: 15px;
+}
+
+.icons {
+position: absolute;
+top: 20px;
+right: 20px;
+display: flex;
+flex-direction: column;
+align-items: flex-end;
+}
+
+.icons i {
+font-size: 25px;
+margin-bottom: 15px;
+color: rgb(202, 215, 226);
+transition: 0.3s;
+}
+
+.icons i:hover {
+color: white;
+}
+
+footer {
+margin-top: 30px;
+color: white;
+font-size: 1rem;
+text-align: center;
+width: 100%;
+position: absolute;
+bottom: 10px;
+}
+
+.contact-card {
+display: flex;
+justify-content: center;
+flex-wrap: wrap;
+gap: 10px;
+margin-top: 10px;
+}
+
+.contact-card .container {
+margin: 10px;
+transition: transform 0.3s ease;
+}
+
+.contact-card .container:hover {
+transform: scale(1.05);
+}
+
+.hidden {
+display: none;
+}
+</style>
+</head>
+
+<body>
+<header>
+<h1>Contactos Febrero 2025</h1>
+<div id="category-buttons" class="category-buttons">
+<button onclick="filterCards('all')">Todos</button>
+<button onclick="filterCards('a')">Confianza Alta</button>
+<button onclick="filterCards('b')">Confianza Media</button>
+<button onclick="filterCards('c')">Confianza Baja</button>
+<button onclick="filterCards('fam')">Familia</button>
+<button onclick="filterCards('seg')">Curso Ciberseguridad</button>
+<button onclick="filterCards('efbsm')">EFBS Mañanas</button>
+<button onclick="filterCards('efbst')">EFBS Tardes</button>
+<button onclick="filterCards('app')">Apps Contactos</button>
+<button onclick="filterCards('res')">Residuales</button>
+<!-- Añadir más botones según sea necesario -->
+</div>
+</header>
+
+<div class="main" id="contact-list">
+<!-- Tarjetas de contacto -->
+<div class="contact-card">
+<div class="container fam">
+<div class="gradient">
+<div class="content">
+<h2>Papa <br>Alfredo</h2>
+<p>696006166</p>
+<p>981313065</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Myriam <br>Argentina</h2>
+<p>+5491154866213</p>
+<p>25/01/1979</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Maria <br>Rodriguez</h2>
+<p>626516029</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container a">
+<div class="gradient">
+<div class="content">
+<h2>Nydia <br>Sanchez Tejo</h2>
+<p>630319381
+<p>12/04/1978
+<p>CEIP Arteixo</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Cristina <br>Garcia</h2>
+<p>671029816</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container b">
+<div class="gradient">
+<div class="content">
+<h2>Elena <br>Blue Eyes</h2>
+<p>648664912</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container a">
+<div class="gradient">
+<div class="content">
+<h2>Marta <br>Veiga</h2>
+<p>626140796</p>
+<p>11/08/1973</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container a">
+<div class="gradient">
+<div class="content">
+<h2>Humberto</h2>
+<p>658868490</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Susana</h2>
+<p>656258957</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container b">
+<div class="gradient">
+<div class="content">
+<h2>Tamara <br>Da Silva</h2>
+<p>637353593</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Isabel</h2>
+<p>676579157</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Ana Vela <br>Hernandez</h2>
+<p>678415937</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Madre <br>de Angee</h2>
+<p>625276127</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Lucia</h2>
+<p>628204828</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Ana María<br>Gomez Varela</h2>
+<p>628045725</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Liliana</h2>
+<p>653965099</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Blanca</h2>
+<p>675535647</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Alberto</h2>
+<p>673090145</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Maria <br>Angeles</h2> 
+<p>659571288</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Miguel</h2>
+<p>608387168</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Alex</h2>
+<p>610305285</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Gus</h2>
+<p>699858150</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Andres</h2>
+<p>636359449</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Carlos</h2>
+<p>698129283</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Mario</h2>
+<p>658441647</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Pablo</h2>
+<p>639791410</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Sheyla</h2>
+<p>600252068</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Pablo <br>Freire</h2>
+<p>633376236</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Alfonso</h2>
+<p>675553639</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Manuel <br>Quintián</h2>
+<p>685978648</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Cesar</h2>
+<p>638863501</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Juan <br>Pablo</h2>
+<p>604017310</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Yaiza</h2>
+<p>622613963</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Gabriel</h2>
+<p>665849419</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Mauro</h2>
+<p>607194419</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Guillermo</h2>
+<p>617126211</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Emilia <br>Pereiro</h2>
+<p>658424628</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Marian</h2>
+<p>623104650</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Alejandra</h2>
+<p>611428570</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Indalecio</h2>
+<p>659075235</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Dani <br>Marques</h2>
+<p>664500403</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>David <br>Regal</h2>
+<p>698164343</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Loli</h2>
+<p>669079862</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbsm">
+<div class="gradient">
+<div class="content">
+<h2>Manel</h2>
+<p>633771979</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container seg">
+<div class="gradient">
+<div class="content">
+<h2>Juan Marido <br>de Liliana</h2>
+<p>654358764</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Hospital <br>Juan Cardona</h2>
+<p>981312500</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Nora</h2>
+<p>631075208</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container a">
+<div class="gradient">
+<div class="content">
+<h2>Vero Breijo <br>Freire</h2>
+<p>638135644
+<p>18/03/1978</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Miguel <br>Valdoviño</h2>
+<p>689306263</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Jimmy</h2>
+<p>722382770</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Jenny Paola</h2>
+<p>632034064</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Pol</h2>
+<p>699674216</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Leo</h2>
+<p>663170693</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container efbst">
+<div class="gradient">
+<div class="content">
+<h2>Fabian</h2>
+<p>696111228</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Placido</h2>
+<p>615668985</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Sergas</h2>
+<p>630306418</p>
+<p>981334000</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container fam">
+<div class="gradient">
+<div class="content">
+<h2>Tia Mary</h2>
+<p>661907318</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container res">
+<div class="gradient">
+<div class="content">
+<h2>Ana_Patricia</h2>
+<p>622572213</p>
+<p>19/06/1980</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container app">
+<div class="gradient">
+<div class="content">
+<h2>Anet</h2>
+<p>604003196</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/34604003196" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://www.atlantisbyanet.com/" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/atlantis_byanet/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/atlantisbyanet/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container fam">
+<div class="gradient">
+<div class="content">
+<h2>Tio Guillin</h2>
+<p>610609254</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container fam">
+<div class="gradient">
+<div class="content">
+<h2>Natalia Bravo</h2>
+<p>661907317</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container c">
+<div class="gradient">
+<div class="content">
+<h2>Felix</h2>
+<p>610489401</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container app">
+<div class="gradient">
+<div class="content">
+<h2>Helga</h2>
+<p>626436668</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="container app">
+<div class="gradient">
+<div class="content">
+<h2>Candela</h2>
+<p>662210269</p>
+<br>
+<p class="details">añadir detalles</p>
+<div class="icons">
+<a href="tel: "><i class="fa fa-phone" aria-hidden="true"></i></a>
+<a href="https://wa.me/34662210269" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
+<a href="https://github.com/Lophersson" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a>
+<a href="https://www.instagram.com/" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+<a href="https://www.facebook.com/?locale=es_ES" target="_blank"><i class="fa fa-facebook-square" aria-hidden="true"></i></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+// Filtra las tarjetas por categoría
+function filterCards(category) {
+const allCards = document.querySelectorAll('.contact-card .container');
+allCards.forEach(card => {
+if (category === 'all') {
+card.style.display = 'block';  // Muestra todas las tarjetas
+} else {
+if (card.classList.contains(category)) {
+card.style.display = 'block';  // Muestra las tarjetas de esa categoría
+} else {
+card.style.display = 'none';  // Oculta las tarjetas que no pertenecen a la categoría
+}
+}
+});
+}
+
+// Inicializar para que no se muestren las tarjetas al cargar
+window.onload = function() {
+filterCards('all'); // Opcional: mostrar todas las tarjetas al inicio, si lo prefieres
+};
+</script>
+</body>
+
+</html>
