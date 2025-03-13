@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh2.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh2.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh2.png" color="#111" />
+
+<title>Patrimonio futuro</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+        background: url('https://lophersson.github.io/omniweb/eqesuv.jpg') no-repeat center center/cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: white;
+    }
+
+    .contenedor {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 10px;
+        border-radius: 15px;
+        text-align: center;
+        width: 320px;
+        backdrop-filter: blur(5px);
+        position: absolute;
+        top: 140px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    h1 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    input {
+        width: 90%;
+        padding: 8px;
+        margin: 2px 0;
+        border: none;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 1.1rem;
+        font-style: italic;
+    }
+
+    input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.5);
+    }
+</style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Calculadora de Patrimonio Total</h1>
+        <input type="text" id="rentaMesPrimerAño" placeholder="Renta Mensual Primer Año" oninput="formatearNumero(this); calcularValores()">
+        <input type="text" id="rentaAnual" placeholder="Renta Anual Primer Año" readonly>
+        <input type="number" id="incrementoAnual" placeholder="% Incremento Anual" value="1.8" oninput="calcularValores()">
+        <input type="number" id="años" placeholder="Duración en Años" value="30" oninput="calcularValores()">
+        <input type="text" id="rentaMesLast" placeholder="Renta Mensual Último Año" readonly>
+        <input type="text" id="rentaAnualLast" placeholder="Renta Anual Último Año" readonly>
+        <input type="text" id="patrimonioNeto" placeholder="Patrimonio Neto" readonly>
+        <input type="text" id="patrimonioBruto" placeholder="Patrimonio Bruto" readonly>
+    </div>
+
+    <script>
+        function formatearNumero(input) {
+            let valor = input.value.replace(/\./g, ''); // Eliminar puntos anteriores
+            if (valor === "") return;
+            
+            valor = parseInt(valor);
+            if (!isNaN(valor)) {
+                input.value = valor.toLocaleString("es-ES"); // Aplicar formato con separadores de miles
+            } else {
+                input.value = "";
+            }
+        }
+
+        function calcularValores() {
+            const rentaMesPrimerAño = parseInt(document.getElementById("rentaMesPrimerAño").value.replace(/\./g, '')) || 0;
+            const incrementoAnual = parseFloat(document.getElementById("incrementoAnual").value) || 0;
+            const años = parseInt(document.getElementById("años").value) || 0;
+    
+            if (rentaMesPrimerAño > 0 && incrementoAnual > 0 && años > 0) {
+                const incrementoFactor = incrementoAnual / 100;
+    
+                const rentaAnual = rentaMesPrimerAño * 14;
+                document.getElementById("rentaAnual").value = rentaAnual.toLocaleString("es-ES");
+    
+                const patrimonioNeto = Math.round(rentaAnual * ((Math.pow(1 + incrementoFactor, años) - 1) / incrementoFactor));
+                document.getElementById("patrimonioNeto").value = patrimonioNeto.toLocaleString("es-ES");
+    
+                const patrimonioBruto = Math.round(patrimonioNeto / 0.80);
+                document.getElementById("patrimonioBruto").value = patrimonioBruto.toLocaleString("es-ES");
+    
+                const rentaAnualLast = Math.round(rentaAnual * Math.pow(1 + incrementoFactor, años - 1));
+                document.getElementById("rentaAnualLast").value = rentaAnualLast.toLocaleString("es-ES");
+    
+                const rentaMesLast = Math.round(rentaAnualLast / 14);
+                document.getElementById("rentaMesLast").value = rentaMesLast.toLocaleString("es-ES");
+            } else {
+                ["rentaAnual", "rentaAnualLast", "rentaMesLast", "patrimonioNeto", "patrimonioBruto"].forEach(id => {
+                    document.getElementById(id).value = "";
+                });
+            }
+        }
+    </script>
+</body>
+</html>
