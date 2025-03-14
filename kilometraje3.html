@@ -1,82 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
-<link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
-<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
-<title>Calculadora de Consumo y Velocidad</title>
-<style>
-  body {
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  h1 {
-    text-align: center;
-    color: #00ffcc;
-    margin: 20px 0;
-  }
-  .container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  .box {
-    background-color: #222;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-    margin-bottom: 15px;
-  }
-  .form-group {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-  }
-  .form-group label {
-    color: #00ffcc;
-    width: 60%;
-    text-align: left;
-  }
-  .form-group input {
-    width: 40%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    background-color: #444;
-    color: white;
-    text-align: center;
-  }
-  .form-group input:focus {
-    outline: 2px solid #00ffcc;
-  }
-.hora-box {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png">
+  <link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png">
+  <link rel="mask-icon" href="https://lophersson.github.io/online/iconh.png" color="#111">
+  <title>Calculadora de Consumo y Velocidad</title>
+  
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #00ffcc;
+      margin: 20px 0;
+    }
+    
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .box {
+      background-color: #222;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      margin-bottom: 15px;
+    }
+    
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .form-group label {
+      color: #00ffcc;
+      width: 60%;
+      text-align: left;
+    }
+    
+    .form-group input {
+      width: 40%;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      background-color: #444;
+      color: white;
+      text-align: center;
+    }
+    
+    .form-group input:focus {
+      outline: 2px solid #00ffcc;
+    }
+
+    .hora-box {
       display: flex;
       justify-content: space-between;
-      gap: 10px;
+      gap: 5px;
       width: 55%;
     }
+    
     .hora-box input {
       width: 40%;
       text-align: center;
     }
-
-footer {
+    
+    footer {
       text-align: center;
       color: #888;
       padding: 10px;
       margin-top: 20px;
       border-top: 1px solid #444;
     }
-</style>
+  </style>
 </head>
+
 <body>
   <h1>Calculadora de Consumo y Velocidad</h1>
+  
   <div class="container">
     <div class="box">
       <div class="form-group">
@@ -92,16 +104,18 @@ footer {
       <div class="form-group">
         <label for="horaInicial">Hora Inicial:</label>
         <div class="hora-box">
-          <input type="number" id="horaInicial" placeholder="hh" min="0" max="23">
-          <input type="number" id="minutosIniciales" placeholder="mm" min="0" max="59">
+          <input type="number" id="horaInicial" placeholder="hh" min="0" max="23" step="1">
+          <input type="number" id="minutosIniciales" placeholder="mm" min="0" max="59" step="1">
         </div>
       </div>
+
       <div class="form-group">
         <label for="horaFinal">Hora Final:</label>
         <div class="hora-box">
-          <input type="number" id="horaFinal" placeholder="hh" min="0" max="23">
-          <input type="number" id="minutosFinales" placeholder="mm" min="0" max="59">
+          <input type="number" id="horaFinal" placeholder="hh" min="0" max="23" step="1">
+          <input type="number" id="minutosFinales" placeholder="mm" min="0" max="59" step="1">
         </div>
+      </div>
 
       <div class="form-group">
         <label for="fechaInicial">Fecha Inicial:</label>
