@@ -8,70 +8,54 @@
 <link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
   <title>Calculadora de Consumo y Velocidad</title>
   <style>
-    body {
-      background-color: black;
-      color: white;
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    h1 {
-      text-align: center;
-      color: #00ffcc;
-      margin: 20px 0;
-    }
-    .container {
-      max-width: 500px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    .box {
-      background-color: #222;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-      margin-bottom: 15px;
-    }
-    .form-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-    .form-group label {
-      width: 50%;
-      text-align: left;
-      color: #00ffcc;
-      padding-right: 10px;
-    }
-    .form-group input {
-      width: 50%;
-      padding: 8px;
-      border: none;
-      border-radius: 5px;
-      background-color: #444;
-      color: white;
-    }
-    .form-group input:focus {
-      outline: 2px solid #00ffcc;
-    }
-    .hora-box {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      width: 55%;
-    }
-    .hora-box input {
-      width: 40%;
-      text-align: center;
-    }
-    footer {
-      text-align: center;
-      color: #888;
-      padding: 10px;
-      margin-top: 20px;
-      border-top: 1px solid #444;
-    }
-  </style>
+  body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    text-align: center;
+    color: #00ffcc;
+    margin: 20px 0;
+  }
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .box {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin-bottom: 15px;
+  }
+  .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .form-group label {
+    color: #00ffcc;
+    width: 60%; /* Ancho fijo para los labels */
+    text-align: left;
+  }
+  .form-group input {
+    width: 40%; /* Ancho fijo para los inputs */
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    text-align: center;
+  }
+  .form-group input:focus {
+    outline: 2px solid #00ffcc;
+  }
+</style>
 </head>
 <body>
   <h1>Calculadora de Consumo y Velocidad</h1>
