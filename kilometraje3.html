@@ -194,5 +194,97 @@
   <footer>
     © 2025 @Lophersson - Todos los derechos reservados.
   </footer>
+
+<script>
+    document.querySelectorAll('#horaInicial, #horaFinal').forEach(horaInput => {
+      horaInput.addEventListener('input', (e) => {
+        if (e.target.value.length === 2) {
+          e.target.nextElementSibling.focus(); // Mover al input de minutos
+        }
+      });
+    });
+
+    document.querySelectorAll('#minutosIniciales, #minutosFinales').forEach(minutoInput => {
+      minutoInput.addEventListener('input', (e) => {
+        if (e.target.value.length > 2) {
+          e.target.value = e.target.value.slice(0, 2); // Limitar a 2 dígitos
+        }
+      });
+    });
+
+    document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('input', calcularResultados);
+    });
+
+    function calcularResultados() {
+      const kmIniciales = parseFloat(document.getElementById('kmIniciales').value) || 0;
+      const kmFinales = parseFloat(document.getElementById('kmFinales').value) || 0;
+      const horaInicial = parseFloat(document.getElementById('horaInicial').value) || 0;
+      const minutosIniciales = parseFloat(document.getElementById('minutosIniciales').value) || 0;
+      const horaFinal = parseFloat(document.getElementById('horaFinal').value) || 0;
+      const minutosFinales = parseFloat(document.getElementById('minutosFinales').value) || 0;
+      const consumoMedio = parseFloat(document.getElementById('consumoMedio').value) || 0;
+      const precioLitro = parseFloat(document.getElementById('precioLitro').value) || 0;
+      const fechaInicial = new Date(document.getElementById('fechaInicial').value);
+      const fechaFinal = new Date(document.getElementById('fechaFinal').value);
+
+      const kmRecorridos = kmFinales - kmIniciales;
+
+      const tiempoInicial = horaInicial + minutosIniciales / 60;
+      const tiempoFinal = horaFinal + minutosFinales / 60;
+      const tiempoTotal = (tiempoFinal - tiempoInicial) * 60;
+
+      const velocidadMedia = tiempoTotal > 0 ? (kmRecorridos / (tiempoTotal / 60)) : 0;
+
+      const litrosConsumidos = (kmRecorridos * consumoMedio) / 100;
+
+      const costeTotal = litrosConsumidos * precioLitro;
+
+      const diferenciaFechas = Math.floor((fechaFinal - fechaInicial) / (1000 * 60 * 60 * 24)); // Diferencia en días
+      const costePorDia = diferenciaFechas > 0 ? (costeTotal / diferenciaFechas) : 0;
+
+      // Calcular kilómetros por euro
+      const kmPorEuro = precioLitro > 0 ? (100 / consumoMedio) / precioLitro : 0;
+
+      // Calcular coste por kilómetro
+      const costePorKm = kmRecorridos > 0 ? costeTotal / kmRecorridos : 0;
+
+      document.getElementById('kmRecorridos').value = kmRecorridos.toFixed(0);
+      document.getElementById('tiempoTotal').value = tiempoTotal.toFixed(0) + " minutos";
+      document.getElementById('velocidadMedia').value = velocidadMedia.toFixed(0) + " km/h";
+      document.getElementById('litrosConsumidos').value = litrosConsumidos.toFixed(2) + " litros/kWh";
+      document.getElementById('costeTotal').value = costeTotal.toFixed(2) + " €";
+      document.getElementById('diferenciaFechas').value = diferenciaFechas + " días";
+      document.getElementById('costePorDia').value = costePorDia.toFixed(2) + " €";
+      document.getElementById('kmPorEuro').value = kmPorEuro.toFixed(2) + " km/€";
+      document.getElementById('costePorKm').value = costePorKm.toFixed(2) + " €/km";
+    }
+  </script>
+  
+  <script>
+document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', calcularResultados);
+});
+
+function calcularResultados() {
+  const kmIniciales = parseFloat(document.getElementById('kmIniciales').value) || 0;
+  const kmFinales = parseFloat(document.getElementById('kmFinales').value) || 0;
+  const fechaInicial = new Date(document.getElementById('fechaInicial').value);
+  const fechaFinal = new Date(document.getElementById('fechaFinal').value);
+
+  if (fechaInicial && fechaFinal) {
+    // Calcular la diferencia de días entre las dos fechas
+    const diferenciaDias = (fechaFinal - fechaInicial) / (1000 * 3600 * 24);
+    const kmRecorridos = kmFinales - kmIniciales;
+
+    // Calcular la media de kilómetros recorridos por día
+    const kmPorDia = diferenciaDias > 0 ? kmRecorridos / diferenciaDias : 0;
+
+    // Actualizar los resultados
+    document.getElementById('kmRecorridos').value = kmRecorridos.toFixed(0);
+    document.getElementById('kmPorDia').value = kmPorDia.toFixed(2);
+  }
+}
+</script>
 </body>
 </html>
