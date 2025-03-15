@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Figure &amp; Figcaption</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
+  <title>Humberto CuVitt</title>
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Pacifico|Poppins:400,700'>
   <style>
   * {
@@ -21,8 +26,15 @@
     overflow: hidden;
     perspective: 800px;
     background: #f7f1e3;
+    background-image: url(https://www.vinosycaminos.com/images/showid2/6046151?w=1200&zc=4);
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
   }
 
+
+  /*INCIO*/
   figure {
     width: 360px;
     box-shadow: 3px 3px 40px 0 rgba(0, 0, 0, 0.4);
@@ -30,7 +42,7 @@
     position: relative;
     pointer-events: none;
     background: #ecf0f1;
-    transition: 0.3s ease-in-out;
+    transition: 0.5s ease-in-out;
   }
 
   figure .img {
@@ -69,6 +81,7 @@
     width: 100%;
   }
 
+  /*Hola!*/
   figure figcaption span:nth-child(1) {
     position: absolute;
     font-family: "Pacifico", cursive;
@@ -80,22 +93,24 @@
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   }
 
+  /*Humberto López Rodríguez*/
   figure figcaption span:nth-child(2) {
     filter: url("#outline");
     font-family: "Pacifico", cursive;
     font-size: 52px;
     overflow: visible;
     position: absolute;
-    top: -54px;
+    top: -50px;
     left: -138px;
     white-space: nowrap;
     color: #2c3e50;
-    z-index: -35px;
+    /*z-index: -35px;*/
     transform: rotate(-2deg);
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    transition: top 0.3s ease-in-out;
+    transition: top 0.5s ease-in-out;
   }
 
+  /*Contenido interior*/
   figure figcaption span:nth-child(3) {
     opacity: 0;
     padding-top: 30px;
@@ -108,10 +123,11 @@
     margin-bottom: 0px;
   }
 
+  /*Botón VER*/
   figure button {
     position: absolute;
     bottom: -20px;
-    width: 100px;
+    width: 120px;
     left: calc(50% - 50px);
     background: #2c3e50;
     color: #fff;
@@ -124,17 +140,30 @@
     pointer-events: auto;
     transition: 0.3s ease-in-out;
     overflow: hidden;
-    z-index: 20;
+    /*z-index: 20px;*/
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: bold;
   }
 
-  figure button:before,
+  figure button:before {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*transition: 1s cubic-bezier(0.55, -0.62, 0.27, 1.2);*/
+    content: "ver";
+    opacity: 1;
+  }
+
   figure button:after {
     width: 100%;
     height: 100%;
@@ -144,15 +173,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: 1s cubic-bezier(0.55, -0.62, 0.27, 1.2);
-  }
-
-  figure button:before {
-    content: "ver";
-    opacity: 1;
-  }
-
-  figure button:after {
+    /*transition: 1s cubic-bezier(0.55, -0.62, 0.27, 1.2);*/
     content: "volver";
     opacity: 0;
   }
@@ -166,50 +187,60 @@
   }
 
   figure:hover {
-    transition: 0.3s ease-in-out;
-    transform: rotateX(-2deg);
+    transition: 0.5s ease-in-out;
+    transform: rotateX(0deg);
     box-shadow: 3px -3px 40px 0 rgba(0, 0, 0, 0.4);
   }
 
   figure:hover button {
     background: #4f6780;
-    bottom: -13px;
-    transition: 0.3s ease-in-out;
+    bottom: -20px;
+    transition: 0.5s ease-in-out;
   }
 
   figure:hover span:nth-child(2) {
-    top: -54px;
-    transition: top 0.3s ease-in-out;
+    top: -30px;
+    transition: top 0.5s ease-in-out;
   }
 
+  /*ABIERTO*/
   figure.open .img {
     height: 0;
   }
 
   figure.open figcaption {
-    height: 280px;
+    height: 560px;
     border-radius: 8px;
+    padding-top: 30px;
+    padding-left: 7px;
+    padding-right: 25px;
   }
 
   figure.open figcaption span:nth-child(1) {
     top: -72px;
     opacity: 1;
+    color: antiquewhite;
   }
 
   figure.open figcaption span:nth-child(2) {
-    top: -28px;
+    top: -36px;
   }
 
+  /*Contenido*/
   figure.open figcaption span:nth-child(3) {
-    height: 100%;
+    width: 100%;
+    height: 96%;
     opacity: 1;
-    padding-top: 30px;
-    padding-left: 20px;
+    text-align: justify;
+    font-size: 16px;
+    padding-top: 20px;
+    padding-left: 16px;
+    letter-spacing: 0.1px;
   }
 
   figure.open:hover figcaption span:nth-child(2) {
-    top: -36px;
-    transition: top 0.3s ease-in-out;
+    top: -6px;
+    transition: top 0.5s ease-in-out;
   }
 
   figure svg {
@@ -217,6 +248,111 @@
     bottom: 0;
     width: 350px;
   }
+
+  /* Media query para pantallas pequeñas */
+  @media (max-width: 600px) {
+  
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    background: #f7f1e3;
+    background-image: url(https://www.vinosycaminos.com/images/showid2/6046151?w=1200&zc=4);
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+  }
+  
+  figure {
+  width: 310px; /* Ajusté un poco más la figura para que sea más estrecha */
+  height: 380px;
+  box-shadow: 3px 3px 40px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  position: relative;
+  pointer-events: none;
+  background: #ecf0f1;
+  transition: 0.5s ease-in-out;
+}
+
+figure .img {
+    width: 310px;
+    height: 310px;
+    border-radius: 8px 8px 0 0;
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA6ji7INGIlnjkb6VYIm6urn6ZAXlMupy0XA&s");
+    background-size: 310px 310px;
+    background-repeat: no-repeat;
+  }
+
+  figure .img:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 310px;
+    height: 310px;
+    background: linear-gradient(transparent, #ecf0f1 100%);
+    border-radius: 0 0 8px 8px;
+  }
+
+  figure figcaption span:nth-child(2) {
+    filter: url("#outline");
+    font-family: "Pacifico", cursive;
+    font-size: 28px;
+    overflow: visible;
+    position: absolute;
+    top: -20px;
+    left: -13px;
+    white-space: nowrap;
+    color: #2c3e50;
+    z-index: -35px;
+    transform: rotate(-2deg);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    transition: top 0.5s ease-in-out;
+  }
+
+  figure.open figcaption span:nth-child(1) {
+    top: -85px !important;
+    opacity: 1;
+    color: antiquewhite;
+  }
+
+  figure.open figcaption span:nth-child(2) {
+    top: -38px !important; /* Forzamos que suba más */
+}
+
+figure figcaption span:nth-child(3) {
+    opacity: 0;
+    clip-path: inset(0 50% 0 50%); /* Recorta el contenido desde los lados */
+    transition: clip-path 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+figure.open figcaption span:nth-child(3) {
+    opacity: 1;
+    clip-path: inset(0 0 0 0); /* Muestra el contenido sin recortes */
+    font-size: 12px;
+    padding-top: 0; /* Mantiene el texto arriba */
+    align-items: flex-start; /* Asegura que el contenido se alinee arriba */
+}
+
+figure.open figcaption {
+    position: relative;
+    overflow: visible; /* Permitir que el texto sobresalga si es necesario */
+    height: 380px;
+    border-radius: 8px;
+    padding-top: 30px;
+    padding-left: 7px;
+    padding-right: 25px;
+  }
+
+  figure button {
+    position: absolute;
+    bottom: -25px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -238,7 +374,7 @@
   <figcaption>
     <span>Hola!</span>
     <span>Humberto López Rodríguez</span>
-    <span>Desarrollador web con experiencia en Front-end y Back-end, conocimientos en C# y ciberseguridad. Experto en contabilidad y finanzas, aplicando NIIF, optimización de recursos, SAP y Power BI.</span>
+    <span>Desarrollador web con experiencia en creación de aplicaciones web de gestión con html, css, javascript y C#, manejo de mySQL, Visual Studio Code y GitHub, especialidad en sistemas de gestión de la información y seguridad informática. Experto en contabilidad y finanzas, financial controller, análisis de balances, presupuestos, desviaciones, ratios, reportings, diseño de protocolos y anticipación de toma de decisiones ante posibles escenarios favorables y desfavorables, maximización de la rentabilidad de los activos y optimización de recursos, aplicación de la NIIF, manejo de Navision, SAP y Power BI.</span>
   </figcaption>
 
   <button></button>
