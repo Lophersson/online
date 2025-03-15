@@ -1,0 +1,188 @@
+
+
+<!DOCTYPE html>
+<html lang="es" >
+
+<head>
+<meta charset="UTF-8">
+
+
+<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+<title>Recuerdos</title>
+
+<link rel="canonical" href="https://codepen.io/GeorgePark/pen/vdqYom">
+
+<link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+
+
+
+<style>
+/*
+
+All grid code is placed in a 'supports' rule (feature query) at the bottom of the CSS (Line 77). 
+
+The 'supports' rule will only run if your browser supports CSS grid.
+
+Flexbox is used as a fallback so that browsers which don't support grid will still recieve an identical layout.
+
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:500);
+
+:root {
+/* Base font size */
+font-size: 10px;
+}
+
+*,
+*::before,
+*::after {
+box-sizing: border-box;
+}
+
+body {
+min-height: 100vh;
+background-color: #110036;
+}
+
+h1 {
+    color: #FFFFFF;
+}
+
+.container {
+max-width: 100rem;
+margin: 0 auto;
+padding: 0 2rem 2rem;
+}
+
+.heading {
+font-family: "Montserrat", Arial, sans-serif;
+font-size: 4rem;
+font-weight: 500;
+line-height: 1.5;
+text-align: center;
+padding: 3.5rem 0;
+color: #e4e4e4;
+}
+
+.heading span {
+display: block;
+}
+
+.gallery {
+display: flex;
+flex-wrap: wrap;
+/* Compensate for excess margin on outer gallery flex items */
+margin: -1rem -1rem;
+}
+
+.gallery-item {
+/* Minimum width of 24rem and grow to fit available space */
+flex: 1 0 24rem;
+/* Margin value should be half of grid-gap value as margins on flex items don't collapse */
+margin: 1rem;
+box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4);
+overflow: hidden;
+}
+
+.gallery-image {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 400ms ease-out;
+cursor: pointer;
+}
+
+.gallery-image:hover {
+transform: scale(1.15);
+}
+
+/*
+
+The following rule will only run if your browser supports CSS grid.
+
+Remove or comment-out the code block below to see how the browser will fall-back to flexbox styling. 
+
+*/
+
+@supports (display: grid) {
+.gallery {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+grid-gap: 2rem;
+}
+
+.gallery,
+.gallery-item {
+margin: 0;
+}
+}
+</style>
+
+<script>
+window.console = window.console || function(t) {};
+</script>
+
+
+
+</head>
+
+<body translate="no">
+<div class="container">
+
+<h1 class="heading">Recuerdos<span></span></h1>
+
+<div class="gallery">
+
+<div class="gallery-item">
+<img class="gallery-image" src="https://raw.githubusercontent.com/Lophersson/online/refs/heads/main/IMG-20250313-WA0024.jpg?w=500&h=500&fit=crop" alt="lophersson&jenny1">
+</div>
+
+<div class="gallery-item">
+<img class="gallery-image" src="https://raw.githubusercontent.com/Lophersson/online/refs/heads/main/IMG-20250313-WA0021.jpg?w=500&h=500&fit=crop" alt="lophersson&jenny2">
+</div>
+
+<div class="gallery-item">
+<img class="gallery-image" src="https://raw.githubusercontent.com/Lophersson/online/refs/heads/main/IMG-20250313-WA0027.jpg?w=500&h=500&fit=crop" alt="lophersson&jenny3">
+</div>
+
+<div class="gallery-item">
+<img class="gallery-image" src="https://raw.githubusercontent.com/Lophersson/online/refs/heads/main/eqesuv.webp?w=500&h=500&fit=crop" alt="mercedesbenzeqesuv">
+</div>
+
+<div class="gallery-item">
+<img class="gallery-image" src="https://raw.githubusercontent.com/Lophersson/online/refs/heads/main/astonmartindb12.jpg?w=500&h=500&fit=crop" alt="astonmartindb12">
+</div>
+
+<div class="gallery-item">
+<img class="gallery-image" src="https://raw.githubusercontent.com/Lophersson/online/refs/heads/main/home.jpg?w=500&h=500&fit=crop" alt="casa">
+</div>
+
+</div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".gallery-image").forEach(img => {
+            img.addEventListener("click", function () {
+                window.open(img.src, "_blank"); // Abre la imagen en tamaño original en una nueva pestaña
+            });
+        });
+    });
+  </script>
+
+<script id="rendered-js" >
+</script>
+
+
+</body>
+
+</html>
