@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+    <title>Lophersson Music Player</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        body {
+          min-height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #16161a;
+          padding: 20px;
+        }
+
+        /* Title Styling */
+        .title {
+      font-family: 'Orbitron', sans-serif; /* Fuente futurista */
+      color: #fff;
+      font-size: 40px;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: 20px;
+      text-align: center;
+      background: linear-gradient(45deg, #FFD700, #FF6347, #FF4500); /* Degradado en oblicuo */
+      background-clip: text; /* Aplica el degradado solo al texto */
+      color: transparent; /* Hace el texto transparente para mostrar el degradado */
+      -webkit-background-clip: text; /* Para asegurar que el degradado se aplique en Webkit */
+      animation: glow 1.5s ease-in-out infinite; /* Animación de destello dorado */
+    }
+
+    /* Animación para el efecto de destello dorado */
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FF6347, 0 0 20px #FF4500, 0 0 25px #FFD700;
+      }
+      50% {
+        text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FF6347, 0 0 40px #FF4500, 0 0 50px #FFD700;
+      }
+      100% {
+        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 15px #FF6347, 0 0 20px #FF4500, 0 0 25px #FFD700;
+      }
+    }
+        
+        .music-player {
+          width: 380px;
+          background: #242629;
+          border-radius: 24px;
+          padding: 32px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .music-player .now-playing {
+          margin-bottom: 32px;
+          text-align: center;
+        }
+        .music-player .now-playing .album-art {
+          width: 200px;
+          height: 200px;
+          margin: 0 auto 20px;
+          border-radius: 16px;
+          background: linear-gradient(45deg, #7f5af0, #2cb67d);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fffffe;
+          font-size: 40px;
+        }
+        .music-player .now-playing .track-info .track-name {
+          color: #fffffe;
+          font-size: 20px;
+          font-weight: 600;
+          margin-bottom: 8px;
+        }
+        .music-player .now-playing .track-info .artist-name {
+          color: #94a1b2;
+          font-size: 16px;
+        }
+        
+        .controls .seek-container {
+          margin-bottom: 24px;
+        }
+        .controls .seek-container .seek-bar {
+          width: 100%;
+          height: 6px;
+          background: rgba(255, 255, 255, 0.1);
+          border-radius: 3px;
+          margin: 10px 0;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+        }
+        .controls .seek-container .seek-bar .seek-bar-fill {
+          position: absolute;
+          height: 100%;
+          background: #7f5af0;
+          border-radius: 3px;
+          width: 0;
+          transition: width 0.1s linear;
+        }
+        .controls .seek-container .time-info {
+          display: flex;
+          justify-content: space-between;
+          color: #94a1b2;
+          font-size: 14px;
+        }
+        .controls .control-buttons {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px;
+          margin-bottom: 32px;
+        }
+        .controls .control-buttons button {
+          background: none;
+          border: none;
+          color: #fffffe;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+          padding: 8px;
+        }
+        .controls .control-buttons button:hover {
+          transform: scale(1.1);
+        }
+        .controls .control-buttons button.play-pause {
+          width: 56px;
+          height: 56px;
+          background: #7f5af0;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24px;
+        }
+        .controls .control-buttons button.play-pause:hover {
+          background: #6d43ee;
+        }
+        
+        .playlist-section .playlist-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 16px;
+        }
+        .playlist-section .playlist-header h2 {
+          color: #fffffe;
+          font-size: 18px;
+          font-weight: 600;
+        }
+        .playlist-section .playlist-header .add-music-btn {
+          background: #2cb67d;
+          color: #fffffe;
+          border: none;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          cursor: pointer;
+          transition: background 0.2s ease;
+        }
+        .playlist-section .playlist-header .add-music-btn:hover {
+          background: #27a16f;
+        }
+        .playlist-section .playlist {
+          max-height: 300px;
+          overflow-y: auto;
+          padding-right: 8px;
+        }
+        .playlist-section .playlist::-webkit-scrollbar {
+          width: 4px;
+        }
+        .playlist-section .playlist::-webkit-scrollbar-thumb {
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
+        }
+        .playlist-section .playlist .song-item {
+          display: flex;
+          align-items: center;
+          padding: 12px 16px;
+          margin: 4px 0;
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 12px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .playlist-section .playlist .song-item:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .playlist-section .playlist .song-item.active {
+          background: rgba(127, 90, 240, 0.2);
+          border-left: 4px solid #7f5af0;
+        }
+        .playlist-section .playlist .song-item .song-title {
+          color: #fffffe;
+          font-size: 14px;
+          margin-left: 12px;
+          flex: 1;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        
+        #file-input {
+          display: none;
+        }
+
+        footer {
+      margin-top: 30px;
+      color: #94a1b2;
+      font-size: 13px;
+      text-align: center;
+    }
+        </style>
+</head>
+
+<body translate="no">
+    
+    <div class="music-player">
+        <!-- Title -->
+  <div class="title">
+    Lophersson Music Player
+  </div>
+        <div class="now-playing">
+            <div class="album-art">♪</div>
+            <div class="track-info">
+                <div class="track-name">Select a track</div>
+                <div class="artist-name">Your Playlist</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="seek-container">
+                <div class="seek-bar" id="seek-bar">
+                    <div class="seek-bar-fill"></div>
+                </div>
+                <div class="time-info">
+                    <span class="current-time">0:00</span>
+                    <span class="duration">0:00</span>
+                </div>
+            </div>
+
+            <div class="control-buttons">
+                <button class="prev">⏮</button>
+                <button class="play-pause">▶</button>
+                <button class="next">⏭</button>
+            </div>
+        </div>
+
+        <div class="playlist-section">
+            <div class="playlist-header">
+                <h2>Playlist</h2>
+                <input type="file" id="file-input" accept="audio/*" multiple>
+                <button class="add-music-btn" onclick="document.getElementById('file-input').click()">
+                    Add Music
+                </button>
+            </div>
+
+            <div class="playlist" id="playlist">
+                <!-- Las canciones predeterminadas se añadirán aquí dinámicamente -->
+            </div>
+        </div>
+        <footer>
+            &copy; 2025 Lophersson Music. Lophersson Group, S.A.<br>Ferrol - All Rights Reserved.
+          </footer>
+    </div>
+
+
+    <script>
+        "use strict";
+
+        class MusicPlayer {
+            constructor() {
+                this.audio = new Audio();
+                this.playlist = [];
+                this.currentIndex = 0;
+                this.isPlaying = false;
+                this.initializeElements();
+                this.setupEventListeners();
+                this.loadDefaultSongs(); // Cargar canciones predeterminadas
+            }
+
+            initializeElements() {
+                this.playlistElement = document.getElementById("playlist");
+                this.fileInput = document.getElementById("file-input");
+                this.seekBar = document.getElementById("seek-bar");
+                this.seekBarFill = document.querySelector(".seek-bar-fill");
+                this.currentTimeElement = document.querySelector(".current-time");
+                this.durationElement = document.querySelector(".duration");
+                this.playPauseBtn = document.querySelector(".play-pause");
+                this.prevBtn = document.querySelector(".prev");
+                this.nextBtn = document.querySelector(".next");
+                this.trackName = document.querySelector(".track-name");
+            }
+
+            setupEventListeners() {
+                this.fileInput.addEventListener("change", (e) => this.handleFileSelect(e));
+                this.playPauseBtn.addEventListener("click", () => this.togglePlayPause());
+                this.prevBtn.addEventListener("click", () => this.playPrevious());
+                this.nextBtn.addEventListener("click", () => this.playNext());
+                this.seekBar.addEventListener("click", (e) => this.handleSeek(e));
+                this.audio.addEventListener("timeupdate", () => this.updateProgress());
+                this.audio.addEventListener("ended", () => this.playNext());
+            }
+
+            loadDefaultSongs() {
+    const tracks = [
+        { name: "INSTASAMKA - Aceite de Panpim", url: "https://lophersson.github.io/online/mp3instasamka.mp3" },
+        { name: "Always", url: "https://lophersson.github.io/online/mp3always.mp3" },
+        { name: "Sosa UK - Your Love", url: "https://lophersson.github.io/online/mp3sosauk.mp3" }
+    ];
+
+    tracks.forEach((song) => { // Aquí se debe usar tracks en lugar de defaultSongs
+        this.playlist.push(song);
+    });
+
+    this.updatePlaylist();
+    if (this.playlist.length > 0) {
+        this.loadSong(0);
+    }
+}
+
+            handleFileSelect(event) {
+                const files = Array.from(event.target.files);
+                files.forEach((file) => {
+                    const song = {
+                        file: file,
+                        name: file.name,
+                        url: URL.createObjectURL(file)
+                    };
+                    this.playlist.push(song);
+                });
+                this.updatePlaylist();
+                if (this.playlist.length === files.length) {
+                    this.loadSong(0);
+                }
+            }
+
+            updatePlaylist() {
+                this.playlistElement.innerHTML = "";
+                this.playlist.forEach((song, index) => {
+                    const songElement = document.createElement("div");
+                    songElement.className = `song-item ${index === this.currentIndex ? "active" : ""}`;
+                    songElement.innerHTML = `
+                        <span class="song-title">${song.name}</span>
+                    `;
+                    songElement.addEventListener("click", () => this.loadSong(index));
+                    this.playlistElement.appendChild(songElement);
+                });
+            }
+
+            loadSong(index) {
+                if (index < 0 || index >= this.playlist.length) return;
+                this.currentIndex = index;
+                this.audio.src = this.playlist[index].url;
+                this.updatePlaylist();
+                this.trackName.textContent = this.playlist[index].name;
+                if (this.isPlaying) {
+                    this.audio.play();
+                    this.playPauseBtn.textContent = "⏸";
+                }
+            }
+
+            togglePlayPause() {
+                if (!this.playlist.length) return;
+                if (this.isPlaying) {
+                    this.audio.pause();
+                    this.playPauseBtn.textContent = "▶";
+                } else {
+                    this.audio.play();
+                    this.playPauseBtn.textContent = "⏸";
+                }
+                this.isPlaying = !this.isPlaying;
+            }
+
+            playPrevious() {
+                const newIndex = this.currentIndex - 1;
+                if (newIndex >= 0) {
+                    this.loadSong(newIndex);
+                    if (this.isPlaying) this.audio.play();
+                }
+            }
+
+            playNext() {
+                const newIndex = this.currentIndex + 1;
+                if (newIndex < this.playlist.length) {
+                    this.loadSong(newIndex);
+                    if (this.isPlaying) this.audio.play();
+                }
+            }
+
+            handleSeek(event) {
+                const rect = this.seekBar.getBoundingClientRect();
+                const clickPosition = event.clientX - rect.left;
+                const seekPercentage = clickPosition / rect.width;
+                const seekTime = seekPercentage * this.audio.duration;
+                this.audio.currentTime = seekTime;
+            }
+
+            updateProgress() {
+                const currentTime = this.audio.currentTime;
+                const duration = this.audio.duration;
+                if (duration) {
+                    const progressPercent = (currentTime / duration) * 100;
+                    this.seekBarFill.style.width = `${progressPercent}%`;
+                    this.currentTimeElement.textContent = this.formatTime(currentTime);
+                    this.durationElement.textContent = this.formatTime(duration);
+                }
+            }
+
+            formatTime(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = Math.floor(seconds % 60);
+                return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+            }
+        }
+
+        // Initialize the music player
+        const player = new MusicPlayer();
+    </script>
+</body>
+
+</html>
