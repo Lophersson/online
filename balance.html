@@ -306,9 +306,26 @@
     }
 
 @media (max-width: 768px) {
-  .widget {
-    width: 7em;
-    height: 7em;
+  body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em; /* Espaciado entre widgets */
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+  }
+  .widget-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+  }
+
+.widget {
+    width: 9.5em;
+    height: 9.5em;
     padding: 0.75em;
     border-radius: 1em;
     box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.15), 
