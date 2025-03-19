@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías y Temas Relacionados</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
+        h2 { text-align: center; margin-bottom: 20px; }
+        .container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
+        .dropdown-container {
+            background-color: #696969;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: center;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #d3d3d3;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        select[multiple] {
+            height: 150px;
+        }
+        .selected-concepts {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            background-color: #808080;
+            border-radius: 5px;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        .selected-concepts div {
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #5e5e5e;
+            border-radius: 3px;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #a0da0d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            display: block;
+            margin: 30px auto;
+        }
+        button:hover {
+            background-color: #fff700;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h2>Categorías y Temas Relacionados</h2>
+    <div class="container">
+        <div class="dropdown-container">
+            <label for="salud">Salud y Bienestar</label>
+            <select id="salud" multiple>
+                <option value="Salud">Salud</option>
+                <option value="Higiene">Higiene</option>
+                <option value="Cuidado Personal">Cuidado Personal</option>
+                <option value="Dormir">Dormir</option>
+                <option value="Ejercicio Físico">Ejercicio Físico</option>
+                <option value="Alimentación">Alimentación</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="hogar">Hogar y Organización</label>
+            <select id="hogar" multiple>
+                <option value="Hogar">Hogar</option>
+                <option value="Decoración">Decoración</option>
+                <option value="Orden y Limpieza">Orden y Limpieza</option>
+                <option value="Ropa">Ropa</option>
+                <option value="Calzado">Calzado</option>
+                <option value="Pertenencias">Pertenencias</option>
+                <option value="Coche">Coche</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="ocio">Entretenimiento y Ocio</label>
+            <select id="ocio" multiple>
+                <option value="Entretenimiento">Entretenimiento</option>
+                <option value="Ocio">Ocio</option>
+                <option value="Videojuegos">Videojuegos</option>
+                <option value="RRSS">RRSS</option>
+                <option value="Tiendas">Tiendas</option>
+                <option value="Compras">Compras</option>
+                <option value="Moda">Moda</option>
+                <option value="Electrónica">Electrónica</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="cultura">Cultura y Conocimiento</label>
+            <select id="cultura" multiple>
+                <option value="Cultura">Cultura</option>
+                <option value="Música">Música</option>
+                <option value="Cine">Cine</option>
+                <option value="Gastronomía">Gastronomía</option>
+                <option value="Viajes">Viajes</option>
+                <option value="Pueblos">Pueblos</option>
+                <option value="Ciudades">Ciudades</option>
+                <option value="Historia">Historia</option>
+                <option value="Libros">Libros</option>
+                <option value="Actualidad">Actualidad</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="mediosComunicacion">Medios y Comunicación</label>
+            <select id="mediosComunicacion" multiple>
+                <option value="TV">TV</option>
+                <option value="Internet">Internet</option>
+                <option value="Radio">Radio</option>
+                <option value="Vídeos">Vídeos</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="gastronomiaRestauracion">Gastronomía y Restauración</label>
+            <select id="gastronomiaRestauracion" multiple>
+                <option value="Restaurantes">Restaurantes</option>
+                <option value="Cafeterías">Cafeterías</option>
+                <option value="Recetas">Recetas</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="trabajoEstudios">Trabajo y Estudios</label>
+            <select id="trabajoEstudios" multiple>
+                <option value="Estudios">Estudios</option>
+                <option value="Trabajo">Trabajo</option>
+                <option value="Negocios">Negocios</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="vidaSocial">Vida Social</label>
+            <select id="vidaSocial" multiple>
+                <option value="Vida Social">Vida Social</option>
+                <option value="Amigos">Amigos</option>
+                <option value="Familia">Familia</option>
+                <option value="Amor">Amor</option>
+                <option value="Vecinos">Vecinos</option>
+                <option value="Compañeros de Estudios">Compañeros de Estudios</option>
+                <option value="Compañeros de Trabajo">Compañeros de Trabajo</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="finanzasOrganizacion">Finanzas y Organización Personal</label>
+            <select id="finanzasOrganizacion" multiple>
+                <option value="Organización Personal">Organización Personal</option>
+                <option value="Dinero">Dinero</option>
+                <option value="Contabilidad">Contabilidad</option>
+                <option value="Presupuestos">Presupuestos</option>
+                <option value="Listas de Compras">Listas de Compras</option>
+                <option value="Cuentas al Día">Cuentas al Día</option>
+            </select>
+        </div>
+        <div class="dropdown-container">
+            <label for="digitalOficial">Digital y Oficial</label>
+            <select id="digitalOficial" multiple>
+                <option value="Digital">Digital</option>
+                <option value="Dispositivos">Dispositivos</option>
+                <option value="Registros">Registros</option>
+                <option value="Mails">Mails</option>
+                <option value="Apps">Apps</option>
+                <option value="Archivos">Archivos</option>
+                <option value="Contraseñas">Contraseñas</option>
+                <option value="Oficial">Oficial</option>
+                <option value="Médicos">Médicos</option>
+                <option value="Administración Pública">Administración Pública</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="selected-concepts" id="selectedConcepts">
+        <h3>Conceptos Seleccionados:</h3>
+        <!-- Selected concepts will be displayed here -->
+    </div>
+
+    <button onclick="generatePDF()">Imprimir PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Function to handle the selection and display of selected concepts
+        function updateSelectedConcepts() {
+            const selectedConceptsDiv = document.getElementById('selectedConcepts');
+            selectedConceptsDiv.innerHTML = '<h3>Conceptos Seleccionados:</h3>'; // Reset the selected concepts display
+
+            // Collect selected concepts
+            const selects = document.querySelectorAll('select');
+            selects.forEach(select => {
+                const categoryName = select.previousElementSibling.textContent;
+                const selectedOptions = Array.from(select.selectedOptions).map(option => option.value);
+                selectedOptions.forEach(option => {
+                    const div = document.createElement('div');
+                    div.textContent = categoryName + ': ' + option;
+                    selectedConceptsDiv.appendChild(div);
+                });
+            });
+        }
+
+        // Attach event listeners to all select elements
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', updateSelectedConcepts);
+        });
+
+        // Function to generate PDF
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Get the selected concepts text
+            const selectedConcepts = document.getElementById('selectedConcepts').textContent;
+
+            // Add text to PDF
+            doc.text(selectedConcepts, 10, 10);
+
+            // Save the PDF
+            doc.save('conceptos_seleccionados.pdf');
+        }
+    </script>
+</body>
+</html>
