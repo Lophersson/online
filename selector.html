@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="es" >
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
 <link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
 <link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
-
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-
 <title>enlaces</title>
 <link rel="canonical" href="https://codepen.io/marta_dev/pen/KKxEGRB">
-
 <style>
 body{
 background-color: #313131;
@@ -273,10 +269,36 @@ margin-right: auto;         /* Centrar el botón */
 font-family: 'Patrick Hand', sans-serif;
 font-size: 24px;
 }
-
 .open-btn:hover {
 background-color: #ececec;  /* Color verde más oscuro cuando se pasa por encima */
 color: #000000;
+}
+.nuevosbotones {
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+}
+.title {
+font-size: 20px;
+font-weight: bold;
+}
+.button {
+background-color: #0073e6;
+color: white;
+padding: 12px 20px;
+font-size: 16px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-decoration: none;
+transition: background-color 0.3s ease;
+display: inline-block;
+margin: 5px;
+}
+
+.button:hover {
+background-color: #005bb5;
 }
 .footer {
 background-color: #555555;
@@ -295,11 +317,9 @@ font-weight: 700;
 letter-spacing: 2px;
 }
 </style>
-
 <script>
 window.console = window.console || function(t) {};
 </script>
-
 </head>
 <body translate="no">
 <!DOCTYPE html>
@@ -320,7 +340,6 @@ window.console = window.console || function(t) {};
 <a class="nav-link" href="https://lophersson.github.io/online/index.html" target="_blank">online</a>
 </ul>
 </div>
-
 <!--<div class="banner">
 <div class="banner-text">
 <h1>Enlaces</h1>
@@ -331,7 +350,6 @@ window.console = window.console || function(t) {};
 </div>
 </div>
 </div>
-
 <div class="content">
 <h2>Enlaces</h2>
 <div class="description">
@@ -339,7 +357,6 @@ window.console = window.console || function(t) {};
 <p>Enlaces de interés <a href="https://lophersson.github.io/online/index.html" target="_blank">web online</a></p>
 </div>
 </div>-->
-
 <div class="activities-panel1">
 <h2 class="h2style">enlaces principales</h2>
 <a class="activity" href="https://drive.google.com/drive/my-drive" target="_blank">drive</a>
@@ -349,17 +366,20 @@ window.console = window.console || function(t) {};
 <a class="activity" href="https://web.whatsapp.com" target="_blank">whatsapp</a>
 <a class="activity" href="https://lophersson.github.io/online/index.html" target="_blank">online</a>
 </div>
-
 <button class="open-btn" onclick="openLinks()">Abrir Todos los Enlaces</button>
-
 <div class="activities-panel2">
 <h2 class="h2style2">otros enlaces de interés</h2>
 </div>
-
+<div class="nuevosbotones">
+<div class="title">nuevos enlaces</div>
+<a class="button" href="https://www.loteriasyapuestas.es/es/resultados/euromillones" target="_blank">Ver Euromillones</a>
+<a class="button" href="https://www.loteriasyapuestas.es/es/resultados/primitiva" target="_blank">Ver La Primitiva</a>
+<a class="button" href="https://www.loteriasyapuestas.es/es/resultados/bonoloto" target="_blank">Ver Bonoloto</a>
+<a class="button" href="https://www.loteriasyapuestas.es/es/resultados/gordo-primitiva" target="_blank">Ver El Gordo</a>
+</div> 
 <div class="footer">
 <h2>©2025 web diseñada y creada por Lophersson</h2>
 </div>
-
 <script>
 function openLinks() {
 window.open("https://drive.google.com", "_blank");
@@ -369,10 +389,9 @@ window.open("https://onedrive.live.com", "_blank");
 window.open("https://web.whatsapp.com", "_blank");
 window.open("https://lophersson.github.io/online/index.html", "_blank");
 }
-
 const links = [
     "https://lophersson.github.io/online/aboutme.html",
-"https://lophersson.github.io/online/aboutme2.html", 
+    "https://lophersson.github.io/online/aboutme2.html", 
     "https://lophersson.github.io/online/bruto.html",
     "https://lophersson.github.io/online/rentas.html", 
     "https://lophersson.github.io/online/musicplayer.html", 
@@ -395,8 +414,7 @@ const links = [
     "https://lophersson.github.io/online/stocks.html", 
     "https://lophersson.github.io/online/supermercado.html", 
     "https://lophersson.github.io/online/imagenes.html",
-    "https://lophersson.github.io/online/balance.html",
-    "https://www.loteriasyapuestas.es/es/resultados/euromillones"
+    "https://lophersson.github.io/online/balance.html"
 ];
 
 // Accedemos al contenedor donde se agregarán los enlaces
@@ -413,9 +431,9 @@ links.forEach(link => {
     const fileName = link.replace('https://lophersson.github.io/online/', '').replace('.html', '');
     anchor.textContent = fileName; // Usamos el nombre del archivo sin prefijo ni extensión
 
-    // Eliminar el prefijo 'https://www.loteriasyapuestas.es/es/resultados/'
+    /*// Eliminar el prefijo 'https://www.loteriasyapuestas.es/es/resultados/'
     const fileName = link.replace('https://www.loteriasyapuestas.es/es/resultados/', '');
-    anchor.textContent = fileName; // Usamos el nombre del archivo sin prefijo
+    anchor.textContent = fileName; // Usamos el nombre del archivo sin prefijo*/
 
     container.appendChild(anchor); // Añadimos el enlace al contenedor
 });
