@@ -1,122 +1,223 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras de Renta y Patrimonio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
 
-<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh2.png" />
-<link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh2.png" />
-<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh2.png" color="#111" />
+        body {
+            background: url('https://lophersson.github.io/omniweb/eqesuv.jpg') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: white;
+            text-align: center;
+        }
 
-<title>Patrimonio futuro</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@1,300&display=swap" rel="stylesheet">
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Roboto Condensed', sans-serif;
+        .fecha-hora {
+            text-align: center;
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        .fecha {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        .hora {
+            font-size: 4rem;
+            font-weight: bold;
+            font-family: 'SF Pro Display', sans-serif;
+        }
+
+        .calculadoras {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 90%;
+            max-width: 900px;
+            margin-top: 90px;
+        }
+
+        .contenedor {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            margin-top: 8px;
+            margin-bottom: 16px;
+        }
+
+        input {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .footer-contenedor {
+            margin-top: 20px;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            font-size: 0.8rem;
+        }
+        
+        @media screen and (max-width: 600px) {
+    .fecha-hora {
+        position: static;
+        margin-top: 60px;
+        margin-bottom: 1px;
     }
 
-    body {
-        background: url('https://lophersson.github.io/omniweb/eqesuv.jpg') no-repeat center center/cover;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        color: white;
+    .fecha {
+        font-size: 1.2rem;
     }
 
-    .contenedor {
-        background: rgba(255, 255, 255, 0.2);
-        padding: 10px;
-        border-radius: 15px;
-        text-align: center;
-        width: 320px;
-        backdrop-filter: blur(5px);
-        position: absolute;
-        top: 140px;
-        left: 50%;
-        transform: translateX(-50%);
+    .hora {
+        font-size: 3rem;
     }
 
-    h1 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+    .calculadoras {
+            margin-top: 20px;
+        }
+}
 
-    input {
-        width: 90%;
-        padding: 8px;
-        margin: 2px 0;
-        border: none;
-        border-radius: 15px;
-        text-align: center;
-        font-size: 1.1rem;
-        font-style: italic;
-    }
-
-    input:focus {
-        outline: none;
-        background: rgba(255, 255, 255, 0.5);
-    }
-</style>
+    </style>
 </head>
+
 <body>
-    <div class="contenedor">
-        <h1>Calculadora de Patrimonio Total</h1>
-        <input type="text" id="rentaMesPrimerAño" placeholder="Renta Mensual Primer Año" oninput="formatearNumero(this); calcularValores()">
-        <input type="text" id="rentaAnual" placeholder="Renta Anual Primer Año" readonly>
-        <input type="number" id="incrementoAnual" placeholder="% Incremento Anual" value="1.8" oninput="calcularValores()">
-        <input type="number" id="años" placeholder="Duración en Años" value="30" oninput="calcularValores()">
-        <input type="text" id="rentaMesLast" placeholder="Renta Mensual Último Año" readonly>
-        <input type="text" id="rentaAnualLast" placeholder="Renta Anual Último Año" readonly>
-        <input type="text" id="patrimonioNeto" placeholder="Patrimonio Neto" readonly>
-        <input type="text" id="patrimonioBruto" placeholder="Patrimonio Bruto" readonly>
+    <div class="fecha-hora">
+        <div class="fecha" id="fecha"></div>
+        <div class="hora" id="hora"></div>
     </div>
+
+    <div class="calculadoras">
+        <!-- Calculadora de Renta -->
+        <div class="contenedor">
+            <h1>Calculadora de Renta</h1>
+            <input type="text" id="patrimonioBruto" placeholder="Patrimonio Bruto" oninput="formatearNumero(this); calcularValores()">
+            <input type="number" id="incrementoAnual" placeholder="% Incremento Anual" value="1.8" oninput="calcularValores()">
+            <input type="number" id="años" placeholder="Duración en Años" value="30" oninput="calcularValores()">
+            <input type="text" id="patrimonioTotal" placeholder="Patrimonio Total" readonly>
+            <input type="text" id="rentaAnual" placeholder="Renta Anual" readonly>
+            <input type="text" id="rentaMesPrimerAño" placeholder="Renta Mensual Primer Año" readonly>
+            <input type="text" id="rentaAnualLast" placeholder="Renta Anual Último Año" readonly>
+            <input type="text" id="rentaMesLast" placeholder="Renta Mensual Último Año" readonly>
+        </div>
+
+        <!-- Calculadora de Patrimonio -->
+        <div class="contenedor">
+            <h1>Calculadora de Patrimonio</h1>
+            <input type="text" id="rentaMesPrimerAño2" placeholder="Renta Mensual Primer Año" oninput="formatearNumero(this); calcularValores2()">
+            <input type="text" id="rentaAnual2" placeholder="Renta Anual Primer Año" readonly>
+            <input type="number" id="incrementoAnual2" placeholder="% Incremento Anual" value="1.8" oninput="calcularValores2()">
+            <input type="number" id="años2" placeholder="Duración en Años" value="30" oninput="calcularValores2()">
+            <input type="text" id="rentaMesLast2" placeholder="Renta Mensual Último Año" readonly>
+            <input type="text" id="rentaAnualLast2" placeholder="Renta Anual Último Año" readonly>
+            <input type="text" id="patrimonioNeto" placeholder="Patrimonio Neto" readonly>
+            <input type="text" id="patrimonioBruto2" placeholder="Patrimonio Bruto" readonly>
+        </div>
+    </div>
+
+    <footer class="footer-contenedor">
+        <p>© 2025 Mi Calculadora | Creado por Humberto López Rodríguez</p>
+    </footer>
 
     <script>
         function formatearNumero(input) {
-            let valor = input.value.replace(/\./g, ''); // Eliminar puntos anteriores
-            if (valor === "") return;
-            
-            valor = parseInt(valor);
-            if (!isNaN(valor)) {
-                input.value = valor.toLocaleString("es-ES"); // Aplicar formato con separadores de miles
-            } else {
-                input.value = "";
+            let valor = input.value.replace(/\D/g, '');
+            if (valor) {
+                input.value = parseInt(valor, 10).toLocaleString("es-ES");
             }
         }
 
         function calcularValores() {
-            const rentaMesPrimerAño = parseInt(document.getElementById("rentaMesPrimerAño").value.replace(/\./g, '')) || 0;
+            const patrimonioBruto = parseFloat(document.getElementById("patrimonioBruto").value.replace(/\./g, '')) || 0;
             const incrementoAnual = parseFloat(document.getElementById("incrementoAnual").value) || 0;
-            const años = parseInt(document.getElementById("años").value) || 0;
-    
-            if (rentaMesPrimerAño > 0 && incrementoAnual > 0 && años > 0) {
-                const incrementoFactor = incrementoAnual / 100;
-    
-                const rentaAnual = rentaMesPrimerAño * 14;
-                document.getElementById("rentaAnual").value = rentaAnual.toLocaleString("es-ES");
-    
-                const patrimonioNeto = Math.round(rentaAnual * ((Math.pow(1 + incrementoFactor, años) - 1) / incrementoFactor));
-                document.getElementById("patrimonioNeto").value = patrimonioNeto.toLocaleString("es-ES");
-    
-                const patrimonioBruto = Math.round(patrimonioNeto / 0.80);
-                document.getElementById("patrimonioBruto").value = patrimonioBruto.toLocaleString("es-ES");
-    
-                const rentaAnualLast = Math.round(rentaAnual * Math.pow(1 + incrementoFactor, años - 1));
-                document.getElementById("rentaAnualLast").value = rentaAnualLast.toLocaleString("es-ES");
-    
-                const rentaMesLast = Math.round(rentaAnualLast / 14);
-                document.getElementById("rentaMesLast").value = rentaMesLast.toLocaleString("es-ES");
-            } else {
-                ["rentaAnual", "rentaAnualLast", "rentaMesLast", "patrimonioNeto", "patrimonioBruto"].forEach(id => {
-                    document.getElementById(id).value = "";
-                });
-            }
+            const años = parseFloat(document.getElementById("años").value) || 0;
+
+            const patrimonioTotal = patrimonioBruto * 0.80;
+            document.getElementById("patrimonioTotal").value = patrimonioTotal.toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            const rentaAnual = patrimonioTotal / ((Math.pow(1 + incrementoAnual / 100, años) - 1) / (incrementoAnual / 100));
+            document.getElementById("rentaAnual").value = rentaAnual.toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            document.getElementById("rentaMesPrimerAño").value = (rentaAnual / 14).toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            const rentaAnualLast = rentaAnual * Math.pow(1 + incrementoAnual / 100, años - 1);
+            document.getElementById("rentaAnualLast").value = rentaAnualLast.toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+            document.getElementById("rentaMesLast").value = (rentaAnualLast / 14).toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
         }
+
+        function calcularValores2() {
+            const rentaMesPrimerAño2 = parseFloat(document.getElementById("rentaMesPrimerAño2").value.replace(/\./g, '')) || 0;
+            const incrementoAnual2 = parseFloat(document.getElementById("incrementoAnual2").value) || 0;
+            const años2 = parseInt(document.getElementById("años2").value) || 0;
+
+            const rentaAnual2 = rentaMesPrimerAño2 * 14;
+            document.getElementById("rentaAnual2").value = rentaAnual2.toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            const rentaAnualLast2 = rentaAnual2 * Math.pow(1 + incrementoAnual2 / 100, años2 - 1);
+            document.getElementById("rentaAnualLast2").value = rentaAnualLast2.toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+            document.getElementById("rentaMesLast2").value = (rentaAnualLast2 / 14).toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            const patrimonioNeto = rentaAnual2 * ((Math.pow(1 + incrementoAnual2 / 100, años2) - 1) / (incrementoAnual2 / 100));
+            document.getElementById("patrimonioNeto").value = patrimonioNeto.toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+            const patrimonioBruto2 = patrimonioNeto / 0.80;
+            document.getElementById("patrimonioBruto2").value = patrimonioBruto2.toLocaleString("es-ES", { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        }
+
+        // Actualiza la fecha y hora
+        function actualizarFechaHora() {
+            const diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+            let ahora = new Date();
+
+            // Fecha
+            let diaSemana = diasSemana[ahora.getDay()];
+            let dia = ahora.getDate();
+            let mes = ahora.toLocaleString("es-ES", { month: "long" });
+            let año = ahora.getFullYear();
+            document.getElementById("fecha").textContent = `${diaSemana}, ${dia} de ${mes} de ${año}`;
+
+            // Hora
+            let horas = String(ahora.getHours()).padStart(2, '0');
+            let minutos = String(ahora.getMinutes()).padStart(2, '0');
+            document.getElementById("hora").textContent = `${horas}:${minutos}`;
+        }
+
+        actualizarFechaHora();
+        setInterval(actualizarFechaHora, 1000);
     </script>
 </body>
 </html>
