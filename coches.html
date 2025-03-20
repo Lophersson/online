@@ -1,138 +1,208 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>autoplitz</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-        }
-
-        header, footer {
-            text-align: center;
-            padding: 6px 0;
-            background-color: #222;
-        }
-
-        main {
-            padding: 14px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 6px auto;
-            background-color: #333;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 8px;
-            border-bottom: 1px solid #555;
-        }
-
-        .row:last-child {
-            border-bottom: none;
-        }
-
-        .product {
-            text-align: left;
-            font-style: italic;
-            font-size: 11px;
-            color: lightgrey;
-        }
-
-        .price {
-            text-align: right;
-            font-style: italic;
-            font-size: 11px;
-            color: lightgrey;
-        }
-
-        h1 {
-            font-style: italic;
-            font-size: 30px;
-            color: grey;
-            margin-top: 24px;
-        }
-
-        img {
-            width: 50px:
-            heigth: 50px;
-        }
-
-        footer {
-            font-style: italic;
-            font-size: 13px;
-            color: grey;
-            margin-top: 20px;
-        }
-
-        .button-container {
-            margin: 20px 0;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #fff;
-            background-color: #444;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #666;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fantastich automobiles</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin-top: 80px;
+padding: 0;
+background-color: #222;
+color: #fff;
+text-align: center;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222;
+    display: flex;
+    justify-content: center; /* Centra el contenedor */
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Asegura el centrado de los elementos */
+    max-width: 600px; /* Ajusta según necesidad */
+    width: 100%;
+    gap: 2px;
+}
+.header-image {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0; /* Evita que la imagen se reduzca */
+}
+h1 {
+    margin: 0;
+    font-style: italic;
+    font-size: 24px;
+    color: grey;
+    flex: 1; /* Hace que el texto se reparta equitativamente */
+    text-align: center; /* Asegura centrado del texto */
+}
+main {
+padding: 14px;
+}
+.container {
+max-width: 600px;
+margin: 6px auto;
+background-color: #333;
+border-radius: 5px;
+overflow: hidden;
+}
+.row {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 6px 8px;
+border-bottom: 1px solid #555;
+}
+.row:last-child {
+border-bottom: none;
+}
+.product {
+text-align: left;
+font-style: italic;
+font-size: 11px;
+color: lightgrey;
+}
+.price {
+text-align: right;
+font-style: italic;
+font-size: 11px;
+color: lightgrey;
+}
+footer {
+font-style: italic;
+font-size: 13px;
+color: grey;
+margin-top: 20px;
+text-align: center;
+background-color: #222;
+}
+.button-container {
+margin: 20px 0;
+}
+.btn {
+display: inline-block;
+padding: 10px 20px;
+font-size: 16px;
+color: #fff;
+background-color: #444;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+text-decoration: none;
+transition: background 0.3s;
+}
+.btn:hover {
+background-color: #666;
+}
+</style>
 </head>
 <body>
-    <header>
+<header>
+    <div class="cabecera">
+        <img src="https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_autoPlitz_241231.png" 
+             alt="Logo" class="header-image">
         <h1>Fantastisch Automobiles</h1>
-    </header>
-  <img src="https://raw.githubusercontent.com/Lophersson/lophersson_group/refs/heads/main/_autoPlitz_241231.png" alt="Logo" class="header-image">
-    <main>
-        <div class="container" id="product-list">
-            <div class="row">
-                <div class="product">Peugeot e5008 Allure 7 plazas</div>
-                <div class="price">39,200 €</div>
-            </div>
-            <div class="row">
-                <div class="product">Hyundai Santa Fe Maxx 7 plazas</div>
-                <div class="price">55,915 €</div>
-            </div>
-            <div class="row">
-                <div class="product">Mazda CX-80 eSKYACTIV</div>
-                <div class="price">64,990 €</div>
-            </div>
-            <div class="row">
-                <div class="product">Kia EV9 GT Line</div>
-                <div class="price">67,000 €</div>
-            </div>
-            <div class="row">
-                <div class="product">Volvo XC90 T8 Core Recharge</div>
-                <div class="price">69,900 €</div>
-            </div>
-        </div>
-    </main>
-    <div class="button-container">
-        <a href="https://lophersson.github.io/online/coches1.html" class="btn">Ver más coches</a>
     </div>
-    <footer>
-        © 2025 - autoplitz.com
-    </footer>
+</header>
+<main>
+<div class="container" id="product-list">
+<div class="row">
+<div class="product">Fiat 500e</div>
+<div class="price">18,000 €</div>
+</div>
+<div class="row">
+<div class="product">Peugeot e208</div>
+<div class="price">21,600 €</div>
+</div>
+<div class="row">
+<div class="product">Renault 5 EV</div>
+<div class="price">25,200 €</div>
+</div>
+<div class="row">
+<div class="product">Kia EV3</div>
+<div class="price">28,800 €</div>
+</div>
+<div class="row">
+<div class="product">Mini Cooper E Classic</div>
+<div class="price">32,400 €</div>
+</div>
+<div class="row">
+<div class="product">Mini Cooper SE Favoured</div>
+<div class="price">35,280 €</div>
+</div>
+<div class="row">
+<div class="product">Mini Aceman SE Classic</div>
+<div class="price">37,800 €</div>
+</div>
+<div class="row">
+<div class="product">Mini Countryman E Classic</div>
+<div class="price">39,600 €</div>
+</div>
+<div class="row">
+<div class="product">Mercedes EQA250</div>
+<div class="price">43,200 €</div>
+</div>
+<div class="row">
+<div class="product">Audi Q4 Sportback</div>
+<div class="price">46,800 €</div>
+</div>
+<div class="row">
+<div class="product">BMW i4</div>
+<div class="price">50,400 €</div>
+</div>
+<div class="row">
+<div class="product">Mercedes EQE350</div>
+<div class="price">61,200 €</div>
+</div>
+<div class="row">
+<div class="product">Mercedes EQE350 SUV</div>
+<div class="price">69,120 €</div>
+</div>
+<div class="row">
+<div class="product">Mercedes EQE500 SUV 4MATIC</div>
+<div class="price">79,200 €</div>
+</div>
+<div class="row">
+<div class="product">Mercedes EQS450 SUV 4MATIC</div>
+<div class="price">105,840 €</div>
+</div>
+<div class="row">
+<div class="product">Peugeot e5008 Allure 7 plazas</div>
+<div class="price">39,200 €</div>
+</div>
+<div class="row">
+<div class="product">Hyundai Santa Fe Maxx 7 plazas</div>
+<div class="price">55,915 €</div>
+</div>
+<div class="row">
+<div class="product">Mazda CX-80 eSKYACTIV</div>
+<div class="price">64,990 €</div>
+</div>
+<div class="row">
+<div class="product">Kia EV9 GT Line</div>
+<div class="price">67,000 €</div>
+</div>
+<div class="row">
+<div class="product">Volvo XC90 T8 Core Recharge</div>
+<div class="price">69,900 €</div>
+</div>
+</div>
+</main>
+<div class="button-container">
+<a href="https://lophersson.github.io/online/selector.html" class="btn">Volver al inicio</a>
+</div>
+<footer>
+© 2025 - fantastischautomobiles.com
+</footer>
 </body>
 </html>
