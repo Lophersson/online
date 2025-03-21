@@ -23,9 +23,11 @@ body {
 }
 
 .section-wrapper {
+    margin-top: 40px;
     display: flex;
-    flex-wrap: wrap; /* Ajusta el contenido al espacio disponible */
-    max-width: 1000px; /* Limita el ancho */
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1000px;
     min-height: 500px;
     background-color: #1e1e1e;
     border-radius: 20px;
@@ -35,18 +37,26 @@ body {
 }
 
 .left-wrapper, .right-wrapper {
-    flex: 1;
+    flex: 0.5;
     padding: 25px;
     background: #555555;
     border-radius: 10px;
 }
 
-.repayment-wrapper {
+.repayment-left-wrapper {
     background: #737373;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
     border-top: 5px solid #faffb0;
-    min-width: max-content;
+    width: 100%;
+}
+
+.repayment-right-wrapper {
+    background: #737373;
+    padding: 20px;
+    border-radius: 10px;
+    border-top: 5px solid #faffb0;
+    width: 100%;
 }
 
 h3 {
@@ -74,7 +84,7 @@ input {
     background: transparent;
     border: none;
     outline: none;
-    width: 180px;
+    width: 50%;
     -moz-appearance: textfield;
 }
 
@@ -95,9 +105,13 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
     text-align: center;
 }
 
+p {
+    font-size: 12px;
+}
+
 button {
-    background-color: #faffb0;
-    color: black;
+    background-color: #ae0d0d;
+    color: rgb(255, 255, 255);
     padding: 10px 20px;
     font-size: 18px;
     border: none;
@@ -107,6 +121,118 @@ button {
 
 button:hover {
     background-color: #e2eb6e;
+}
+
+/* Estilos responsivos para móviles */
+@media screen and (max-width: 768px) {
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 100vh;
+        padding: 10px;
+        margin: 0;
+        background-color: #121212;
+        color: white;
+        overflow-x: hidden; /* Bloquea cualquier scroll lateral */
+    }
+
+    .section-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px; /* Hace que todo sea más estrecho */
+        padding: 4px 6px 4px 6px;
+        gap: 10px;
+        background-color: #1e1e1e;
+        border-radius: 12px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        margin-top: 40px;
+    }
+
+    .left-wrapper,
+    .right-wrapper {
+        width: 100%;
+        padding: 4px;
+        background: #555555;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .repayment-left-wrapper {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+        border-top: 3px solid #faffb0;
+        word-wrap: normal;
+    }
+
+    .repayment-right-wrapper {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+        border-top: 3px solid #faffb0;
+        word-wrap: normal;
+    }
+
+    h3 {
+        font-size: 14px;
+        text-align: left;
+        margin: 2px 0;
+    }
+
+    .input-wrapper,
+    .result-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2px;
+        gap: 2px;
+        width: 50%;
+    }
+
+    input {
+        width: 50%;
+        font-size: 14px;
+        text-align: right;
+        padding: 0px;
+        margin: 0px 0;
+        border-radius: 4px;
+    }
+
+    .final-amount,
+    .repay-amount,
+    .factor {
+        width: 50%;
+        font-size: 14px;
+        text-align: right;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    .button-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    button {
+        width: 95%;
+        max-width: 180px; /* Botón más compacto */
+        font-size: 12px;
+        padding: 8px;
+        border-radius: 4px;
+    }
 }
 
 /* Estilos para la impresión */
@@ -156,7 +282,7 @@ button:hover {
 <div class="section-wrapper">
     <div class="left-wrapper">
         <h1>Financiación</h1>
-        <div class="repayment-wrapper">
+        <div class="repayment-left-wrapper">
             <h3>Cantidad a financiar <input type="number" id="first-input" value="31950"></h3>
             <hr>
             <h3>Años <input type="number" id="second-input" value="10"></h3>
@@ -167,7 +293,7 @@ button:hover {
 
     <div class="right-wrapper">
         <h1>Resultado</h1>
-        <div class="repayment-wrapper">
+        <div class="repayment-right-wrapper">
             <h3>Cuota mensual <span class="final-amount" id="monthly-repayment">0.00 €</span></h3>
             <hr>
             <h3>Total a pagar <span class="repay-amount" id="total-repayment">0.00 €</span></h3>
