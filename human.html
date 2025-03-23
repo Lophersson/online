@@ -1,235 +1,363 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categorías y Temas Relacionados</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; }
-        h2 { text-align: center; margin-bottom: 20px; }
-        .container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .dropdown-container {
-            background-color: #696969;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            text-align: center;
-        }
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #d3d3d3;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
-        select[multiple] {
-            height: 150px;
-        }
-        .selected-concepts {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #808080;
-            border-radius: 5px;
-            max-width: 500px;
-            margin: 20px auto;
-        }
-        .selected-concepts div {
-            margin: 5px 0;
-            padding: 5px;
-            background-color: #5e5e5e;
-            border-radius: 3px;
-        }
-        button {
-            padding: 12px 25px;
-            background-color: #a0da0d;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 16px;
-            display: block;
-            margin: 30px auto;
-        }
-        button:hover {
-            background-color: #fff700;
-        }
-        label {
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hogar</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.contenedor-principal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 800px;
+  width: 100%;
+  padding-bottom: 10px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.contenedor {
+  width: 48%;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.conceptos, .seleccionados {
+  padding: 12px;
+  text-align: left;
+  border-radius: 8px;
+  background: #252525;
+  border: 1px solid #333;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  min-height: 200px;
+  font-size: 12px;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.concepto {
+  padding: 15px;
+  padding-bottom: 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.3s ease, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: white;
+  background: #252525;
+}
+
+.concepto:hover {
+  background: #5a5a5a;
+  transform: scale(1.05);
+}
+
+/* Conceptos seleccionados */
+.concepto-seleccionado {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.3s ease, transform 0.2s;
+  padding: 10px;
+  background: #252525;
+  border-radius: 6px;
+  color: white;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.concepto-seleccionado:hover {
+  background: #5a5a5a;
+  transform: scale(1.05);
+}
+
+/* Botón de Validar */
+.validar {
+  font-size: 12px;
+  background: #27ae60; /* Verde para validación */
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.validar:hover {
+  background: #219150;
+  transform: scale(1.1);
+}
+
+/* Botón de Eliminar */
+.eliminar {
+  font-size: 12px;
+  background: #ff0505; /* Rojo para eliminar */
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.eliminar:hover {
+  background: #d40000;
+  transform: scale(1.1);
+}
+
+.botonera {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  background: #1e1e1e;
+  padding: 10px 0;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+button {
+  padding: 6px 8px;
+  background: #0586ff;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s;
+  width: 112px;
+}
+
+button:hover {
+  background: #464646;
+  transform: scale(1.05);
+}
+
+.imprimir {
+  padding: 6px 8px;
+  background: #ff0505;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s;
+  align-self: center;
+  margin-top: 22px;
+  margin-bottom: 10px;
+  width: 346px;
+}
+
+.menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.menu button {
+  width: 100%;
+  aspect-ratio: 1/1; /* Hace que los botones sean cuadrados */
+  background: #5f5f5f;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.menu button:hover {
+  background: #f7ff68;
+  color: rgb(0, 0, 0);
+  transform: scale(1.05);
+}
+
+.menu button:active {
+  background: #d4d400;
+}
+
+@media (max-width: 768px) {
+  .contenedor-principal {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contenedor {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+</style>
 </head>
 <body>
-    <h2>Categorías y Temas Relacionados</h2>
-    <div class="container">
-        <div class="dropdown-container">
-            <label for="salud">Salud y Bienestar</label>
-            <select id="salud" multiple>
-                <option value="Salud">Salud</option>
-                <option value="Higiene">Higiene</option>
-                <option value="Cuidado Personal">Cuidado Personal</option>
-                <option value="Dormir">Dormir</option>
-                <option value="Ejercicio Físico">Ejercicio Físico</option>
-                <option value="Alimentación">Alimentación</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="hogar">Hogar y Organización</label>
-            <select id="hogar" multiple>
-                <option value="Hogar">Hogar</option>
-                <option value="Decoración">Decoración</option>
-                <option value="Orden y Limpieza">Orden y Limpieza</option>
-                <option value="Ropa">Ropa</option>
-                <option value="Calzado">Calzado</option>
-                <option value="Pertenencias">Pertenencias</option>
-                <option value="Coche">Coche</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="ocio">Entretenimiento y Ocio</label>
-            <select id="ocio" multiple>
-                <option value="Entretenimiento">Entretenimiento</option>
-                <option value="Ocio">Ocio</option>
-                <option value="Videojuegos">Videojuegos</option>
-                <option value="RRSS">RRSS</option>
-                <option value="Tiendas">Tiendas</option>
-                <option value="Compras">Compras</option>
-                <option value="Moda">Moda</option>
-                <option value="Electrónica">Electrónica</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="cultura">Cultura y Conocimiento</label>
-            <select id="cultura" multiple>
-                <option value="Cultura">Cultura</option>
-                <option value="Música">Música</option>
-                <option value="Cine">Cine</option>
-                <option value="Gastronomía">Gastronomía</option>
-                <option value="Viajes">Viajes</option>
-                <option value="Pueblos">Pueblos</option>
-                <option value="Ciudades">Ciudades</option>
-                <option value="Historia">Historia</option>
-                <option value="Libros">Libros</option>
-                <option value="Actualidad">Actualidad</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="mediosComunicacion">Medios y Comunicación</label>
-            <select id="mediosComunicacion" multiple>
-                <option value="TV">TV</option>
-                <option value="Internet">Internet</option>
-                <option value="Radio">Radio</option>
-                <option value="Vídeos">Vídeos</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="gastronomiaRestauracion">Gastronomía y Restauración</label>
-            <select id="gastronomiaRestauracion" multiple>
-                <option value="Restaurantes">Restaurantes</option>
-                <option value="Cafeterías">Cafeterías</option>
-                <option value="Recetas">Recetas</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="trabajoEstudios">Trabajo y Estudios</label>
-            <select id="trabajoEstudios" multiple>
-                <option value="Estudios">Estudios</option>
-                <option value="Trabajo">Trabajo</option>
-                <option value="Negocios">Negocios</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="vidaSocial">Vida Social</label>
-            <select id="vidaSocial" multiple>
-                <option value="Vida Social">Vida Social</option>
-                <option value="Amigos">Amigos</option>
-                <option value="Familia">Familia</option>
-                <option value="Amor">Amor</option>
-                <option value="Vecinos">Vecinos</option>
-                <option value="Compañeros de Estudios">Compañeros de Estudios</option>
-                <option value="Compañeros de Trabajo">Compañeros de Trabajo</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="finanzasOrganizacion">Finanzas y Organización Personal</label>
-            <select id="finanzasOrganizacion" multiple>
-                <option value="Organización Personal">Organización Personal</option>
-                <option value="Dinero">Dinero</option>
-                <option value="Contabilidad">Contabilidad</option>
-                <option value="Presupuestos">Presupuestos</option>
-                <option value="Listas de Compras">Listas de Compras</option>
-                <option value="Cuentas al Día">Cuentas al Día</option>
-            </select>
-        </div>
-        <div class="dropdown-container">
-            <label for="digitalOficial">Digital y Oficial</label>
-            <select id="digitalOficial" multiple>
-                <option value="Digital">Digital</option>
-                <option value="Dispositivos">Dispositivos</option>
-                <option value="Registros">Registros</option>
-                <option value="Mails">Mails</option>
-                <option value="Apps">Apps</option>
-                <option value="Archivos">Archivos</option>
-                <option value="Contraseñas">Contraseñas</option>
-                <option value="Oficial">Oficial</option>
-                <option value="Médicos">Médicos</option>
-                <option value="Administración Pública">Administración Pública</option>
-            </select>
-        </div>
+<h1>Organización Global</h1>
+<div class="contenedor-principal">
+  <div class="contenedor">
+    <h2 id="titulo">Hogar</h2>
+    <div class="conceptos" id="conceptos"></div>
+    <div class="botonera">
+      <button onclick="cambiarTema(-1)">Anterior</button>
+      <button onclick="mostrarMenu()">Menú</button>
+      <button onclick="cambiarTema(1)">Siguiente</button>
     </div>
+  </div>
+  <div class="contenedor">
+    <h2>Seleccionados</h2>
+    <div class="seleccionados" id="seleccionados"></div>
+    <button class="imprimir" onclick="imprimirPDF()">Imprimir PDF</button>
+  </div>
+</div>
 
-    <div class="selected-concepts" id="selectedConcepts">
-        <h3>Conceptos Seleccionados:</h3>
-        <!-- Selected concepts will be displayed here -->
-    </div>
+<div class="menu" id="menu">
+  <div class="menu-container">
+    <button onclick="seleccionarTema(1)">Hogar</button>
+    <button onclick="seleccionarTema(2)">Salud</button>
+    <button onclick="seleccionarTema(3)">Coche</button>
+    <button onclick="seleccionarTema(4)">Ocio y Entretenimiento</button>
+    <button onclick="seleccionarTema(5)">Cultura y Conocimiento</button>
+    <button onclick="seleccionarTema(6)">Medios y Comunicación</button>
+    <button onclick="seleccionarTema(7)">Trabajo y Estudios</button>
+    <button onclick="seleccionarTema(8)">Vida Social</button>
+    <button onclick="seleccionarTema(9)">Organización Personal y Digital</button>
+    <button onclick="seleccionarTema(10)">Administración Pública y Oficial</button>
+  </div>
+</div>
 
-    <button onclick="generatePDF()">Imprimir PDF</button>
+<script>
+let temaActual = 1;
+const temas = [
+  { nombre: "Hogar", conceptos: ["Lista de Decoración", "Pertenencias", "Orden y Limpieza", "Ropa", "Calzado"] },
+  { nombre: "Salud", conceptos: ["Alimentación", "Higiene", "Cuidado Personal", "Ducha", "Cabello", "Afeitado", "Uñas", "Dientes", "Ejercicio", "Nutrición", "Historial clínico", "Dormir"] },
+  { nombre: "Coche", conceptos: ["Gasoil", "Seguro", "Mantenimiento", "Impuestos", "Limpieza", "Pertenencias Coche", "Aparcamiento"] },
+  { nombre: "Ocio y Entretenimiento", conceptos: ["Videojuegos", "RRSS", "Tiendas", "Compras"] },
+  { nombre: "Cultura y Conocimiento", conceptos: ["Automoción", "Moda", "Electrónica", "Cultura", "Música", "Cine", "Gastronomía", "Restaurantes", "Cafeterías", "Recetas", "Viajes", "Pueblos", "Ciudades", "Ciencia", "Historia", "Libros", "Actualidad"] },
+  { nombre: "Medios y Comunicación", conceptos: ["TV", "Internet", "Radio", "Vídeos"] },
+  { nombre: "Trabajo y Estudios", conceptos: ["Estudios", "Trabajo", "Negocios"] },
+  { nombre: "Vida Social", conceptos: ["Amigos", "Familia", "Amor", "Hijos", "Vecinos", "Compañeros de Estudios", "Compañeros de Trabajo"] },
+  { nombre: "Organización Personal y Digital", conceptos: ["Dinero", "Contabilidad", "Presupuestos", "Listas de Compras", "Cuentas al Día", "Dispositivos", "Registros de Internet", "Mails", "Apps", "Archivos", "Contraseñas", "Oficial"] },
+  { nombre: "Administración Pública y Oficial", conceptos: ["DNI", "Tráfico", "Hacienda", "Seguridad Social", "Xunta", "Diputación", "Ayuntamiento"] }
+];
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script>
-        // Function to handle the selection and display of selected concepts
-        function updateSelectedConcepts() {
-            const selectedConceptsDiv = document.getElementById('selectedConcepts');
-            selectedConceptsDiv.innerHTML = '<h3>Conceptos Seleccionados:</h3>'; // Reset the selected concepts display
+function cargarTema() {
+  const tema = temas[temaActual - 1];
+  document.getElementById("titulo").innerText = tema.nombre;
+  document.title = tema.nombre;
+  let divConceptos = document.getElementById("conceptos");
+  divConceptos.innerHTML = "";
+  tema.conceptos.forEach(concepto => {
+    let div = document.createElement("div");
+    div.className = "concepto";
+    div.textContent = concepto;
+    div.onclick = () => seleccionarConcepto(concepto);
+    divConceptos.appendChild(div);
+  });
+}
 
-            // Collect selected concepts
-            const selects = document.querySelectorAll('select');
-            selects.forEach(select => {
-                const categoryName = select.previousElementSibling.textContent;
-                const selectedOptions = Array.from(select.selectedOptions).map(option => option.value);
-                selectedOptions.forEach(option => {
-                    const div = document.createElement('div');
-                    div.textContent = categoryName + ': ' + option;
-                    selectedConceptsDiv.appendChild(div);
-                });
-            });
-        }
+function seleccionarConcepto(concepto) {
+  let seleccionados = document.getElementById("seleccionados");
+  let nuevoElemento = document.createElement("div");
+  nuevoElemento.className = "concepto-seleccionado";
+  nuevoElemento.innerHTML = concepto + ' <button class="eliminar" onclick="this.parentElement.remove()">❌</button>';
+  seleccionados.appendChild(nuevoElemento);
+}
 
-        // Attach event listeners to all select elements
-        document.querySelectorAll('select').forEach(select => {
-            select.addEventListener('change', updateSelectedConcepts);
-        });
+function cambiarTema(direccion) {
+  temaActual += direccion;
+  if (temaActual < 1) temaActual = temas.length;
+  if (temaActual > temas.length) temaActual = 1;
+  cargarTema();
+}
 
-        // Function to generate PDF
-        function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
+function mostrarMenu() {
+  document.getElementById("menu").style.display = "flex";
+}
 
-            // Get the selected concepts text
-            const selectedConcepts = document.getElementById('selectedConcepts').textContent;
+function cerrarMenu() {
+  document.getElementById("menu").style.display = "none";
+}
 
-            // Add text to PDF
-            doc.text(selectedConcepts, 10, 10);
+function seleccionarTema(numero) {
+  temaActual = numero;
+  cerrarMenu();
+  cargarTema();
+}
 
-            // Save the PDF
-            doc.save('conceptos_seleccionados.pdf');
-        }
-    </script>
+function imprimirPDF() {
+  let contenido = document.getElementById("seleccionados").innerText;
+  let ventana = window.open('', '', 'width=600,height=400');
+  ventana.document.write('<pre>' + contenido + '</pre>');
+  ventana.document.close();
+  ventana.print();
+}
+
+cargarTema();
+</script>
 </body>
 </html>
