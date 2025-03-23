@@ -6,7 +6,7 @@
   <link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png">
   <link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png">
   <link rel="mask-icon" href="https://lophersson.github.io/online/iconh.png" color="#111">
-  <title>Calculadora de Consumo y Velocidad</title>
+  <title>Calculadora de Consumo</title>
   
   <style>
     body {
@@ -102,6 +102,11 @@
       </div>
 
       <div class="form-group">
+        <label for="fechaInicial">Fecha Inicial:</label>
+        <input type="date" id="fechaInicial">
+      </div>
+
+      <div class="form-group">
         <label for="horaInicial">Hora Inicial:</label>
         <div class="hora-box">
           <input type="number" id="horaInicial" placeholder="hh" min="0" max="23" step="1">
@@ -110,21 +115,16 @@
       </div>
 
       <div class="form-group">
+        <label for="fechaFinal">Fecha Final:</label>
+        <input type="date" id="fechaFinal">
+      </div>
+
+      <div class="form-group">
         <label for="horaFinal">Hora Final:</label>
         <div class="hora-box">
           <input type="number" id="horaFinal" placeholder="hh" min="0" max="23" step="1">
           <input type="number" id="minutosFinales" placeholder="mm" min="0" max="59" step="1">
         </div>
-      </div>
-
-      <div class="form-group">
-        <label for="fechaInicial">Fecha Inicial:</label>
-        <input type="date" id="fechaInicial">
-      </div>
-
-      <div class="form-group">
-        <label for="fechaFinal">Fecha Final:</label>
-        <input type="date" id="fechaFinal">
       </div>
 
       <div class="form-group">
