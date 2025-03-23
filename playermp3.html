@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lophersson Music Player</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #16161a;
+            padding: 20px;
+        }
+        .music-player {
+            width: 380px;
+            background: #242629;
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        /*.title {
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            font-size: 40px;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(45deg, #FFD700, #FF6347, #FF4500);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }*/
+    .title {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: center;
+    background: linear-gradient(45deg, #00C3FF, #0077FF, #0045B5);
+    background-clip: text;
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #00C3FF, 0 0 10px #0077FF, 0 0 15px #0045B5;
+    }
+    50% {
+        text-shadow: 0 0 10px #00C3FF, 0 0 20px #0077FF, 0 0 30px #0045B5;
+    }
+    100% {
+        text-shadow: 0 0 5px #00C3FF, 0 0 10px #0077FF, 0 0 15px #0045B5;
+    }
+}
+        .now-playing {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .album-art {
+            width: 250px;
+            height: 200px;
+            margin: 0 auto 10px;
+            border-radius: 16px;
+            background: linear-gradient(45deg, #7f5af0, #2cb67d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 40px;
+        }
+        .track-info {
+            color: #fffffe;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        /*.controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .control-buttons button {
+            background: none;
+            border: none;
+            color: #fffffe;
+            font-size: 24px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+        .control-buttons button.play-pause {
+            font-size: 30px;
+            background: #7f5af0;
+            border-radius: 50%;
+            padding: 10px;
+        }*/
+      .controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.controls button {
+    background: rgba(0, 195, 255, 0.2); /* Azul translúcido */
+    border: 2px solid rgba(0, 195, 255, 0.6);
+    color: #fff;
+    font-size: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 195, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.controls button:hover {
+    background: rgba(0, 195, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 195, 255, 0.8);
+    transform: scale(1.1);
+}
+
+.controls .play-pause {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+    background: rgba(0, 119, 255, 0.3);
+    border: 2px solid rgba(0, 119, 255, 0.7);
+    box-shadow: 0 0 15px rgba(0, 119, 255, 0.8);
+}
+
+.controls .play-pause:hover {
+    background: rgba(0, 119, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 119, 255, 1);
+}
+        .playlist-section {
+            margin-top: 20px;
+        }
+        .playlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+            font-size: 16px;
+        }
+        .playlist {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+        .song-item {
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 5px 0;
+            cursor: pointer;
+            color: #fff;
+        }
+        .song-item.active {
+            background: rgba(127, 90, 240, 0.2);
+            border-left: 4px solid #7f5af0;
+        }
+        #playlist-selector {
+            background: #2cb67d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="music-player">
+        <div class="title">Lophersson Music Player</div>
+
+       <div class="now-playing">
+    <img class="album-art" src="https://i.pinimg.com/originals/60/92/4b/60924b514b8cb43e88a99dec7356a281.gif" alt="GIF Animado">
+    <div class="track-info">
+        <div class="track-name">Selecciona una pista</div>
+    </div>
+</div>
+
+        <div class="controls">
+            <button class="prev">⏮</button>
+            <button class="play-pause">▶</button>
+            <button class="next">⏭</button>
+        </div>
+
+        <div class="playlist-section">
+            <div class="playlist-header">
+                <h2>Playlist</h2>
+                <select id="playlist-selector">
+                    <option value="Favoritos">Favoritos</option>
+                    <option value="Relax">Relax</option>
+                </select>
+            </div>
+            <div class="playlist" id="playlist"></div>
+        </div>
+    </div>
+
+    <script>
+        class MusicPlayer {
+            constructor() {
+                this.audio = new Audio();
+                this.playlists = {
+                    "Favoritos": [
+                        { name: "INSTASAMKA - Aceite de Panpim", url: "https://lophersson.github.io/online/mp3instasamka.mp3" },
+                        { name: "Always", url: "https://lophersson.github.io/online/mp3always.mp3" }
+                    ],
+                    "Underground": [
+                        { name: "6YNTHMANE", url: "https://lophersson.github.io/online/my.mp3" },
+                        { name: "Sosa UK", url: "https://lophersson.github.io/online/mp3sosauk.mp3" }
+                    ]
+                };
+                this.currentPlaylistName = "Favoritos";
+                this.playlist = this.playlists[this.currentPlaylistName];
+                this.currentIndex = 0;
+                this.isPlaying = false;
+                this.initializeElements();
+                this.setupEventListeners();
+                this.updatePlaylist();
+                if (this.playlist.length > 0) this.loadSong(0);
+            }
+
+            initializeElements() {
+                this.playlistElement = document.getElementById("playlist");
+                this.trackName = document.querySelector(".track-name");
+                this.playPauseBtn = document.querySelector(".play-pause");
+                this.prevBtn = document.querySelector(".prev");
+                this.nextBtn = document.querySelector(".next");
+                this.playlistSelector = document.getElementById("playlist-selector");
+            }
+
+            setupEventListeners() {
+                this.playPauseBtn.addEventListener("click", () => this.togglePlayPause());
+                this.prevBtn.addEventListener("click", () => this.playPrevious());
+                this.nextBtn.addEventListener("click", () => this.playNext());
+                this.audio.addEventListener("ended", () => this.playNext());
+                this.playlistSelector.addEventListener("change", (event) => {
+                    this.currentPlaylistName = event.target.value;
+                    this.playlist = this.playlists[this.currentPlaylistName];
+                    this.updatePlaylist();
+                    if (this.playlist.length > 0) this.loadSong(0);
+                });
+            }
+
+            updatePlaylist() {
+                this.playlistElement.innerHTML = "";
+                this.playlist.forEach((song, index) => {
+                    const songElement = document.createElement("div");
+                    songElement.className = `song-item ${index === this.currentIndex ? "active" : ""}`;
+                    songElement.textContent = song.name;
+                    songElement.addEventListener("click", () => this.loadSong(index));
+                    this.playlistElement.appendChild(songElement);
+                });
+            }
+
+            loadSong(index) {
+                if (index < 0 || index >= this.playlist.length) return;
+                this.currentIndex = index;
+                this.audio.src = this.playlist[index].url;
+                this.trackName.textContent = this.playlist[index].name;
+                this.updatePlaylist();
+                if (this.isPlaying) this.audio.play();
+            }
+
+            togglePlayPause() {
+                if (!this.playlist.length) return;
+                if (this.isPlaying) {
+                    this.audio.pause();
+                    this.playPauseBtn.textContent = "▶";
+                } else {
+                    this.audio.play();
+                    this.playPauseBtn.textContent = "⏸";
+                }
+                this.isPlaying = !this.isPlaying;
+            }
+
+            playPrevious() {
+                if (this.currentIndex > 0) this.loadSong(this.currentIndex - 1);
+            }
+
+            playNext() {
+                if (this.currentIndex < this.playlist.length - 1) this.loadSong(this.currentIndex + 1);
+            }
+        }
+
+        new MusicPlayer();
+    </script>
+</body>
+</html>
