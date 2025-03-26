@@ -16,8 +16,8 @@ body {
     font-size: 16px;
     line-height: 0.8;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start; /* Alinea al top */
+    align-items: center; /* Mantiene el centrado horizontal */
     min-height: 100vh;
     margin: 0;
     background-color: #121212;
@@ -132,19 +132,18 @@ button:hover {
 /* Media Query for mobile devices */
 @media (max-width: 768px) {
     body {
-         font-family: "Plus Jakarta Sans", sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 14px;
     line-height: 0.8;
     display: flex;
-    justify-content: center;
-    align-items: center;
-        min-width: 100%;
+    justify-content: flex-start; /* Alinea al top */
+    align-items: center; /* Mantiene el centrado horizontal */
     min-height: 100vh;
     margin: 0;
     background-color: #121212;
     color: white;
     flex-direction: column;
-    }
+}
 
     h1 {
         font-size: 18px;
