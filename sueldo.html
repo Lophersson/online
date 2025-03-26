@@ -7,229 +7,120 @@
 <link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
 <link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
 <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
-<title>misueldo</title>
+<title>Misueldo</title>
 <style>
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
     font-family: "Plus Jakarta Sans", sans-serif;
     font-size: 16px;
-    line-height: 0.8;
-    display: flex;
-    justify-content: flex-start; /* Alinea al top */
-    align-items: center; /* Mantiene el centrado horizontal */
-    min-height: 100vh;
-    margin: 0;
     background-color: #121212;
     color: white;
-    flex-direction: column;
-}
-    
-    h1 {
-        font-size: 30px;
-        margin-top: 0px;
-        margin-bottom: 6px;
-    }
-    
-.section-wrapper {
-    margin-top: 30px;
-    margin-bottom: 10px;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    min-width: 600px;
-    max-width: 1000px;
-    min-height: 500px;
-    background-color: #121212;
-    border-radius: 20px;
-    /*box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);*/
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.section-wrapper {
+    width: 100%;
+    max-width: 800px;
+    background-color: #1a1a1a;
     padding: 10px;
-    gap: 10px;
+    border-radius: 15px;
 }
 
 .elwrapper {
-    flex: 0.5;
-    padding: 10px;
-    background: #121212;
-    border-radius: 10px;
-    min-width: 600px;
-    max-width: 1000px;
+    width: 100%;
 }
 
 .repayment-elwrapper {
     background: #737373;
     padding: 10px;
     border-radius: 10px;
-    /*border-top: 5px solid #faffb0;*/
-    width: 100%;
 }
 
 h3 {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     font-size: 14px;
-    margin: 6px 0;
-}
-
-.input-wrapper, .result-wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #121212;
-    padding: 10px;
-    border-radius: 5px;
+    margin: 2px 0; /* Espaciado más compacto */
 }
 
 input {
     text-align: right;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: bold;
     color: #e2eb6e;
     background: transparent;
     border: none;
     outline: none;
-    width: 50%;
-    -moz-appearance: textfield;
+    width: 70px; /* Ajuste de ancho */
 }
 
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-.final-amount, .repay-amount, .factor {
-    font-size: 14px;
-    color: #121212;
-    text-align: right;
-    width: 150px;
+hr {
+    border: none;
+    border-top: 1px solid white;
+    margin: 5px 0;
 }
 
 .button-container {
-    margin-top: 20px;
     text-align: center;
-}
-
-p {
-    font-size: 12px;
+    margin-top: 10px;
 }
 
 button {
     background-color: #ae0d0d;
-    color: rgb(255, 255, 255);
-    padding: 10px 20px;
-    font-size: 18px;
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
 }
 
 button:hover {
     background-color: #e2eb6e;
+    color: black;
 }
 
+/* RESPONSIVE */
 @media (max-width: 768px) {
-    * {
-        box-sizing: border-box;
-    }
-
     body {
-        font-family: "Plus Jakarta Sans", sans-serif;
         font-size: 14px;
-        line-height: 0.8;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background-color: #121212;
-        color: white;
-        flex-direction: column;
-        width: 100%;
-        overflow-x: hidden;
+        padding: 5px;
     }
 
     h1 {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    h3 {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 14px;
-        margin: 3px 0;
-        white-space: nowrap; /* Evita salto de línea */
-    }
-
-    .section-wrapper {
-        width: 100%;
-        max-width: 100%;
-        flex-direction: column;
-        padding: 5px;
-    }
-
-    .elwrapper {
-        width: 100%;
-        max-width: 100%;
-        flex: 1 1 100%;
-    }
-
-    .input-wrapper, .result-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: nowrap; /* Evita que los elementos se apilen */
-    }
-
-    input {
-        margin-bottom: 3px;
-    }
-
-    .final-amount, .repay-amount, .factor {
-        text-align: right;
-    }
-}
-    
-/* Estilos para la impresión */
-@media print {
-    body {
-        background-color: white;
-        color: black;
-        font-size: 14px; /* Ajuste de fuente para mejor ajuste */
-    }
-
-    .section-wrapper {
-        max-width: 100%;
-        padding: 10px;
-        box-shadow: none;
-        flex-direction: column;
-    }
-
-    .elwrapper {
-        padding: 5px;
-    }
-
-    h3 {
-        font-size: 18px;
-    }
-
-    .final-amount, .repay-amount, .factor {
         font-size: 20px;
     }
 
-    button {
-        display: none; /* Esconde el botón en la impresión */
-    }
-
-    .button-container {
-        display: none; /* Esconde el contenedor del botón */
-    }
-
-    /* Elimina márgenes del documento */
     .section-wrapper {
-        margin: 0;
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    h3 {
+        font-size: 14px;
+    }
+
+    input {
+        width: 60px; /* Más compacto en móvil */
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
     }
 }
 </style>
@@ -263,33 +154,29 @@ button:hover {
             <h3>Ahorros <input type="number" class="input-gasto" value="100"></h3>
             <hr>
             <h3>Total <input type="number" id="inputtotal" value="0" disabled></h3>
+        </div>
     </div>    
 </div>
 
 <script>
 function calcularTotal() {
     let total = 0;
-
-    // Selecciona todos los inputs con la clase "input-gasto"
     let inputs = document.querySelectorAll('.input-gasto');
 
-    // Sumar los valores de los inputs
     inputs.forEach(input => {
-        total += parseFloat(input.value) || 0; // Si el valor no es número, se toma como 0
+        total += parseFloat(input.value) || 0;
     });
 
-    // Mostrar el total
     document.getElementById('inputtotal').value = total.toFixed(0);
 }
 
-// Detectar cambios en los inputs para actualizar el total en tiempo real
 document.querySelectorAll('.input-gasto').forEach(input => {
     input.addEventListener('input', calcularTotal);
 });
 
-// Calcular total al cargar la página
 window.onload = calcularTotal;
 </script>
 
 </body>
 </html>
+    
