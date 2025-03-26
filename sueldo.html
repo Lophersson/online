@@ -128,8 +128,6 @@ button:hover {
     background-color: #e2eb6e;
 }
 
-/* Estilos responsivos para móviles */
-/* Media Query for mobile devices */
 @media (max-width: 768px) {
     * {
         box-sizing: border-box;
@@ -156,27 +154,27 @@ button:hover {
         text-align: center;
     }
 
-    .section-wrapper {
-        width: 90vw;  /* Ajustado para evitar desbordamiento */
-        max-width: 100%;
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .elwrapper {
-        width: 90vw;  /* Evita que sea más ancho que la pantalla */
-        max-width: 100%;
-        flex: 1 1 auto;
-    }
-
     h3 {
         display: flex;
         align-items: center;
         justify-content: space-between;
         font-size: 14px;
-        margin: 5px 0;
-        width: 100%;
+        margin: 3px 0;
         white-space: nowrap; /* Evita salto de línea */
+        width: 100%;
+    }
+
+    .section-wrapper {
+        width: 100%;
+        max-width: 100%;
+        flex-direction: column;
+        padding: 5px;
+    }
+
+    .elwrapper {
+        width: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
     }
 
     .input-wrapper, .result-wrapper {
@@ -184,82 +182,11 @@ button:hover {
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        gap: 10px;
-        flex-wrap: nowrap; /* Asegura que no se rompan en varias líneas */
+        flex-wrap: nowrap; /* Evita que los elementos se apilen */
     }
 
     input {
-        width: 40%;
-        min-width: 80px;
-        margin-bottom: 3px;
-    }
-
-    .final-amount, .repay-amount, .factor {
         width: 50%;
-        text-align: right;
-    }
-}
-@media (max-width: 768px) {
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: "Plus Jakarta Sans", sans-serif;
-        font-size: 14px;
-        line-height: 0.8;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        background-color: #121212;
-        color: white;
-        flex-direction: column;
-        width: 100vw;
-        overflow-x: hidden;
-    }
-
-    h1 {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    .section-wrapper {
-        width: 90vw;  /* Ajustado para evitar desbordamiento */
-        max-width: 100%;
-        flex-direction: column;
-        padding: 10px;
-    }
-
-    .elwrapper {
-        width: 90vw;  /* Evita que sea más ancho que la pantalla */
-        max-width: 100%;
-        flex: 1 1 auto;
-    }
-
-    h3 {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        font-size: 14px;
-        margin: 5px 0;
-        width: 100%;
-        white-space: nowrap; /* Evita salto de línea */
-    }
-
-    .input-wrapper, .result-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        gap: 10px;
-        flex-wrap: nowrap; /* Asegura que no se rompan en varias líneas */
-    }
-
-    input {
-        width: 40%;
-        min-width: 80px;
         margin-bottom: 3px;
     }
 
