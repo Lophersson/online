@@ -131,60 +131,73 @@ button:hover {
 /* Estilos responsivos para móviles */
 /* Media Query for mobile devices */
 @media (max-width: 768px) {
+    * {
+        box-sizing: border-box;
+    }
+
     body {
-    font-family: "Plus Jakarta Sans", sans-serif;
-    font-size: 14px;
-    line-height: 0.8;
-    display: flex;
-    justify-content: flex-start; /* Alinea al top */
-    align-items: center; /* Mantiene el centrado horizontal */
-    min-height: 100vh;
-    margin: 0;
-    background-color: #121212;
-    color: white;
-    flex-direction: column;
-}
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 14px;
+        line-height: 0.8;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        background-color: #121212;
+        color: white;
+        flex-direction: column;
+        width: 100vw;
+        overflow-x: hidden;
+    }
 
     h1 {
         font-size: 18px;
+        text-align: center;
     }
 
     h3 {
-    display: flex;
-    align-items: left;
-    justify-content: space-between;
-    font-size: 14px;
-    margin: 3px 0;
-}
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        margin: 3px 0;
+        white-space: nowrap; /* Evita salto de línea */
+        width: 100%;
+    }
+
     .section-wrapper {
-        min-width: 100%;
+        width: 100%;
         max-width: 100%;
         flex-direction: column;
         padding: 5px;
     }
 
     .elwrapper {
-        min-width: 100%;
+        width: 100%;
         max-width: 100%;
         flex: 1 1 100%;
     }
 
     .input-wrapper, .result-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
+        flex-wrap: nowrap; /* Evita que los elementos se apilen */
     }
 
     input {
-        width: 100%;
+        width: 50%;
         margin-bottom: 3px;
     }
 
     .final-amount, .repay-amount, .factor {
-        width: 100%;
-        text-align: left;
+        width: 50%;
+        text-align: right;
     }
-
+}
+    
 /* Estilos para la impresión */
 @media print {
     body {
