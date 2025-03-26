@@ -132,11 +132,22 @@ button:hover {
 /* Media Query for mobile devices */
 @media (max-width: 768px) {
     body {
-        font-size: 14px;
+         font-family: "Plus Jakarta Sans", sans-serif;
+    font-size: 14px;
+    line-height: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        min-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121212;
+    color: white;
+    flex-direction: column;
     }
 
     h1 {
-        font-size: 24px;
+        font-size: 18px;
     }
 
     .section-wrapper {
@@ -160,24 +171,13 @@ button:hover {
 
     input {
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 3px;
     }
 
     .final-amount, .repay-amount, .factor {
         width: 100%;
         text-align: left;
     }
-
-    button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    p {
-        font-size: 10px;
-    }
-}
 
 /* Estilos para la impresión */
 @media print {
