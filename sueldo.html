@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" >
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 <title>misueldo</title>
 <style>
 * { box-sizing: border-box; }
@@ -125,97 +129,53 @@ button:hover {
 }
 
 /* Estilos responsivos para móviles */
-@media screen and (max-width: 768px) {
-    * {
-        box-sizing: border-box;
+/* Media Query for mobile devices */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
     }
 
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        width: 100%;
-        min-height: 100vh;
-        padding: 10px;
-        margin: 0;
-        background-color: #121212;
-        color: white;
-        overflow-x: hidden; /* Bloquea cualquier scroll lateral */
+    h1 {
+        font-size: 24px;
     }
 
     .section-wrapper {
-        display: flex;
+        min-width: 100%;
+        max-width: 100%;
         flex-direction: column;
-        width: 100%;
-        max-width: 400px; /* Hace que todo sea más estrecho */
-        padding: 4px 6px 4px 6px;
-        gap: 10px;
-        background-color: #121212;
-        border-radius: 12px;
-        overflow: hidden;
-        margin-top: 20px;
-        margin-bottom: 2px;
+        padding: 5px;
     }
 
     .elwrapper {
-        background: #121212;
-        width: 100%;
-        padding: 5px;
-        text-align: center;
-        border-radius: 8px;
-        /*border-top: 3px solid #faffb0;*/
-        word-wrap: normal;
+        min-width: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
     }
 
-    h3 {
-        font-size: 14px;
-        text-align: left;
-        margin: 2px 0;
-    }
-
-    .input-wrapper,
-    .result-wrapper {
+    .input-wrapper, .result-wrapper {
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 2px;
-        gap: 2px;
-        width: 50%;
+        align-items: flex-start;
+        width: 100%;
     }
 
     input {
-        width: 50%;
-        font-size: 14px;
-        text-align: right;
-        padding: 0px;
-        margin: 0px 0;
-        border-radius: 4px;
-    }
-
-    .final-amount,
-    .repay-amount,
-    .factor {
-        width: 50%;
-        font-size: 14px;
-        text-align: right;
-    }
-
-    p {
-        font-size: 12px;
-    }
-
-    .button-container {
         width: 100%;
-        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .final-amount, .repay-amount, .factor {
+        width: 100%;
+        text-align: left;
     }
 
     button {
-        width: 95%;
-        max-width: 180px; /* Botón más compacto */
-        font-size: 12px;
-        padding: 8px;
-        border-radius: 4px;
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    p {
+        font-size: 10px;
     }
 }
 
