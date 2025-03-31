@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://raw.githubusercontent.com/Lophersson/omniweb/refs/heads/main/H_new_icon.png" color="#111" />
+    <title>tareas</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Belanosima&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap');
+
+        * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #2b2b2b;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    .body-header {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: #2b2b2b;
+        color: rgb(116, 116, 116);
+        font-size: 24px;
+        font-style: italic;
+        margin-top: 20px;
+    }
+
+    .spectacledcoder-kanban-board {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        max-width: 100%;
+        padding: 4px;
+        justify-content: center;
+        overflow-x: auto;
+    }
+
+
+    .col {
+        width: 250px;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        background: #2b2b2b;
+        border-radius: 16px;
+        padding: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border: 1px solid #838383;
+    }
+
+    .heading {
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: rgb(148, 148, 148);
+        background-color: #2b2b2b;
+        padding: 6px;
+        border-radius: 16px;
+        font-size: 14px;
+        font-style: italic;
+        /*border: 1px solid #2564ee;*/
+    }
+
+    .wrapper {
+        width: 100%;
+        min-height: 400px;
+        /*border: 2px solid #2564ee;*/
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .card {
+        background: #4d4d4d;
+        color: rgb(160, 160, 160);
+        padding: 8px;
+        cursor: grab;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        text-align: left;
+        font-size: 12px;
+        font-style: italic;
+        position: relative;
+        /*border: 1px solid #2564ee;*/
+        margin-bottom: 3px;
+    }
+
+        .remove-btn {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #ff9393d8;
+        }
+
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #ffffff;
+        }
+
+        .buttonenvolve {
+            padding: 10px 3px 3px 3px;
+            margin-top: auto;
+            border: 1px solid #ffffff00;
+            border-radius: 16px;
+        }
+        
+        .print-button {
+    display: block;
+    margin: 10px 3px 3px 3px;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-style: italic;
+    background-color: #444;
+    color: rgb(146, 146, 146);
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    margin-top: auto; /* Empuja el botón hacia abajo */
+}
+
+    .print-button:hover {
+        background-color: #ea1515;
+    }
+
+        @media screen and (max-width: 768px) {
+            
+            .body-header {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background-color: #2b2b2b;
+        color: rgb(143, 143, 143);
+        font-size: 24px;
+        font-style: italic;
+        margin-top: 20px;
+    }
+
+    h2 {
+        margin-top: 20px;
+    }
+
+            .spectacledcoder-kanban-board {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .col {
+            width: 100%;
+            min-width: 300px;
+            max-width: 768px;
+        }
+
+        .wrapper {
+            min-height: 160px;
+        }
+
+        .heading {
+            font-size: 16px;
+        }
+
+    .print-button {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .print-button:hover {
+        background-color: #ea1515;
+        color: rgb(255, 255, 255);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="body-header">
+        <h2>TAREAS</h2>
+    </div>
+    
+    <div class="spectacledcoder-kanban-board">
+        <div class="col">
+            <div class="heading">Hacer hoy</div>
+            <div class="wrapper" id="hacer-hoy" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('hacer-hoy', 'Hacer hoy')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">Hacer esta semana</div>
+            <div class="wrapper" id="hacer-hoy" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('hacer-hoy', 'Hacer hoy')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">salud</div>
+            <div class="wrapper" id="salud" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('salud', 'Salud')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">Hogar</div>
+            <div class="wrapper" id="hogar" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('hogar', 'Hogar')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">Coche</div>
+            <div class="wrapper" id="coche" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('coche', 'Coche')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">organización</div>
+            <div class="wrapper" id="organizacion" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('organizacion', 'Organizacion')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">Personas</div>
+            <div class="wrapper" id="personas" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('personas', 'Personas')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">Ocio y Cultura</div>
+            <div class="wrapper" id="ocio" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('ocio', 'Ocio')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">Oficial</div>
+            <div class="wrapper" id="oficial" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('oficial', 'Oficial')">IMPRIMIR</button></div>
+        </div>
+        <div class="col">
+            <div class="heading">Profesional</div>
+            <div class="wrapper" id="profesional" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            <div class="buttonenvolve">
+            <button class="print-button" onclick="generatePDF('profesional', 'Profesional')">IMPRIMIR</button></div>
+        </div>         
+    </div>
+
+    <p class="disclaimer">Diseñado y creado por <b>Lophersson</b></p>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            const element = document.getElementById(data);
+            if (element) {
+                event.target.appendChild(element);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const tasks = [
+
+        { id: "task1", category: "salud", text: "dormir"},
+        { id: "task2", category: "salud", text: "afeitado"},
+        { id: "task3", category: "salud", text: "ducha"},
+        { id: "task4", category: "salud", text: "lavar cabello"},
+        { id: "task5", category: "salud", text: "cortar uñas"},
+        { id: "task6", category: "salud", text: "desayunar"},
+        { id: "task7", category: "salud", text: "lavar dientes"},
+        { id: "task8", category: "salud", text: "comer"},
+        { id: "task9", category: "salud", text: "ejercicio físico"},
+        { id: "task10", category: "salud", text: "cenar"},
+        { id: "task11", category: "salud", text: "cita médica"},
+        { id: "task12", category: "salud", text: "comprar comida y cuidado personal"},
+        { id: "task13", category: "hogar", text: "hacer la cama"},
+        { id: "task14", category: "hogar", text: "cambiar las sábanas"},
+        { id: "task15", category: "hogar", text: "limpiar el suelo"},
+        { id: "task16", category: "hogar", text: "lavar la vajilla"},
+        { id: "task17", category: "hogar", text: "hacer lavadora"},
+        { id: "task18", category: "hogar", text: "orden y limpieza"},
+        { id: "task19", category: "hogar", text: "ordenar ropa"},
+        { id: "task20", category: "hogar", text: "ordenar calzado"},
+        { id: "task21", category: "hogar", text: "ordenar pertenencias"},
+        { id: "task22", category: "hogar", text: "revisión trastero"},
+        { id: "task23", category: "hogar", text: "búsqueda de pertenencias"},
+        { id: "task24", category: "hogar", text: "bricolage y reparaciones"},
+        { id: "task25", category: "hogar", text: "comprar prod. de limpieza"},
+        { id: "task26", category: "hogar", text: "limpiar la cocina"},
+        { id: "task27", category: "hogar", text: "limpiar el baño"},
+        { id: "task28", category: "hogar", text: "planchar camisas y camisetas"},
+        { id: "task29", category: "hogar", text: "ordenar el armario y los cajones"},
+        { id: "task30", category: "coche", text: "repostar"},
+        { id: "task31", category: "coche", text: "limpiar coche"},
+        { id: "task32", category: "coche", text: "recoger pertencias del coche"},
+        { id: "task33", category: "coche", text: "mantenimiento coche"},
+        { id: "task34", category: "coche", text: "reparaciones y recambios"},
+        { id: "task35", category: "coche", text: "taller"},
+        { id: "task36", category: "coche", text: "pagar impuesto anual"},
+        { id: "task37", category: "coche", text: "pasar la ITV"},
+        { id: "task38", category: "coche", text: "gestión repostajes"},
+        { id: "task39", category: "coche", text: "gestión aparcamientos"},
+        { id: "task40", category: "organizacion", text: "contabilidad diaria"},
+        { id: "task41", category: "organizacion", text: "presupuestos y listas de compras"},
+        { id: "task42", category: "organizacion", text: "archivos móvil a portátil"},
+        { id: "task43", category: "organizacion", text: "archivos tab a portátil"},
+        { id: "task44", category: "organizacion", text: "archivos pendrives y sdcards a portátil"},
+        { id: "task45", category: "organizacion", text: "archivos nubes a portátil"},
+        { id: "task46", category: "organizacion", text: "archivos mails a portátil"},
+        { id: "task47", category: "organizacion", text: "archivos marcadores a portátil"},
+        { id: "task48", category: "organizacion", text: "archivos portátil a disco duro"},
+        { id: "task49", category: "organizacion", text: "contraseñas de registros web y apps"},
+        { id: "task50", category: "organizacion", text: "desarrollo de mi web"},
+        { id: "task51", category: "organizacion", text: "lista de contactos"},
+        { id: "task52", category: "personas", text: "enviar mensajes"},
+        { id: "task53", category: "personas", text: "llamar por teléfono"},
+        { id: "task54", category: "personas", text: "tomar un café"},
+        { id: "task55", category: "personas", text: "comer o cenar"},
+        { id: "task55", category: "personas", text: "ir al cine"},
+        { id: "task56", category: "personas", text: "hacer otra actividad"},
+        { id: "task57", category: "personas", text: "pareja"},
+        { id: "task58", category: "personas", text: "hijos"},
+        { id: "task59", category: "personas", text: "amigos"},
+        { id: "task60", category: "personas", text: "familia"},
+        { id: "task61", category: "personas", text: "compañeros"},
+        { id: "task62", category: "personas", text: "vecinos"},
+        { id: "task63", category: "ocio", text: "videojuegos"},
+        { id: "task64", category: "ocio", text: "música"},
+        { id: "task65", category: "ocio", text: "lectura"},
+        { id: "task66", category: "ocio", text: "actualidad"},
+        { id: "task67", category: "ocio", text: "información/medios"},
+        { id: "task68", category: "ocio", text: "televisión"},
+        { id: "task69", category: "ocio", text: "internet"},
+        { id: "task70", category: "ocio", text: "moda"},
+        { id: "task71", category: "ocio", text: "ir de compras"},
+        { id: "task71", category: "ocio", text: "tiendas - centros comerciales"},
+        { id: "task72", category: "ocio", text: "viajes"},
+        { id: "task73", category: "ocio", text: "eventos culturales"},
+        { id: "task74", category: "ocio", text: "automoción"},
+        { id: "task75", category: "ocio", text: "decoración"},
+        { id: "task76", category: "oficial", text: "administración pública"},
+        { id: "task77", category: "oficial", text: "banco"},
+        { id: "task78", category: "oficial", text: "empleo"},
+        { id: "task79", category: "oficial", text: "hacienda"},
+        { id: "task80", category: "oficial", text: "empleo"},
+        { id: "task81", category: "oficial", text: "tráfico"},
+        { id: "task82", category: "oficial", text: "abogado"},
+        { id: "task83", category: "oficial", text: "notaría"},
+        { id: "task84", category: "oficial", text: "gestoría"},
+        { id: "task85", category: "profesional", text: "estudiar"},
+        { id: "task86", category: "profesional", text: "buscar empleo"},
+        { id: "task87", category: "profesional", text: "actualizar currículum"},
+        { id: "task88", category: "profesional", text: "trabajar"},
+        { id: "task89", category: "profesional", text: "negocios"},
+        { id: "task90", category: "profesional", text: "inversiones/empresas"},
+        ];
+        
+        /*{ id: "task1", text: "Administración pública", category: "oficial" },
+        { id: "task2", text: "Afeitado", category: "cuidado-personal" },
+        { id: "task3", text: "Archivos sdcards al dduro", category: "organizacion-personal" },
+        { id: "task4", text: "Archivos portátil al dduro", category: "organizacion-personal" },
+        { id: "task5", text: "Banco", category: "oficial" },
+        { id: "task6", text: "Bricolaje", category: "hogar" },
+        { id: "task7", text: "Búsquedas", category: "hogar" },
+        { id: "task8", text: "Cafetería", category: "vida-social-ocio" },
+        { id: "task9", text: "Cambiar Sábanas", category: "hogar" },
+        { id: "task10", text: "Cenar", category: "cuidado-personal" },
+        { id: "task11", text: "Cine", category: "vida-social-ocio" },
+        { id: "task12", text: "Cita Médica", category: "cuidado-personal" },
+        { id: "task13", text: "Comprar comida", category: "cuidado-personal" },
+        { id: "task14", text: "Comprar prod. higiene", category: "cuidado-personal" },
+        { id: "task15", text: "Comprar prod. limpieza", category: "hogar" },
+        { id: "task16", text: "Comer", category: "cuidado-personal" },
+        { id: "task17", text: "Contabilidad", category: "organizacion-personal" },
+        { id: "task18", text: "Manicura", category: "cuidado-personal" },
+        { id: "task19", text: "Pedicura", category: "cuidado-personal" },
+        { id: "task20", text: "Desayunar", category: "cuidado-personal" },
+        { id: "task21", text: "Dormir", category: "cuidado-personal" },
+        { id: "task22", text: "Ducha", category: "cuidado-personal" },
+        { id: "task23", text: "Ejercicio físico", category: "cuidado-personal" },
+        { id: "task24", text: "Lavar vajilla", category: "hogar" },
+        { id: "task25", text: "Hacer la comida", category: "cuidado-personal" },
+        { id: "task26", text: "Ir a tiendas", category: "organizacion-personal" },
+        { id: "task27", text: "Lavar el cabello", category: "cuidado-personal" },
+        { id: "task28", text: "Lavar ropa", category: "hogar" },
+        { id: "task29", text: "Limpiar el coche", category: "organizacion-personal" },
+        { id: "task30", text: "Limpiar la cocina", category: "hogar" },
+        { id: "task31", text: "Limpiar el suelo", category: "hogar" },
+        { id: "task32", text: "Ordenar la ropa", category: "hogar" },
+        { id: "task33", text: "Ordenar los cajones", category: "hogar" },
+        { id: "task34", text: "Planchar la ropa", category: "hogar" },
+        { id: "task35", text: "Presupuestos", category: "organizacion-personal" },
+        { id: "task36", text: "Quedar con amigos", category: "vida-social-ocio" },
+        { id: "task37", text: "Archivos móvil/portátil", category: "organizacion-personal" },
+        { id: "task38", text: "Archivos nubes y emails", category: "organizacion-personal" },
+        { id: "task39", text: "Guardar marcadores", category: "organizacion-personal" },
+        { id: "task40", text: "Registros y apps", category: "organizacion-personal" },
+        { id: "task41", text: "Mi proyecto web", category: "organizacion-personal" },
+        { id: "task42", text: "Agenda de contactos", category: "organizacion-personal" },
+        { id: "task43", text: "PS5", category: "vida-social-ocio" },
+        { id: "task44", text: "Listas de compras", category: "organizacion-personal" },
+        { id: "task45", text: "Comidas/Cenas", category: "vida-social-ocio" },
+        { id: "task46", text: "Trastero", category: "hogar" }
+    ];*/
+
+    tasks.forEach(task => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.id = task.id;
+        card.draggable = true;
+        card.ondragstart = drag;
+        card.textContent = task.text;
+        
+        // Asigna la tarea a la columna correspondiente
+        document.getElementById(task.category).appendChild(card);
+    });
+});
+
+    </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+    function generatePDF(wrapperId, title) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        let wrapper = document.getElementById(wrapperId);
+        let tasks = [...wrapper.getElementsByClassName("card")];
+
+        if (tasks.length === 0) {
+            doc.text(`${title}\n\nNo hay tareas en esta columna.`, 10, 10);
+        } else {
+            doc.text(title, 10, 10);
+            let y = 20; // Posición inicial para las tareas en el PDF
+
+            tasks.forEach((task, index) => {
+                let taskText = `${index + 1}. ${task.textContent}`;
+                doc.text(taskText, 10, y);
+                y += 10; // Espaciado entre tareas
+            });
+        }
+
+        doc.save(`kanban_${title.toLowerCase()}.pdf`);
+    }
+
+    /*document.addEventListener("DOMContentLoaded", () => {
+    function getRandomColor() {
+        const letters = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+
+    document.querySelectorAll(".card").forEach(card => {
+        card.style.backgroundColor = getRandomColor();
+    });
+});*/
+
+/*document.addEventListener("DOMContentLoaded", function () {
+    const cards = document.querySelectorAll(".card");
+    const hacerHoyColumn = document.getElementById("hacer-hoy");
+
+    cards.forEach(card => {
+        card.addEventListener("touchstart", function (event) {
+            // Previene el desplazamiento mientras se arrastra
+            event.preventDefault();
+            
+            // Mueve la tarjeta a la columna "Hacer hoy"
+            hacerHoyColumn.appendChild(card);
+        });
+    });
+});*/
+
+document.addEventListener("DOMContentLoaded", function () {
+    const hacerHoyColumn = document.getElementById("hacer-hoy");
+
+    if (!hacerHoyColumn) {
+        console.error("El elemento 'hacer-hoy' no existe en el DOM.");
+        return;
+    }
+
+    document.querySelectorAll(".card").forEach(card => {
+        const originalParent = card.parentElement; // Guarda la categoría original
+
+        card.addEventListener("touchstart", function () {
+            if (card.parentElement !== hacerHoyColumn) { // Solo mover si no está en "hacer-hoy"
+                if (!card.querySelector(".remove-btn")) {
+                    const removeBtn = document.createElement("span");
+                    removeBtn.textContent = "✘";
+                    removeBtn.classList.add("remove-btn");
+
+                    removeBtn.addEventListener("click", function () {
+                        if (originalParent) {
+                            originalParent.appendChild(card);
+                            removeBtn.remove(); // Elimina el botón al regresar
+                        }
+                    });
+
+                    card.appendChild(removeBtn);
+                }
+
+                hacerHoyColumn.appendChild(card);
+            }
+        });
+    });
+});
+</script>
+<script>
+   document.addEventListener("DOMContentLoaded", function () {
+    const printButton = document.querySelector(".print-button");
+
+    printButton.addEventListener("click", function () {
+        // Guardar los estilos originales
+        const originalText = "IMPRIMIR";
+        const originalBgColor = "#444";
+        const originalTextColor = "rgb(146, 146, 146)";
+
+        // Cambiar el texto y los estilos al hacer clic
+        this.textContent = "Imprimido con éxito!";
+        this.style.backgroundColor = "#ea1515";
+        this.style.color = "#fff";
+
+        // Restaurar el estado original después de 10 segundos
+        setTimeout(() => {
+            this.textContent = originalText;
+            this.style.backgroundColor = originalBgColor;
+            this.style.color = originalTextColor;
+        }, 10000);
+    });
+});
+</script>
+</body>
+</html>
