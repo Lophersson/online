@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicación de la Función FuncionSumaEdades</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 5px;
+            font-size: 1.1em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Explicación de la Función <code>FuncionSumaEdades</code></h1>
+
+    <h2>Código del Pseudocódigo</h2>
+    <pre>
+        INICIO
+            FUNCION int FuncionSumaEdades()
+                INICIO
+                    DECLARAR RESULT COMO ENTERO = 0
+                    DECLARAR CONTADOR COMO ENTERO = 0
+                    DECLARAR LONGITUD COMO ENTERO = LONGITUD(ListaCiudades)
+
+                    MIENTRAS CONTADOR < LONGITUD HACER
+                        SI (ListaCiudades[CONTADOR] == "Ferrol") ENTONCES
+                            RESULT = RESULT + ListaEdades[CONTADOR]
+                        FIN_SI
+                        CONTADOR = CONTADOR + 1
+                    FIN_MIENTRAS
+
+                    RETORNAR RESULT
+                FIN
+            FIN_FUNCION
+        FIN
+    </pre>
+
+    <h2>Explicación</h2>
+    <p>La función <code>FuncionSumaEdades</code> recorre una lista de ciudades y, si la ciudad es "Ferrol", suma las edades correspondientes en la lista <code>ListaEdades</>. Al final, retorna la suma total de todas las edades asociadas a "Ferrol".</p>
+    <ul>
+        <li>La función declara tres variables: <code>RESULT</code> (para almacenar la suma de las edades), <code>CONTADOR</code> (como índice para recorrer las listas), y <code>LONGITUD</code> (que almacena el tamaño de la lista <code>ListaCiudades</code>).</li>
+        <li>En el bucle <code>MIENTRAS</code>, la función verifica si la ciudad en la posición <code>CONTADOR</code> es "Ferrol". Si es así, se suma la edad correspondiente de la lista <code>ListaEdades</code> al valor de <code>RESULT</code>.</li>
+        <li>El bucle continúa hasta que se han procesado todas las ciudades en <code>ListaCiudades</code>.</li>
+        <li>Finalmente, la función retorna el valor de <code>RESULT</code>, que es la suma total de todas las edades asociadas a "Ferrol".</li>
+    </ul>
+
+    <h2>Ejemplo con Datos:</h2>
+    <pre>
+        ListaNombres = ["Juan", "Manuel", "Marta", "Luisa"]
+        ListaCiudades = ["Madrid", "Ferrol", "Ferrol", "Ferrol"]
+        ListaEdades = [23, 12, 35, 11]
+    </pre>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Ciudad</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ferrol</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>Ferrol</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>Ferrol</td>
+                <td>11</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Detalles del Caso de Prueba</h2>
+    <p>Cuando la función recibe las listas de ciudades y edades mencionadas, el proceso sería el siguiente:</p>
+    <ul>
+        <li>Inicialmente, <code>RESULT = 0</code> y <code>CONTADOR = 0</code>.</li>
+        <li>En la primera iteración del bucle, la ciudad es "Madrid" y no se realiza ninguna suma, luego <code>CONTADOR = 1</code>.</li>
+        <li>En la segunda iteración, la ciudad es "Ferrol" y se suma la edad 12 a <code>RESULT</>, quedando <code>RESULT = 12</code>, luego <code>CONTADOR = 2</code>.</li>
+        <li>En la tercera iteración, la ciudad es "Ferrol" y se suma la edad 35 a <code>RESULT</>, quedando <code>RESULT = 47</code>, luego <code>CONTADOR = 3</code>.</li>
+        <li>En la cuarta iteración, la ciudad es "Ferrol" y se suma la edad 11 a <code>RESULT</>, quedando <code>RESULT = 58</code>, luego <code>CONTADOR = 4</code>.</li>
+        <li>El bucle termina porque <code>CONTADOR = 4</code> ya no es menor que <code>LONGITUD = 4</code>.</li>
+        <li>La función retorna <code>RESULT = 58</code>.</li>
+    </ul>
+
+    <h2>Conclusión</h2>
+    <p>La función <code>FuncionSumaEdades</code> es útil cuando se necesita realizar una suma condicional de valores, en este caso, las edades de personas que viven en la ciudad de "Ferrol". Este tipo de función puede adaptarse a diferentes necesidades donde sea necesario sumar solo los elementos que cumplen una condición específica.</p>
+
+</body>
+</html>
