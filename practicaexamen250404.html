@@ -45,6 +45,17 @@
             text-align: center;
             font-size: 14px;
         }
+        @media (max-width: 768px) {
+    .squares-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .square {
+        width: 48%; /* Ajusta el ancho para que se alineen dos por fila */
+        margin-bottom: 20px; /* Espacio entre filas */
+    }
+}
     </style>
 </head>
 <body>
