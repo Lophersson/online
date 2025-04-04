@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicación de la Función FuncionTexto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 5px;
+            font-size: 1.1em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Explicación de la Función <code>FuncionTexto</code></h1>
+
+    <h2>Código de la función</h2>
+    <pre>
+        static string FuncionTexto (string texto, int x) {
+            string resultado = "";
+
+            for (int i = 0; i < texto.Length; i++) {
+                char c = texto[i];
+
+                for (int j = 0; j < x; j++) {
+                    resultado = resultado + c;
+                }
+            }
+
+            return resultado;
+        }
+    </pre>
+
+    <h2>Explicación</h2>
+    <p>La función <code>FuncionTexto</code> recibe dos parámetros: un texto (cadena de caracteres) y un número entero <code>x</code>.</p>
+    <ul>
+        <li>La función inicializa una variable <code>resultado</code> como una cadena vacía.</li>
+        <li>Luego, recorre cada carácter en el texto con un bucle <code>for</code> y, para cada carácter, lo repite <code>x</code> veces dentro de un bucle anidado.</li>
+        <li>La función concatena cada repetición del carácter al resultado final.</li>
+        <li>Al final, retorna la cadena <code>resultado</code>, que contiene todos los caracteres del texto repetidos <code>x</code> veces.</li>
+    </ul>
+
+    <h2>Ejemplo con Entrada: <code>"HOLA"</code> y <code>x = 3</code></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Texto</th>
+                <th>Valor de x</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>"HOLA"</td>
+                <td>3</td>
+                <td>"HHHOOOLLLAAA"</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Detalles del Caso de Prueba</h2>
+    <p>Cuando la función recibe el texto <code>"HOLA"</code> y <code>x = 3</code>, el proceso sería el siguiente:</p>
+    <ul>
+        <li>La función toma la letra 'H' y la repite 3 veces: <code>"HHH"</code>.</li>
+        <li>Luego toma la letra 'O' y la repite 3 veces: <code>"OOO"</code>.</li>
+        <li>Después toma la letra 'L' y la repite 3 veces: <code>"LLL"</code>.</li>
+        <li>Finalmente, toma la letra 'A' y la repite 3 veces: <code>"AAA"</code>.</li>
+        <li>El resultado final es: <code>"HHHOOOLLLAAA"</code>.</li>
+    </ul>
+
+    <h2>Conclusión</h2>
+    <p>La función <code>FuncionTexto</code> permite repetir cada carácter de una cadena un número especificado de veces, lo cual puede ser útil para crear patrones de texto o generar cadenas modificadas según ciertas condiciones.</p>
+
+</body>
+</html>
