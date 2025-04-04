@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicación de la Función ProcesarLista</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 5px;
+            font-size: 1.1em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Explicación de la Función <code>ProcesarLista</code></h1>
+
+    <h2>Código de la función</h2>
+    <pre>
+        static int ProcesarLista(List<int> numeros) {
+            if (numeros.Count == 0) {
+                return 0;
+            } else {
+                int s = 0;
+                int t = 1;
+
+                foreach (int num in numeros) {
+                    s = s + num;
+                    t = t * num;
+                }
+
+                int m = (s + t) / 2;
+
+                if (m % 2 == 0) {
+                    return m;
+                } else {
+                    return 0;
+                }
+            }
+        }
+    </pre>
+
+    <h2>Explicación</h2>
+    <p>La función <code>ProcesarLista</code> realiza las siguientes operaciones:</p>
+    <ul>
+        <li><strong>Si la lista está vacía</strong> (cuando el número de elementos es cero), la función retorna <code>0</code>.</li>
+        <li>Si la lista no está vacía, la función calcula dos valores:</li>
+        <ul>
+            <li><strong>suma de los elementos</strong>: La variable <code>s</code> acumula la suma de todos los elementos de la lista.</li>
+            <li><strong>producto de los elementos</strong>: La variable <code>t</code> acumula el producto de todos los elementos de la lista.</li>
+        </ul>
+        <li>Luego, se calcula <code>m</code>, que es la media entre la suma y el producto de los elementos.</li>
+        <li>Si <code>m</code> es un número par, se devuelve <code>m</code>; de lo contrario, se devuelve <code>0</code>.</li>
+    </ul>
+
+    <h2>Casos de prueba</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Entrada</th>
+                <th>Suma (s)</th>
+                <th>Producto (t)</th>
+                <th>Cálculo de m</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>[2, 3, 4, 2]</td>
+                <td>11</td>
+                <td>48</td>
+                <td>29.5 (aproximado a 29)</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>[1, 3]</td>
+                <td>4</td>
+                <td>3</td>
+                <td>3.5 (aproximado a 3)</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>[]</td>
+                <td>0</td>
+                <td>No aplica</td>
+                <td>No aplica</td>
+                <td>0</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Conclusión</h2>
+    <p>
+        - Si la lista tiene elementos y la media de la suma y el producto es par, la función devuelve esa media.<br>
+        - Si la media es impar o la lista está vacía, la función devuelve <code>0</code>.<br>
+        - Un posible error en la implementación sería el cálculo de la media si los números no suman un entero, como en el caso de los números con decimales.
+    </p>
+    
+</body>
+</html>
