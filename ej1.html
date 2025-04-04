@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explicación de la Función AddFunction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 5px;
+            font-size: 1.1em;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        td {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Explicación de la Función <code>AddFunction</code></h1>
+
+    <h2>Código del Pseudocódigo</h2>
+    <pre>
+        INICIO
+            FUNCION int AddFunction(int n)
+                INICIO
+                    DECLARAR RESULT COMO ENTERO = 0
+                    DECLARAR CONTADOR COMO ENTERO = 0
+
+                    MIENTRAS CONTADOR <= n HACER
+                        RESULT = RESULT + CONTADOR
+                        CONTADOR = CONTADOR + 1
+                    FIN_MIENTRAS
+
+                    RETORNAR RESULT
+                FIN
+            FIN_FUNCION
+        FIN
+    </pre>
+
+    <h2>Explicación</h2>
+    <p>La función <code>AddFunction</code> realiza una suma de todos los números enteros desde 0 hasta el valor <code>n</code> que se pasa como argumento. A continuación se describe cómo funciona:</p>
+    <ul>
+        <li>La función declara dos variables: <code>RESULT</code>, que se inicializa en 0, y <code>CONTADOR</code>, que también comienza en 0.</li>
+        <li>El programa entra en un bucle <code>MIENTRAS</code> que continuará ejecutándose mientras que <code>CONTADOR</code> sea menor o igual a <code>n</code>.</li>
+        <li>En cada iteración del bucle, el valor de <code>CONTADOR</code> se suma a <code>RESULT</code>, y luego <code>CONTADOR</code> se incrementa en 1.</li>
+        <li>Una vez que <code>CONTADOR</code> supera el valor de <code>n</code>, el bucle se detiene y la función retorna el valor de <code>RESULT</code>, que es la suma de todos los números desde 0 hasta <code>n</code>.</li>
+    </ul>
+
+    <h2>Ejemplo con Entrada: <code>n = 5</code></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Valor de n</th>
+                <th>Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>5</td>
+                <td>15</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Detalles del Caso de Prueba</h2>
+    <p>Cuando la función recibe <code>n = 5</code>, el proceso sería el siguiente:</p>
+    <ul>
+        <li>Inicialmente, <code>RESULT = 0</code> y <code>CONTADOR = 0</code>.</li>
+        <li>En la primera iteración del bucle, <code>RESULT = RESULT + CONTADOR = 0 + 0 = 0</code>, y luego <code>CONTADOR = 1</code>.</li>
+        <li>En la segunda iteración, <code>RESULT = 0 + 1 = 1</code>, y luego <code>CONTADOR = 2</code>.</li>
+        <li>En la tercera iteración, <code>RESULT = 1 + 2 = 3</code>, y luego <code>CONTADOR = 3</code>.</li>
+        <li>En la cuarta iteración, <code>RESULT = 3 + 3 = 6</code>, y luego <code>CONTADOR = 4</code>.</li>
+        <li>En la quinta iteración, <code>RESULT = 6 + 4 = 10</code>, y luego <code>CONTADOR = 5</code>.</li>
+        <li>En la sexta iteración, <code>RESULT = 10 + 5 = 15</code>, y luego <code>CONTADOR = 6</code>.</li>
+        <li>El bucle termina porque <code>CONTADOR = 6 > n = 5</code>, y la función retorna <code>RESULT = 15</code>.</li>
+    </ul>
+
+    <h2>Conclusión</h2>
+    <p>La función <code>AddFunction</code> es útil para calcular la suma de todos los números enteros desde 0 hasta un número <code>n</code> dado. Este tipo de funciones pueden utilizarse en contextos donde necesites realizar sumas acumulativas o totales de una secuencia de números.</p>
+
+</body>
+</html>
