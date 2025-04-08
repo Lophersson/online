@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendario 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      overflow-x: hidden;
+      padding: 0rem;
+      animation: backgroundShift 20s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 10px #00fff7;
+    }
+
+    .calendar-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .calendar-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      animation: lightPulse 3s ease-in-out infinite;
+      flex: 0 0 300px; /* Cambiar a un tamaño más ancho que alto */
+      margin-bottom: 2rem;
+    }
+
+    @keyframes lightPulse {
+      0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+      50% { box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); }
+      100% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.2); }
+    }
+
+    .calendar-header {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #00fff7;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1rem;
+    }
+
+    .calendar-day {
+      text-align: center;
+      padding: 0.5rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .calendar-day:hover {
+      background-color: rgba(0, 255, 255, 0.2);
+    }
+
+    .calendar-day.other-month {
+      color: #888;
+    }
+
+    .calendar-day.today {
+      background-color: #00fff7;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .footer {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 1rem;
+  text-shadow: 0 0 10px #00fff7;
+  color: #00fff7;
+}
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .calendar-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .calendar-card {
+    flex: 0 0 90%;
+    padding: 1.5rem;
+  }
+
+  .calendar-header {
+    font-size: 1.5rem;
+  }
+
+  .calendar-grid {
+    grid-template-columns: repeat(7, 1fr); /* más cómodo en pantallas pequeñas */
+    gap: 0.5rem;
+  }
+
+  .calendar-day {
+    font-size: 1rem;
+    padding: 0.4rem;
+  }
+
+  .footer {
+    font-size: 0.9rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <h1>Calendario 2025</h1>
+  <div class="calendar-container">
+    <!-- Abril 2025 -->
+<div class="calendar-card">
+    <div class="calendar-header">Abril 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Abril empieza en martes, así que dejamos 1 día vacío (lunes) -->
+      <div class="calendar-day other-month">31</div>
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day today">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+    </div>
+</div>
+
+    <!-- Mayo 2025 -->
+<div class="calendar-card">
+    <div class="calendar-header">Mayo 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Mayo empieza en jueves (1), así que se agregan 3 días previos -->
+      <div class="calendar-day other-month">28</div>
+      <div class="calendar-day other-month">29</div>
+      <div class="calendar-day other-month">30</div>
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+      <div class="calendar-day">31</div>
+    </div>
+</div>
+
+    <!-- Junio 2025 -->
+<div class="calendar-card">
+    <div class="calendar-header">Junio 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Junio empieza en domingo, sin días previos -->
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+    </div>
+</div>
+
+  <!-- Julio 2025 -->
+<div class="calendar-card">
+    <div class="calendar-header">Julio 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Julio empieza en martes -->
+      <div class="calendar-day other-month">30</div>
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+      <div class="calendar-day">31</div>
+    </div>
+</div>
+  
+  <!-- Agosto 2025 -->
+  <div class="calendar-card">
+    <div class="calendar-header">Agosto 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Agosto empieza en viernes -->
+      <div class="calendar-day other-month">28</div>
+      <div class="calendar-day other-month">29</div>
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+      <div class="calendar-day">31</div>
+    </div>
+</div>
+  
+  <!-- Septiembre 2025 -->
+  <div class="calendar-card">
+    <div class="calendar-header">Septiembre 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Septiembre empieza en lunes -->
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+    </div>
+</div>
+  
+  <!-- Octubre 2025 -->
+  <div class="calendar-card">
+    <div class="calendar-header">Octubre 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Octubre empieza en miércoles -->
+      <div class="calendar-day other-month">29</div>
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+      <div class="calendar-day">31</div>
+    </div>
+</div>
+  
+  <!-- Noviembre 2025 -->
+  <div class="calendar-card">
+    <div class="calendar-header">Noviembre 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Noviembre empieza en sábado -->
+      <div class="calendar-day other-month">27</div>
+      <div class="calendar-day other-month">28</div>
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+    </div>
+</div>
+  
+  <!-- Diciembre 2025 -->
+  <div class="calendar-card">
+    <div class="calendar-header">Diciembre 2025</div>
+    <div class="calendar-grid">
+      <div class="calendar-day">L</div>
+      <div class="calendar-day">M</div>
+      <div class="calendar-day">X</div>
+      <div class="calendar-day">J</div>
+      <div class="calendar-day">V</div>
+      <div class="calendar-day">S</div>
+      <div class="calendar-day">D</div>
+      <!-- Diciembre empieza en lunes -->
+      <div class="calendar-day">1</div>
+      <div class="calendar-day">2</div>
+      <div class="calendar-day">3</div>
+      <div class="calendar-day">4</div>
+      <div class="calendar-day">5</div>
+      <div class="calendar-day">6</div>
+      <div class="calendar-day">7</div>
+      <div class="calendar-day">8</div>
+      <div class="calendar-day">9</div>
+      <div class="calendar-day">10</div>
+      <div class="calendar-day">11</div>
+      <div class="calendar-day">12</div>
+      <div class="calendar-day">13</div>
+      <div class="calendar-day">14</div>
+      <div class="calendar-day">15</div>
+      <div class="calendar-day">16</div>
+      <div class="calendar-day">17</div>
+      <div class="calendar-day">18</div>
+      <div class="calendar-day">19</div>
+      <div class="calendar-day">20</div>
+      <div class="calendar-day">21</div>
+      <div class="calendar-day">22</div>
+      <div class="calendar-day">23</div>
+      <div class="calendar-day">24</div>
+      <div class="calendar-day">25</div>
+      <div class="calendar-day">26</div>
+      <div class="calendar-day">27</div>
+      <div class="calendar-day">28</div>
+      <div class="calendar-day">29</div>
+      <div class="calendar-day">30</div>
+      <div class="calendar-day">31</div>
+    </div>
+</div>
+
+<div id="task-section" style="display: none; padding: 2rem; background-color: rgba(255,255,255,0.05); border-top: 2px solid #00fff7;">
+  <h2 style="font-family: 'Orbitron', sans-serif; color: #00fff7; margin-bottom: 1rem;">Tareas del <span id="task-date"></span></h2>
+  <ul id="task-list" style="list-style: none; padding-left: 1rem;">
+    <!-- Las tareas se insertarán aquí -->
+  </ul>
+</div>
+  
+  <footer class="footer">
+    Hecho por Lophersson con 💙 en 2025
+  </footer>  
+
+  <script>
+    const tareas = {
+      '2025-04-19': [
+        { hora: '10:00', texto: 'Cumpleaños de Jenny Paola ❤️' }
+      ],
+      '2025-04-25': [
+        { hora: '09:00', texto: 'Examen Formularios 📄' }
+      ],
+      '2025-06-07': [
+        { hora: '10:00', texto: 'Mi Cumpleaños 🤩' }
+      ],
+      '2025-06-09': [
+        { hora: '10:00', texto: 'Cumpleaños de Salomón 11 años 🎂' }
+      ],
+      '2025-06-16': [
+        { hora: '10:00', texto: 'Cumpleaños de Martín 17 años 🎂' }
+      ],
+      '2025-06-23': [
+        { hora: '10:00', texto: 'San Juan en A Coruña 🔥' }
+      ],
+      '2025-09-07': [
+        { hora: '10:00', texto: 'Cumpleaños de María José 6 años 🎂' }
+      ]
+    };
+  
+    document.querySelectorAll('.calendar-day:not(.other-month):not(:nth-child(-n+7))').forEach(day => {
+      day.style.cursor = 'pointer';
+      day.addEventListener('click', () => {
+        const monthCard = day.closest('.calendar-card');
+        const monthHeader = monthCard.querySelector('.calendar-header').textContent;
+        const dayNumber = day.textContent.trim();
+  
+        const months = {
+          'Enero': '01', 'Febrero': '02', 'Marzo': '03',
+          'Abril': '04', 'Mayo': '05', 'Junio': '06',
+          'Julio': '07', 'Agosto': '08', 'Septiembre': '09',
+          'Octubre': '10', 'Noviembre': '11', 'Diciembre': '12'
+        };
+  
+        const [mesNombre, anio] = monthHeader.split(' ');
+        const mesNumero = months[mesNombre];
+        const diaFormateado = dayNumber.padStart(2, '0');
+        const fechaClave = `${anio}-${mesNumero}-${diaFormateado}`;
+  
+        const lista = document.getElementById('task-list');
+        const fechaTexto = document.getElementById('task-date');
+        lista.innerHTML = '';
+  
+        if (tareas[fechaClave]) {
+          tareas[fechaClave].sort((a, b) => a.hora.localeCompare(b.hora)).forEach(tarea => {
+            const item = document.createElement('li');
+            item.innerHTML = `<strong>${tarea.hora}</strong> - ${tarea.texto}`;
+            lista.appendChild(item);
+          });
+        } else {
+          lista.innerHTML = '<li>No hay tareas para este día.</li>';
+        }
+  
+        fechaTexto.textContent = `${dayNumber} de ${mesNombre} de ${anio}`;
+        document.getElementById('task-section').style.display = 'block';
+        document.getElementById('task-section').scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+ 
+    
+</body>
+</html>
