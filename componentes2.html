@@ -32,7 +32,8 @@
       border-radius: 15px;
       padding: 20px;
       width: 80%;
-      max-width: 800px;
+      max-width: 600px;
+      max-height: 500px;
       background: rgba(0, 0, 0, 0.5);
       box-shadow: 0 0 20px #00fff7, 0 0 60px #00fff7;
       position: relative;
@@ -60,41 +61,43 @@
       }
     }
 
-    .nav-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: 2px solid #00fff7;
-      color: #00fff7;
-      font-size: 24px;
-      padding: 10px;
-      cursor: pointer;
-      transition: all 0.2s ease-in-out;
-    }
+    .nav-buttons-container {
+  margin-top: 15px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
 
-    .nav-button:hover {
-      background-color: #00fff7;
-      color: #000;
-    }
+.nav-button {
+  background: none;
+  border: 2px solid #00fff7;
+  color: #00fff7;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 8px;
+  padding: 10px 30px;
+  min-width: 150px;
+  text-align: center;
+}
 
-    #prevBtn {
-      left: -60px;
-    }
-
-    #nextBtn {
-      right: -60px;
-    }
+.nav-button:hover {
+  background-color: #00fff7;
+  color: #000;
+}
 
     #copyBtn {
       margin-top: 20px;
       background: none;
       border: 2px solid #00fff7;
+      border-radius: 8px;
       color: #00fff7;
-      font-size: 18px;
-      padding: 10px 20px;
+      font-size: 24px;
+      padding: 10px 30px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+      text-align: center;
+      min-width: 320px;
     }
 
     #copyBtn:hover {
@@ -109,9 +112,13 @@
     <div id="code" class="code-display">
       // Aquí se mostrará el código C#
     </div>
+  </div>
+  
+  <div class="nav-buttons-container">
     <button id="prevBtn" class="nav-button">⟨</button>
     <button id="nextBtn" class="nav-button">⟩</button>
   </div>
+  
   <button id="copyBtn">📋 Copiar código</button>
 
   <script>
