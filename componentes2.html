@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Componentes2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #0f0f0f, #000000);
+      font-family: 'Orbitron', sans-serif;
+      color: #00fff7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow: hidden;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      text-shadow: 0 0 10px #00fff7, 0 0 20px #00fff7;
+      margin-bottom: 30px;
+      font-size: 2em;
+    }
+
+    .neon-box {
+      border: 2px solid #0ff;
+      border-radius: 15px;
+      padding: 20px;
+      width: 80%;
+      max-width: 800px;
+      background: rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 20px #00fff7, 0 0 60px #00fff7;
+      position: relative;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .code-display {
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 16px;
+      line-height: 1.5;
+      animation: glowText 2s ease-in-out infinite alternate;
+      overflow-y: auto;
+      max-height: 60vh;
+    }
+
+    @keyframes glowText {
+      from {
+        text-shadow: 0 0 5px #00fff7, 0 0 10px #00fff7;
+      }
+      to {
+        text-shadow: 0 0 20px #00fff7, 0 0 30px #00fff7;
+      }
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 2px solid #00fff7;
+      color: #00fff7;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .nav-button:hover {
+      background-color: #00fff7;
+      color: #000;
+    }
+
+    #prevBtn {
+      left: -60px;
+    }
+
+    #nextBtn {
+      right: -60px;
+    }
+
+    #copyBtn {
+      margin-top: 20px;
+      background: none;
+      border: 2px solid #00fff7;
+      color: #00fff7;
+      font-size: 18px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    #copyBtn:hover {
+      background-color: #00fff7;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio de C# Jueves 10 de Abril de 2025</h1>
+  <div class="neon-box">
+    <div id="code" class="code-display">
+      // Aquí se mostrará el código C#
+    </div>
+    <button id="prevBtn" class="nav-button">⟨</button>
+    <button id="nextBtn" class="nav-button">⟩</button>
+  </div>
+  <button id="copyBtn">📋 Copiar código</button>
+
+  <script>
+    const codes = [
+    `// Componentes2.cs\n
+using System;
+using System.Windows.Forms;
+
+namespace Formularios {
+    public partial class Componentes2 : Form {
+        public Componentes2() {
+            InitializeComponent();
+
+            buttonAgregarLista.Click += ButtonAgregarLista_Click;
+            buttonAgregarTree.Click += ButtonAgregarTree_Click;
+        }
+
+        private void ButtonAgregarLista_Click(object sender, EventArgs e) {
+            if (radioUno.Checked)
+                listBox.Items.Add("UNO");
+            else if (radioDos.Checked)
+                listBox.Items.Add("DOS");
+            else if (radioTres.Checked)
+                listBox.Items.Add("TRES");
+            else
+                MessageBox.Show("Seleccione una opción antes de agregar.");
+        }
+
+        private void ButtonAgregarTree_Click(object sender, EventArgs e) {
+            string texto = textBoxNodo.Text.Trim();
+
+            if (string.IsNullOrEmpty(texto)) {
+                MessageBox.Show("Ingrese un texto para agregar al TreeView.");
+                return;
+            }
+
+            if (radioNodo.Checked) {
+                treeView.Nodes.Add(new TreeNode(texto));
+            } else if (radioHijo.Checked) {
+                if (treeView.SelectedNode != null) {
+                    treeView.SelectedNode.Nodes.Add(new TreeNode(texto));
+                    treeView.SelectedNode.Expand();
+                } else {
+                    MessageBox.Show("Seleccione un nodo al cual agregar el hijo.");
+                }
+            } else {
+                MessageBox.Show("Seleccione NODO o HIJO.");
+            }
+
+            textBoxNodo.Clear();
+        }
+    }
+}`,
+      `// Componentes2.Designer.cs\n
+      namespace Formularios {
+    partial class Componentes2 {
+        private System.ComponentModel.IContainer components = null;
+
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent() {
+            this.labelTitulo = new System.Windows.Forms.Label();
+            this.radioUno = new System.Windows.Forms.RadioButton();
+            this.radioDos = new System.Windows.Forms.RadioButton();
+            this.radioTres = new System.Windows.Forms.RadioButton();
+            this.buttonAgregarLista = new System.Windows.Forms.Button();
+            this.listBox = new System.Windows.Forms.ListBox();
+            this.groupBoxTipo = new System.Windows.Forms.GroupBox();
+            this.radioNodo = new System.Windows.Forms.RadioButton();
+            this.radioHijo = new System.Windows.Forms.RadioButton();
+            this.treeView = new System.Windows.Forms.TreeView();
+            this.textBoxNodo = new System.Windows.Forms.TextBox();
+            this.buttonAgregarTree = new System.Windows.Forms.Button();
+
+            this.groupBoxTipo.SuspendLayout();
+            this.SuspendLayout();
+
+            // 
+            // labelTitulo
+            // 
+            this.labelTitulo.Text = "COMPONENTES 2";
+            this.labelTitulo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.labelTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.labelTitulo.Height = 50;
+
+            // 
+            // radioUno
+            // 
+            this.radioUno.Text = "UNO";
+            this.radioUno.Location = new System.Drawing.Point(20, 60);
+            // 
+            // radioDos
+            // 
+            this.radioDos.Text = "DOS";
+            this.radioDos.Location = new System.Drawing.Point(20, 90);
+            // 
+            // radioTres
+            // 
+            this.radioTres.Text = "TRES";
+            this.radioTres.Location = new System.Drawing.Point(20, 120);
+            // 
+            // buttonAgregarLista
+            // 
+            this.buttonAgregarLista.Text = "+";
+            this.buttonAgregarLista.Location = new System.Drawing.Point(20, 150);
+            // 
+            // listBox
+            // 
+            this.listBox.Location = new System.Drawing.Point(150, 60);
+            this.listBox.Size = new System.Drawing.Size(120, 120);
+
+            // 
+            // groupBoxTipo
+            // 
+            this.groupBoxTipo.Controls.Add(this.radioNodo);
+            this.groupBoxTipo.Controls.Add(this.radioHijo);
+            this.groupBoxTipo.Location = new System.Drawing.Point(20, 200);
+            this.groupBoxTipo.Size = new System.Drawing.Size(120, 70);
+            this.groupBoxTipo.Text = "Tipo";
+
+            // 
+            // radioNodo
+            // 
+            this.radioNodo.Text = "NODO";
+            this.radioNodo.Location = new System.Drawing.Point(10, 20);
+            // 
+            // radioHijo
+            // 
+            this.radioHijo.Text = "HIJO";
+            this.radioHijo.Location = new System.Drawing.Point(10, 40);
+            // 
+            // textBoxNodo
+            // 
+            this.textBoxNodo.Location = new System.Drawing.Point(20, 280);
+            this.textBoxNodo.Size = new System.Drawing.Size(120, 23);
+
+            // 
+            // buttonAgregarTree
+            // 
+            this.buttonAgregarTree.Text = "+";
+            this.buttonAgregarTree.Location = new System.Drawing.Point(20, 310);
+            this.buttonAgregarTree.Size = new System.Drawing.Size(120, 30);
+
+            // 
+            // treeView
+            // 
+            this.treeView.Location = new System.Drawing.Point(180, 200);
+            this.treeView.Size = new System.Drawing.Size(150, 140);
+
+            // 
+            // Componentes2
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.ClientSize = new System.Drawing.Size(360, 360);
+            this.Controls.Add(this.labelTitulo);
+            this.Controls.Add(this.radioUno);
+            this.Controls.Add(this.radioDos);
+            this.Controls.Add(this.radioTres);
+            this.Controls.Add(this.buttonAgregarLista);
+            this.Controls.Add(this.listBox);
+            this.Controls.Add(this.groupBoxTipo);
+            this.Controls.Add(this.textBoxNodo);
+            this.Controls.Add(this.buttonAgregarTree);
+            this.Controls.Add(this.treeView);
+            this.Text = "Componentes2";
+
+            this.groupBoxTipo.ResumeLayout(false);
+            this.groupBoxTipo.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+        }
+
+        private System.Windows.Forms.Label labelTitulo;
+        private System.Windows.Forms.RadioButton radioUno;
+        private System.Windows.Forms.RadioButton radioDos;
+        private System.Windows.Forms.RadioButton radioTres;
+        private System.Windows.Forms.Button buttonAgregarLista;
+        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.GroupBox groupBoxTipo;
+        private System.Windows.Forms.RadioButton radioNodo;
+        private System.Windows.Forms.RadioButton radioHijo;
+        private System.Windows.Forms.TreeView treeView;
+        private System.Windows.Forms.TextBox textBoxNodo;
+        private System.Windows.Forms.Button buttonAgregarTree;
+    }
+}`,
+      `// Program.cs\n
+     using System;
+using System.Windows.Forms;
+
+namespace Formularios {
+    static class Program {
+        [STAThread]
+        static void Main() {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Componentes2());
+        }
+    }
+}`,
+      `// Agradecimientos\n
+      Gracias por su visita. ©2025 Web diseñada y realizada por Lophersson;`
+    ];
+
+    let index = 0;
+    const codeElement = document.getElementById("code");
+
+    function showCode(i) {
+      codeElement.textContent = codes[i];
+      codeElement.scrollTop = 0;
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      index = (index - 1 + codes.length) % codes.length;
+      showCode(index);
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      index = (index + 1) % codes.length;
+      showCode(index);
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", () => {
+      navigator.clipboard.writeText(codes[index])
+        .then(() => alert("¡Código copiado al portapapeles!"))
+        .catch(err => alert("Error al copiar: " + err));
+    });
+
+    // Mostrar el primer código al cargar
+    showCode(index);
+  </script>
+</body>
+</html>
