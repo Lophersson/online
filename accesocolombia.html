@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tareas Proyecto Final - Login</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<style>
+    body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(-45deg, #ff6ec4, #7873f5, #4dd0e1, #ffc371);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.login-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.icono {
+    font-size: 96px;
+    text-align: center;
+    padding-top: 6px;
+}
+
+h1 {
+    font-size: 30px;
+    text-align: center;
+    margin: 4px 0;
+}
+
+label {
+    font-size: 16px;
+    display: block;
+    margin: 16px 0 10px;
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center; /* Alinea verticalmente al centro */
+    gap: 6px; /* Espacio entre el checkbox y el texto */
+}
+
+    .checkbox-container input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+    }
+
+.info-text {
+    font-size: 12px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button {
+    font-size: 14px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-aceptar {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.btn-cancelar {
+    background-color: #f44336;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+        .login-container h1 {
+            font-size: 24px;
+        }
+
+        .login-container input {
+            width: 95%;
+            font-size: 16px;
+        }
+
+        .login-container button {
+            width: 100%;
+            font-size: 16px;
+        }
+
+    .icono img {
+        width: 100px;
+    }
+
+    .checkbox-container {
+        display: flex;
+        align-items: left; /* Alinea verticalmente al centro */
+        gap: 6px; /* Espacio entre el checkbox y el texto */
+    }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-top: 10px; /* Ajusta el margen superior para centrarlo verticalmente */
+            width: 16px;
+            height: 16px;
+        }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .info-text {
+        font-size: 10px;
+        text-align: justify;
+    }
+}
+</style>
+<body>
+    <div class="login-container">
+        <div class="icono"></div>
+        <div class="icono" style="text-align: center; padding: 20px;">
+            <img src="https://flagcdn.com/w320/co.png" alt="Bandera de Colombia" style="width: 120px; height: auto; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);" />
+        </div>
+        <h1>ACCESO</h1>
+        <label for="usuario">USUARIO</label>
+        <input type="text" id="usuario" placeholder="Ingrese su usuario">
+
+        <label for="clave">CLAVE</label>
+        <input type="password" id="clave" placeholder="Ingrese su clave">
+
+        <div class="checkbox-container">
+            <input type="checkbox" id="terminos">
+            <label for="terminos">Aceptar los términos legales</label>
+        </div>
+        <div class="info-text">
+            Aceptando los términos legales, usted acepta las condiciones, usos y abusos de las tecnologías digitales
+        </div>
+
+        <div class="buttons">
+            <button class="btn-aceptar" onclick="aceptar()">✔ ACEPTAR</button>
+            <button class="btn-cancelar" onclick="cancelar()">❌ CANCELAR</button>
+        </div>
+    </div>
+
+    <script>
+    function aceptar() {
+      const usuario = document.getElementById("usuario").value;
+      const clave = document.getElementById("clave").value;
+      const terminos = document.getElementById("terminos").checked;
+
+      if (!usuario || !clave) {
+        alert("Por favor, rellene todos los campos.");
+        return;
+      }
+
+      if (!terminos) {
+        alert("Debe aceptar los términos legales.");
+        return;
+      }
+
+      alert("Inicio de sesión exitoso para " + usuario);
+    }
+
+    function cancelar() {
+      document.getElementById("usuario").value = "";
+      document.getElementById("clave").value = "";
+      document.getElementById("terminos").checked = false;
+    }
+    </script>
+</body>
+</html>
