@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>cerditos lindos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            background: linear-gradient(-45deg, #ff6ec4, /* rosa */
+            #ff0000, /* rojo */
+            #ff8c00, /* naranja oscuro */
+            #ffff00, /* amarillo */
+            #32cd32, /* verde lima */
+            #4dd0e1, /* azul turquesa */
+            #7873f5, /* violeta */
+            #ffc371 /* naranja suave */
+            );
+            background-size: 400% 400%;
+            animation: gradientBG 5s ease infinite;
+        }
+
+        h1, p {
+            color: white;
+            text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+            animation: neonGlow 5s ease-in-out infinite alternate;
+            margin: 10px 0;
+        }
+
+        img {
+            max-width: 300px;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes neonGlow {
+            0% {
+                text-shadow: 0 0 10px #00ffff, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+            }
+
+            100% {
+                text-shadow: 0 0 20px #ffff00, 0 0 30px #ff00ff, 0 0 40px #00ffff;
+            }
+        }
+
+        /* Media Query para móviles */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            img {
+                max-width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hola Mundo Porcino!</h1>
+    <p>Bienvenidos a la página de los cerditos lindos</p>
+    <img src="https://media.tenor.com/9g2JbSKWidkAAAAM/pig.gif" alt="Cerditos Bailongos" />
+    <p>¡Disfruta de la fiesta porcina!</p>
+</body>
+</html>
