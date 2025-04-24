@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examen de C#</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      padding: 40px 20px;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+      font-size: 2.8em;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .question {
+      background-color: rgba(255, 255, 255, 0.05);
+      margin: 25px 0;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s, background-color 0.3s;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .question:hover {
+      transform: translateY(-6px);
+      background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .question h3 {
+      color: #00d9ff;
+      margin-bottom: 15px;
+      font-size: 1.2em;
+    }
+
+    .answers p {
+      margin: 8px 0;
+    }
+
+    .correct {
+      color: #4fe3c1;
+      font-weight: bold;
+    }
+
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive para móviles */
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 15px;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+      }
+
+      .question {
+        padding: 20px;
+      }
+
+      .question h3 {
+        font-size: 1.1em;
+      }
+
+      .answers p {
+        font-size: 0.95em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Examen de C#</h1>
+  
+  <div class="question"><h3>1. ¿Cuál de las siguientes NO es una ventaja de C#?</h3><div class="answers"><p>a) Tipado fuerte</p><p>b) Orientación a objetos</p><p class="correct">c) Inconsistencia ✅</p><p>d) Compatibilidad con .NET</p></div></div>
+  <div class="question"><h3>2. ¿Cómo se relaciona un evento con una interfaz?</h3><div class="answers"><p>a) A través de un delegate</p><p>b) Con un listener</p><p>c) Mediante una clase abstracta</p><p class="correct">d) Se define en la interfaz y se implementa en la clase ✅</p></div></div>
+  <div class="question"><h3>3. ¿Qué significa "facilidad" en el desarrollo?</h3><div class="answers"><p>a) Facilidad de mantenimiento</p><p>b) Documentación extensa</p><p class="correct">c) Usabilidad ✅</p><p>d) Bajo coste</p></div></div>
+  <div class="question"><h3>4. ¿Cómo se lee un valor de un TextBox?</h3><div class="answers"><p class="correct">a) cajatexto.Text ✅</p><p>b) cajatexto.Value</p><p>c) cajatexto.get()</p><p>d) get(cajatexto)</p></div></div>
+  <div class="question"><h3>5-6. ¿Qué se usa para obtener lo que está escrito en una caja de texto?</h3><div class="answers"><p class="correct">a) cajatexto.Text ✅</p><p>b) cajatexto.Contenido</p><p>c) cajatexto.Valor</p><p>d) cajatexto.Output</p></div></div>
+  <div class="question"><h3>7. ¿Qué ocurre con este código?: int x = 7; string y = "34"; y = z;</h3><div class="answers"><p>a) Se convierte correctamente</p><p>b) Se concatena</p><p class="correct">c) Error de compilación ✅</p><p>d) z se convierte en string</p></div></div>
+  <div class="question"><h3>8. ¿Cómo se coloca el cursor en una caja de texto?</h3><div class="answers"><p class="correct">a) cajatexto.Focus(); ✅</p><p>b) Focus(cajatexto);</p><p>c) cajatexto.Select();</p><p>d) cajatexto.setCursor();</p></div></div>
+  <div class="question"><h3>9. ¿Qué representa un formulario en pantalla?</h3><div class="answers"><p class="correct">a) Una instancia de la clase Formulario ✅</p><p>b) Una interfaz gráfica</p><p>c) Una ventana de sistema</p><p>d) Un control</p></div></div>
+  <div class="question"><h3>10. ¿Cómo se conecta FormA con FormB?</h3><div class="answers"><p>a) formA.Mostrar(formB)</p><p class="correct">b) Crear una instancia de FormB desde FormA ✅</p><p>c) formA.Link(formB)</p><p>d) No se puede conectar</p></div></div>
+  <div class="question"><h3>11. ¿Cómo se añade un ítem a una lista?</h3><div class="answers"><p class="correct">a) lista.Items.Add(valor) ✅</p><p>b) lista.Append(valor)</p><p>c) lista.Add(valor)</p><p>d) lista.Incluir(valor)</p></div></div>
+  <div class="question"><h3>12. ¿Cómo se elimina un ítem seleccionado en una lista?</h3><div class="answers"><p class="correct">a) lista.Remove(lista.SelectedItem) ✅</p><p>b) lista.Delete(lista.Selected)</p><p>c) lista.Borrar(lista.Actual)</p><p>d) lista.ClearItem()</p></div></div>
+  <div class="question"><h3>13. ¿Se puede ejecutar código dentro de un panel?</h3><div class="answers"><p class="correct">a) Sí, siempre ✅</p><p>b) Solo con permisos</p><p>c) Depende del tipo de panel</p><p>d) No se puede</p></div></div>
+  <div class="question"><h3>14. ¿Se puede ejecutar código al cargar un formulario?</h3><div class="answers"><p class="correct">a) Sí ✅</p><p>b) Solo si hay botones</p><p>c) No</p><p>d) Depende del sistema operativo</p></div></div>
+  <div class="question"><h3>15. ¿Qué es Program.cs?</h3><div class="answers"><p class="correct">a) Punto de entrada accesible desde cualquier formulario ✅</p><p>b) Código de la interfaz</p><p>c) Clase de eventos</p><p>d) Script de base de datos</p></div></div>
+  <div class="question"><h3>16. ¿Se pueden definir funciones fuera de los formularios?</h3><div class="answers"><p class="correct">a) Sí, en librerías o ficheros incluidos en el proyecto ✅</p><p>b) Solo en clases parciales</p><p>c) No</p><p>d) Solo en formularios secundarios</p></div></div>
+  <div class="question"><h3>17. ¿Cómo se fija un panel en la parte superior ocupando todo el ancho?</h3><div class="answers"><p class="correct">a) Dock = Top ✅</p><p>b) Align = FullTop</p><p>c) PosY = 0</p><p>d) SizeMode = Top</p></div></div>
+  <div class="question"><h3>18. ¿Qué hace el método Hide en un formulario?</h3><div class="answers"><p class="correct">a) Oculta el formulario pero no cierra la aplicación ✅</p><p>b) Lo cierra completamente</p><p>c) Lo elimina</p><p>d) Minimiza la aplicación</p></div></div>
+  <div class="question"><h3>19. ¿Qué tipo de función es "private int MiFuncion() {...}"?</h3><div class="answers"><p class="correct">a) Una función privada que devuelve un entero ✅</p><p>b) Un evento</p><p>c) Una clase</p><p>d) Una interfaz</p></div></div>
+  <div class="question"><h3>20. ¿Se pueden cambiar las propiedades de los controles por código?</h3><div class="answers"><p class="correct">a) Sí, excepto las de solo lectura ✅</p><p>b) Solo en tiempo de diseño</p><p>c) No se pueden cambiar</p><p>d) Solo con permisos especiales</p></div></div>
+
+</body>
+</html>
