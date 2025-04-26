@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Planificación Financiera - Tienda Delicatessen Ferrol</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background-color: #fffaf2;
+      color: #5a3e2b;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #f7d59c;
+      color: #5a3e2b;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem 2rem;
+    }
+
+    .card {
+      background-color: #fff8e5;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+    }
+
+    h2 {
+      color: #bf7e47;
+      margin-top: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background-color: #fff3d0;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.8rem;
+      border: 1px solid #e0c6a8;
+      text-align: left;
+    }
+
+    td.amount, th.total-amount {
+      text-align: right;
+    }
+
+    th {
+      background-color: #f1bb7b;
+      color: #4b2c16;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f7d59c;
+      color: #5a3e2b;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+      table {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    Planificación Financiera<br>Depayser<br>Tienda Delicatessen<br>Ferrol
+  </header>
+
+  <div class="container">
+
+    <!-- Card: Alquiler -->
+    <div class="card">
+      <h2>Alquiler</h2>
+      <table class="sum-table">
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Detalle</th>
+            <th>Costo Estimado (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Alquiler</td>
+            <td>Local de 30 m² en zona céntrica</td>
+            <td class="amount">400</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2" style="text-align: right;">Total</th>
+            <th class="total-amount">0</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Sueldos -->
+    <div class="card">
+      <h2>Sueldos</h2>
+      <table class="sum-table">
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Detalle</th>
+            <th>Costo Estimado (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sueldo #1</td>
+            <td>Jenny</td>
+            <td class="amount">1260</td>
+          </tr>
+          <tr>
+            <td>Sueldo #2</td>
+            <td>Humberto</td>
+            <td class="amount">1260</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2" style="text-align: right;">Total</th>
+            <th class="total-amount">0</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Seguridad Social -->
+    <div class="card">
+      <h2>Seguridad Social</h2>
+      <table class="sum-table">
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Detalle</th>
+            <th>Costo Estimado (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Autónomo Jenny</td>
+            <td>30% del sueldo</td>
+            <td class="amount">378</td>
+          </tr>
+          <tr>
+            <td>Autónomo Humberto</td>
+            <td>30% del sueldo</td>
+            <td class="amount">378</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2" style="text-align: right;">Total</th>
+            <th class="total-amount">0</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Servicios -->
+    <div class="card">
+      <h2>Servicios</h2>
+      <table class="sum-table">
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th>Detalle</th>
+            <th>Costo Estimado (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Servicios</td><td>Agua</td><td class="amount">60</td></tr>
+          <tr><td>Servicios</td><td>Luz</td><td class="amount">140</td></tr>
+          <tr><td>Servicios</td><td>Gas</td><td class="amount">40</td></tr>
+          <tr><td>Servicios</td><td>Internet</td><td class="amount">60</td></tr>
+          <tr><td>Servicios</td><td>Alojamiento web</td><td class="amount">30</td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="2" style="text-align: right;">Total</th>
+            <th class="total-amount">0</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Seguros -->
+    <div class="card">
+      <h2>Seguros</h2>
+      <table class="sum-table">
+        <thead>
+          <tr><th>Categoría</th><th>Detalle</th><th>Costo Estimado (€)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Seguros</td><td>Multirriesgo Comercio</td><td class="amount">100</td></tr>
+          <tr><td>Seguros</td><td>Responsabilidad Civil Jenny</td><td class="amount">50</td></tr>
+          <tr><td>Seguros</td><td>Responsabilidad Civil Humberto</td><td class="amount">50</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th colspan="2" style="text-align: right;">Total</th><th class="total-amount">0</th></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Alarma -->
+    <div class="card">
+      <h2>Alarma y Seguridad</h2>
+      <table class="sum-table">
+        <thead>
+          <tr><th>Categoría</th><th>Detalle</th><th>Costo Estimado (€)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Alarma</td><td>Sistema de videovigilancia</td><td class="amount">60</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th colspan="2" style="text-align: right;">Total</th><th class="total-amount">0</th></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Marketing -->
+    <div class="card">
+      <h2>Marketing</h2>
+      <table class="sum-table">
+        <thead>
+          <tr><th>Categoría</th><th>Detalle</th><th>Costo Estimado (€)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Marketing</td><td>Publicidad online y flyers</td><td class="amount">150</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th colspan="2" style="text-align: right;">Total</th><th class="total-amount">0</th></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Impuestos Locales -->
+    <div class="card">
+      <h2>Impuestos Locales</h2>
+      <table class="sum-table">
+        <thead>
+          <tr><th>Categoría</th><th>Detalle</th><th>Costo Estimado (€)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>IBI</td><td>Impuesto bienes inmuebles</td><td class="amount">60</td></tr>
+          <tr><td>Tasas</td><td>Tasas municipales</td><td class="amount">60</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th colspan="2" style="text-align: right;">Total</th><th class="total-amount">0</th></tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Card: Gastos Variables -->
+    <div class="card">
+      <h2>Gastos Variables</h2>
+      <table class="sum-table">
+        <thead>
+          <tr><th>Categoría</th><th>Detalle</th><th>Costo Estimado (€)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Stock</td><td>Proveedores</td><td class="amount">5000</td></tr>
+          <tr><td>Eventos</td><td>Degustaciones</td><td class="amount">150</td></tr>
+          <tr><td>Eventos</td><td>Promociones</td><td class="amount">150</td></tr>
+          <tr><td>Packaging</td><td>Bolsas ecológicas</td><td class="amount">30</td></tr>
+          <tr><td>Packaging</td><td>Cajas</td><td class="amount">30</td></tr>
+          <tr><td>Packaging</td><td>Envoltorios</td><td class="amount">30</td></tr>
+          <tr><td>Packaging</td><td>Cubiertos de madera</td><td class="amount">30</td></tr>
+          <tr><td>Packaging</td><td>Vasos de papel</td><td class="amount">30</td></tr>
+          <tr><td>Packaging</td><td>Servilletas</td><td class="amount">30</td></tr>
+          <tr><td>Packaging</td><td>Pajitas de papel</td><td class="amount">20</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th colspan="2" style="text-align: right;">Total</th><th class="total-amount">0</th></tr>
+        </tfoot>
+      </table>
+    </div>
+    
+    <!-- Card: Beneficios -->
+    <div class="card">
+      <h2>Beneficio Neto Mensual</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Concepto</th>
+            <th>Monto (€)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Ingresos Estimados</td>
+            <td>12.000</td>
+          </tr>
+          <tr>
+            <td>Gastos Fijos</td>
+            <td>-4.616</td>
+          </tr>
+          <tr>
+            <td>Gastos Variables</td>
+            <td>-5.500</td>
+          </tr>
+          <tr>
+            <td><strong>Beneficio Bruto</strong></td>
+            <td><strong>1.884</strong></td>
+          </tr>
+          <tr>
+            <td>Impuestos (25%)</td>
+            <td>-471</td>
+          </tr>
+          <tr>
+            <td><strong>Beneficio Neto</strong></td>
+            <td><strong>1.413</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </div>
+
+  <footer>
+    Planificación financiera - Depayser Ferrol - 2025
+  </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const tables = document.querySelectorAll('.sum-table');
+
+    tables.forEach(table => {
+      let sum = 0;
+      table.querySelectorAll('td.amount').forEach(cell => {
+        const value = parseFloat(cell.textContent.replace(',', '.')) || 0;
+        sum += value;
+      });
+      const totalCell = table.querySelector('tfoot .total-amount');
+      if (totalCell) {
+        totalCell.textContent = sum.toFixed(2) + ' €';
+      }
+    });
+  });
+</script>
+</body>
+</html>
