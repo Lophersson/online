@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
+<title>Importe Posible</title>
+<!-- Reutilizamos el mismo estilo del original -->
+<style>/* MISMO ESTILO QUE EL TUYO */
+* { box-sizing: border-box; }
+
+body {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121212;
+    color: white;
+    flex-direction: column;
+}
+
+.section-wrapper {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    min-height: 500px;
+    background-color: #1e1e1e;
+    border-radius: 20px;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    gap: 20px;
+}
+
+.left-wrapper, .right-wrapper {
+    flex: 0.5;
+    padding: 25px;
+    background: #555555;
+    border-radius: 10px;
+}
+
+.repayment-left-wrapper {
+    background: #737373;
+    padding: 20px;
+    border-radius: 10px;
+    border-top: 5px solid #faffb0;
+    width: 100%;
+}
+
+.repayment-right-wrapper {
+    background: #737373;
+    padding: 20px;
+    border-radius: 10px;
+    border-top: 5px solid #faffb0;
+    width: 100%;
+}
+
+h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.input-wrapper, .result-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input {
+    text-align: right;
+    font-size: 30px;
+    font-weight: 700;
+    color: #e2eb6e;
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 50%;
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.final-amount, .repay-amount, .factor {
+    font-size: 30px;
+    color: #e2eb6e;
+    text-align: right;
+    width: 150px;
+}
+
+.button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+p {
+    font-size: 12px;
+}
+
+button {
+    background-color: #ae0d0d;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e2eb6e;
+}
+
+/* Estilos responsivos para móviles */
+@media screen and (max-width: 768px) {
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        min-height: 100vh;
+        padding: 10px;
+        margin: 0;
+        background-color: #121212;
+        color: white;
+        overflow-x: hidden; /* Bloquea cualquier scroll lateral */
+    }
+
+    .section-wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 400px; /* Hace que todo sea más estrecho */
+        padding: 4px 6px 4px 6px;
+        gap: 10px;
+        background-color: #1e1e1e;
+        border-radius: 12px;
+        box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        margin-top: 40px;
+    }
+
+    .left-wrapper,
+    .right-wrapper {
+        width: 100%;
+        padding: 4px;
+        background: #555555;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .repayment-left-wrapper {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+        border-top: 3px solid #faffb0;
+        word-wrap: normal;
+    }
+
+    .repayment-right-wrapper {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        border-radius: 8px;
+        border-top: 3px solid #faffb0;
+        word-wrap: normal;
+    }
+
+    h3 {
+        font-size: 14px;
+        text-align: left;
+        margin: 2px 0;
+    }
+
+    .input-wrapper,
+    .result-wrapper {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2px;
+        gap: 2px;
+        width: 50%;
+    }
+
+    input {
+        width: 50%;
+        font-size: 14px;
+        text-align: right;
+        padding: 0px;
+        margin: 0px 0;
+        border-radius: 4px;
+    }
+
+    .final-amount,
+    .repay-amount,
+    .factor {
+        width: 50%;
+        font-size: 14px;
+        text-align: right;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    .button-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    button {
+        width: 95%;
+        max-width: 180px; /* Botón más compacto */
+        font-size: 12px;
+        padding: 8px;
+        border-radius: 4px;
+    }
+}
+
+/* Estilos para la impresión */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+        font-size: 14px; /* Ajuste de fuente para mejor ajuste */
+    }
+
+    .section-wrapper {
+        max-width: 100%;
+        padding: 10px;
+        box-shadow: none;
+        flex-direction: column;
+    }
+
+    .left-wrapper, .right-wrapper {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    .final-amount, .repay-amount, .factor {
+        font-size: 20px;
+    }
+
+    button {
+        display: none; /* Esconde el botón en la impresión */
+    }
+
+    .button-container {
+        display: none; /* Esconde el contenedor del botón */
+    }
+
+    /* Elimina márgenes del documento */
+    .section-wrapper {
+        margin: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="section-wrapper">
+    <div class="left-wrapper">
+        <h1>Hallar importe crédito</h1>
+        <div class="repayment-left-wrapper">
+            <h3>Cuota mensual <input type="number" id="monthly-input" value="500"></h3>
+            <hr>
+            <h3>Años <input type="number" id="years-input" value="10"></h3>
+            <hr>
+            <h3>TAE <input type="number" id="rate-input" value="9.648"></h3>
+        </div>
+    </div>
+
+    <div class="right-wrapper">
+        <h1>Resultado</h1>
+        <div class="repayment-right-wrapper">
+            <h3>Importe posible <span class="final-amount" id="possible-amount">0.00 €</span></h3>
+            <hr>
+            <h3>Total a pagar <span class="repay-amount" id="total-payment">0.00 €</span></h3>
+            <hr>
+            <h3>Factor <span class="factor" id="factor">0.00</span></h3>
+        </div>
+        <p>Introduce tu cuota mensual y ajusta los parámetros si es necesario</p>
+    </div>
+</div>
+
+<div class="button-container">
+    <button onclick="imprimirPDF()">Imprimir en PDF</button>
+</div>
+
+<script>
+function calcularImporte() {
+    const cuota = parseFloat(document.getElementById('monthly-input').value);
+    const años = parseFloat(document.getElementById('years-input').value);
+    const tae = parseFloat(document.getElementById('rate-input').value);
+
+    if (isNaN(cuota) || isNaN(años) || isNaN(tae) || cuota <= 0 || años <= 0 || tae <= 0) {
+        return;
+    }
+
+    const mensual = tae / 100 / 12;
+    const pagos = años * 12;
+    const importe = cuota * (1 - Math.pow(1 + mensual, -pagos)) / mensual;
+    const total = cuota * pagos;
+    const factor = importe / cuota;
+
+    document.getElementById('possible-amount').textContent = `${importe.toFixed(0)} €`;
+    document.getElementById('total-payment').textContent = `${total.toFixed(0)} €`;
+    document.getElementById('factor').textContent = factor.toFixed(0);
+}
+
+document.querySelectorAll('input').forEach(input => input.addEventListener('input', calcularImporte));
+calcularImporte();
+
+function imprimirPDF() {
+    window.print();
+}
+</script>
+
+</body>
+</html>
