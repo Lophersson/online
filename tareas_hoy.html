@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&family=Rajdhani&family=Exo&family=Share+Tech+Mono&family=Press+Start+2P&family=Nova+Square&display=swap" rel="stylesheet">
+  <title>Gestor de Tareas por Categoría</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #333333;
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1e1e1e;
+      color: #f1c40f;
+      padding: 15px 15px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif; /*Fuente Moderna y versátil*/
+    }
+
+    /*.contador {
+      background: #1e1e1e;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 30px;
+      cursor: pointer;
+    }*/
+  
+  .contador {
+      display: inline-block;
+      width: 70px;
+      text-align: center;
+      background: #1e1e1e;
+      color: white;
+      padding: 10px 10px;
+      border-radius: 0px;
+      cursor: pointer;
+      font-size: 24px;
+    font-weight: bold;
+      font-family: 'Exo', sans-serif; /*Fuente Moderna y versátil*/
+    }
+
+    .card {
+      margin: 6px;
+      padding: 10px;
+      border-radius: 12px;
+      color: white;
+    }
+
+    .card h2 {
+      margin: 0;
+      cursor: pointer;
+      font-size: 30px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif; /*Fuente Moderna y versátil*/
+    }
+
+    .flecha {
+      float: right;
+      transition: transform 0.3s;
+    }
+
+    .flecha.abierta {
+      transform: rotate(90deg);
+    }
+
+    .elementos {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .elemento {
+      padding: 6px 12px;
+      margin: 5px 0;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif; /*Fuente Moderna y versátil*/
+    }
+
+     .elemento.seleccionado {
+      background-color: rgba(0, 128, 0, 0.9);
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif; /*Fuente Moderna y versátil*/
+    }
+
+    .modal-content {
+      background: #333333;
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 450px;
+      margin: 8% auto;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: white;
+    }
+
+    .modal-content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .modal-content li {
+      display: flex;
+      justify-content: space-between;
+      padding: 1px 0;
+      border-bottom: 0px solid #ccc;
+    }
+
+    .modal-content button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif; /*Fuente Moderna y versátil*/
+    }
+
+    .modal-content .boton-secundario {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif; /*Fuente Moderna y versátil*/
+    }
+
+    /* Colores por categoría */
+    .salud        { background-color: #f39c12; color: #fff; }
+    .hogar        { background-color: #7f8c8d; }
+    .coche        { background-color: #2980b9; }
+    .organizacion { background-color: #8e44ad; }
+    .personas     { background-color: #16a085; }
+    .ocio         { background-color: #2c3e50; }
+    .profesional  { background-color: #d35400; }
+    .oficial      { background-color: #34495e; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Gestor de Tareas</h1>
+    <div id="contador" class="contador">
+      🛒 <span id="totalSeleccionados">0</span>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div id="panel" class="modal">
+    <div class="modal-content">
+      <h3>Elementos Seleccionados</h3>
+      <ul id="listaSeleccionados"></ul>
+      <div style="text-align: right;">
+        <button onclick="imprimirSeleccionados()">Imprimir</button>
+        <button onclick="vaciarSeleccion()">Vaciar Todo</button>
+        <button class="boton-secundario" onclick="cerrarPanel()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="categorias-container"></div>
+
+  <script>
+    const tasks = [
+      { id: "task1", category: "salud", text: "dormir" },
+      { id: "task2", category: "salud", text: "afeitado"},
+        { id: "task3", category: "salud", text: "ducha"},
+        { id: "task4", category: "salud", text: "lavar cabello"},
+        { id: "task5", category: "salud", text: "cortar uñas"},
+        { id: "task6", category: "salud", text: "desayunar"},
+        { id: "task7", category: "salud", text: "lavar dientes"},
+        { id: "task8", category: "salud", text: "comer"},
+        { id: "task9", category: "salud", text: "ejercicio físico"},
+        { id: "task10", category: "salud", text: "cenar"},
+        { id: "task11", category: "salud", text: "cita médica"},
+        { id: "task12", category: "salud", text: "comprar comida y cuidado personal"},
+        { id: "task13", category: "hogar", text: "hacer la cama"},
+        { id: "task14", category: "hogar", text: "cambiar las sábanas"},
+        { id: "task15", category: "hogar", text: "limpiar el suelo"},
+        { id: "task16", category: "hogar", text: "lavar la vajilla"},
+        { id: "task17", category: "hogar", text: "hacer lavadora"},
+        { id: "task18", category: "hogar", text: "orden y limpieza"},
+        { id: "task19", category: "hogar", text: "ordenar ropa"},
+        { id: "task20", category: "hogar", text: "ordenar calzado"},
+        { id: "task21", category: "hogar", text: "ordenar pertenencias"},
+        { id: "task22", category: "hogar", text: "revisión trastero"},
+        { id: "task23", category: "hogar", text: "búsqueda de pertenencias"},
+        { id: "task24", category: "hogar", text: "bricolage y reparaciones"},
+        { id: "task25", category: "hogar", text: "comprar prod. de limpieza"},
+        { id: "task26", category: "hogar", text: "limpiar la cocina"},
+        { id: "task27", category: "hogar", text: "limpiar el baño"},
+        { id: "task28", category: "hogar", text: "planchar camisas y camisetas"},
+        { id: "task29", category: "hogar", text: "ordenar el armario y los cajones"},
+        { id: "task30", category: "coche", text: "repostar"},
+        { id: "task31", category: "coche", text: "limpiar coche"},
+        { id: "task32", category: "coche", text: "recoger pertencias del coche"},
+        { id: "task33", category: "coche", text: "mantenimiento coche"},
+        { id: "task34", category: "coche", text: "reparaciones y recambios"},
+        { id: "task35", category: "coche", text: "taller"},
+        { id: "task36", category: "coche", text: "pagar impuesto anual"},
+        { id: "task37", category: "coche", text: "pasar la ITV"},
+        { id: "task38", category: "coche", text: "gestión repostajes"},
+        { id: "task39", category: "coche", text: "gestión aparcamientos"},
+        { id: "task40", category: "organizacion", text: "contabilidad diaria"},
+        { id: "task41", category: "organizacion", text: "presupuestos y listas de compras"},
+        { id: "task42", category: "organizacion", text: "archivos móvil a portátil"},
+        { id: "task43", category: "organizacion", text: "archivos tab a portátil"},
+        { id: "task44", category: "organizacion", text: "archivos pendrives y sdcards a portátil"},
+        { id: "task45", category: "organizacion", text: "archivos nubes a portátil"},
+        { id: "task46", category: "organizacion", text: "archivos mails a portátil"},
+        { id: "task47", category: "organizacion", text: "archivos marcadores a portátil"},
+        { id: "task48", category: "organizacion", text: "archivos portátil a disco duro"},
+        { id: "task49", category: "organizacion", text: "contraseñas de registros web y apps"},
+        { id: "task50", category: "organizacion", text: "desarrollo de mi web"},
+        { id: "task51", category: "organizacion", text: "lista de contactos"},
+        { id: "task52", category: "personas", text: "enviar mensajes"},
+        { id: "task53", category: "personas", text: "llamar por teléfono"},
+        { id: "task54", category: "personas", text: "tomar un café"},
+        { id: "task55", category: "personas", text: "comer o cenar"},
+        { id: "task55", category: "personas", text: "ir al cine"},
+        { id: "task56", category: "personas", text: "hacer otra actividad"},
+        { id: "task57", category: "personas", text: "pareja"},
+        { id: "task58", category: "personas", text: "hijos"},
+        { id: "task59", category: "personas", text: "amigos"},
+        { id: "task60", category: "personas", text: "familia"},
+        { id: "task61", category: "personas", text: "compañeros"},
+        { id: "task62", category: "personas", text: "vecinos"},
+        { id: "task63", category: "ocio", text: "videojuegos"},
+        { id: "task64", category: "ocio", text: "música"},
+        { id: "task65", category: "ocio", text: "lectura"},
+        { id: "task66", category: "ocio", text: "actualidad"},
+        { id: "task67", category: "ocio", text: "información/medios"},
+        { id: "task68", category: "ocio", text: "televisión"},
+        { id: "task69", category: "ocio", text: "internet"},
+        { id: "task70", category: "ocio", text: "moda"},
+        { id: "task71", category: "ocio", text: "ir de compras"},
+        { id: "task71", category: "ocio", text: "tiendas - centros comerciales"},
+        { id: "task72", category: "ocio", text: "viajes"},
+        { id: "task73", category: "ocio", text: "eventos culturales"},
+        { id: "task74", category: "ocio", text: "automoción"},
+        { id: "task75", category: "ocio", text: "decoración"},
+        { id: "task76", category: "oficial", text: "administración pública"},
+        { id: "task77", category: "oficial", text: "banco"},
+        { id: "task78", category: "oficial", text: "empleo"},
+        { id: "task79", category: "oficial", text: "hacienda"},
+        { id: "task80", category: "oficial", text: "empleo"},
+        { id: "task81", category: "oficial", text: "tráfico"},
+        { id: "task82", category: "oficial", text: "abogado"},
+        { id: "task83", category: "oficial", text: "notaría"},
+        { id: "task84", category: "oficial", text: "gestoría"},
+        { id: "task85", category: "profesional", text: "estudiar"},
+        { id: "task86", category: "profesional", text: "buscar empleo"},
+        { id: "task87", category: "profesional", text: "actualizar currículum"},
+        { id: "task88", category: "profesional", text: "trabajar"},
+        { id: "task89", category: "profesional", text: "negocios"},
+        { id: "task90", category: "profesional", text: "inversiones/empresas"}
+    ];
+
+    const seleccionados = new Set();
+
+    function agruparPorCategoria(tareas) {
+      const categorias = {};
+      tareas.forEach(task => {
+        if (!categorias[task.category]) {
+          categorias[task.category] = [];
+        }
+        categorias[task.category].push(task.text);
+      });
+      return categorias;
+    }
+
+    function crearTarjetas() {
+      const data = agruparPorCategoria(tasks);
+      const contenedor = document.getElementById('categorias-container');
+      contenedor.innerHTML = '';
+
+      for (const categoria in data) {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = `card ${categoria}`;
+
+        const titulo = document.createElement('h2');
+        titulo.innerHTML = `${categoria.charAt(0).toUpperCase() + categoria.slice(1)} <span class="flecha">▶</span>`;
+        titulo.onclick = () => {
+          lista.style.display = lista.style.display === 'block' ? 'none' : 'block';
+          flecha.classList.toggle('abierta');
+        };
+
+        const flecha = titulo.querySelector('.flecha');
+
+        const lista = document.createElement('div');
+        lista.className = 'elementos';
+
+        data[categoria].forEach(texto => {
+          const div = document.createElement('div');
+          div.className = 'elemento';
+          div.textContent = texto;
+          if (seleccionados.has(texto)) div.classList.add('seleccionado');
+
+          div.onclick = (e) => {
+            e.stopPropagation();
+            if (seleccionados.has(texto)) {
+              seleccionados.delete(texto);
+              div.classList.remove('seleccionado');
+            } else {
+              seleccionados.add(texto);
+              div.classList.add('seleccionado');
+            }
+            actualizarContador();
+          };
+
+          lista.appendChild(div);
+        });
+
+        tarjeta.appendChild(titulo);
+        tarjeta.appendChild(lista);
+        contenedor.appendChild(tarjeta);
+      }
+    }
+
+    function actualizarContador() {
+      document.getElementById('totalSeleccionados').textContent = seleccionados.size;
+    }
+
+    function cerrarPanel() {
+      document.getElementById('panel').style.display = 'none';
+    }
+
+    function vaciarSeleccion() {
+      seleccionados.clear();
+      actualizarContador();
+      crearTarjetas();
+      cerrarPanel();
+    }
+
+    document.getElementById('contador').onclick = () => {
+      const panel = document.getElementById('panel');
+      const lista = document.getElementById('listaSeleccionados');
+      lista.innerHTML = '';
+
+      if (seleccionados.size === 0) {
+        lista.innerHTML = '<li>Ningún elemento seleccionado.</li>';
+      } else {
+        seleccionados.forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+
+          const btn = document.createElement('button');
+          btn.textContent = 'Eliminar';
+          btn.onclick = () => {
+            seleccionados.delete(item);
+            actualizarContador();
+            crearTarjetas();
+            cerrarPanel();
+          };
+
+          li.appendChild(btn);
+          lista.appendChild(li);
+        });
+      }
+
+      panel.style.display = 'block';
+    };
+
+    crearTarjetas();
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  async function imprimirSeleccionados() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    const title = "Elementos Seleccionados";
+
+    const items = Array.from(seleccionados);
+    if (items.length === 0) {
+      doc.text(`${title}\n\nNo hay tareas seleccionadas.`, 10, 10);
+    } else {
+      doc.text(title, 10, 10);
+      let y = 20;
+      items.forEach((item, index) => {
+        doc.text(`${index + 1}. ${item}`, 10, y);
+        y += 10;
+        if (y > 280) {  // Salto de página si se excede
+          doc.addPage();
+          y = 10;
+        }
+      });
+    }
+
+    doc.save(`tareas_seleccionadas.pdf`);
+  }
+</script>
+
+</body>
+</html>
