@@ -110,15 +110,66 @@ p {
   margin: 15px 0;
 }
 
-footer {
-  text-align: center;
-  font-size: 0.8em;
-  padding: 20px;
-  color: #999;
-  background-color: #ffffff;
-  border-top: 0px solid #ccc;
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      padding: 10px;
+      color: #999;
+      background-color: #ffffff;
+      border-top: 0px solid #ccc;
+      margin-bottom: 10px;
+    }
+  
+  /* Nueva sección */
+    .more-articles {
+      padding: 20px;
+      background-color: #f7f7f7;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .more-articles h2 {
+      color: #333;
+      font-size: 1.0em;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .article-item {
+      display: flex;
+      align-items: left;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-item img {
+      width: 180px;
+      height: 120px;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .article-item .content {
+      max-width: 700px;
+    }
+
+    .article-item .content h3 {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1rem;
+  text-align: left;       /* Alinea el texto a la izquierda */
+  margin-bottom: 0.5em;
 }
 
+    .article-item .content p {
+      margin-top: 8px;
+      font-size: 0.8em;
+      color: #555;
+        text-align: left;       /* Alinea el texto a la izquierda */
+    }
   </style>
 </head>
 <body>
@@ -160,7 +211,37 @@ footer {
 <h2>¿Sigue vigente hoy?</h2>
 <p>Tras la crisis financiera de 2008 y la pandemia de COVID-19, el keynesianismo ha vuelto a ser relevante, con políticas de estímulo fiscal y gasto público aplicadas en todo el mundo para evitar colapsos económicos.</p>
 
-  </main>  <footer>
+  </main>
+
+  <div class="more-articles">
+    <h2>Más artículos de Humberto:</h2>
+
+ <div class="article-item" onclick="window.open('https://lophersson.github.io/online/desempleo.html', '_blank')">
+      <img src="https://www.ddailymag.com/wp-content/uploads/2020/03/EL-CUIDADO-PERSONAL-EN-UNA-MUJER-EJECUTIVA-ES-PARTE-DEL-AMOR-PROPIO-min.jpg" alt="Imagen del artículo 3">
+      <div class="content">
+        <h3>El desprecio hacia quienes buscan el reconocimiento profesional</h3>
+        <p>No tener empleo significa no valer lo suficiente como para no defender lo que sabes.</p>
+      </div>
+    </div>
+
+    <div class="article-item" onclick="window.open('https://lophersson.github.io/online/empleoia.html', '_blank')">
+      <img src="https://elderecho.com/wp-content/uploads/2022/08/shutterstock_1945569277-1-p366827-m1126394-768x334_w100.jpg" alt="Imagen del artículo 2">
+      <div class="content">
+        <h3>La Revolución Digital y el Futuro del Trabajo</h3>
+        <p>Exploración de cómo la automatización y la inteligencia artificial transformarán el panorama laboral global.</p>
+      </div>
+    </div>
+
+ <div class="article-item" onclick="window.open('https://lophersson.github.io/online/climatico.html', '_blank')">
+      <img src="https://piernext.portdebarcelona.cat/wp-content/uploads/2024/06/2394143_Alternative_Wind_Energy_1280x720.gif" alt="Imagen del artículo 1">
+      <div class="content">
+        <h3>El Impacto del Cambio Climático en las Economías Emergentes</h3>
+        <p>Un análisis profundo sobre cómo las naciones en desarrollo enfrentan los retos del cambio climático y las políticas necesarias para mitigar sus efectos.</p>
+      </div>
+    </div>
+  </div>
+
+<footer>
     Finnovate | Todos los derechos reservados © 2025
   </footer>
 </body>
