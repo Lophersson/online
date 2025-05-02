@@ -20,7 +20,7 @@
     }
 
     header h1 {
-      font-size: 2.5em;
+      font-size: 2.0em;
       font-style: italic;
       margin-bottom: 5px;
     }
@@ -57,7 +57,7 @@
     }
 
     main {
-      padding: 40px;
+      padding: 0px 40px 0px 40px;
       background-color: #ffffff;
       max-width: 900px;
       margin: auto;
@@ -73,10 +73,11 @@
   
   h3 {
       color: #1a1a1a;
-      font-size: 1.5em;
+      font-size: 2.5em;
       border-bottom: 0px solid #ccc;
-      padding-bottom: 5px;
-      margin-top: 2px;
+    padding: 10px 20px 10px 20px;
+      margin: 10px 20px 10px 20px;
+    font-style: italic;
     }
 
     p {
@@ -86,11 +87,63 @@
 
     footer {
       text-align: center;
-      font-size: 0.7em;
+      font-size: 0.9em;
       padding: 10px;
       color: #999;
       background-color: #ffffff;
       border-top: 0px solid #ccc;
+      margin-bottom: 10px;
+    }
+  
+  /* Nueva sección */
+    .more-articles {
+      padding: 20px;
+      background-color: #f7f7f7;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .more-articles h2 {
+      color: #333;
+      font-size: 1.0em;
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .article-item {
+      display: flex;
+      align-items: left;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .article-item img {
+      width: 180px;
+      height: 120px;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .article-item .content {
+      max-width: 700px;
+    }
+
+    .article-item .content h3 {
+  font-weight: 700;
+  font-style: italic;
+  font-size: 1rem;
+  text-align: left;       /* Alinea el texto a la izquierda */
+  margin-bottom: 0.5em;
+}
+
+    .article-item .content p {
+      margin-top: 8px;
+      font-size: 0.8em;
+      color: #555;
+        text-align: left;       /* Alinea el texto a la izquierda */
     }
   </style>
 </head>
@@ -128,6 +181,32 @@
 
     <p>En definitiva, quien actúa así está más hablando de sí mismo que del otro. La soberbia y el desprecio no son sinónimo de sabiduría o éxito, sino un síntoma de heridas no sanadas, ignorancia o falta de evolución emocional.</p>
   </main>
+  
+   <div class="more-articles">
+    <h2>Más artículos de Humberto:</h2>
+    <div class="article-item" onclick="window.open('https://lophersson.github.io/online/climatico.html', '_blank')">
+      <img src="https://piernext.portdebarcelona.cat/wp-content/uploads/2024/06/2394143_Alternative_Wind_Energy_1280x720.gif" alt="Imagen del artículo 1">
+      <div class="content">
+        <h3>El Impacto del Cambio Climático en las Economías Emergentes</h3>
+        <p>Un análisis profundo sobre cómo las naciones en desarrollo enfrentan los retos del cambio climático y las políticas necesarias para mitigar sus efectos.</p>
+      </div>
+    </div>
+    <div class="article-item" onclick="window.open('https://lophersson.github.io/online/empleoia.html', '_blank')">
+      <img src="https://elderecho.com/wp-content/uploads/2022/08/shutterstock_1945569277-1-p366827-m1126394-768x334_w100.jpg" alt="Imagen del artículo 2">
+      <div class="content">
+        <h3>La Revolución Digital y el Futuro del Trabajo</h3>
+        <p>Exploración de cómo la automatización y la inteligencia artificial transformarán el panorama laboral global.</p>
+      </div>
+    </div>
+    <div class="article-item" onclick="window.open('https://lophersson.github.io/online/fiscales.html', '_blank')">
+      <img src="https://z101digital.com/wp-content/uploads/2018/12/ezgif-com-video-to-gif-9.gif" alt="Imagen del artículo 3">
+      <div class="content">
+        <h3>Política Fiscal y su Influencia en el Crecimiento Económico</h3>
+        <p>Estudio sobre la relación entre las políticas fiscales y el desarrollo de las economías en tiempos de incertidumbre.</p>
+      </div>
+    </div>
+  </div>
+  
   <footer>
     Humberto López Rodríguez | Ferrol <br> Todos los derechos reservados © 2025
   </footer>
