@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cuestionario Arquitectura en Capas - C#</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background-color: #1565c0;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    .container {
+      padding: 30px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .section {
+      background: #ffffffcc;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      padding: 20px 30px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .section:hover {
+      transform: translateY(-3px);
+    }
+
+    .section h2 {
+      color: #3949ab;
+      border-bottom: 2px solid #c5cae9;
+      padding-bottom: 5px;
+      margin-bottom: 15px;
+    }
+
+    .qa {
+      margin-bottom: 15px;
+    }
+
+    .qa strong {
+      color: #2e7d32;
+    }
+
+    .qa p {
+      margin: 5px 0 10px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Cuestionario: Arquitectura en Capas en C# con Visual Studio</h1>
+  </header>
+
+  <div class="container">
+
+    <div class="section">
+      <h2>🔷 Capa de Entidad</h2>
+      <div class="qa"><strong>1.</strong> ¿Qué representa la capa de entidad?<p>Representa las clases que modelan las entidades del dominio, como <code>Cliente</code>, <code>Producto</code>, etc.</p></div>
+      <div class="qa"><strong>2.</strong> ¿Qué tipo de clases se definen en la capa de entidades?<p>Clases POCO (Plain Old CLR Objects) con propiedades públicas y sin lógica de negocio.</p></div>
+    </div>
+
+    <div class="section">
+      <h2>🔷 Capa de Datos (DAL)</h2>
+      <div class="qa"><strong>3.</strong> ¿Cuál es la responsabilidad principal de la capa de datos?<p>Acceder a la base de datos y ejecutar operaciones CRUD.</p></div>
+      <div class="qa"><strong>4.</strong> ¿Qué tecnologías se usan comúnmente en la capa de datos en C#?<p>ADO.NET, Entity Framework, Dapper.</p></div>
+      <div class="qa"><strong>5.</strong> ¿Qué patrón se recomienda para la capa de datos?<p>Patrón Repository.</p></div>
+    </div>
+
+    <div class="section">
+      <h2>🔷 Capa de Negocio (BLL)</h2>
+      <div class="qa"><strong>6.</strong> ¿Cuál es el propósito de la capa de negocio?<p>Contener la lógica del negocio y las reglas de validación.</p></div>
+      <div class="qa"><strong>7.</strong> ¿La capa de negocio debe acceder directamente a la base de datos?<p>No, debe comunicarse con la capa de datos.</p></div>
+      <div class="qa"><strong>8.</strong> ¿Qué patrón se suele utilizar en la lógica de negocio?<p>Patrón Service.</p></div>
+    </div>
+
+    <div class="section">
+      <h2>🔷 Capa de Presentación (UI)</h2>
+      <div class="qa"><strong>9.</strong> ¿Cuál es la función principal de la capa de presentación?<p>Mostrar la información al usuario y capturar su interacción.</p></div>
+      <div class="qa"><strong>10.</strong> ¿Qué tecnologías se utilizan para la capa de presentación en C#?<p>WinForms, WPF, ASP.NET MVC, Blazor, Razor Pages.</p></div>
+    </div>
+
+    <div class="section">
+      <h2>🔷 General – Estructura y Organización</h2>
+      <div class="qa"><strong>11.</strong> ¿Qué principio de diseño se sigue al usar una arquitectura por capas?<p>Separación de responsabilidades (SoC).</p></div>
+      <div class="qa"><strong>12.</strong> ¿Cómo se comunica la capa de presentación con la base de datos?<p>A través de la capa de negocio y luego la de datos.</p></div>
+      <div class="qa"><strong>13.</strong> ¿Qué ventajas ofrece la arquitectura por capas?<p>Reutilización, mantenimiento, escalabilidad y pruebas más fáciles.</p></div>
+      <div class="qa"><strong>14.</strong> ¿Cuál es el orden de dependencia correcto entre las capas?<p>UI → BLL → DAL → DB.</p></div>
+      <div class="qa"><strong>15.</strong> ¿Qué tipo de proyecto se recomienda para la capa de entidades en Visual Studio?<p>Una biblioteca de clases (<code>Class Library</code>).</p></div>
+    </div>
+
+    <div class="section">
+      <h2>🔷 Visual Studio y Organización del Proyecto</h2>
+      <div class="qa"><strong>16.</strong> ¿Qué tipo de solución se puede crear en Visual Studio para seguir esta arquitectura?<p>Solución con múltiples proyectos separados por capa (proyecto por capa).</p></div>
+      <div class="qa"><strong>17.</strong> ¿Dónde se deben colocar las conexiones a bases de datos?<p>En la capa de datos, idealmente en <code>appsettings.json</code> o <code>Web.config</code>.</p></div>
+      <div class="qa"><strong>18.</strong> ¿Qué capa suele contener las validaciones de negocio?<p>La capa de negocio (BLL).</p></div>
+      <div class="qa"><strong>19.</strong> ¿Qué capa debería encargarse del formateo de datos para mostrar en pantalla?<p>La capa de presentación (UI).</p></div>
+      <div class="qa"><strong>20.</strong> ¿Qué herramienta de Visual Studio permite gestionar las dependencias entre proyectos?<p>El administrador de referencias (<code>Add Reference</code>) y <code>NuGet</code>.</p></div>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2025 Cuestionario desarrollado por Lophersson. Diseñado para estudiantes de C# y Visual Studio.
+  </footer>
+
+</body>
+</html>
