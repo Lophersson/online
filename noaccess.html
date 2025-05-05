@@ -2,60 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Hidden Logic</title>
-  <style>
-    body {
-      background: #121212;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .box {
-      background: #222;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.5);
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-    input, button {
-      padding: 10px;
-      margin: 10px 0;
-      width: 90%;
-      font-size: 16px;
-      border: none;
-      border-radius: 4px;
-    }
-    button {
-      background: #28a745;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h2 id="q1">Cargando lógica...</h2>
-    <input type="text" id="a1" placeholder="Tu respuesta" />
-    <button onclick="z3()">Validar</button>
-  </div>
-
+  <title>Hidden Logic - Iframe</title>
   <script>
-    // Funciones trampa (no se ejecutan)
-    function integrateFake(f) {
-      return "∫ no implementado";
-    }
-    function dfake(x) {
-      return "d/dx de nada";
-    }
-    const chaosEngine = () => Math.sin(Math.PI) + Math.tan(0) + Math.pow(3, 0.5);
-
     // Preguntas reales
     const qx = [
       { t: '∫ 3x dx [0,2]', r: (3 * Math.pow(2, 2)) / 2 },
@@ -74,46 +22,39 @@
       { t: 'f(2.5) = 5(2.5)^2 - 3(2.5) + 12/2.5 - sqrt(2.5) + 7', r: 5 * Math.pow(2.5, 2) - 3 * 2.5 + 12 / 2.5 - Math.sqrt(2.5) + 7 }
     ];
 
-    // Generar pregunta aleatoria
-    const pIndex = Math.floor(Math.random() * qx.length);
-    const pObj = qx[pIndex];
-    document.getElementById('q1').innerText = `Resuelve: ${pObj.t}`;
-
     // Multiplicador ofuscado y "cifrado"
     const clave = 76109;
     const ofuscado = clave ^ 12345;
     const claveReal = ofuscado ^ 12345;
 
-    // Resultado esperado
-    const rEsp = Math.floor(pObj.r * claveReal);
+    // Función para enviar la pregunta al padre
+    function enviarPregunta() {
+      // Generar pregunta aleatoria
+      const pIndex = Math.floor(Math.random() * qx.length);
+      const pObj = qx[pIndex];
 
-    // Enviar al padre (opcional)
-    window.parent?.postMessage({
-      type: "pregunta",
-      texto: pObj.t,
-      resultado: rEsp
-    }, "*");
+      // Resultado esperado
+      const rEsp = Math.floor(pObj.r * claveReal);
 
-    // Verificación
-    function z3() {
-      const userResp = parseInt(document.getElementById("a1").value.replace(",", "."), 10);
-      if (userResp === rEsp) {
-        alert("✅ Acceso concedido");
-      } else {
-        alert("❌ Contraseña incorrecta");
+      // Enviar mensaje al padre
+      window.parent.postMessage({
+        type: "pregunta",
+        texto: `Resuelve: ${pObj.t}`,
+        resultado: rEsp
+      }, "https://lophersson.github.io"); // Reemplaza con el origen correcto de tu página principal
+    }
+
+    // Escuchar el mensaje de la página principal para enviar la pregunta
+    window.addEventListener('message', (event) => {
+      if (event.origin === "https://lophersson.github.io" && event.data.type === 'solicitarPregunta') {
+        enviarPregunta();
       }
-    }
+    });
 
-    // Funciones trampa adicionales
-    function notRun1() {
-      let y = 0;
-      for (let i = 0; i < 10; i++) y += Math.pow(i, 3) - i;
-      return y % 2 === 0;
-    }
-
-    function hiddenTrap(x) {
-      return x ? Math.sqrt(x * 42) : "Desviado";
-    }
+    // Enviar una pregunta inicial al cargar el iframe (opcional, la página principal ya lo solicita)
+    // enviarPregunta();
   </script>
-</body>
+</head>
+<body>
+  </body>
 </html>
