@@ -47,8 +47,11 @@
     { texto: 'integral de x dx', resultado: 0.5 },
     { texto: 'derivada de x^2', resultado: 2 },
     { texto: '2x = 20', resultado: 10 },
-    { texto: 'y = x^2; x=4', resultado: 16 }
+    { texto: 'y = x^2; x=4', resultado: 16 },
+    { texto: 'f(2.5) = 5(2.5)^2 - 3(2.5) + \\frac{12}{2.5} - \\sqrt{2.5} + 7', resultado: 5 * Math.pow(2.5, 2) - 3 * 2.5 + 12 / 2.5 - Math.sqrt(2.5) + 7 }
   ];
+</script>
+
 
   const idx = Math.floor(Math.random() * preguntas.length);
   const seleccion = preguntas[idx];
