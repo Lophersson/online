@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
+<link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
+<title>Acceso Restringido</title>
+<style>
+/* ======= ESTILOS GENERALES ======= */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Roboto Condensed', sans-serif;
+}
+
+body {
+font-family: Arial, sans-serif;
+background-color: #1f1f1f;
+color: white;
+text-align: center;
+}
+
+h1 {
+font-size: 26px;
+font-weight: 600;
+margin-bottom: 10px;
+margin-bottom: 20px;
+color: #ffffff;
+text-align: center;
+}
+
+h2 {
+font-size: 20px;
+font-weight: 500;
+margin-bottom: 10px;
+margin-bottom: 10px;
+color: #ffffff;
+text-align: center;
+}
+
+/* ======= LOGIN ======= */
+.container {
+display: none; /* Ocultar hasta que se active */
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
+
+.active {
+display: flex; /* Mostrar contenedor activo */
+}
+
+.login-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
+border: 1px solid #ccc;
+border-radius: 8px;
+background: #1f1f1f;
+box-shadow: 0 8px 16px rgba(82, 82, 82, 0.938);
+max-width: 360px;
+}
+
+.login-container img {
+width: 240px;
+height: 240px;
+border-radius: 15px;
+border: 0px solid #ccc;
+}
+
+.acceso {
+margin: 10px 0 20px;
+font-size: 24px;
+font-weight: 700;
+color: #ffffff;
+letter-spacing: 3px;
+font-style: italic;
+}
+
+/* ======== CAMPOS DE TEXTO (USUARIO Y CONTRASEÑA) ======== */
+.form-container input {
+margin: 4px 0;
+padding: 12px;
+width: 100%;
+font-size: 18px;
+font-weight: bold;
+text-align: center;
+background-color: transparent;
+color: white;
+border: none;
+outline: none;
+}
+
+.form-container input::placeholder {
+color: rgba(255, 255, 255, 0.5);
+}
+
+/* ======= BOTONERA ======= */
+.botonera {
+display: flex;
+width: 100%;
+}
+
+.btn-ok,
+.btn-cancel {
+border: none;
+border-radius: 0px;
+padding: 12px;
+cursor: pointer;
+color: white;
+width: 50%;
+text-align: center;
+font-size: 18px;
+}
+
+.btn-ok {
+background-color: #28a745;
+}
+
+.btn-cancel {
+background-color: #dc3545;
+}
+
+/* ======== ESTILOS PARA LAS TABLAS ======== */
+#tablas-container {
+width: 100%;
+max-width: 768px;
+margin: auto;
+text-align: left;
+padding: 20px;
+}
+
+.tabla-container {
+background: rgb(71, 71, 71);
+padding: 20px;
+border-radius: 12px;
+margin-bottom: 8px;
+overflow-x: auto;
+}
+
+table {
+width: 100%;
+table-layout: fixed;
+}
+
+th, td {
+padding: 2px;
+font-weight: 600;
+font-size: 14px;
+color: #fff;
+text-align: left;
+word-wrap: break-word;
+}
+
+td:last-child, th:last-child {
+text-align: right;
+}
+
+/* ======== IMPORTES (INPUTS) ======== */
+.importe {
+width: 100%;
+padding: 2px;
+border: none;
+background: transparent;
+text-align: right;
+font-weight: 600;
+font-size: 14px;
+color: #fff;
+outline: none;
+}
+
+/* ======== ESTILO PARA EL TOTAL ======== */
+.total-row {
+padding-top: 2px !important;
+color: yellow !important;
+font-weight: bold !important;
+font-size: 16px !important;
+}
+
+/* ======== ESTILOS PARA MÓVILES ======== */
+@media (max-width: 480px) {
+/* Estilo general para el contenedor de tablas */
+.tabla-container {
+padding-top: 0px;
+margin-bottom: 20px;
+width: 100%;
+padding: 0 6px; /* Margen de 6px a ambos lados */
+box-sizing: border-box;
+overflow-x: auto; /* Permite desplazarse horizontalmente si la tabla es muy ancha */
+}
+
+h2 {
+padding-top: 10px;
+}
+
+/* Estilo general para todas las tablas */
+table {
+width: 100%;
+border-collapse: collapse; /* Elimina el espacio entre celdas */
+margin-bottom: 10px; /* Espacio entre tablas */
+}
+
+/* Estilo para los encabezados de las tablas */
+table th, table td {
+padding: 2px; /* Espaciado interno igual para todas las celdas */
+line-height: 0.4; /* Espacio vertical entre filas */
+font-size: 12px; /* Tamaño de fuente uniforme */
+text-align: left; /* Alineación por defecto a la izquierda para todos */
+}
+
+/* Estilo de los encabezados (th) */
+table th {
+font-weight: bold; /* Negrita para los encabezados */
+}
+
+/* Estilo para las filas de datos (td) */
+table td {
+text-align: left; /* Alineación a la izquierda por defecto */
+}
+
+/* Estilo para los inputs de importe (columna de la derecha) */
+table td input.importe {
+width: 100%; /* Los inputs ocupan todo el ancho de la celda */
+padding: 2px; /* Espaciado interno en el input */
+font-size: 12px; /* Tamaño adecuado para texto en los inputs */
+text-align: right; /* Alineación a la derecha para los números */
+border: 0px solid #ccc; /* Borde sutil para los inputs */
+box-sizing: border-box;
+}
+
+/* Alineación especial para la columna de conceptos (izquierda) */
+table td:first-child, table th:first-child {
+text-align: left; /* Alineación a la izquierda para los conceptos */
+width: 70%; /* Ajustamos el ancho de la columna de conceptos */
+white-space: nowrap; /* Evita que los conceptos se dividan en varias líneas */
+}
+
+/* Alineación especial para la columna de importes (derecha) */
+table td:last-child, table th:last-child {
+text-align: right; /* Alineación a la derecha para los importes */
+width: 30%; /* Ajustamos el ancho de la columna de importes */
+}
+
+}
+
+/* ======= FOOTER ======= */
+.footer-contenedor {
+position: fixed;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
+background: rgba(81, 81, 81, 0.2);
+padding: 10px;
+border-radius: 15px;
+text-align: center;
+width: 400px;
+backdrop-filter: blur(5px);
+font-size: 0.7rem;
+color: #ffffff;
+}
+
+#oculto {
+  display: none;
+}
+
+#pregunta {
+  font-family: 'Roboto', sans-serif; /* Fuente personalizada */
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#respuesta {
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+  font-size: 16px;
+  border: 2px solid #ccc; /* Color del borde */
+  border-radius: 4px; /* Bordes redondeados */
+  background-color: #222; /* Fondo oscuro */
+  color: white; /* Color del texto */
+  placeholder-color: #888; /* Color del texto del placeholder */
+}
+
+#respuesta:focus {
+  border-color: #28a745; /* Color del borde al enfocar el input */
+  outline: none; /* Eliminar el contorno predeterminado */
+}
+
+#respuesta::placeholder {
+  color: #888; /* Color del texto del placeholder */
+  font-style: italic; /* Estilo del texto del placeholder */
+}
+
+</style>
+</head>
+<body>
+    <div id="login" class="container active">
+        <div class="login-container">
+          <h2 class="acceso">Restricted Access</h2>
+          <div class="content-container">
+            <img src="https://lophersson.github.io/online/theshard.png" alt="foto">
+            <div class="form-container">
+              <p id="pregunta">Loading...</p>
+              <input type="text" id="respuesta" placeholder="write correct password" />
+              <div class="botonera">
+                <button class="btn-ok" onclick="verificar()">✔</button>
+                <button class="btn-cancel" onclick="handleCancel()">✖</button>
+              </div>
+            </div>
+          </div>            
+        </div>
+      </div>
+  <iframe id="oculto" src="noaccess.html"></iframe>
+
+  <script>
+    let resultadoEsperado = null;
+    const pregunta = {};
+
+    // Recibir datos del iframe oculto
+    window.addEventListener("message", (event) => {
+      if (event.data.type === "pregunta") {
+        document.getElementById("pregunta").innerText = `Solve: ${event.data.texto}`;
+        resultadoEsperado = event.data.resultado;
+      }
+    });
+
+    function verificar() {
+      const r = parseInt(document.getElementById("respuesta").value.replace(",", "."), 10);
+      if (r === resultadoEsperado) {
+        window.location.href = "https://lophersson.github.io/online/a.html";  // Redirigir a la URL deseada
+      } else {
+        alert("❌ Contraseña incorrecta");
+      }
+    }
+
+    function handleCancel() {
+      alert("❌ Se ha cancelado el acceso.");
+    }
+  </script>
+</body>
+</html>
