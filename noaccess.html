@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Hidden Logic - Iframe</title>
   <script>
-    // Preguntas reales
+    // Preguntas matemáticas
     const qx = [
       { t: '∫ 3x dx [0,2]', r: (3 * Math.pow(2, 2)) / 2 },
       { t: 'd/dx x^3 en x=2', r: 3 * Math.pow(2, 2) },
@@ -12,49 +12,44 @@
       { t: 'ln(e^4)', r: Math.log(Math.exp(4)) },
       { t: '5x - 7 = 18', r: (18 + 7) / 5 },
       { t: 'x² + 2x + 1, x = -1', r: Math.pow(-1, 2) + 2 * -1 + 1 },
-      { t: '√49 + 3^2', r: Math.sqrt(49) + 9 },
+      { t: '√49 + 3^2', r: Math.sqrt(49) + Math.pow(3, 2) },
       { t: 'ln(77)', r: Math.log(77) },
       { t: 'ln(10)', r: Math.log(10) },
-      { t: 'integral de x dx', r: 0.5 },
-      { t: 'derivada de x^2', r: 2 },
+      { t: 'Integral de x dx en [0,1]', r: 0.5 },
+      { t: 'Derivada de x² en x=1', r: 2 },
       { t: '2x = 20', r: 10 },
-      { t: 'y = x^2; x=4', r: 16 },
-      { t: 'f(2.5) = 5(2.5)^2 - 3(2.5) + 12/2.5 - sqrt(2.5) + 7', r: 5 * Math.pow(2.5, 2) - 3 * 2.5 + 12 / 2.5 - Math.sqrt(2.5) + 7 }
+      { t: 'y = x²; x = 4', r: 16 },
+      { t: 'f(2.5) = 5(2.5)² - 3(2.5) + 12/2.5 - √2.5 + 7', r: 5 * Math.pow(2.5, 2) - 3 * 2.5 + 12 / 2.5 - Math.sqrt(2.5) + 7 }
     ];
 
-    // Multiplicador ofuscado y "cifrado"
+    // Clave de cifrado ofuscada
     const clave = 76109;
     const ofuscado = clave ^ 12345;
     const claveReal = ofuscado ^ 12345;
 
-    // Función para enviar la pregunta al padre
     function enviarPregunta() {
-      // Generar pregunta aleatoria
       const pIndex = Math.floor(Math.random() * qx.length);
       const pObj = qx[pIndex];
 
-      // Resultado esperado
-      const rEsp = Math.floor(pObj.r * claveReal);
+      const rEsp = Math.round(pObj.r * claveReal);
 
-      // Enviar mensaje al padre
       window.parent.postMessage({
         type: "pregunta",
         texto: `Resuelve: ${pObj.t}`,
         resultado: rEsp
-      }, "https://lophersson.github.io"); // Reemplaza con el origen correcto de tu página principal
+      }, "https://lophersson.github.io");
     }
 
-    // Escuchar el mensaje de la página principal para enviar la pregunta
     window.addEventListener('message', (event) => {
       if (event.origin === "https://lophersson.github.io" && event.data.type === 'solicitarPregunta') {
         enviarPregunta();
       }
     });
 
-    // Enviar una pregunta inicial al cargar el iframe (opcional, la página principal ya lo solicita)
+    // Si deseas enviar una pregunta al cargar automáticamente, descomenta esta línea:
     // enviarPregunta();
   </script>
 </head>
 <body>
-  </body>
+</body>
 </html>
