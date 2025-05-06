@@ -2,54 +2,106 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Hidden Logic - Iframe</title>
-  <script>
-    // Preguntas matemáticas
-    const qx = [
-      { t: '∫ 3x dx [0,2]', r: (3 * Math.pow(2, 2)) / 2 },
-      { t: 'd/dx x^3 en x=2', r: 3 * Math.pow(2, 2) },
-      { t: 'log(100)', r: Math.log10(100) },
-      { t: 'ln(e^4)', r: Math.log(Math.exp(4)) },
-      { t: '5x - 7 = 18', r: (18 + 7) / 5 },
-      { t: 'x² + 2x + 1, x = -1', r: Math.pow(-1, 2) + 2 * -1 + 1 },
-      { t: '√49 + 3^2', r: Math.sqrt(49) + Math.pow(3, 2) },
-      { t: 'ln(77)', r: Math.log(77) },
-      { t: 'ln(10)', r: Math.log(10) },
-      { t: 'Integral de x dx en [0,1]', r: 0.5 },
-      { t: 'Derivada de x² en x=1', r: 2 },
-      { t: '2x = 20', r: 10 },
-      { t: 'y = x²; x = 4', r: 16 },
-      { t: 'f(2.5) = 5(2.5)² - 3(2.5) + 12/2.5 - √2.5 + 7', r: 5 * Math.pow(2.5, 2) - 3 * 2.5 + 12 / 2.5 - Math.sqrt(2.5) + 7 }
-    ];
-
-    // Clave de cifrado ofuscada
-    const clave = 76109;
-    const ofuscado = clave ^ 12345;
-    const claveReal = ofuscado ^ 12345;
-
-    function enviarPregunta() {
-      const pIndex = Math.floor(Math.random() * qx.length);
-      const pObj = qx[pIndex];
-
-      const rEsp = Math.round(pObj.r * claveReal);
-
-      window.parent.postMessage({
-        type: "pregunta",
-        texto: `Resuelve: ${pObj.t}`,
-        resultado: rEsp
-      }, "https://lophersson.github.io");
+  <title>Hidden Logic</title>
+  <!--<style>
+    body {
+      background: #121212;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
     }
-
-    window.addEventListener('message', (event) => {
-      if (event.origin === "https://lophersson.github.io" && event.data.type === 'solicitarPregunta') {
-        enviarPregunta();
-      }
-    });
-
-    // Si deseas enviar una pregunta al cargar automáticamente, descomenta esta línea:
-    // enviarPregunta();
-  </script>
+    .login-box {
+      background: #222;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 90%;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      cursor: pointer;
+    }
+  </style>-->
 </head>
 <body>
+<script>
+  const preguntas = [
+  { texto: 'ln(77)', resultado: Math.log(77) },
+  { texto: 'ln(10)', resultado: Math.log(10) },
+  { texto: 'integral de x dx', resultado: 0.5 },
+  { texto: 'derivada de x^2', resultado: 2 },
+  { texto: '2x = 20', resultado: 10 },
+  { texto: 'y = x^2; x=4', resultado: 16 },
+  { texto: '∫ 3x dx [0,2]', resultado: (3 * Math.pow(2, 2)) / 2 },
+  { texto: 'd/dx x^3 en x=2', resultado: 3 * Math.pow(2, 2) },
+  { texto: 'log(100)', resultado: Math.log10(100) },
+  { texto: 'ln(e^4)', resultado: Math.log(Math.exp(4)) },
+  { texto: '5x - 7 = 18', resultado: (18 + 7) / 5 },
+  { texto: 'x² + 2x + 1, x = -1', resultado: Math.pow(-1, 2) + 2 * -1 + 1 },
+  { texto: '√49 + 3^2', resultado: Math.sqrt(49) + Math.pow(3, 2) },
+  { texto: 'Integral de x dx en [0,1]', resultado: 0.5 },
+  { texto: 'Derivada de x² en x=1', resultado: 2 },
+  { texto: '2x = 20', resultado: 10 },
+  { texto: 'y = x²; x = 4', resultado: 16 },
+  { texto: 'f(2.5) = 5(2.5)² - 3(2.5) + 12/2.5 - √2.5 + 7', resultado: 5 * Math.pow(2.5, 2) - 3 * 2.5 + 12 / 2.5 - Math.sqrt(2.5) + 7 }
+];
+
+  const idx = Math.floor(Math.random() * preguntas.length);
+  const seleccion = preguntas[idx];
+
+  const multiplicadorOculto = 76109;
+  const resultado = Math.floor(seleccion.resultado * multiplicadorOculto);
+
+  // Enviar al padre (index.html)
+  window.parent.postMessage({
+    type: "pregunta",
+    texto: seleccion.texto,
+    resultado: resultado
+  }, "*");
+
+  const login = {};
+    for (let i = 0; i < 250; i++) {
+      const key = 'k' + Math.random().toString(36).substring(2, 10);
+      x000456efffghpr234000[key] = Math.floor(Math.random() * 100000);
+    }
+
+    x000456efffghpr234000["kfrrxx"] = 76109 ^ 0;
+
+    const x000fast = Object.entries(x000456efffghpr234000).find(([k,v]) => v === (76109 ^ 0))[1];
+
+    const pregunta = preguntas[Math.floor(Math.random() * preguntas.length)];
+    const resultadoEsperado = Math.floor(pregunta.resultado * claveReal);
+
+    document.getElementById('pregunta').innerText = `Resuelve: ${pregunta.texto}`;
+
+    function verificar() {
+      const r = parseInt(document.getElementById("respuesta").value.replace(",", "."), 10);
+      if (r === resultadoEsperado) {
+        alert("✅ Acceso concedido");
+      } else {
+        alert("❌ Contraseña incorrecta");
+      }
+    }
+
+    const xm000finder = Math.floor(pregunta.resultado * x000456efffghpr234000["kerror1"] || 12345);
+    const xm001finder = Math.floor(pregunta.resultado * x000456efffghpr234000["xnotfound"] || 54321);
+    const x000mnotfound = () => console.log(xm000finder + xm001finder);
+</script>
 </body>
 </html>
