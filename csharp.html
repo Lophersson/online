@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>30 Preguntas sobre Arquitectura de Capas en C#</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .qa-container {
+      max-width: 1000px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .qa {
+      margin-bottom: 20px;
+    }
+    .qa h3 {
+      margin-bottom: 10px;
+      color: #2980b9;
+    }
+    .qa p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>30 Preguntas sobre Arquitectura de Capas en C#</h1>
+  <div class="qa-container"><div class="qa">
+  <h3>1. ¿Qué es una arquitectura de capas en C#?</h3>
+  <p>Es un patrón de diseño que separa la lógica de una aplicación en distintas capas para mejorar su organización y mantenimiento.</p>
+</div>
+
+<div class="qa">
+  <h3>2. ¿Cuáles son las capas más comunes en una arquitectura de C#?</h3>
+  <p>Entidad, Datos, Negocio y Presentación.</p>
+</div>
+
+<div class="qa">
+  <h3>3. ¿Qué responsabilidad tiene la capa de entidad?</h3>
+  <p>Define las clases y modelos de datos que representan objetos del dominio.</p>
+</div>
+
+<div class="qa">
+  <h3>4. ¿Cuál es el propósito de la capa de datos?</h3>
+  <p>Encapsula el acceso a la base de datos, realizando operaciones CRUD.</p>
+</div>
+
+<div class="qa">
+  <h3>5. ¿Qué hace la capa de negocio?</h3>
+  <p>Implementa la lógica del negocio, validaciones y procesamiento de reglas.</p>
+</div>
+
+<div class="qa">
+  <h3>6. ¿Para qué sirve la capa de presentación?</h3>
+  <p>Interactúa con el usuario, mostrando datos y recogiendo entradas.</p>
+</div>
+
+<div class="qa">
+  <h3>7. ¿Qué es un DTO?</h3>
+  <p>Un Data Transfer Object, usado para transportar datos entre capas sin exponer entidades.</p>
+</div>
+
+<div class="qa">
+  <h3>8. ¿Qué es un repositorio en la capa de datos?</h3>
+  <p>Una clase que actúa como intermediario entre la base de datos y la lógica de negocio.</p>
+</div>
+
+<div class="qa">
+  <h3>9. ¿Qué ventajas tiene esta arquitectura?</h3>
+  <p>Modularidad, mantenimiento, pruebas unitarias y separación de responsabilidades.</p>
+</div>
+
+<div class="qa">
+  <h3>10. ¿Puede una capa acceder directamente a otra?</h3>
+  <p>Sí, pero se recomienda seguir el flujo: Presentación → Negocio → Datos → Entidad.</p>
+</div>
+
+<div class="qa">
+  <h3>11. ¿Qué herramienta ORM se usa comúnmente en C#?</h3>
+  <p>Entity Framework.</p>
+</div>
+
+<div class="qa">
+  <h3>12. ¿Qué significa CRUD?</h3>
+  <p>Create, Read, Update, Delete.</p>
+</div>
+
+<div class="qa">
+  <h3>13. ¿Puede la capa de presentación contener lógica de negocio?</h3>
+  <p>No, solo debe encargarse de mostrar datos y capturar entradas del usuario.</p>
+</div>
+
+<div class="qa">
+  <h3>14. ¿Qué lenguaje se usa en la capa de presentación web en C#?</h3>
+  <p>HTML, CSS, JavaScript y Razor (en ASP.NET).</p>
+</div>
+
+<div class="qa">
+  <h3>15. ¿Qué patrón de diseño se suele usar junto con esta arquitectura?</h3>
+  <p>MVC (Modelo Vista Controlador).</p>
+</div>
+
+<div class="qa">
+  <h3>16. ¿Qué archivo define la conexión a la base de datos en un proyecto C#?</h3>
+  <p>App.config o Web.config.</p>
+</div>
+
+<div class="qa">
+  <h3>17. ¿Qué tipo de validaciones se hacen en la capa de negocio?</h3>
+  <p>Validaciones de reglas del negocio como límites, consistencia y cálculos.</p>
+</div>
+
+<div class="qa">
+  <h3>18. ¿Puede la capa de datos lanzar excepciones?</h3>
+  <p>Sí, pero deben ser controladas por la capa de negocio.</p>
+</div>
+
+<div class="qa">
+  <h3>19. ¿Qué es una interfaz en C#?</h3>
+  <p>Un contrato que define métodos que una clase debe implementar.</p>
+</div>
+
+<div class="qa">
+  <h3>20. ¿Qué beneficios trae el uso de interfaces entre capas?</h3>
+  <p>Flexibilidad, inyección de dependencias y facilidad de pruebas.</p>
+</div>
+
+<div class="qa">
+  <h3>21. ¿Qué biblioteca permite la inyección de dependencias en C#?</h3>
+  <p>Microsoft.Extensions.DependencyInjection.</p>
+</div>
+
+<div class="qa">
+  <h3>22. ¿Qué es una entidad en Entity Framework?</h3>
+  <p>Una clase que representa una tabla de la base de datos.</p>
+</div>
+
+<div class="qa">
+  <h3>23. ¿Qué responsabilidad tiene un controlador en ASP.NET MVC?</h3>
+  <p>Recibe peticiones del usuario, llama a la lógica de negocio y retorna una vista.</p>
+</div>
+
+<div class="qa">
+  <h3>24. ¿Qué es un servicio en la capa de negocio?</h3>
+  <p>Una clase que encapsula reglas de negocio y operaciones de dominio.</p>
+</div>
+
+<div class="qa">
+  <h3>25. ¿Cómo se evita el acoplamiento entre capas?</h3>
+  <p>Usando interfaces y principios SOLID.</p>
+</div>
+
+<div class="qa">
+  <h3>26. ¿Qué significa el principio de responsabilidad única?</h3>
+  <p>Una clase debe tener una única razón para cambiar.</p>
+</div>
+
+<div class="qa">
+  <h3>27. ¿Qué es un ViewModel?</h3>
+  <p>Una clase usada para estructurar datos específicos que se muestran en la vista.</p>
+</div>
+
+<div class="qa">
+  <h3>28. ¿Qué significa desacoplar capas?</h3>
+  <p>Evitar que una capa dependa directamente de la implementación de otra.</p>
+</div>
+
+<div class="qa">
+  <h3>29. ¿Cuál es la desventaja de una arquitectura de capas?</h3>
+  <p>Puede generar sobrecarga en proyectos muy pequeños o simples.</p>
+</div>
+
+<div class="qa">
+  <h3>30. ¿Es posible usar APIs REST con esta arquitectura?</h3>
+  <p>Sí, implementando controladores REST en la capa de presentación.</p>
+</div>
+
+  </div>
+</body>
+</html>
