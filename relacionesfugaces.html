@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -218,7 +217,94 @@
       font-size: 18px;
       color: #777;
     }
-  </style>
+    @media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    margin-left: 10px;
+    text-align: left;
+  }
+
+  .ubicacion a {
+    font-size: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+
+  .icono-ubicacion {
+    width: 20px;
+    height: 20px;
+  }
+
+  nav {
+    font-size: 16px;
+    padding: 5px 10px;
+  }
+
+  .titulo, .subtitulo, .pie-foto {
+    margin: 10px;
+    font-size: 18px;
+  }
+
+  .parrafo {
+    font-size: 16px;
+    margin: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .imagen {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .autor img {
+    width: 50px;
+    margin-bottom: 10px;
+  }
+
+  .autor h3, .autor p {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .share-buttons {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .share-icons {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .share-icons a {
+    font-size: 18px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .contacta a {
+    font-size: 16px;
+    width: auto;
+    height: auto;
+    padding: 8px 12px;
+  }
+
+  footer {
+    font-size: 16px;
+  }
+
+  footer a, footer .copyright {
+    font-size: 16px;
+  }
+}
+</style>
 </head>
 <body>
 
