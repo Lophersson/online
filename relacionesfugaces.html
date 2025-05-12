@@ -1,371 +1,383 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <title>relaciones con caducidad</title>
-  <style>
-    body {
-      font-family: Georgia, serif;
-      margin: 0;
-      padding: 0;
-      color: #000;
-      background-color: #fff;
-    }
-    header {
-      background: #fff;
-      padding: 10px 20px;
-      border-bottom: 1px solid #000;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 20px;
-    }
-    header h1 {
-      font-family: 'Times New Roman', serif;
-      font-size: 42px;
-      font-weight: bold;
-      margin: 0;
-      font-style: italic;
-      letter-spacing: -1.2px;
-      margin-left: 30px;
-    }
-    .ubicacion a {
-  font-size: 30px;
-  text-decoration: none;
-  color: #0554e7;
-  display: inline-flex;
-  align-items: center;
-  font-weight: bold;
-   margin-right: 50px;
-   font-style: italic;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>relaciones con caducidad</title>
+<style>
+body {
+font-family: Georgia, serif;
+margin: 0;
+padding: 0;
+color: #000;
+background-color: #fff;
+}
+header {
+background: #fff;
+padding: 10px 20px;
+border-bottom: 1px solid #000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 20px;
+}
+header h1 {
+font-family: 'Times New Roman', serif;
+font-size: 42px;
+font-weight: bold;
+margin: 0;
+font-style: italic;
+letter-spacing: -1.2px;
+margin-left: 30px;
+}
+.ubicacion a {
+font-size: 30px;
+text-decoration: none;
+color: #0554e7;
+display: inline-flex;
+align-items: center;
+font-weight: bold;
+margin-right: 50px;
+font-style: italic;
 }
 
 .icono-ubicacion {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-image: url('https://cdn-icons-png.flaticon.com/512/684/684908.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  margin-right: 5px;
+display: inline-block;
+width: 30px;
+height: 30px;
+background-image: url('https://cdn-icons-png.flaticon.com/512/684/684908.png');
+background-size: contain;
+background-repeat: no-repeat;
+margin-right: 5px;
 }
 
-    nav {
-      padding: 10px 20px;
-      font-size: 20px;
-      color: #333;
-      text-align: center;
-      font-style: italic;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
+nav {
+padding: 10px 20px;
+font-size: 20px;
+color: #333;
+text-align: center;
+font-style: italic;
+margin-top: 20px;
+margin-bottom: 20px;
+}
 
-    main {
-        margin-bottom: 40px;
-    }
+main {
+margin-bottom: 40px;
+}
 
-    .etiqueta {
-      display: inline-block;
-      background-color: #FFD700;
-      color: black;
-      font-weight: bold;
-      padding: 2px 5px;
-      margin-right: 5px;
-    }
-  .etiqueta2 {
-      display: inline-block;
-      background-color: #FFD700;
-      color: black;
-      font-weight: bold;
-      padding: 5px;
-      margin-right: 0px;
-    text-align: left;
-    font-size: 20px;
-    }
-    .titulo {
-      font-size: 20px;
-      font-weight: bold;
-      font-style: italic;
-      margin: 10px 20px;
-    }
-    .subtitulo {
-      font-size: 18px;
-      margin: 0 20px 20px;
-    }
-  
-  .parrafo {
-      font-size: 18px;
-      margin: 0 20px 20px;
-      line-height: 1.6;
-      padding-left: 200px;
-      padding-right: 200px;
-    }
-  
-    .imagen {
-      width: 100%;
-      max-width: 700px;
-      display: block;
-      margin: 0 auto;
-    }
-    .pie-foto {
-      font-size: 16px;
-      text-align: center;
-      margin: 5px 20px 20px;
-      color: #444;
-    }
-    .autor {
-      text-align: center;
-      margin-top: 40px;
-      margin-bottom: 0px
-    }
-      .autor img {
-      width: 70px;
-      border-radius: 70%;
-      margin-right: 10px;
-    }
-    .autor h3 {
-      margin: 10px 0 5px;
-      font-weight: bold;
-    }
-    .autor p {
-      font-size: 16px;
-      color: #666;
-    }
-     .share-buttons {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px;
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-    }
+.etiqueta {
+display: inline-block;
+background-color: #FFD700;
+color: black;
+font-weight: bold;
+padding: 2px 5px;
+margin-right: 5px;
+}
+.etiqueta2 {
+display: inline-block;
+background-color: #FFD700;
+color: black;
+font-weight: bold;
+padding: 5px;
+margin-right: 0px;
+text-align: left;
+font-size: 20px;
+}
+.titulo {
+font-size: 20px;
+font-weight: bold;
+font-style: italic;
+margin: 10px 20px;
+}
+.subtitulo {
+font-size: 18px;
+margin: 0 20px 20px;
+}
 
-    .share-icons {
-      display: flex;
-      align-items: center;
-    }
+.parrafo {
+font-size: 18px;
+margin: 0 20px 20px;
+line-height: 1.6;
+padding-left: 200px;
+padding-right: 200px;
+}
 
-    .share-icons a {
-      margin-right: 10px;
-      text-decoration: none;
-      font-size: 20px;
-      padding: 6px;
-      border-radius: 50%;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
-    }
-
-    .share-icons a:last-of-type {
-      margin-right: 0;
-    }
-
-    .facebook { background: #3b5998; }
-    .twitter { background: #1da1f2; }
-    .whatsapp { background: #25d366; }
-    .linkedin { background: #0077b5; }
-
-    .contacta {
-      background-color: #fff;
-      padding: 0px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .contacta a {
-      background-color: #ff0;
-      padding: 10px 20px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      color: #000;
-      border-radius: 6px;
-      width: 50px;
-      height: 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 20px;
-    }
-  
-    footer {
-      background: #f5f5f5;
-      padding: 20px;
-      font-size: 18px;
-      color: #555;
-      margin-top: 40px;
-      text-align: center;
-    }
-
-    footer a {
-      color: #0071c1;
-      text-decoration: none;
-      margin-right: 0px;
-      font-size: 18px;
-      font-style: italic;
-    }
-
-    footer .copyright {
-      margin-top: 10px;
-      font-size: 18px;
-      color: #777;
-    }
-    @media screen and (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
-
-  header h1 {
-    font-size: 24px;
-    margin-left: 4px;
-    text-align: left;
-  }
-
-  .ubicacion a {
-    font-size: 18px;
-    margin-right: 4px;
-    margin-top: 10px;
-  }
-
-  .icono-ubicacion {
-    width: 20px;
-    height: 20px;
-  }
-
-  nav {
-    font-size: 16px;
-    padding: 5px 10px;
-  }
-
-  .titulo, .subtitulo, .pie-foto {
-    margin: 10px;
-    font-size: 18px;
-  }
-
-  .parrafo {
-    font-size: 16px;
-    margin: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .imagen {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .autor img {
-    width: 50px;
-    margin-bottom: 10px;
-  }
-
-  .autor h3, .autor p {
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .share-buttons {
-    /*flex-direction: row;*/
-    padding: 10px;
-  }
-
-  .share-icons {
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-
-  .share-icons a {
-    font-size: 15px;
-    width: 28px;
-    height: 28px;
-  }
-
-  .contacta a {
-    font-size: 15px;
-    width: auto;
-    height: auto;
-    padding: 8px 12px;
-  }
+.imagen {
+width: 100%;
+max-width: 700px;
+display: block;
+margin: 0 auto;
+}
 .pie-foto {
-      font-size: 15px;
-      text-align: center;
-      margin: 5px 20px 20px;
-      color: #444;
-    }
-  footer {
-    font-size: 15px;
-  }
+font-size: 16px;
+text-align: center;
+margin: 5px 20px 20px;
+color: #444;
+}
+.autor {
+text-align: center;
+margin-top: 40px;
+margin-bottom: 0px
+}
+.autor img {
+width: 70px;
+border-radius: 70%;
+margin-right: 10px;
+}
+.autor h3 {
+margin: 10px 0 5px;
+font-weight: bold;
+}
+.autor p {
+font-size: 16px;
+color: #666;
+}
+.share-buttons {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 12px;
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
 
-  footer a, footer .copyright {
-    font-size: 12px;
-  }
+.share-icons {
+display: flex;
+align-items: center;
+}
+
+.share-icons a {
+margin-right: 10px;
+text-decoration: none;
+font-size: 20px;
+padding: 6px;
+border-radius: 50%;
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 22px;
+height: 22px;
+}
+
+.share-icons a:last-of-type {
+margin-right: 0;
+}
+
+.facebook { background: #3b5998; }
+.twitter { background: #1da1f2; }
+.whatsapp { background: #25d366; }
+.linkedin { background: #0077b5; }
+
+.contacta {
+background-color: #fff;
+padding: 0px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.contacta a {
+background-color: #ff0;
+padding: 10px 20px;
+font-weight: bold;
+border: none;
+cursor: pointer;
+text-decoration: none;
+color: #000;
+border-radius: 6px;
+width: 50px;
+height: 16px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+}
+
+footer {
+background: #f5f5f5;
+padding: 20px;
+font-size: 18px;
+color: #555;
+margin-top: 40px;
+text-align: center;
+}
+
+footer a {
+color: #0071c1;
+text-decoration: none;
+margin-right: 0px;
+font-size: 18px;
+font-style: italic;
+}
+
+footer .copyright {
+margin-top: 10px;
+font-size: 18px;
+color: #777;
+}
+@media screen and (max-width: 768px) {
+header {
+flex-direction: column;
+align-items: flex-start;
+margin-top: 10px;
+}
+
+header h1 {
+font-size: 20px;
+margin-left: 4px;
+text-align: left;
+}
+
+.ubicacion a {
+font-size: 17px;
+margin-right: 4px;
+margin-top: 10px;
+}
+
+.icono-ubicacion {
+width: 20px;
+height: 20px;
+}
+
+nav {
+font-size: 15px;
+padding: 5px 10px;
+}
+
+.titulo, .subtitulo {
+margin: 10px;
+font-size: 18px;
+}
+
+.parrafo {
+font-size: 16px;
+margin: 10px;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.imagen {
+max-width: 100%;
+height: auto;
+}
+
+.autor {
+text-align: center;
+margin-top: 20px;
+margin-bottom: 0px
+}
+
+.autor img {
+width: 50px;
+margin-bottom: 10px;
+}
+
+.autor h3, .autor p {
+font-size: 15px;
+text-align: center;
+}
+
+.share-buttons {
+/*flex-direction: row;*/
+padding: 10px;
+}
+
+.share-icons {
+justify-content: center;
+margin-bottom: 10px;
+}
+
+.share-icons a {
+font-size: 15px;
+width: 28px;
+height: 28px;
+}
+
+.contacta a {
+font-size: 15px;
+width: auto;
+height: auto;
+padding: 8px 12px;
+}
+
+main {
+margin-bottom: 20px;
+}
+
+.pie-foto {
+font-size: 15px;
+text-align: center;
+margin: 5px 20px 20px;
+color: #444;
+}
+
+footer a {
+font-size: 15px;
+}
+
+.copyright {
+font-size: 12px;
+}
 }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Relaciones con caducidad</h1>
-  <span class="ubicacion">
-  <a href="https://www.google.com/maps/place/Ayuntamiento+de+Ferrol/@43.4846238,-8.2376634,17z/data=!3m1!4b1!4m6!3m5!1s0xd2e761003f8855b:0x98d8f1a699f08d8f!8m2!3d43.48462!4d-8.23305!16s%2Fg%2F121k2kg7?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
-    <i class="icono-ubicacion"></i> Ferrol
-  </a>
+<h1>Relaciones con caducidad</h1>
+<span class="ubicacion">
+<a href="https://www.google.com/maps/place/Ayuntamiento+de+Ferrol/@43.4846238,-8.2376634,17z/data=!3m1!4b1!4m6!3m5!1s0xd2e761003f8855b:0x98d8f1a699f08d8f!8m2!3d43.48462!4d-8.23305!16s%2Fg%2F121k2kg7?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+<i class="icono-ubicacion"></i> Ferrol
+</a>
 </span>
 </header>
 
 <nav>
- "Sentirse parte de otras personas nos hace avanzar, nos hace prosperar y fortalece nuestra salud mental"
+"Sentirse parte de otras personas nos hace avanzar, nos hace prosperar y fortalece nuestra salud mental"
 </nav>
 
 <main>
-  <p class="titulo"><span class="etiqueta">Nuevo artículo</span><br><br>¿Quieres ser mi amigo?, ¿Quieres ser mi novia?.</p>
-  <p class="subtitulo">La fugacidad de las relaciones nos hace sentir que la vida no tiene sentido y eso repercute al empeoramiento de nuestra salud mental.</p>
-  
- <div class="share-buttons">
-  <div class="share-icons">
-    <a id="facebook" class="facebook" target="_blank"
-       href="https://www.facebook.com/sharer/sharer.php?u=https://lophersson.github.io/online/relacionesfugaces.html">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a id="twitter" class="twitter" target="_blank"
-       href="https://twitter.com/intent/tweet?url=https://lophersson.github.io/online/relacionesfugaces.html&text=Lee%20este%20interesante%20art%C3%ADculo">
-      <i class="fab fa-x-twitter"></i>
-    </a>
-    <a id="whatsapp" class="whatsapp" target="_blank"
-       href="https://api.whatsapp.com/send?text=Lee%20este%20art%C3%ADculo:%20https://lophersson.github.io/online/relacionesfugaces.html">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a id="linkedin" class="linkedin" target="_blank"
-       href="https://www.linkedin.com/shareArticle?mini=true&url=https://lophersson.github.io/online/relacionesfugaces.html&title=Artículo%20recomendado&summary=Te%20puede%20interesar&source=LinkedIn">
-      <i class="fab fa-linkedin-in"></i>
-    </a>
-  </div>
-      <div class="contacta">
-        <a href="https://lophersson.github.io/online/micurriculum2.html">Contacta</a>
-      </div>
-    </div>
-  
-  <img src="https://media.istockphoto.com/id/542327594/es/foto/perdido-en-jap%C3%B3n.jpg?s=612x612&w=0&k=20&c=_UsC1JS3_8vfGI4k3RRRmJHNb8K1d0MAYvo2erPy9V4=" alt="relaciones con caducidad" class="imagen">
-  
-  <p class="pie-foto">Las relaciones fugaces que pasan por nuestra vida sin quedarse perjudica considerablemente nuestra salud mental y el sentido de la vida.</p>
+<p class="titulo"><span class="etiqueta">Nuevo artículo</span><br><br>¿Quieres ser mi amigo?, ¿Quieres ser mi novia?.</p>
+<p class="subtitulo">La fugacidad de las relaciones nos hace sentir que la vida no tiene sentido y eso repercute al empeoramiento de nuestra salud mental.</p>
 
-  <div class="autor">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA6ji7INGIlnjkb6VYIm6urn6ZAXlMupy0XA&s" alt="Lopez Rodriguez">
-    <h3>HUMBERTO LÓPEZ RODRÍGUEZ</h3>
-    <p>FERROL - 12 MAYO 2025 - 09:45</p>
-  </div>
+<div class="share-buttons">
+<div class="share-icons">
+<a id="facebook" class="facebook" target="_blank"
+href="https://www.facebook.com/sharer/sharer.php?u=https://lophersson.github.io/online/relacionesfugaces.html">
+<i class="fab fa-facebook-f"></i>
+</a>
+<a id="twitter" class="twitter" target="_blank"
+href="https://twitter.com/intent/tweet?url=https://lophersson.github.io/online/relacionesfugaces.html&text=Lee%20este%20interesante%20art%C3%ADculo">
+<i class="fab fa-x-twitter"></i>
+</a>
+<a id="whatsapp" class="whatsapp" target="_blank"
+href="https://api.whatsapp.com/send?text=Lee%20este%20art%C3%ADculo:%20https://lophersson.github.io/online/relacionesfugaces.html">
+<i class="fab fa-whatsapp"></i>
+</a>
+<a id="linkedin" class="linkedin" target="_blank"
+href="https://www.linkedin.com/shareArticle?mini=true&url=https://lophersson.github.io/online/relacionesfugaces.html&title=Artículo%20recomendado&summary=Te%20puede%20interesar&source=LinkedIn">
+<i class="fab fa-linkedin-in"></i>
+</a>
+</div>
+<div class="contacta">
+<a href="https://lophersson.github.io/online/micurriculum2.html">Contacta</a>
+</div>
+</div>
+
+<img src="https://media.istockphoto.com/id/542327594/es/foto/perdido-en-jap%C3%B3n.jpg?s=612x612&w=0&k=20&c=_UsC1JS3_8vfGI4k3RRRmJHNb8K1d0MAYvo2erPy9V4=" alt="relaciones con caducidad" class="imagen">
+
+<p class="pie-foto">Las relaciones fugaces que pasan por nuestra vida sin quedarse perjudica considerablemente nuestra salud mental y el sentido de la vida.</p>
+
+<div class="autor">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA6ji7INGIlnjkb6VYIm6urn6ZAXlMupy0XA&s" alt="Lopez Rodriguez">
+<h3>HUMBERTO LÓPEZ RODRÍGUEZ</h3>
+<p>FERROL - 12 MAYO 2025 - 09:45</p>
+</div>
 </main>
-  
- <p class="parrafo">Vivimos en la era de la fugacidad. Las relaciones interpersonales hoy se parecen más a productos de supermercado que a vínculos humanos profundos. Conocemos personas en cursos, en el trabajo, en el gimnasio, en Tinder, redes sociales o a través de otros conocidos, y aunque compartimos momentos agradables, risas, alguna confidencia casual, cenas, cumpleaños, viajes, rutas de senderismo, compras, deportes, planes de ir al cine, ir a recoger a la escuela a los hijos de alguien, acompañar al médico a la madre o al padre de otra persona que conociste o incluso algunos encuentros sexuales, al poco tiempo desaparecen como si jamás hubieran existido. Se esfuman, en la mayoría de los casos sin un adiós, dejan de escribirte por whastapp, ya no te llaman, no interaccionan contigo en instagram, incluso te borran o te bloquean, desaparecen de tu vida, te rechazan sin sentimientos, no te aprecian, no quieren saber más de ti, simplemente ellos deciden caducar la relación contigo, sí, es cruel, es como si fueran yogures olvidados al fondo del frigorífico. Quizás eran amigos de leche, ligues de pan, colegas de huevo o novias de trigo: relaciones con fecha de consumo preferente.</p>
+
+<p class="parrafo">Vivimos en la era de la fugacidad. Las relaciones interpersonales hoy se parecen más a productos de supermercado que a vínculos humanos profundos. Conocemos personas en cursos, en el trabajo, en el gimnasio, en Tinder, redes sociales o a través de otros conocidos, y aunque compartimos momentos agradables, risas, alguna confidencia casual, cenas, cumpleaños, viajes, rutas de senderismo, compras, deportes, planes de ir al cine, ir a recoger a la escuela a los hijos de alguien, acompañar al médico a la madre o al padre de otra persona que conociste o incluso algunos encuentros sexuales, al poco tiempo desaparecen como si jamás hubieran existido. Se esfuman, en la mayoría de los casos sin un adiós, dejan de escribirte por whastapp, ya no te llaman, no interaccionan contigo en instagram, incluso te borran o te bloquean, desaparecen de tu vida, te rechazan sin sentimientos, no te aprecian, no quieren saber más de ti, simplemente ellos deciden caducar la relación contigo, sí, es cruel, es como si fueran yogures olvidados al fondo del frigorífico. Quizás eran amigos de leche, ligues de pan, colegas de huevo o novias de trigo: relaciones con fecha de consumo preferente.</p>
 
 <p class="parrafo">La superficialidad se ha vuelto norma. Interactúan como si estuvieran hojeando un catálogo de un producto de consumo rápido y sin emociones humanas, el producto somos nosotros, se detienen y en ese momento somos alguien a quien le parecemos interesante inicialmente, interactúan un poco, unos minutos, unas horas, pocos días, escasas semanas, pocos meses, y si no encajamos a la perfección con sus expectativas inmediatas, pasan de nosotros y a por la siguiente "opción". Todo muy práctico, todo muy higiénico, sin complicaciones... pero también sin raíces. Y eso, aunque nadie lo diga en voz alta, deja mella, el rechazo duele, y duele mucho.</p>
 
@@ -380,15 +392,15 @@
 <p class="parrafo">Esta fugacidad no sólo deja huecos en nuestra agenda, miles de fines de semana sólos y en casa, sin tener a nadie con quein salir o con quien hacer una llamada de teléfono, también deja huecos en el alma. Nos hace dudar de nuestra valía, nos obliga a contener el afecto, a frenar el cariño, a medir las palabras. Nos vuelve más cautelosos, más fríos, más desconfiados, más cerrados, evitando cierta implicación emocional en los primeros días o semanas. Porque al final, ¿para qué entregarse si todo va a expirar en dos meses como una tarrina de hummus?</p>
 
 <p class="parrafo">Pero aún así, seguimos esperando que alguna vez aparezcan personas sin fecha de caducidad. Personas hechas de ingredientes duraderos: compromiso, empatía, tiempo, cariño. Personas que no se asusten ni tengan reparos al afecto ni al compromiso. Que sepan que construir algo real requiere presencia, constancia y un poco de paciencia. Porque la vida no está hecha para pasarla en soledad, sino para vivirla junto a otros que quieran quedarse.</p>  
-   
+
 <footer>
-    <div>
-      <p class="titulo"><span class="etiqueta2">Lectura recomendada</span><br></p>
-      <a href="https://lophersson.github.io/online/soledad.html">La autenticidad en los vínculos humanos</a>
-    </div><br>
-    <div class="copyright">
-      &copy; 2025 Humberto López Rodríguez. Todos los derechos reservados.
-    </div>
-  </footer>
+<div>
+<p class="titulo"><span class="etiqueta2">Lectura recomendada</span><br></p>
+<a href="https://lophersson.github.io/online/soledad.html">La autenticidad en los vínculos humanos</a>
+</div><br>
+<div class="copyright">
+&copy; 2025 Humberto López Rodríguez. Todos los derechos reservados.
+</div>
+</footer>
 </body>
 </html>
