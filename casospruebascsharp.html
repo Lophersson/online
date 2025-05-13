@@ -1,0 +1,403 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Test de Pruebas de Software en C#</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f4f8;
+        }
+
+        .question {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button {
+            background-color: #ff0000;
+            color: rgb(255, 255, 255);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #e5ff00;
+            color: rgb(0, 0, 0);
+        }
+
+        .results {
+            display: none;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .correct { background-color: #e8f5e9; }
+        .incorrect { background-color: #ffebee; }
+
+        #main-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-top: 20px;
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+#main-footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #f0f0f0;
+    color: #666;
+    font-size: 0.9em;
+    margin-top: 40px;
+    font-family: Arial, sans-serif;
+    border-top: 1px solid #ccc;
+}
+
+    </style>
+</head>
+<body>
+    <h1 id="main-title">Test Casos de Pruebas en C#</h1>
+    <div id="quiz">
+        <!-- Preguntas insertadas dinámicamente -->
+    </div>
+    <button onclick="calculateScore()">Calcular puntuación</button>
+    <div class="results" id="results"></div>
+
+    <script>
+        const questions = [
+            {
+                question: "¿Qué diferencia validación de verificación en testing?",
+                answers: [
+                    "Validación: cumplir especificaciones; Verificación: cumplir requisitos del usuario",
+                    "Validación: comprobar requisitos del usuario; Verificación: cumplir especificaciones técnicas",
+                    "Ambas significan lo mismo"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Qué tipo de prueba evalúa componentes individuales?",
+                answers: [
+                    "Pruebas de integración",
+                    "Pruebas unitarias",
+                    "Pruebas de carga"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Qué mide un benchmark en desarrollo software?",
+                answers: [
+                    "Rendimiento del código",
+                    "Cobertura de pruebas",
+                    "Errores de sintaxis"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es la prueba de caja blanca?",
+                answers: [
+                    "Prueba basada en la estructura interna del código",
+                    "Prueba basada en la funcionalidad externa",
+                    "Prueba de rendimiento"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es la prueba de caja negra?",
+                answers: [
+                    "Prueba basada en la estructura interna del código",
+                    "Prueba basada en la funcionalidad externa",
+                    "Prueba de integración"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Qué es una versión Alpha?",
+                answers: [
+                    "Versión inicial para pruebas internas",
+                    "Versión pública para usuarios finales",
+                    "Versión final estable"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una versión Beta?",
+                answers: [
+                    "Versión para pruebas internas",
+                    "Versión para pruebas públicas",
+                    "Versión final estable"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Qué significa RTM en desarrollo de software?",
+                answers: [
+                    "Release To Manufacturing, versión lista para producción",
+                    "Revisión Técnica de Módulos",
+                    "Reporte de Test de Módulos"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de estrés?",
+                answers: [
+                    "Prueba para evaluar el comportamiento bajo carga extrema",
+                    "Prueba para verificar la funcionalidad básica",
+                    "Prueba para validar la interfaz de usuario"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué tipos de errores se pueden encontrar en pruebas de software?",
+                answers: [
+                    "Errores de sintaxis, lógicos y de ejecución",
+                    "Solo errores de sintaxis",
+                    "Solo errores de lógica"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es un manual técnico?",
+                answers: [
+                    "Documento que explica el uso del software para usuarios finales",
+                    "Documento que detalla la arquitectura y funcionamiento interno del software",
+                    "Documento de marketing"
+                ],
+                correct: 1
+            },
+            {
+                question: "¿Qué es un manual de usuario?",
+                answers: [
+                    "Documento que explica el uso del software para usuarios finales",
+                    "Documento que detalla la arquitectura y funcionamiento interno del software",
+                    "Documento de marketing"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Cuáles son los requisitos mínimos al entregar una aplicación?",
+                answers: [
+                    "Documentación, pruebas realizadas y entorno de ejecución",
+                    "Solo el código fuente",
+                    "Solo el instalador"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Cómo se empaqueta una aplicación en Visual Studio?",
+                answers: [
+                    "Usando ClickOnce o MSI",
+                    "Solo en JAR",
+                    "Solo en ZIP"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Cómo se empaqueta una aplicación Java?",
+                answers: [
+                    "En un archivo JAR",
+                    "En un archivo EXE",
+                    "En un archivo MSI"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de rendimiento?",
+                answers: [
+                    "Prueba para medir la velocidad y eficiencia del software",
+                    "Prueba para verificar la funcionalidad",
+                    "Prueba para validar la interfaz de usuario"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de integración?",
+                answers: [
+                    "Prueba que verifica la interacción entre módulos",
+                    "Prueba que verifica un módulo individual",
+                    "Prueba que verifica la interfaz de usuario"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba unitaria?",
+                answers: [
+                    "Prueba que verifica un módulo individual",
+                    "Prueba que verifica la interacción entre módulos",
+                    "Prueba que verifica la interfaz de usuario"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de caja gris?",
+                answers: [
+                    "Combinación de pruebas de caja blanca y negra",
+                    "Prueba basada solo en la estructura interna",
+                    "Prueba basada solo en la funcionalidad externa"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es un benchmark?",
+                answers: [
+                    "Medición comparativa de rendimiento",
+                    "Prueba de funcionalidad",
+                    "Prueba de seguridad"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es la verificación en pruebas de software?",
+                answers: [
+                    "Proceso para asegurar que el producto cumple con las especificaciones",
+                    "Proceso para asegurar que el producto cumple con las necesidades del usuario",
+                    "Proceso para asegurar que el producto es usable"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es la validación en pruebas de software?",
+                answers: [
+                    "Proceso para asegurar que el producto cumple con las necesidades del usuario",
+                    "Proceso para asegurar que el producto cumple con las especificaciones",
+                    "Proceso para asegurar que el producto es usable"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una versión RTM?",
+                answers: [
+                    "Versión lista para producción y distribución",
+                    "Versión inicial para pruebas internas",
+                    "Versión para pruebas públicas"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de regresión?",
+                answers: [
+                    "Prueba para verificar que los cambios no afecten funcionalidades existentes",
+                    "Prueba para verificar nuevas funcionalidades",
+                    "Prueba para validar la interfaz de usuario"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de aceptación?",
+                answers: [
+                    "Prueba para validar que el software cumple con los requisitos del usuario",
+                    "Prueba para verificar la funcionalidad interna",
+                    "Prueba para medir el rendimiento"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de carga?",
+                answers: [
+                    "Prueba para evaluar el comportamiento bajo carga normal y máxima",
+                    "Prueba para verificar la funcionalidad básica",
+                    "Prueba para validar la interfaz de usuario"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué es una prueba de humo?",
+                answers: [
+                    "Prueba inicial para verificar que las funciones básicas funcionan",
+                    "Prueba para medir el rendimiento",
+                    "Prueba para validar la interfaz de usuario"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué incluye el empaquetado MSI?",
+                answers: [
+                    "Instalador Windows con sistema de desinstalación",
+                    "Paquete portable sin instalación",
+                    "Solo el ejecutable principal"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué prueba detecta errores de rendimiento?",
+                answers: [
+                    "Pruebas de estrés",
+                    "Pruebas unitarias",
+                    "Pruebas de usabilidad"
+                ],
+                correct: 0
+            },
+            {
+                question: "¿Qué documento describe los requisitos del sistema?",
+                answers: [
+                    "Manual técnico",
+                    "Manual de usuario",
+                    "Acuerdo de licencia"
+                ],
+                correct: 0
+            }
+        ];
+
+        function buildQuiz() {
+            const quizContainer = document.getElementById('quiz');
+            questions.forEach((q, index) => {
+                const div = document.createElement('div');
+                div.className = 'question';
+                div.innerHTML = `
+                    <h3>Pregunta ${index + 1}: ${q.question}</h3>
+                    ${q.answers.map((a, i) => `
+                        <div>
+                            <input type="radio" name="q${index}" value="${i}" id="q${index}a${i}">
+                            <label for="q${index}a${i}">${a}</label>
+                        </div>
+                    `).join('')}
+                `;
+                quizContainer.appendChild(div);
+            });
+        }
+
+        function calculateScore() {
+            let score = 0;
+            questions.forEach((q, index) => {
+                const selector = `input[name="q${index}"]:checked`;
+                const selected = document.querySelector(selector);
+                if (selected && parseInt(selected.value) === q.correct) {
+                    score++;
+                    selected.parentElement.parentElement.classList.add('correct');
+                } else {
+                    if(selected) selected.parentElement.parentElement.classList.add('incorrect');
+                }
+            });
+            showResults(score);
+        }
+
+        function showResults(score) {
+            const results = document.getElementById('results');
+            results.style.display = 'block';
+            results.innerHTML = `
+                <h2>Resultado: ${score}/${questions.length}</h2>
+                ${score === questions.length ? '¡Perfecto!' : 'Revisa las respuestas marcadas en rojo'}
+            `;
+        }
+
+        // Inicializar el test
+        buildQuiz();
+    </script>
+    <footer id="main-footer">
+        © 2025 Lophersson | Ferrol | Todos los derechos reservados.
+    </footer>
+</body>
+</html>
