@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" type="image/png" href="https://lophersson.github.io/online/iconh.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" />
+  <link rel="mask-icon" type="image/x-icon" href="https://lophersson.github.io/online/iconh.png" color="#111" />
+  <title>12 Ejemplos de Casos de Pruebas para C# en Visual Studio</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f9f9f9;
+      color: #222;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+    .test-case {
+      background: #fff;
+      border-radius: 7px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      padding: 18px 20px;
+      margin-bottom: 18px;
+      border-left: 5px solid #3498db;
+      transition: box-shadow 0.2s;
+    }
+    .test-case:hover {
+      box-shadow: 0 4px 12px rgba(52,152,219,0.18);
+    }
+    .test-title {
+      font-weight: bold;
+      color: #2980b9;
+      margin-bottom: 6px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+      font-size: 15px;
+    }
+    .run-btn {
+      background: #27ae60;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      padding: 6px 14px;
+      cursor: pointer;
+      margin-top: 8px;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+    .run-btn:hover {
+      background: #219150;
+    }
+    .result {
+      margin-top: 8px;
+      font-weight: bold;
+      color: #16a085;
+    }
+  </style>
+</head>
+<body>
+  <h1>12 Ejemplos de Casos de Pruebas para C# en Visual Studio</h1>
+  <p>Ejemplos de casos de prueba unitarios típicos usando MSTest para C# en Visual Studio:</p>
+
+  <div id="testCases"></div>
+
+  <script>
+    // Lista de ejemplos de casos de prueba
+    const testCases = [
+      {
+        title: "1. Suma de dos números positivos",
+        code: `
+[TestMethod]
+public void Sumar_DosNumerosPositivos_RetornaSumaCorrecta()
+{
+    int resultado = Calculadora.Sumar(3, 7);
+    Assert.AreEqual(10, resultado);
+}
+        `,
+        run: () => "PASÓ: 3 + 7 = 10"
+      },
+      {
+        title: "2. Resta de dos números",
+        code: `
+[TestMethod]
+public void Restar_DosNumeros_RetornaDiferenciaCorrecta()
+{
+    int resultado = Calculadora.Restar(10, 4);
+    Assert.AreEqual(6, resultado);
+}
+        `,
+        run: () => "PASÓ: 10 - 4 = 6"
+      },
+      {
+        title: "3. Multiplicación con cero",
+        code: `
+[TestMethod]
+public void Multiplicar_NumeroPorCero_RetornaCero()
+{
+    int resultado = Calculadora.Multiplicar(8, 0);
+    Assert.AreEqual(0, resultado);
+}
+        `,
+        run: () => "PASÓ: 8 * 0 = 0"
+      },
+      {
+        title: "4. División exacta",
+        code: `
+[TestMethod]
+public void Dividir_DivisionExacta_RetornaCocienteCorrecto()
+{
+    int resultado = Calculadora.Dividir(20, 4);
+    Assert.AreEqual(5, resultado);
+}
+        `,
+        run: () => "PASÓ: 20 / 4 = 5"
+      },
+      {
+        title: "5. División por cero lanza excepción",
+        code: `
+[TestMethod]
+[ExpectedException(typeof(DivideByZeroException))]
+public void Dividir_DivisionPorCero_LanzaExcepcion()
+{
+    Calculadora.Dividir(5, 0);
+}
+        `,
+        run: () => "PASÓ: Lanza DivideByZeroException"
+      },
+      {
+        title: "6. Validar si número es primo",
+        code: `
+[TestMethod]
+public void EsPrimo_NumeroPrimo_RetornaTrue()
+{
+    bool esPrimo = PrimeService.IsPrime(7);
+    Assert.IsTrue(esPrimo);
+}
+        `,
+        run: () => "PASÓ: 7 es primo"
+      },
+      {
+        title: "7. Validar si número no es primo",
+        code: `
+[TestMethod]
+public void EsPrimo_NumeroNoPrimo_RetornaFalse()
+{
+    bool esPrimo = PrimeService.IsPrime(8);
+    Assert.IsFalse(esPrimo);
+}
+        `,
+        run: () => "PASÓ: 8 no es primo"
+      },
+      {
+        title: "8. Comprobar que lista no es nula",
+        code: `
+[TestMethod]
+public void ObtenerLista_ListaNoEsNula()
+{
+    var lista = AlumnoService.ObtenerAlumnos();
+    Assert.IsNotNull(lista);
+}
+        `,
+        run: () => "PASÓ: Lista no es nula"
+      },
+      {
+        title: "9. Verificar cadena contiene texto esperado",
+        code: `
+[TestMethod]
+public void Mensaje_ContieneTextoEsperado()
+{
+    string mensaje = Servicio.ObtenerMensaje();
+    StringAssert.Contains(mensaje, "Bienvenido");
+}
+        `,
+        run: () => "PASÓ: Mensaje contiene 'Bienvenido'"
+      },
+      {
+        title: "10. Comprobar que objeto es del tipo esperado",
+        code: `
+[TestMethod]
+public void CrearAlumno_DevuelveTipoAlumno()
+{
+    var alumno = AlumnoService.CrearAlumno("Ana");
+    Assert.IsInstanceOfType(alumno, typeof(Alumno));
+}
+        `,
+        run: () => "PASÓ: Es instancia de Alumno"
+      },
+      {
+        title: "11. Verificar que colección está vacía",
+        code: `
+[TestMethod]
+public void ObtenerElementos_ColeccionVacia()
+{
+    var elementos = Repositorio.ObtenerElementos();
+    Assert.AreEqual(0, elementos.Count);
+}
+        `,
+        run: () => "PASÓ: Colección vacía"
+      },
+      {
+        title: "12. Probar excepción personalizada en débito",
+        code: `
+[TestMethod]
+public void Debitar_MontoMayorQueSaldo_LanzaArgumentOutOfRange()
+{
+    var cuenta = new BankAccount("Juan", 50);
+    try
+    {
+        cuenta.Debit(100);
+    }
+    catch (ArgumentOutOfRangeException e)
+    {
+        StringAssert.Contains(e.Message, BankAccount.DebitAmountExceedsBalanceMessage);
+        return;
+    }
+    Assert.Fail("No lanzó excepción");
+}
+        `,
+        run: () => "PASÓ: Lanza ArgumentOutOfRangeException con mensaje esperado"
+      }
+    ];
+
+    // Renderiza los casos de prueba
+    const container = document.getElementById('testCases');
+    testCases.forEach((tc, idx) => {
+      const div = document.createElement('div');
+      div.className = 'test-case';
+
+      const title = document.createElement('div');
+      title.className = 'test-title';
+      title.textContent = tc.title;
+
+      const code = document.createElement('pre');
+      code.textContent = tc.code.trim();
+
+      const btn = document.createElement('button');
+      btn.className = 'run-btn';
+      btn.textContent = 'Simular ejecución';
+      const result = document.createElement('div');
+      result.className = 'result';
+
+      btn.addEventListener('click', () => {
+        result.textContent = tc.run();
+      });
+
+      div.appendChild(title);
+      div.appendChild(code);
+      div.appendChild(btn);
+      div.appendChild(result);
+
+      container.appendChild(div);
+    });
+  </script>
+  <footer style="background-color:#2c3e50; color:#ecf0f1; padding:20px 30px; text-align:center; font-size:14px; margin-top:40px;">
+  <div style="max-width:900px; margin:auto;">
+    <p>© 2025 Ejemplos de Pruebas en C# - Visual Studio</p>
+    <p>
+      <!--<a href="#" style="color:#3498db; text-decoration:none; margin: 0 10px;">Inicio</a> |
+      <a href="#" style="color:#3498db; text-decoration:none; margin: 0 10px;">Documentación</a> |-->
+      <a href="https://lophersson.github.io/online/micurriculum2.html" style="color:#3498db; text-decoration:none; margin: 0 10px;">Contacto</a>
+    </p>
+    <p style="font-size:12px; color:#95a5a6; margin-top:10px;">
+      Hecho con ❤️ por Lophersson para desarrolladores C#
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
