@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preguntas y Respuestas - Testing</title>
+  <style>
+    :root {
+      --primary: #2e86de;
+      --secondary: #f1f3f6;
+      --text: #333;
+      --accent: #d1ecf1;
+      --footer-bg: #f1f3f6;;
+      --footer-text: #2e86de;
+      --border-radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 90vh;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      margin: auto;
+      background: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      flex: 1;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .qa {
+      margin-bottom: 1.5rem;
+      border-left: 5px solid var(--primary);
+      padding: 1rem;
+      background: var(--accent);
+      border-radius: var(--border-radius);
+    }
+
+    .question {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .answer {
+      padding-left: 1rem;
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      color: var(--footer-text);
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      border-top: 0px solid #1b4f72;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      .container {
+        padding: 1rem;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      .question {
+        font-size: 1rem;
+      }
+
+      .answer {
+        padding-left: 0.5rem;
+      }
+
+      footer {
+        font-size: 0.8rem;
+        padding: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Preguntas y Respuestas: Testing de Software</h1>
+
+    <div class="qa">
+      <div class="question">1. ¿Qué es el software testing?</div>
+      <div class="answer">Es el proceso de evaluar un sistema para identificar defectos y asegurar que cumple con los requisitos especificados.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">2. ¿Qué tipos de errores se pueden detectar?</div>
+      <div class="answer">Errores de programación, fallos de lógica, problemas en la documentación o desviaciones de la calidad esperada.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">3. ¿Qué significa que no haya errores?</div>
+      <div class="answer">Significa que no se han encontrado defectos durante las pruebas, aunque no garantiza que el software sea perfecto.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">4. ¿Qué son la validación y la verificación?</div>
+      <div class="answer">Validación asegura que el software cumple con las necesidades del usuario. Verificación confirma que el producto fue construido correctamente según especificaciones.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">5. ¿Qué son las pruebas de caja negra?</div>
+      <div class="answer">Pruebas que evalúan la funcionalidad sin conocer la estructura interna. Se basan en entradas y salidas.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">6. ¿Qué se prueba en una interfaz?</div>
+      <div class="answer">La usabilidad, coherencia, accesibilidad, y funcionamiento correcto de los elementos interactivos.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">7. ¿Qué son las pruebas de estrés?</div>
+      <div class="answer">Son pruebas que evalúan el comportamiento del sistema bajo condiciones extremas de carga.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">8. ¿Quiénes son los usuarios beta?</div>
+      <div class="answer">Usuarios reales que prueban el software antes del lanzamiento final para detectar errores no previstos.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">9. ¿Qué es una versión Alpha?</div>
+      <div class="answer">Es una versión temprana del software, con pruebas internas, antes de ser liberada para pruebas beta.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">10. ¿Qué es el RTM (Release To Manufacturing)?</div>
+      <div class="answer">Es la versión final del software lista para su distribución o producción.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">11. ¿Qué significa un caso de prueba sin errores?</div>
+      <div class="answer">Es una prueba que se ejecutó correctamente sin producir fallos.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">12. ¿Qué es un caso de prueba?</div>
+      <div class="answer">Es un conjunto de condiciones y pasos definidos para verificar una funcionalidad específica del software.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">13. ¿Qué evalúa el rendimiento?</div>
+      <div class="answer">Evalúa la eficiencia del sistema y la experiencia del usuario bajo diferentes condiciones de uso.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">14. ¿Qué es una prueba de carga?</div>
+      <div class="answer">Es una prueba que mide el rendimiento del sistema al manejar un volumen esperado de usuarios o transacciones.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">15. ¿Qué implica una prueba de estrés?</div>
+      <div class="answer">Implica llevar el sistema más allá de sus límites para observar cómo se comporta y si colapsa.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">16. ¿Qué es un archivo JAR en Java?</div>
+      <div class="answer">Es un archivo que empaqueta múltiples clases y recursos de Java en un solo contenedor ejecutable.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">17. ¿Es la documentación una etapa del ciclo de vida?</div>
+      <div class="answer">No, la documentación no es una etapa por sí sola, pero es transversal y necesaria en todas las fases del desarrollo.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">18. ¿Qué implica implementar un software?</div>
+      <div class="answer">Implica codificar, integrar y poner en funcionamiento el sistema según los requerimientos definidos.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">19. ¿Qué tipos de pruebas existen según el tipo de usuario?</div>
+      <div class="answer">Pruebas de usuario final, pruebas técnicas y pruebas de instalación.</div>
+    </div>
+
+    <div class="qa">
+      <div class="question">20. ¿El usuario debe asistir a todas las pruebas?</div>
+      <div class="answer">No necesariamente. El usuario participa en validaciones clave, pero no está obligado a asistir a todas las pruebas técnicas.</div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 - Lophersson | Ferrol | Testing & QA
+    <br>
+    Todos los derechos reservados.
+  </footer>
+</body>
+</html>
