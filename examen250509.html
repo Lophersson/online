@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen de Arquitectura de Capas en C#</title>
+  <style>
+    body {
+      background-color: #0f1218;
+      color: #e0e6ed;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background-color: #1e2a38;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #00ffc3;
+    }
+    .question {
+      margin-bottom: 2rem;
+    }
+    .question h2 {
+      font-size: 1.1rem;
+      color: #7df9ff;
+    }
+    .answer {
+      background-color: #2e3b4e;
+      padding: 1rem;
+      border-left: 4px solid #00ffc3;
+      border-radius: 8px;
+      margin-top: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      padding: 10px;
+      color: #00ffc3;
+      border-top: 0px solid #ccc;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Examen de Arquitectura de Capas en C#</h1>
+
+    <div class="question">
+      <h2>1. ¿Qué capas se comunican con la capa de negocio?</h2>
+      <div class="answer">Capa de presentación y capa de datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>2. ¿Cuáles son las tres capas tradicionales en una arquitectura en C#?</h2>
+      <div class="answer">Presentación, Negocio, Datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>3. ¿Qué capas están directamente relacionadas en una comunicación básica?</h2>
+      <div class="answer">Presentación y Negocio.</div>
+    </div>
+
+    <div class="question">
+      <h2>4. ¿Qué capa se debe modificar al migrar de SQL Server a MySQL?</h2>
+      <div class="answer">Capa de datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>5. ¿Qué sucede si la presentación no accede a negocio y negocio no accede a datos?</h2>
+      <div class="answer">El negocio usará clases o funciones propias para acceder a los datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>6. ¿En qué capa se utiliza la clase SqlConnection?</h2>
+      <div class="answer">Capa de datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>7. ¿Qué representa una variable que instancia SqlConnection?</h2>
+      <div class="answer">Una conexión a la base de datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>8. ¿Qué tipo de error puede producir una lista vacía sin elementos?</h2>
+      <div class="answer">Excepción al intentar acceder a elementos inexistentes.</div>
+    </div>
+
+    <div class="question">
+      <h2>9. ¿Qué ocurre si se realiza una conexión sin cerrar la anterior?</h2>
+      <div class="answer">Puede lanzar una excepción capturable en el bloque catch.</div>
+    </div>
+
+    <div class="question">
+      <h2>10. ¿Dónde se ubica la lógica de consultas SQL?</h2>
+      <div class="answer">En la capa de datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>11. ¿Qué sucede si micodigo no es un número entero?</h2>
+      <div class="answer">Se produce un error de conversión.</div>
+    </div>
+
+    <div class="question">
+      <h2>12. ¿Qué sucede si se intenta borrar un registro que no existe?</h2>
+      <div class="answer">No se borra nada.</div>
+    </div>
+
+    <div class="question">
+      <h2>13. ¿Dónde se encuentra el acceso a la base de datos?</h2>
+      <div class="answer">En la capa de datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>14. ¿Qué sucede si no hay primary key y varios registros tienen el mismo código?</h2>
+      <div class="answer">Se borran todos los registros con ese código.</div>
+    </div>
+
+    <div class="question">
+      <h2>15. ¿Qué se actualiza si se hace un SET nombre en un UPDATE con filtro por código?</h2>
+      <div class="answer">El nombre del registro con ese código.</div>
+    </div>
+
+    <div class="question">
+      <h2>16. ¿Cómo se agregan nombres de una lista a un ListBox en C#?</h2>
+      <div class="answer">foreach (var nombre in nombres) jugadorelb.Items.Add(nombre);</div>
+    </div>
+
+    <div class="question">
+      <h2>17. ¿Cómo funciona un método de borrado que devuelve un booleano?</h2>
+      <div class="answer">Devuelve true si se ejecuta correctamente, false si falla.</div>
+    </div>
+
+    <div class="question">
+      <h2>18. ¿Qué relación tiene la capa presentación con las otras capas?</h2>
+      <div class="answer">Llama a la capa de negocio, que a su vez llama a la capa de datos.</div>
+    </div>
+
+    <div class="question">
+      <h2>19. ¿Qué se modifica si hay una librería intermedia entre negocio y datos?</h2>
+      <div class="answer">Solo se modifica la capa de presentación.</div>
+    </div>
+
+    <div class="question">
+      <h2>20. ¿Qué capas deben modificarse al cambiar de SQL Server a Oracle?</h2>
+      <div class="answer">Capa de datos y capa de negocio (no se toca la presentación).</div>
+    </div>
+  </div>
+  <footer>
+    Realizado por Lophersson - Humberto Lopez Rodriguez | Ferrol | Todos los derechos reservados © 2025
+  </footer>
+</body>
+</html>
