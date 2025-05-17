@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Funciones C# con Bucles y Substrings - 10 Ejercicios</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fafafa;
+      color: #1a202c;
+      padding: 2rem;
+    }
+    h1 {
+      color: #2c7a7b;
+      margin-bottom: 2rem;
+    }
+    .bloque {
+      background-color: #ffffff;
+      border-left: 6px solid #319795;
+      box-shadow: 0 2px 8px rgba(50, 115, 110, 0.1);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-top: 0;
+      color: #285e61;
+    }
+    code {
+      background-color: #e2e8f0;
+      border-radius: 4px;
+      padding: 3px 6px;
+      font-family: Consolas, monospace;
+      display: block;
+      margin: 0.5rem 0 1rem 0;
+      white-space: pre-line;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+    th, td {
+      padding: 0.5rem;
+      border: 1px solid #cbd5e0;
+      text-align: left;
+    }
+    th {
+      background-color: #e6fffa;
+      color: #285e61;
+    }
+  footer {
+      /*background-color: #1e293b;*/
+      color: #1f2937;
+      text-align: center;
+      padding: 0.3rem;
+      margin-top: 0.3rem;
+    }
+  .boton-enlace {
+  background-color: yellow;
+  color: #6AA9E9;
+  font-weight: bold;
+    font-style: italic;
+  padding: 12px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 32px;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 300px;
+    margin-bottom: 20px;
+}
+
+    .boton-enlace:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Funciones C# simuladas: Bucles, Substrings y Strings - 10 Ejercicios</h1>
+
+  <div class="bloque">
+    <h2>1. Concatenar elementos de un array separándolos por coma</h2>
+    <code>
+string ConcatenarArray(string[] arr) {
+  string resultado = "";
+  for(int i = 0; i &lt; arr.Length; i++) {
+    resultado += arr[i];
+    if(i &lt; arr.Length - 1) resultado += ", ";
+  }
+  return resultado;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>["Manzana", "Banana", "Cereza"]</td><td>"Manzana, Banana, Cereza"</td></tr>
+      <tr><td>["Rojo", "Verde"]</td><td>"Rojo, Verde"</td></tr>
+      <tr><td>["Solo"]</td><td>"Solo"</td></tr>
+      <tr><td>[]</td><td>""</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>2. Contar palabras que contienen una subcadena</h2>
+    <code>
+int ContarPalabrasConSubcadena(string texto, string sub) {
+  string[] palabras = texto.Split(' ');
+  int count = 0;
+  foreach(var p in palabras) {
+    if(p.Contains(sub)) count++;
+  }
+  return count;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"hola mundo hola", "lo"</td><td>2</td></tr>
+      <tr><td>"programar en C# es divertido", "r"</td><td>2</td></tr>
+      <tr><td>"abracadabra", "abra"</td><td>1</td></tr>
+      <tr><td>"uno dos tres cuatro", "cinco"</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>3. Repetir cadena N veces usando bucle</h2>
+    <code>
+string RepetirCadena(string texto, int n) {
+  string resultado = "";
+  for(int i = 0; i &lt; n; i++) {
+    resultado += texto;
+  }
+  return resultado;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"abc", 3</td><td>"abcabcabc"</td></tr>
+      <tr><td>"x", 5</td><td>"xxxxx"</td></tr>
+      <tr><td>"Hola", 1</td><td>"Hola"</td></tr>
+      <tr><td>"Test", 0</td><td>""</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>4. Extraer y concatenar subcadenas de posiciones pares</h2>
+    <code>
+string SubcadenasPares(string texto) {
+  string resultado = "";
+  for(int i = 0; i &lt; texto.Length; i += 2) {
+    resultado += texto.Substring(i, 1);
+  }
+  return resultado;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"abcdef"</td><td>"ace"</td></tr>
+      <tr><td>"1234567"</td><td>"1357"</td></tr>
+      <tr><td>"hola"</td><td>"hl"</td></tr>
+      <tr><td>""</td><td>""</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>5. Contar vocales en una cadena</h2>
+    <code>
+int ContarVocales(string texto) {
+  int count = 0;
+  foreach(char c in texto.ToLower()) {
+    if("aeiou".Contains(c)) count++;
+  }
+  return count;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"Hola Mundo"</td><td>4</td></tr>
+      <tr><td>"Programación"</td><td>5</td></tr>
+      <tr><td>"xyz"</td><td>0</td></tr>
+      <tr><td>""</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>6. Invertir palabra usando bucle</h2>
+    <code>
+string Invertir(string texto) {
+  string resultado = "";
+  for(int i = texto.Length - 1; i &gt;= 0; i--) {
+    resultado += texto[i];
+  }
+  return resultado;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"hola"</td><td>"aloh"</td></tr>
+      <tr><td>"12345"</td><td>"54321"</td></tr>
+      <tr><td>"a"</td><td>"a"</td></tr>
+      <tr><td>""</td><td>""</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>7. Validar si una cadena contiene solo dígitos</h2>
+    <code>
+bool SoloDigitos(string texto) {
+  foreach(char c in texto) {
+    if(!char.IsDigit(c)) return false;
+  }
+  return true;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"12345"</td><td>true</td></tr>
+      <tr><td>"12a45"</td><td>false</td></tr>
+      <tr><td>""</td><td>true</td></tr>
+      <tr><td>"0000"</td><td>true</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>8. Obtener número de repeticiones consecutivas de un carácter</h2>
+    <code>
+int RepeticionesConsecutivas(string texto, char c) {
+  int maxCount = 0, count = 0;
+  foreach(char ch in texto) {
+    if(ch == c) {
+      count++;
+      if(count &gt; maxCount) maxCount = count;
+    } else {
+      count = 0;
+    }
+  }
+  return maxCount;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"aaabbbaa", 'a'</td><td>3</td></tr>
+      <tr><td>"bbbccc", 'b'</td><td>3</td></tr>
+      <tr><td>"abcde", 'f'</td><td>0</td></tr>
+      <tr><td>"", 'a'</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>9. Contar palabras que terminan en vocal</h2>
+    <code>
+int ContarPalabrasVocal(string texto) {
+  int count = 0;
+  string[] palabras = texto.Split(' ');
+  foreach(var p in palabras) {
+    if(p.Length &gt; 0) {
+      char last = p[p.Length - 1];
+      if("aeiouAEIOU".Contains(last)) count++;
+    }
+  }
+  return count;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"hola como estas"</td><td>3</td></tr>
+      <tr><td>"casa perro sol"</td><td>2</td></tr>
+      <tr><td>"xyz abc def"</td><td>1</td></tr>
+      <tr><td>""</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>10. Extraer números de una cadena</h2>
+    <code>
+string ExtraerNumeros(string texto) {
+  string resultado = "";
+  foreach(char c in texto) {
+    if(char.IsDigit(c)) resultado += c;
+  }
+  return resultado;
+}
+    </code>
+    <table>
+      <tr><th>Entrada</th><th>Salida</th></tr>
+      <tr><td>"abc123def45"</td><td>"12345"</td></tr>
+      <tr><td>"no hay números"</td><td>""</td></tr>
+      <tr><td>"2024 año"</td><td>"2024"</td></tr>
+      <tr><td>""</td><td>""</td></tr>
+    </table>
+  </div>
+
+  <a href="https://lophersson.github.io/online/examen19mayo2025.html" target="_blank" class="boton-enlace">VER MÁS</a>
+
+  <footer>
+    © 2025 Desarrollado por Lophersson
+  </footer>
+</body>
+</html>
