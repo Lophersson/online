@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Funciones estilo C# - Múltiples entradas y salidas</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      padding: 2rem;
+      color: #1f2937;
+    }
+    .bloque {
+      background-color: #ffffff;
+      border-left: 6px solid #3b82f6;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+    h2 {
+      margin-top: 0;
+      color: #1e40af;
+    }
+    code {
+      background-color: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    .tabla {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .tabla th, .tabla td {
+      border: 1px solid #cbd5e1;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    .tabla th {
+      background-color: #f1f5f9;
+    }
+    .error {
+      color: #b91c1c;
+      font-weight: bold;
+    }
+  footer {
+      /*background-color: #1e293b;*/
+      color: #1f2937;
+      text-align: center;
+      padding: 0.3rem;
+      margin-top: 0.3rem;
+    }
+  .boton-enlace {
+  background-color: yellow;
+  color: #6AA9E9;
+  font-weight: bold;
+    font-style: italic;
+  padding: 12px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 32px;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 300px;
+    margin-bottom: 20px;
+}
+
+    .boton-enlace:hover {
+      background-color: #45a049;
+    }6
+  </style>
+</head>
+<body>
+
+  <h1>Simulación de Funciones estilo C# con múltiples entradas</h1>
+
+  <div class="bloque">
+    <h2>1. Contar vocales (string texto)</h2>
+    <code>return texto.Count(c => "aeiouAEIOU".Contains(c));</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"Hola mundo"</td><td>4</td></tr>
+      <tr><td>"CSharp"</td><td>1</td></tr>
+      <tr><td>"AEIOUaeiou"</td><td>10</td></tr>
+      <tr><td>""</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>2. Invertir texto (string texto)</h2>
+    <code>char[] arr = texto.ToCharArray(); Array.Reverse(arr); return new string(arr);</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"casa"</td><td>"asac"</td></tr>
+      <tr><td>"12345"</td><td>"54321"</td></tr>
+      <tr><td>"Hola!"</td><td>"!aloH"</td></tr>
+      <tr><td>""</td><td>""</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>3. Validar email (string email)</h2>
+    <code>if (email.Contains("@") &amp;&amp; email.Contains(".")) return "Válido"; else return "Inválido";</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"test@mail.com"</td><td>Válido</td></tr>
+      <tr><td>"user@dominio"</td><td class="error">Inválido</td></tr>
+      <tr><td>"@mail.com"</td><td>Válido</td></tr>
+      <tr><td>"texto plano"</td><td class="error">Inválido</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>4. Contar palabras (string texto)</h2>
+    <code>return texto.Split(' ').Length;</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"Hola mundo"</td><td>2</td></tr>
+      <tr><td>"Uno dos tres cuatro"</td><td>4</td></tr>
+      <tr><td>"Solo"</td><td>1</td></tr>
+      <tr><td>""</td><td>1</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>5. Substring seguro (string texto, int inicio, int longitud)</h2>
+    <code>if (inicio+longitud &gt; texto.Length) return "Error"; else return texto.Substring(inicio, longitud);</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"Programación", 0, 4</td><td>"Prog"</td></tr>
+      <tr><td>"Hola", 1, 2</td><td>"ol"</td></tr>
+      <tr><td>"Texto", 3, 5</td><td class="error">Error</td></tr>
+      <tr><td>"ABCDEF", 2, 2</td><td>"CD"</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>6. Verificar número positivo (int n)</h2>
+    <code>return n &gt;= 0 ? "Positivo" : "Negativo";</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>5</td><td>Positivo</td></tr>
+      <tr><td>0</td><td>Positivo</td></tr>
+      <tr><td>-10</td><td class="error">Negativo</td></tr>
+      <tr><td>99</td><td>Positivo</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>7. Comparar cadenas (string a, string b)</h2>
+    <code>return a == b ? "Iguales" : "Distintas";</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"hola", "hola"</td><td>Iguales</td></tr>
+      <tr><td>"Hola", "hola"</td><td class="error">Distintas</td></tr>
+      <tr><td>"123", "123"</td><td>Iguales</td></tr>
+      <tr><td>"uno", "dos"</td><td class="error">Distintas</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>8. Formatear nombre (string nombre, string apellido)</h2>
+    <code>return apellido + ", " + nombre;</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"Juan", "Pérez"</td><td>"Pérez, Juan"</td></tr>
+      <tr><td>"Ana", "García"</td><td>"García, Ana"</td></tr>
+      <tr><td>"", "López"</td><td>"López, "</td></tr>
+      <tr><td>"Mario", ""</td><td>", Mario"</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>9. Contar dígitos en string (string texto)</h2>
+    <code>return texto.Count(c => char.IsDigit(c));</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"abc123"</td><td>3</td></tr>
+      <tr><td>"no hay números"</td><td>0</td></tr>
+      <tr><td>"5a5b5c"</td><td>3</td></tr>
+      <tr><td>""</td><td>0</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>10. Repetir carácter (char c, int n)</h2>
+    <code>return new string(c, n);</code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>'*', 5</td><td>"*****"</td></tr>
+      <tr><td>'-', 3</td><td>"---"</td></tr>
+      <tr><td>'A', 0</td><td>""</td></tr>
+      <tr><td>'x', 2</td><td>"xx"</td></tr>
+    </table>
+  </div>
+
+  <a href="https://lophersson.github.io/online/examen19mayo2025.html" target="_blank" class="boton-enlace">VER MÁS</a>
+
+  <footer>
+    © 2025 Desarrollado por Lophersson
+  </footer>
+</body>
+</html>
