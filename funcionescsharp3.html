@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Funciones con Bucles y Substrings</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f4f6;
+      padding: 2rem;
+      color: #1f2937;
+    }
+    .bloque {
+      background-color: #fff;
+      border-left: 6px solid #10b981;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-top: 0;
+      color: #065f46;
+    }
+    code {
+      background-color: #e5e7eb;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, monospace;
+    }
+    .tabla {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    .tabla th, .tabla td {
+      border: 1px solid #d1d5db;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    .tabla th {
+      background-color: #f0fdf4;
+    }
+    .error {
+      color: #dc2626;
+      font-weight: bold;
+    }
+  footer {
+      /*background-color: #1e293b;*/
+      color: #1f2937;
+      text-align: center;
+      padding: 0.3rem;
+      margin-top: 0.3rem;
+    }
+  .boton-enlace {
+  background-color: yellow;
+  color: #6AA9E9;
+  font-weight: bold;
+    font-style: italic;
+  padding: 12px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 32px;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 300px;
+    margin-bottom: 20px;
+}
+
+    .boton-enlace:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Funciones C# simuladas: Bucles y Substrings</h1>
+
+  <div class="bloque">
+    <h2>1. Extraer iniciales (string nombreCompleto)</h2>
+    <code>
+      string[] partes = nombreCompleto.Split(' ');<br>
+      string ini = "";<br>
+      foreach (string p in partes) ini += p[0];<br>
+      return ini.ToUpper();
+    </code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"Juan Carlos Pérez"</td><td>JCP</td></tr>
+      <tr><td>"Ana María López"</td><td>AML</td></tr>
+      <tr><td>"luis"</td><td>L</td></tr>
+      <tr><td>"pedro alonso"</td><td>PA</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>2. Substring de longitud fija cada N caracteres</h2>
+    <code>
+      for (int i = 0; i &lt; texto.Length; i += 3)<br>
+      &nbsp;&nbsp;segmentos += texto.Substring(i, Math.Min(3, texto.Length - i)) + "-";
+    </code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"ABCDEFGHIJ"</td><td>ABC-DEF-GHI-J-</td></tr>
+      <tr><td>"123456789"</td><td>123-456-789-</td></tr>
+      <tr><td>"HolaMundo"</td><td>Hol-aMu-ndo-</td></tr>
+      <tr><td>"Hi"</td><td>Hi-</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>3. Duplicar vocales en una cadena</h2>
+    <code>
+      string resultado = "";<br>
+      foreach (char c in texto)<br>
+      &nbsp;&nbsp;resultado += "aeiouAEIOU".Contains(c) ? $"{c}{c}" : c.ToString();
+    </code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"Hola"</td><td>Hoolaa</td></tr>
+      <tr><td>"Mundo"</td><td>Muundoo</td></tr>
+      <tr><td>"AEIOU"</td><td>AAEEIIOOUU</td></tr>
+      <tr><td>"BCDF"</td><td>BCDF</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>4. Contar ocurrencias de un carácter (char objetivo)</h2>
+    <code>
+      int contador = 0;<br>
+      foreach (char c in texto)<br>
+      &nbsp;&nbsp;if (c == objetivo) contador++;<br>
+      return contador;
+    </code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"banana", 'a'</td><td>3</td></tr>
+      <tr><td>"mississippi", 's'</td><td>4</td></tr>
+      <tr><td>"HELLO", 'L'</td><td>2</td></tr>
+      <tr><td>"xyz", 'z'</td><td>1</td></tr>
+    </table>
+  </div>
+
+  <div class="bloque">
+    <h2>5. Eliminar vocales de un string (foreach + condición)</h2>
+    <code>
+      foreach (char c in texto)<br>
+      &nbsp;&nbsp;if (!"aeiouAEIOU".Contains(c)) nuevo += c;
+    </code>
+    <table class="tabla">
+      <tr><th>Entrada</th><th>Resultado</th></tr>
+      <tr><td>"Educación"</td><td>dcn</td></tr>
+      <tr><td>"Aprender"</td><td>prndr</td></tr>
+      <tr><td>"IA es futuro"</td><td> s ftr</td></tr>
+      <tr><td>"aEiOu"</td><td>""</td></tr>
+    </table>
+  </div>
+
+  <a href="https://lophersson.github.io/online/examen19mayo2025.html" target="_blank" class="boton-enlace">VER MÁS</a>
+
+  <footer>
+    © 2025 Desarrollado por Lophersson
+  </footer>
+</body>
+</html>
