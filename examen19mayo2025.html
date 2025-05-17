@@ -46,20 +46,22 @@
   }
 
   a.boton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 16px;
-heigth: 80px
-    border-radius: 10px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #222;
-    text-decoration: none;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    user-select: none;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;       /* ancho fijo */
+  height: 80px;      /* alto fijo (corrigiendo typo de heigth) */
+  padding: 0;        /* quito padding para no alterar tamaño */
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #222;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  user-select: none;
+  box-sizing: border-box; /* para que borde y padding no afecten tamaño */
+}
 
   a.boton:hover {
     transform: translateY(-5px);
