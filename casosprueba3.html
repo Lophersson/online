@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Casos de Prueba Complejos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+    }
+    header {
+      background: #0ea5e9;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .test-group {
+      margin-bottom: 2rem;
+      border-left: 5px solid #0ea5e9;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      padding: 1.5rem;
+      border-radius: 10px;
+    }
+    .test-group h3 {
+      margin-top: 0;
+      color: #0369a1;
+    }
+    .sub-test {
+      margin: 0.4rem 0;
+      padding: 0.6rem;
+      border-radius: 6px;
+      background-color: #e0f2fe;
+      border-left: 4px solid #0284c7;
+    }
+    footer {
+      background-color: #1e293b;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Casos de Prueba Complejos</h1>
+    <p>10 funciones con múltiples parámetros y 4 pruebas por función</p>
+  </header>
+  <main>
+
+    <!-- Caso 1 -->
+    <div class="test-group">
+      <h3>Caso 1: calcularPromedio(n1, n2, n3)</h3>
+      <div class="sub-test">Input: (5, 10, 15) → Esperado: 10</div>
+      <div class="sub-test">Input: (0, 0, 0) → Esperado: 0</div>
+      <div class="sub-test">Input: (20, 30, 40) → Esperado: 30</div>
+      <div class="sub-test">Input: (-5, 5, 10) → Esperado: 3.33</div>
+    </div>
+
+    <!-- Caso 2 -->
+    <div class="test-group">
+      <h3>Caso 2: esTrianguloValido(a, b, c)</h3>
+      <div class="sub-test">Input: (3, 4, 5) → Esperado: true</div>
+      <div class="sub-test">Input: (1, 2, 3) → Esperado: false</div>
+      <div class="sub-test">Input: (5, 5, 5) → Esperado: true</div>
+      <div class="sub-test">Input: (0, 4, 5) → Esperado: false</div>
+    </div>
+
+    <!-- Caso 3 -->
+    <div class="test-group">
+      <h3>Caso 3: validarRango(min, max, valor)</h3>
+      <div class="sub-test">Input: (1, 10, 5) → Esperado: true</div>
+      <div class="sub-test">Input: (1, 10, 0) → Esperado: false</div>
+      <div class="sub-test">Input: (10, 100, 100) → Esperado: true</div>
+      <div class="sub-test">Input: (20, 30, 31) → Esperado: false</div>
+    </div>
+
+    <!-- Caso 4 -->
+    <div class="test-group">
+      <h3>Caso 4: sumaProductos(a, b, c)</h3>
+      <div class="sub-test">Input: (2, 3, 4) → Esperado: 2×3 + 3×4 = 6 + 12 = 18</div>
+      <div class="sub-test">Input: (1, 2, 3) → Esperado: 1×2 + 2×3 = 2 + 6 = 8</div>
+      <div class="sub-test">Input: (0, 5, 7) → Esperado: 0 + 35 = 35</div>
+      <div class="sub-test">Input: (-1, 4, 2) → Esperado: -4 + 8 = 4</div>
+    </div>
+
+    <!-- Caso 5 -->
+    <div class="test-group">
+      <h3>Caso 5: calcularDistancia(x1, y1, x2, y2)</h3>
+      <div class="sub-test">Input: (0,0,3,4) → Esperado: 5</div>
+      <div class="sub-test">Input: (1,1,1,1) → Esperado: 0</div>
+      <div class="sub-test">Input: (2,-1,4,3) → Esperado: 4.47</div>
+      <div class="sub-test">Input: (-3,-4,0,0) → Esperado: 5</div>
+    </div>
+
+    <!-- Caso 6 -->
+    <div class="test-group">
+      <h3>Caso 6: verificarAcceso(usuario, clave, intento)</h3>
+      <div class="sub-test">Input: ("admin", "1234", "1234") → Esperado: Acceso concedido</div>
+      <div class="sub-test">Input: ("admin", "1234", "0000") → Esperado: Acceso denegado</div>
+      <div class="sub-test">Input: ("admin", "", "") → Esperado: Acceso denegado</div>
+      <div class="sub-test">Input: ("user", "pass", "pass") → Esperado: Acceso concedido</div>
+    </div>
+
+    <!-- Caso 7 -->
+    <div class="test-group">
+      <h3>Caso 7: aplicarDescuento(precio, porcentaje)</h3>
+      <div class="sub-test">Input: (100, 10) → Esperado: 90</div>
+      <div class="sub-test">Input: (200, 25) → Esperado: 150</div>
+      <div class="sub-test">Input: (50, 0) → Esperado: 50</div>
+      <div class="sub-test">Input: (80, 100) → Esperado: 0</div>
+    </div>
+
+    <!-- Caso 8 -->
+    <div class="test-group">
+      <h3>Caso 8: calcularSalario(base, horasExtra, pagoExtra)</h3>
+      <div class="sub-test">Input: (1000, 5, 20) → Esperado: 1100</div>
+      <div class="sub-test">Input: (1200, 0, 15) → Esperado: 1200</div>
+      <div class="sub-test">Input: (900, 10, 10) → Esperado: 1000</div>
+      <div class="sub-test">Input: (1000, 2, 25) → Esperado: 1050</div>
+    </div>
+
+    <!-- Caso 9 -->
+    <div class="test-group">
+      <h3>Caso 9: esDentroDelHorario(horaInicio, horaFin, horaActual)</h3>
+      <div class="sub-test">Input: (9, 17, 10) → Esperado: true</div>
+      <div class="sub-test">Input: (9, 17, 8) → Esperado: false</div>
+      <div class="sub-test">Input: (22, 6, 23) → Esperado: true (horario nocturno)</div>
+      <div class="sub-test">Input: (22, 6, 7) → Esperado: false</div>
+    </div>
+
+    <!-- Caso 10 -->
+    <div class="test-group">
+      <h3>Caso 10: generarResumen(nombre, edad, ciudad)</h3>
+      <div class="sub-test">Input: ("Luis", 30, "Madrid") → Esperado: "Luis, 30 años, vive en Madrid"</div>
+      <div class="sub-test">Input: ("Ana", 25, "Barcelona") → Esperado: "Ana, 25 años, vive en Barcelona"</div>
+      <div class="sub-test">Input: ("", 0, "") → Esperado: ", 0 años, vive en "</div>
+      <div class="sub-test">Input: ("Carlos", 45, "Valencia") → Esperado: "Carlos, 45 años, vive en Valencia"</div>
+    </div>
+
+  </main>
+  <footer>
+    © 2025 Casos de Prueba Complejos | Desarrollado por Lophersson
+  </footer>
+</body>
+</html>
