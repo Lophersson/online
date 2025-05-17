@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Funciones Estilo C# - Cadenas y Bucles</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f4f9;
+      padding: 2rem;
+      color: #1f2937;
+    }
+    .bloque {
+      background-color: #fff;
+      border-left: 5px solid #0f766e;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+    h2 {
+      color: #0f766e;
+    }
+    code {
+      background: #f1f5f9;
+      padding: 0.2rem 0.4rem;
+      font-family: Consolas, monospace;
+      border-radius: 4px;
+    }
+    .resultado {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: #ecfdf5;
+      border: 1px solid #0f766e;
+      border-radius: 5px;
+    }
+    .error {
+      background: #fef2f2;
+      border-color: #dc2626;
+      color: #991b1b;
+    }
+  footer {
+      /*background-color: #1e293b;*/
+      color: #1f2937;
+      text-align: center;
+      padding: 0.3rem;
+      margin-top: 0.3rem;
+    }
+  .boton-enlace {
+  background-color: yellow;
+  color: #6AA9E9;
+  font-weight: bold;
+    font-style: italic;
+  padding: 12px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 32px;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 300px;
+    margin-bottom: 20px;
+}
+
+    .boton-enlace:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Funciones simuladas estilo C# con múltiples entradas</h1>
+
+  <div class="bloque">
+    <h2>1. Concatenar nombres (string nombre1, string nombre2)</h2>
+    <p><code>return nombre1 + " " + nombre2;</code></p>
+    <div class="resultado">Resultado: "Juan Pérez"</div>
+  </div>
+
+  <div class="bloque">
+    <h2>2. Obtener iniciales (string nombreCompleto)</h2>
+    <p><code>
+      string[] partes = nombreCompleto.Split(" "); <br>
+      return partes[0][0] + "." + partes[1][0] + ".";
+    </code></p>
+    <div class="resultado">Resultado: "J.P."</div>
+  </div>
+
+  <div class="bloque">
+    <h2>3. Validar contraseña (string input)</h2>
+    <p><code>
+      if (input.Length &lt; 8 || !input.Contains("1")) return "Contraseña inválida";<br>
+      return "Contraseña válida";
+    </code></p>
+    <div class="resultado error">Error: Contraseña inválida</div>
+  </div>
+
+  <div class="bloque">
+    <h2>4. Repetir palabra (string palabra, int veces)</h2>
+    <p><code>
+      string resultado = ""; <br>
+      for (int i = 0; i &lt; veces; i++) resultado += palabra + " "; <br>
+      return resultado;
+    </code></p>
+    <div class="resultado">Resultado: "Hola Hola Hola "</div>
+  </div>
+
+  <div class="bloque">
+    <h2>5. Comprobar subcadena (string texto, string buscar)</h2>
+    <p><code>
+      if (!texto.Contains(buscar)) return "No encontrado";<br>
+      return "Subcadena presente";
+    </code></p>
+    <div class="resultado">Resultado: "Subcadena presente"</div>
+  </div>
+
+  <div class="bloque">
+    <h2>6. Invertir cadena (string texto)</h2>
+    <p><code>
+      char[] arr = texto.ToCharArray(); <br>
+      Array.Reverse(arr); <br>
+      return new string(arr);
+    </code></p>
+    <div class="resultado">Resultado: "odnum"</div>
+  </div>
+
+  <div class="bloque">
+    <h2>7. Sumar números en texto (string valores)</h2>
+    <p><code>
+      string[] nums = valores.Split(','); <br>
+      int suma = 0; <br>
+      foreach (var n in nums) suma += int.Parse(n); <br>
+      return suma;
+    </code></p>
+    <div class="resultado">Resultado: 45</div>
+  </div>
+
+  <div class="bloque">
+    <h2>8. Longitud total de palabras (string[] palabras)</h2>
+    <p><code>
+      int total = 0; <br>
+      foreach (string p in palabras) total += p.Length; <br>
+      return total;
+    </code></p>
+    <div class="resultado">Resultado: 17</div>
+  </div>
+
+  <div class="bloque">
+    <h2>9. Evaluar frase vacía (string texto)</h2>
+    <p><code>
+      if (string.IsNullOrWhiteSpace(texto)) return "Texto vacío o en blanco";<br>
+      return "Texto válido";
+    </code></p>
+    <div class="resultado error">Error: Texto vacío o en blanco</div>
+  </div>
+
+  <div class="bloque">
+    <h2>10. Contar apariciones (string texto, char caracter)</h2>
+    <p><code>
+      int contador = 0;<br>
+      foreach (char c in texto)<br>
+      { if (c == caracter) contador++; }<br>
+      return contador;
+    </code></p>
+    <div class="resultado">Resultado: 3</div>
+  </div>
+  
+  <a href="https://lophersson.github.io/online/examen19mayo2025.html" target="_blank" class="boton-enlace">VER MÁS</a>
+
+  <footer>
+    © 2025 Desarrollado por Lophersson
+  </footer>
+</body>
+</html>
