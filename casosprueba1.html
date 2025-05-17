@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos de Prueba: estáEnRangoEdad</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+
+    h2 {
+      color: #1e3a8a;
+      border-bottom: 2px solid #1e3a8a;
+      padding-bottom: 0.5rem;
+    }
+
+    .test-case {
+      border-left: 5px solid #3b82f6;
+      background: #e0f2fe;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+
+    .test-case.pass {
+      border-color: #16a34a;
+      background: #dcfce7;
+    }
+
+    .test-case.fail {
+      border-color: #dc2626;
+      background: #fee2e2;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1e293b;
+      color: #fff;
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+
+    code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Casos de Prueba: estáEnRangoEdad(int desde, int hasta, int edad)</h1>
+    <p>Valida si una edad está dentro de un rango permitido (inclusive)</p>
+  </header>
+
+  <main>
+    <h2>Lista de 20 casos de prueba</h2>
+
+    <!-- Caso de prueba -->
+    <div class="test-case pass">
+      <strong>Caso 1:</strong> desde = 18, hasta = 65, edad = 30<br>
+      <em>Resultado esperado:</em> true (la edad está dentro del rango)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 2:</strong> desde = 18, hasta = 65, edad = 18<br>
+      <em>Resultado esperado:</em> true (la edad es igual al límite inferior)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 3:</strong> desde = 18, hasta = 65, edad = 65<br>
+      <em>Resultado esperado:</em> true (la edad es igual al límite superior)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 4:</strong> desde = 18, hasta = 65, edad = 17<br>
+      <em>Resultado esperado:</em> false (la edad es menor que el límite inferior)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 5:</strong> desde = 18, hasta = 65, edad = 66<br>
+      <em>Resultado esperado:</em> false (la edad es mayor que el límite superior)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 6:</strong> desde = 0, hasta = 120, edad = 0<br>
+      <em>Resultado esperado:</em> true (caso borde inferior)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 7:</strong> desde = 0, hasta = 120, edad = 120<br>
+      <em>Resultado esperado:</em> true (caso borde superior)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 8:</strong> desde = 0, hasta = 120, edad = -1<br>
+      <em>Resultado esperado:</em> false (edad negativa no válida)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 9:</strong> desde = 0, hasta = 120, edad = 130<br>
+      <em>Resultado esperado:</em> false (edad fuera del rango)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 10:</strong> desde = 30, hasta = 30, edad = 30<br>
+      <em>Resultado esperado:</em> true (límite único aceptado)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 11:</strong> desde = 30, hasta = 30, edad = 29<br>
+      <em>Resultado esperado:</em> false (justo debajo del límite único)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 12:</strong> desde = 30, hasta = 30, edad = 31<br>
+      <em>Resultado esperado:</em> false (justo por encima del límite único)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 13:</strong> desde = 10, hasta = 20, edad = 15<br>
+      <em>Resultado esperado:</em> true (edad media dentro del rango)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 14:</strong> desde = 50, hasta = 70, edad = 60<br>
+      <em>Resultado esperado:</em> true (dentro del rango)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 15:</strong> desde = 50, hasta = 70, edad = 71<br>
+      <em>Resultado esperado:</em> false (fuera del rango)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 16:</strong> desde = 50, hasta = 70, edad = 49<br>
+      <em>Resultado esperado:</em> false (fuera del rango)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 17:</strong> desde = 5, hasta = 10, edad = 5<br>
+      <em>Resultado esperado:</em> true (en el límite inferior)
+    </div>
+
+    <div class="test-case pass">
+      <strong>Caso 18:</strong> desde = 5, hasta = 10, edad = 10<br>
+      <em>Resultado esperado:</em> true (en el límite superior)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 19:</strong> desde = 100, hasta = 150, edad = 99<br>
+      <em>Resultado esperado:</em> false (fuera del rango)
+    </div>
+
+    <div class="test-case fail">
+      <strong>Caso 20:</strong> desde = 100, hasta = 150, edad = 151<br>
+      <em>Resultado esperado:</em> false (fuera del rango)
+    </div>
+  </main>
+
+  <footer>
+    Página generada para visualizar <code>casos de prueba</code> de la función <strong>estáEnRangoEdad</strong><br>
+    Desarrollado por Lophersson · © 2025
+  </footer>
+</body>
+</html>
