@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Examen 19 de Mayo de 2025</title>
+<style>
+  /* Reset y base */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background-color: #2e2e2e; /* gris oscuro */
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  header, footer {
+    background-color: #1f1f1f;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+  }
+
+  main {
+    flex-grow: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 2rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+    align-content: center;
+  }
+
+  a.boton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 14px 0;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #222;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    user-select: none;
+  }
+
+  a.boton:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+  }
+
+  /* Colores pastel diferentes para cada botón */
+  a.boton:nth-child(1) { background-color: #a8dadc; } /* pastel cyan */
+  a.boton:nth-child(2) { background-color: #ffd6a5; } /* pastel orange */
+  a.boton:nth-child(3) { background-color: #ffb4a2; } /* pastel salmon */
+  a.boton:nth-child(4) { background-color: #cdb4db; } /* pastel purple */
+  a.boton:nth-child(5) { background-color: #b5ead7; } /* pastel mint */
+  a.boton:nth-child(6) { background-color: #ffe066; } /* pastel yellow */
+  a.boton:nth-child(7) { background-color: #f7aef8; } /* pastel pink */
+  a.boton:nth-child(8) { background-color: #a0c4ff; } /* pastel blue */
+
+  footer p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #999;
+  }
+
+  /* Responsive para pantallas pequeñas */
+  @media (max-width: 600px) {
+    main {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+      padding: 1rem 1.5rem;
+    }
+
+    a.boton {
+      font-size: 1rem;
+      padding: 12px 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Examen 19 de Mayo de 2025</h1>
+</header>
+
+<main>
+  <a href="https://lophersson.github.io/online/casosprueba1.html" target="_blank" class="boton">casosprueba1</a>
+  <a href="https://lophersson.github.io/online/casosprueba2.html" target="_blank" class="boton">casosprueba2</a>
+  <a href="https://lophersson.github.io/online/casosprueba3.html" target="_blank" class="boton">casosprueba3</a>
+  <a href="https://lophersson.github.io/online/casosprueba4.html" target="_blank" class="boton">casosprueba4</a>
+  <a href="https://lophersson.github.io/online/funcionescsharp1.html" target="_blank" class="boton">funcionescsharp1</a>
+  <a href="https://lophersson.github.io/online/funcionescsharp2.html" target="_blank" class="boton">funcionescsharp2</a>
+  <a href="https://lophersson.github.io/online/funcionescsharp3.html" target="_blank" class="boton">funcionescsharp3</a>
+  <a href="https://lophersson.github.io/online/funcionescsharp4.html" target="_blank" class="boton">funcionescsharp4</a>
+</main>
+
+<footer>
+  <p>&copy; 2025 Lophersson - Todos los derechos reservados</p>
+</footer>
+
+</body>
+</html>
