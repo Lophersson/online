@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Casos de Prueba Generales</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8fafc;
+      margin: 0;
+      padding: 0;
+      color: #1f2937;
+    }
+    header {
+      background: #1e40af;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .test-group {
+      margin-bottom: 2rem;
+      border-left: 5px solid #3b82f6;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+    }
+    .test-group h3 {
+      margin: 0 0 1rem;
+      color: #2563eb;
+    }
+    .sub-test {
+      margin: 0.3rem 0;
+      padding: 0.5rem;
+      border-radius: 5px;
+      background-color: #e0f2fe;
+      border-left: 4px solid #0284c7;
+    }
+    footer {
+      background-color: #0f172a;
+      color: #e2e8f0;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Casos de Prueba Generales</h1>
+    <p>20 funciones diferentes, 4 pruebas cada una</p>
+  </header>
+  <main>
+
+    <!-- Caso 1 -->
+    <div class="test-group">
+      <h3>Caso 1: esPar(numero)</h3>
+      <div class="sub-test">Input: 2 → Esperado: true</div>
+      <div class="sub-test">Input: 3 → Esperado: false</div>
+      <div class="sub-test">Input: 0 → Esperado: true</div>
+      <div class="sub-test">Input: -4 → Esperado: true</div>
+    </div>
+
+    <!-- Caso 2 -->
+    <div class="test-group">
+      <h3>Caso 2: invertirCadena(cadena)</h3>
+      <div class="sub-test">Input: "hola" → Esperado: "aloh"</div>
+      <div class="sub-test">Input: "" → Esperado: ""</div>
+      <div class="sub-test">Input: "123" → Esperado: "321"</div>
+      <div class="sub-test">Input: "A b" → Esperado: "b A"</div>
+    </div>
+
+    <!-- Caso 3 -->
+    <div class="test-group">
+      <h3>Caso 3: suma(a, b)</h3>
+      <div class="sub-test">Input: (2, 3) → Esperado: 5</div>
+      <div class="sub-test">Input: (-2, 2) → Esperado: 0</div>
+      <div class="sub-test">Input: (0, 0) → Esperado: 0</div>
+      <div class="sub-test">Input: (100, 200) → Esperado: 300</div>
+    </div>
+
+    <!-- Caso 4 -->
+    <div class="test-group">
+      <h3>Caso 4: contieneVocales(texto)</h3>
+      <div class="sub-test">Input: "hola" → Esperado: true</div>
+      <div class="sub-test">Input: "rhythm" → Esperado: false</div>
+      <div class="sub-test">Input: "AEIOU" → Esperado: true</div>
+      <div class="sub-test">Input: "bcdfg" → Esperado: false</div>
+    </div>
+
+    <!-- Caso 5 -->
+    <div class="test-group">
+      <h3>Caso 5: obtenerDía(fecha)</h3>
+      <div class="sub-test">Input: "2024-05-17" → Esperado: "Viernes"</div>
+      <div class="sub-test">Input: "2024-01-01" → Esperado: "Lunes"</div>
+      <div class="sub-test">Input: "2025-12-25" → Esperado: "Jueves"</div>
+      <div class="sub-test">Input: "2023-10-31" → Esperado: "Martes"</div>
+    </div>
+
+    <!-- Caso 6 -->
+    <div class="test-group">
+      <h3>Caso 6: esPalindromo(texto)</h3>
+      <div class="sub-test">Input: "oso" → Esperado: true</div>
+      <div class="sub-test">Input: "hola" → Esperado: false</div>
+      <div class="sub-test">Input: "reconocer" → Esperado: true</div>
+      <div class="sub-test">Input: "Ana" → Esperado: true</div>
+    </div>
+
+    <!-- Caso 7 -->
+    <div class="test-group">
+      <h3>Caso 7: esEmailVálido(email)</h3>
+      <div class="sub-test">Input: "test@mail.com" → Esperado: true</div>
+      <div class="sub-test">Input: "mail@.com" → Esperado: false</div>
+      <div class="sub-test">Input: "usuario@web" → Esperado: false</div>
+      <div class="sub-test">Input: "a@a.a" → Esperado: true</div>
+    </div>
+
+    <!-- Caso 8 -->
+    <div class="test-group">
+      <h3>Caso 8: maximo(lista)</h3>
+      <div class="sub-test">Input: [1, 5, 3] → Esperado: 5</div>
+      <div class="sub-test">Input: [0, -10, -3] → Esperado: 0</div>
+      <div class="sub-test">Input: [7] → Esperado: 7</div>
+      <div class="sub-test">Input: [] → Esperado: null</div>
+    </div>
+
+    <!-- Caso 9 -->
+    <div class="test-group">
+      <h3>Caso 9: esPrimo(n)</h3>
+      <div class="sub-test">Input: 7 → Esperado: true</div>
+      <div class="sub-test">Input: 10 → Esperado: false</div>
+      <div class="sub-test">Input: 2 → Esperado: true</div>
+      <div class="sub-test">Input: 1 → Esperado: false</div>
+    </div>
+
+    <!-- Caso 10 -->
+    <div class="test-group">
+      <h3>Caso 10: formatearMoneda(número)</h3>
+      <div class="sub-test">Input: 1000 → Esperado: "1.000,00 €"</div>
+      <div class="sub-test">Input: 12.5 → Esperado: "12,50 €"</div>
+      <div class="sub-test">Input: 0 → Esperado: "0,00 €"</div>
+      <div class="sub-test">Input: -5 → Esperado: "-5,00 €"</div>
+    </div>
+
+    <!-- Caso 11 -->
+    <div class="test-group">
+      <h3>Caso 11: longitudCadena(texto)</h3>
+      <div class="sub-test">Input: "hola" → Esperado: 4</div>
+      <div class="sub-test">Input: "" → Esperado: 0</div>
+      <div class="sub-test">Input: " " → Esperado: 1</div>
+      <div class="sub-test">Input: "123456" → Esperado: 6</div>
+    </div>
+
+    <!-- Caso 12 -->
+    <div class="test-group">
+      <h3>Caso 12: esNumero(valor)</h3>
+      <div class="sub-test">Input: "123" → Esperado: true</div>
+      <div class="sub-test">Input: "abc" → Esperado: false</div>
+      <div class="sub-test">Input: 10.5 → Esperado: true</div>
+      <div class="sub-test">Input: null → Esperado: false</div>
+    </div>
+
+    <!-- Caso 13 -->
+    <div class="test-group">
+      <h3>Caso 13: calcularIVA(precio)</h3>
+      <div class="sub-test">Input: 100 → Esperado: 21</div>
+      <div class="sub-test">Input: 0 → Esperado: 0</div>
+      <div class="sub-test">Input: -50 → Esperado: -10.5</div>
+      <div class="sub-test">Input: 200.5 → Esperado: 42.11</div>
+    </div>
+
+    <!-- Caso 14 -->
+    <div class="test-group">
+      <h3>Caso 14: obtenerIniciales(nombre)</h3>
+      <div class="sub-test">Input: "Juan Pérez" → Esperado: "JP"</div>
+      <div class="sub-test">Input: "Ana María López" → Esperado: "AML"</div>
+      <div class="sub-test">Input: "Lophersson" → Esperado: "L"</div>
+      <div class="sub-test">Input: "" → Esperado: ""</div>
+    </div>
+
+    <!-- Caso 15 -->
+    <div class="test-group">
+      <h3>Caso 15: esFechaValida(fecha)</h3>
+      <div class="sub-test">Input: "2024-02-29" → Esperado: true</div>
+      <div class="sub-test">Input: "2023-02-29" → Esperado: false</div>
+      <div class="sub-test">Input: "2022-12-31" → Esperado: true</div>
+      <div class="sub-test">Input: "abc" → Esperado: false</div>
+    </div>
+
+    <!-- Caso 16 -->
+    <div class="test-group">
+      <h3>Caso 16: contarVocales(cadena)</h3>
+      <div class="sub-test">Input: "hola mundo" → Esperado: 4</div>
+      <div class="sub-test">Input: "" → Esperado: 0</div>
+      <div class="sub-test">Input: "BCDFG" → Esperado: 0</div>
+      <div class="sub-test">Input: "aeiouAEIOU" → Esperado: 10</div>
+    </div>
+
+    <!-- Caso 17 -->
+    <div class="test-group">
+      <h3>Caso 17: convertirAMayusculas(texto)</h3>
+      <div class="sub-test">Input: "hola" → Esperado: "HOLA"</div>
+      <div class="sub-test">Input: "Mundo" → Esperado: "MUNDO"</div>
+      <div class="sub-test">Input: "" → Esperado: ""</div>
+      <div class="sub-test">Input: "123abc" → Esperado: "123ABC"</div>
+    </div>
+
+    <!-- Caso 18 -->
+    <div class="test-group">
+      <h3>Caso 18: redondear(numero)</h3>
+      <div class="sub-test">Input: 4.5 → Esperado: 5</div>
+      <div class="sub-test">Input: 4.4 → Esperado: 4</div>
+      <div class="sub-test">Input: -2.6 → Esperado: -3</div>
+      <div class="sub-test">Input: 0 → Esperado: 0</div>
+    </div>
+
+    <!-- Caso 19 -->
+    <div class="test-group">
+      <h3>Caso 19: dividir(a, b)</h3>
+      <div class="sub-test">Input: (10, 2) → Esperado: 5</div>
+      <div class="sub-test">Input: (9, 3) → Esperado: 3</div>
+      <div class="sub-test">Input: (10, 0) → Esperado: Error o infinito</div>
+      <div class="sub-test">Input: (-6, 2) → Esperado: -3</div>
+    </div>
+
+    <!-- Caso 20 -->
+    <div class="test-group">
+      <h3>Caso 20: eliminarEspacios(texto)</h3>
+      <div class="sub-test">Input: " hola mundo " → Esperado: "holamundo"</div>
+      <div class="sub-test">Input: "   a b c   " → Esperado: "abc"</div>
+      <div class="sub-test">Input: "sin espacios" → Esperado: "sinespacios"</div>
+      <div class="sub-test">Input: "" → Esperado: ""</div>
+    </div>
+    <!-- Añadir del 11 al 20 -->
+    <!-- (Dímelo si quieres que los continúe también con el mismo estilo) -->
+
+  </main>
+  <footer>
+    © 2025 Casos de Prueba HTML | Desarrollado por Lophersson
+  </footer>
+</body>
+</html>
