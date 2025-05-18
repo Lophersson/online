@@ -1,81 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Examen de Fundamentos de Programación</title>
-  <style>
-    body {
-      background-color: #0f1218;
-      color: #e0e6ed;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 2rem;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background-color: #1e2a38;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-    }
-    h1 {
-      text-align: center;
-      color: #00ffc3;
-    }
-    .question {
-      margin-bottom: 2rem;
-    }
-    .question h2 {
-      font-size: 1.1rem;
-      color: #7df9ff;
-    }
-    .answer {
-      background-color: #2e3b4e;
-      padding: 1rem;
-      border-left: 4px solid #00ffc3;
-      border-radius: 8px;
-      margin-top: 0.5rem;
-    }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      padding: 10px;
-      color: #00ffc3;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen de Fundamentos de Programación</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+font-family: 'Roboto', sans-serif;
+background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+color: #fff;
+padding: 40px 20px;
+max-width: 1000px;
+margin: auto;
+}
+h1 {
+text-align: center;
+margin-bottom: 50px;
+font-size: 2.0em;
+animation: fadeInDown 1s ease-in-out;
+}
+.question {
+background-color: rgba(255, 255, 255, 0.05);
+margin: 25px 0;
+padding: 25px;
+border-radius: 15px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+animation: fadeInUp 0.8s ease;
+}
+.question h3 {
+color: #00d9ff;
+margin-bottom: 15px;
+font-size: 1.2em;
+}
+.answers p { margin: 8px 0; }
+.correct { color: #4fe3c1; font-weight: bold; }
+@keyframes fadeInUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInDown {
+from { opacity: 0; transform: translateY(-30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 600px) {
+h1 { font-size: 2em; margin-bottom: 30px; }
+.question { padding: 20px; }
+}
+.boton-enlace {
+background-color: yellow;
+color: #6AA9E9;
+font-weight: bold;
+font-style: italic;
+padding: 12px 20px;
+text-decoration: none;
+border: none;
+border-radius: 8px;
+cursor: pointer;
+font-size: 32px;
+transition: background-color 0.3s;
+display: block;
+margin: 0 auto;
+text-align: center;
+width: 300px;
+margin-bottom: 20px;
+}
+.boton-enlace:hover {
+background-color: #45a049;
+}
+footer {
+text-align: center;
+font-size: 0.9em;
+padding: 10px;
+color: #00ffc3;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+</style>
+
 </head>
 <body>
-  <div class="container">
-    <h1>Examen de Fundamentos de Programación</h1>
+<div class="container">
+<h1>Examen de Fundamentos de Programación</h1>
 
-    <div class="question"><h2>1. Compiladores</h2><div class="answer">Programas que traducen código fuente a código máquina.</div></div>
-    <div class="question"><h2>2. Máquinas virtuales</h2><div class="answer">Entornos que emulan un sistema físico para ejecutar programas.</div></div>
-    <div class="question"><h2>3. Compilación estado básico</h2><div class="answer">Proceso de traducción inicial del código fuente.</div></div>
-    <div class="question"><h2>4. Int x=8; enteros</h2><div class="answer">Declaración de variable entera con valor 8.</div></div>
-    <div class="question"><h2>5. 2+3×4=14</h2><div class="answer">Se respeta la jerarquía de operadores.</div></div>
-    <div class="question"><h2>6. (2+3)×4=20</h2><div class="answer">Uso de paréntesis altera el orden de operación.</div></div>
-    <div class="question"><h2>7. 2+3×2-2×2=4</h2><div class="answer">Resolución secuencial respetando prioridad.</div></div>
-    <div class="question"><h2>8. A &lt; B; A no es igual a B; FALSE</h2><div class="answer">A es menor que B, pero no son iguales.</div></div>
-    <div class="question"><h2>9. A||B AV BF = VERDAD</h2><div class="answer">Operador OR devuelve verdadero si al menos uno es verdadero.</div></div>
-    <div class="question"><h2>10. A25 B23 A=B TRue</h2><div class="answer">Comparación booleana da verdadero.</div></div>
-    <div class="question"><h2>11. IF CONDICIONAL</h2><div class="answer">Estructura de control que evalúa condiciones.</div></div>
-    <div class="question"><h2>12. TRY CATCH CONTROL DE EXCEPCIONES</h2><div class="answer">Bloques para manejar errores en tiempo de ejecución.</div></div>
-    <div class="question"><h2>13. PASOS ALGORITMOS</h2><div class="answer">Secuencia de instrucciones para resolver un problema.</div></div>
-    <div class="question"><h2>14. ALGORITMO LLAMADA A SI MISMO RECURSIVIDAD</h2><div class="answer">Proceso donde una función se llama a sí misma.</div></div>
-    <div class="question"><h2>15. Manual Console.log(Cadena[1]) = a</h2><div class="answer">Accede al segundo carácter de la cadena.</div></div>
-    <div class="question"><h2>16. Substring (0,1) = M</h2><div class="answer">Extrae el primer carácter de la cadena.</div></div>
-    <div class="question"><h2>17. Cadena.Length + "Letras" = 6 letras</h2><div class="answer">Muestra la longitud de una cadena con texto adicional.</div></div>
-    <div class="question"><h2>18. Control de versiones</h2><div class="answer">Gestión de cambios en el código fuente a lo largo del tiempo.</div></div>
-    <div class="question"><h2>19. Centralizados y distribuidos</h2><div class="answer">Tipos de sistemas según la localización de los recursos.</div></div>
-    <div class="question"><h2>20. Flujo de trabajo con bloqueo</h2><div class="answer">Estrategia que evita conflictos en el desarrollo colaborativo.</div></div>
+<div class="question"><h2>1. Compiladores</h2><div class="answer">Programas que traducen código fuente a código máquina.</div></div>
+<div class="question"><h2>2. Máquinas virtuales</h2><div class="answer">Entornos que emulan un sistema físico para ejecutar programas.</div></div>
+<div class="question"><h2>3. Compilación estado básico</h2><div class="answer">Proceso de traducción inicial del código fuente.</div></div>
+<div class="question"><h2>4. Int x=8; enteros</h2><div class="answer">Declaración de variable entera con valor 8.</div></div>
+<div class="question"><h2>5. 2+3×4=14</h2><div class="answer">Se respeta la jerarquía de operadores.</div></div>
+<div class="question"><h2>6. (2+3)×4=20</h2><div class="answer">Uso de paréntesis altera el orden de operación.</div></div>
+<div class="question"><h2>7. 2+3×2-2×2=4</h2><div class="answer">Resolución secuencial respetando prioridad.</div></div>
+<div class="question"><h2>8. A &lt; B; A no es igual a B; FALSE</h2><div class="answer">A es menor que B, pero no son iguales.</div></div>
+<div class="question"><h2>9. A||B AV BF = VERDAD</h2><div class="answer">Operador OR devuelve verdadero si al menos uno es verdadero.</div></div>
+<div class="question"><h2>10. A25 B23 A=B TRue</h2><div class="answer">Comparación booleana da verdadero.</div></div>
+<div class="question"><h2>11. IF CONDICIONAL</h2><div class="answer">Estructura de control que evalúa condiciones.</div></div>
+<div class="question"><h2>12. TRY CATCH CONTROL DE EXCEPCIONES</h2><div class="answer">Bloques para manejar errores en tiempo de ejecución.</div></div>
+<div class="question"><h2>13. PASOS ALGORITMOS</h2><div class="answer">Secuencia de instrucciones para resolver un problema.</div></div>
+<div class="question"><h2>14. ALGORITMO LLAMADA A SI MISMO RECURSIVIDAD</h2><div class="answer">Proceso donde una función se llama a sí misma.</div></div>
+<div class="question"><h2>15. Manual Console.log(Cadena[1]) = a</h2><div class="answer">Accede al segundo carácter de la cadena.</div></div>
+<div class="question"><h2>16. Substring (0,1) = M</h2><div class="answer">Extrae el primer carácter de la cadena.</div></div>
+<div class="question"><h2>17. Cadena.Length + "Letras" = 6 letras</h2><div class="answer">Muestra la longitud de una cadena con texto adicional.</div></div>
+<div class="question"><h2>18. Control de versiones</h2><div class="answer">Gestión de cambios en el código fuente a lo largo del tiempo.</div></div>
+<div class="question"><h2>19. Centralizados y distribuidos</h2><div class="answer">Tipos de sistemas según la localización de los recursos.</div></div>
+<div class="question"><h2>20. Flujo de trabajo con bloqueo</h2><div class="answer">Estrategia que evita conflictos en el desarrollo colaborativo.</div></div>
 
-  </div>
-  <footer>
-    Realizado por Lophersson - Humberto Lopez Rodriguez | Ferrol | Todos los derechos reservados © 2025
-  </footer>
+</div>
+
+<a href="https://lophersson.github.io/online/examen19mayo2025.html" target="_blank" class="boton-enlace">VER MÁS</a>
+<footer>
+Realizado por Lophersson - Humberto Lopez Rodriguez | Ferrol | Todos los derechos reservados © 2025
+</footer>
 </body>
 </html>
