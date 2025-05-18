@@ -1,0 +1,274 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Examen: Arquitectura de Capas en C#</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f1115;
+      color: #e4e6eb;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      color: #00ffe1;
+      margin-bottom: 40px;
+      border-bottom: 2px solid #00ffe1;
+      padding-bottom: 10px;
+    }
+
+    .question-card {
+      background: #1c1e26;
+      border: 1px solid #2e2f36;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(0, 255, 225, 0.1);
+    }
+
+    .question-card h3 {
+      color: #00d6c4;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 6px;
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+      transform: scale(1.2);
+    }
+
+    label.correct {
+      background-color: #11352e;
+      color: #00ff88;
+      font-weight: bold;
+    }
+
+    label.correct span.check {
+      margin-left: 10px;
+      color: #00ff88;
+      font-size: 1.2em;
+    }
+
+    .submit-btn {
+      display: block;
+      width: 100%;
+      background: #00ffe1;
+      color: #0f1115;
+      border: none;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background: #00cbb8;
+    }
+
+     footer {
+      /*background-color: #1e293b;*/
+      color: #1f2937;
+      text-align: center;
+      padding: 0.3rem;
+      margin-top: 0.3rem;
+    }
+  .boton-enlace {
+  background-color: yellow;
+  color: #6AA9E9;
+  font-weight: bold;
+    font-style: italic;
+  padding: 12px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 32px;
+  transition: background-color 0.3s;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 300px;
+    margin-bottom: 20px;
+}
+
+    .boton-enlace:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Examen: Arquitectura de Capas en C#</h1>
+
+  <div class="question-card">
+    <h3>1. ¿Qué capas forman la arquitectura de negocio?</h3>
+    <label><input type="radio" name="q1"> Presentación, Datos</label>
+    <label class="correct"><input type="radio" name="q1" checked> Negocio, Presentación, Datos<span class="check">✔</span></label>
+    <label><input type="radio" name="q1"> Datos y SQL</label>
+  </div>
+
+  <div class="question-card">
+    <h3>2. ¿Cuáles son las tres capas principales?</h3>
+    <label><input type="radio" name="q2"> Lógica, Datos, Estilos</label>
+    <label class="correct"><input type="radio" name="q2" checked> Presentación, Negocio, Datos<span class="check">✔</span></label>
+    <label><input type="radio" name="q2"> UI, SQL, API</label>
+  </div>
+
+  <div class="question-card">
+    <h3>3. ¿Qué dos capas se relacionan directamente en una arquitectura simple?</h3>
+    <label class="correct"><input type="radio" name="q3" checked> Presentación - Negocio<span class="check">✔</span></label>
+    <label><input type="radio" name="q3"> Datos - Presentación</label>
+    <label><input type="radio" name="q3"> Negocio - SQL</label>
+  </div>
+
+  <div class="question-card">
+    <h3>4. ¿Qué capa se modifica al migrar de SQL Server a MySQL?</h3>
+    <label><input type="radio" name="q4"> Presentación</label>
+    <label><input type="radio" name="q4"> Negocio</label>
+    <label class="correct"><input type="radio" name="q4" checked> Datos<span class="check">✔</span></label>
+  </div>
+
+  <div class="question-card">
+    <h3>5. En un diseño desacoplado: ¿puede la presentación acceder a negocio sin pasar por datos?</h3>
+    <label class="correct"><input type="radio" name="q5" checked> Sí<span class="check">✔</span></label>
+    <label><input type="radio" name="q5"> No</label>
+  </div>
+
+  <div class="question-card">
+    <h3>6. ¿Qué clase se utiliza para gestionar la conexión a base de datos?</h3>
+    <label class="correct"><input type="radio" name="q6" checked> SqlConnection<span class="check">✔</span></label>
+    <label><input type="radio" name="q6"> SqlReader</label>
+    <label><input type="radio" name="q6"> SqlCommand</label>
+  </div>
+
+  <div class="question-card">
+    <h3>7. ¿Cómo se conecta una variable a una instancia de SqlConnection?</h3>
+    <label class="correct"><input type="radio" name="q7" checked> Usando new SqlConnection(cadenaConexion)<span class="check">✔</span></label>
+    <label><input type="radio" name="q7"> Usando SqlCommand.Execute()</label>
+    <label><input type="radio" name="q7"> Usando List.Add()</label>
+  </div>
+
+  <div class="question-card">
+    <h3>8. ¿Qué sucede si se accede a una lista vacía sin elementos?</h3>
+    <label><input type="radio" name="q8"> Devuelve 0</label>
+    <label class="correct"><input type="radio" name="q8" checked> Genera error<span class="check">✔</span></label>
+    <label><input type="radio" name="q8"> Se cierra la conexión</label>
+  </div>
+
+  <div class="question-card">
+    <h3>9. ¿Qué error puede generar abrir una conexión sin cerrar la anterior?</h3>
+    <label class="correct"><input type="radio" name="q9" checked> Error en el catch<span class="check">✔</span></label>
+    <label><input type="radio" name="q9"> Error en método Main</label>
+    <label><input type="radio" name="q9"> No compila</label>
+  </div>
+
+  <div class="question-card">
+    <h3>10. ¿Dónde debe ir la lógica de conexión a base de datos?</h3>
+    <label><input type="radio" name="q10"> Capa de presentación</label>
+    <label class="correct"><input type="radio" name="q10" checked> Capa de datos<span class="check">✔</span></label>
+    <label><input type="radio" name="q10"> Capa de negocio</label>
+  </div>
+
+  <div class="question-card">
+    <h3>11. ¿Qué error da si se intenta convertir un texto que no es número?</h3>
+    <label class="correct"><input type="radio" name="q11" checked> micodigo no es integer<span class="check">✔</span></label>
+    <label><input type="radio" name="q11"> error array</label>
+    <label><input type="radio" name="q11"> database null</label>
+  </div>
+
+  <div class="question-card">
+    <h3>12. ¿Qué pasa si se intenta borrar un registro que no existe?</h3>
+    <label class="correct"><input type="radio" name="q12" checked> No hace nada<span class="check">✔</span></label>
+    <label><input type="radio" name="q12"> Da error fatal</label>
+    <label><input type="radio" name="q12"> Reinicia la conexión</label>
+  </div>
+
+  <div class="question-card">
+    <h3>13. ¿Dónde se define el acceso a la base de datos?</h3>
+    <label><input type="radio" name="q13"> Capa de presentación</label>
+    <label><input type="radio" name="q13"> Capa de negocio</label>
+    <label class="correct"><input type="radio" name="q13" checked> Capa de datos<span class="check">✔</span></label>
+  </div>
+
+  <div class="question-card">
+    <h3>14. ¿Qué ocurre si no hay clave primaria y se borra por código?</h3>
+    <label><input type="radio" name="q14"> Borra uno al azar</label>
+    <label class="correct"><input type="radio" name="q14" checked> Borra todos con ese código<span class="check">✔</span></label>
+    <label><input type="radio" name="q14"> No borra nada</label>
+  </div>
+
+  <div class="question-card">
+    <h3>15. ¿Cómo se actualiza el nombre de un jugador por código?</h3>
+    <label class="correct"><input type="radio" name="q15" checked> set nombre where codigo<span class="check">✔</span></label>
+    <label><input type="radio" name="q15"> get nombre update</label>
+    <label><input type="radio" name="q15"> delete nombre = codigo</label>
+  </div>
+
+  <div class="question-card">
+    <h3>16. ¿Cómo se agrega un nombre al listbox desde una lista?</h3>
+    <label class="correct"><input type="radio" name="q16" checked> foreach (var nombre in nombres) jugadorelb.Items.Add(nombre);<span class="check">✔</span></label>
+    <label><input type="radio" name="q16"> for nombre in nombres print(nombre);</label>
+    <label><input type="radio" name="q16"> nombres foreach add nombre</label>
+  </div>
+
+  <div class="question-card">
+    <h3>17. ¿Qué devuelve un método borrar correctamente?</h3>
+    <label class="correct"><input type="radio" name="q17" checked> bool respuesta<span class="check">✔</span></label>
+    <label><input type="radio" name="q17"> int código</label>
+    <label><input type="radio" name="q17"> string error</label>
+  </div>
+
+  <div class="question-card">
+    <h3>18. ¿Qué flujo sigue una petición desde presentación hasta datos?</h3>
+    <label class="correct"><input type="radio" name="q18" checked> Presentación → Negocio → Datos<span class="check">✔</span></label>
+    <label><input type="radio" name="q18"> Datos → Presentación → Negocio</label>
+    <label><input type="radio" name="q18"> Negocio → Datos → UI</label>
+  </div>
+
+  <div class="question-card">
+    <h3>19. ¿Qué capa se puede modificar sin alterar negocio ni datos si hay una librería intermedia?</h3>
+    <label class="correct"><input type="radio" name="q19" checked> Presentación<span class="check">✔</span></label>
+    <label><input type="radio" name="q19"> Datos</label>
+    <label><input type="radio" name="q19"> Negocio</label>
+  </div>
+
+  <div class="question-card">
+    <h3>20. Si se cambia la base de datos de SQL Server a Oracle, ¿qué capas se modifican?</h3>
+    <label><input type="radio" name="q20"> Solo presentación</label>
+    <label class="correct"><input type="radio" name="q20" checked> Datos y negocio<span class="check">✔</span></label>
+    <label><input type="radio" name="q20"> Solo negocio</label>
+  </div>
+
+  <!--<button class="submit-btn">Enviar Examen</button>-->
+</div>
+
+   <a href="https://lophersson.github.io/online/examen19mayo2025.html" target="_blank" class="boton-enlace">VER MÁS</a>
+
+  <footer>
+    © 2025 Desarrollado por Lophersson
+  </footer>
+
+</body>
+</html>
