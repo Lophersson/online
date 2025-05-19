@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Texto Repetido con For Anidados</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fffefc;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #dcdcdc;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .resultado {
+            background: #f2dede;
+            padding: 10px;
+            border-left: 5px solid #a94442;
+            margin-bottom: 10px;
+        }
+        code {
+            background: #f9f2f4;
+            padding: 2px 4px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Función de Repetición con For Anidados</h1>
+
+    <h2>Código:</h2>
+    <pre>
+static string RepetirTexto(string texto, int x)
+{
+    string resultado = "";
+
+    for (int i = 0; i &lt; texto.Length; i++)
+    {
+        for (int j = 0; j &lt; x; j++)
+        {
+            resultado = resultado + texto[i];
+        }
+    }
+
+    return resultado;
+}
+    </pre>
+
+    <h2>Funcionamiento:</h2>
+    <p>Esta función recibe una cadena <code>texto</code> y un número entero <code>x</code>. Por cada carácter del texto:</p>
+    <ol>
+        <li>El primer bucle <code>i</code> recorre cada letra del texto.</li>
+        <li>El segundo bucle <code>j</code> repite cada letra <code>x</code> veces.</li>
+        <li>Se va concatenando cada letra <code>x</code> veces al string <code>resultado</code>.</li>
+    </ol>
+
+    <h2>Caso de prueba:</h2>
+    <div class="resultado">
+        <strong>Entrada:</strong> texto = "Hola", x = 3<br><br>
+
+        <strong>Proceso:</strong><br>
+        Letra 'H' → repetir 3 veces → "HHH"<br>
+        Letra 'o' → repetir 3 veces → "OOO"<br>
+        Letra 'l' → repetir 3 veces → "LLL"<br>
+        Letra 'a' → repetir 3 veces → "AAA"<br><br>
+
+        <strong>Resultado final:</strong> <code>HHHOOOLLLAAA</code>
+    </div>
+
+</body>
+</html>
