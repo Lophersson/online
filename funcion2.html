@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FunctionTexto - Explicación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        code {
+            background-color: #eaeaea;
+            padding: 2px 4px;
+            font-family: monospace;
+        }
+        pre {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .resultado {
+            background: #d9edf7;
+            padding: 10px;
+            border-left: 5px solid #31708f;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Función FunctionTexto en C#</h1>
+
+    <h2>Código:</h2>
+    <pre>
+static string FunctionTexto(string texto, int x)
+{
+    string resultado = "";
+
+    for (int i = 0; i &lt; texto.Length; i++)
+    {
+        char c = texto[i];
+        resultado = resultado + c;
+
+        if (i &gt; x)
+        {
+            resultado = resultado + c;
+        }
+    }
+
+    return resultado;
+}
+    </pre>
+
+    <h2>Funcionamiento:</h2>
+    <p>Esta función toma un texto y un número entero <code>x</code>, y construye un nuevo string aplicando esta lógica:</p>
+    <ol>
+        <li>Recorre el texto carácter por carácter.</li>
+        <li>Siempre añade el carácter actual al resultado.</li>
+        <li>Si el índice actual <code>i</code> es mayor que <code>x</code>, repite el carácter (lo añade otra vez).</li>
+        <li>Devuelve el string resultante.</li>
+    </ol>
+
+    <h2>Caso de prueba:</h2>
+    <div class="resultado">
+        <strong>Entrada:</strong> texto = "Hola", x = 2<br><br>
+
+        <strong>Proceso:</strong><br>
+        i = 0 → 'H' → resultado = "H"<br>
+        i = 1 → 'o' → resultado = "Ho"<br>
+        i = 2 → 'l' → resultado = "Hol"<br>
+        i = 3 → 'a' → como 3 > 2, se duplica → resultado = "Holaa"<br><br>
+
+        <strong>Resultado final:</strong> <code>Holaa</code>
+    </div>
+
+</body>
+</html>
