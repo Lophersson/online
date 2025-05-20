@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Reflexión Personal</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #0f0e10;
+      color: #fff;
+      width: 100vw;
+      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Times New Roman', Times, serif;
+      overflow: hidden;
+    }
+    #container {
+      width: 800px;
+      max-width: 90vw;
+      height: 800px;
+      max-height: 90vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      border-radius: 16px;
+      box-shadow: 0 0 24px #222;
+    }
+    #slide {
+      text-align: center;
+      font-size: 2.3em;
+      font-style: italic;
+      line-height: 2;
+      opacity: 0;
+      transition: opacity 1s;
+      white-space: pre-line;
+      padding: 30px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    #slide.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="slide"></div>
+  </div>
+  <script>
+    // Cada diapositiva: 6 líneas centradas
+    const slides = [
+`Reflexión personal:
+
+A veces me pregunto si la forma
+en que me ven los demás
+es un reflejo real de quién soy…
+o más bien un espejo distorsionado
+por sus propias inseguridades.
+Hay comentarios que se repiten con los
+años, cosas que me han dicho
+tantas veces`,
+  
+`que han calado profundamente
+en mi alma y me hacen dudar:
+que tengo una autoimagen elevada,
+que siempre quiero diferenciarme,
+que me comparo con otros,
+que no sé escuchar
+o que soy rígido mentalmente.
+No sé si todo esto es cierto…`,
+  
+`pero sí sé que me duele y mucho.
+Me hace sentir incomprendido,
+juzgado y rechazado cruelmemte
+sin matices, como si
+mi forma de ser fuese un defecto
+antes de ser entendida.`,
+
+`Sí, admito que tengo una fuerte
+necesidad de destacar, de sentirme
+valioso, reconocido, aceptado y querido
+¿Es eso tan malo?
+Tal vez nace por haberme sentido
+invisibilizado o invalidado
+desde siempre.`,
+
+`No creo que quiera brillar
+para aplastar a nadie…
+pero sí para no perderme a mí mismo.
+A veces siento que mi impulso
+por diferenciarme es confundido
+con arrogancia, cuando en realidad`,
+
+`es una búsqueda constante
+de autenticidad.
+
+Me esfuerzo por escuchar,
+pero es cierto que mis emociones
+a veces salen cuando me siento
+atacado o malinterpretado.`,
+
+`Mi rigidez emocional
+puede ser una forma de protección,
+un escudo frente al caos emocional
+al que que me someten.`,
+
+`Y sí, racionalizo mucho…
+quizás porque siento que estoy
+en constante sospecha sobre
+mi credibilidad, eso me desborda,
+me deja vulnerable.`,
+
+`Puede que el moralismo y la
+racionalización sean formas
+de darle sentido a lo que me duele
+o me desconcierta, y lo reconozco.
+
+¿Tengo dificultad para hacer
+autocrítica?, A ratos, sí.`,
+
+`Porque a veces no se si es crítica
+o rechazo. Pero también estoy
+dispuesto a ver mis sombras.
+  
+Me asusta enfrentarme a la idea
+de que todo lo que critican de mí
+sea cierto. Pero ¿y si solo
+son mecanismos de defensa
+de los demás?`,
+
+`¿Y si mi sensibilidad
+emocional y mi forma de procesar
+el mundo les incomoda porque
+les obliga a ver aspectos suyos
+que no quieren ver?`,
+
+`No quiero caer en la trampa
+de justificarme eternamente
+ni de pensar que siempre
+el problema es del otro.
+Pero tampoco quiero seguir
+tragando etiquetas como si
+fueran verdades absolutas.`,
+  
+`Es un proceso, un aprendizaje.
+Y aunque me sienta con temor
+respecto a si lograré tener éxito
+social, sentimental o laboral,
+quiero creer que si sigo
+reflexionando con honestidad,`,
+  
+`si sigo trabajando en mi crecimiento,
+llegaré a formar vínculos genuinos
+con personas que no solo
+me hagan daño, sino que
+me quieran de corazón
+en sus vidas.`,
+  
+  `Gracias
+  ♡`
+    ];
+
+    let current = 0;
+    const slideDiv = document.getElementById('slide');
+
+    function showSlide(index) {
+      slideDiv.classList.remove('visible');
+      setTimeout(() => {
+        slideDiv.textContent = '';
+        slideDiv.innerHTML = slides[index].replace(/\n/g, '<br>');
+        slideDiv.classList.add('visible');
+      }, 1000); // Espera a que desaparezca antes de cambiar el texto
+    }
+
+    showSlide(current);
+
+    setInterval(() => {
+      slideDiv.classList.remove('visible');
+      setTimeout(() => {
+        current = (current + 1) % slides.length;
+        showSlide(current);
+      }, 1000); // Tiempo para el fundido de salida
+    }, 12000); // Cada diapositiva dura 12 segundos
+  </script>
+</body>
+</html>
