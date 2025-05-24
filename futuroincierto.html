@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title>futuro incierto</title>
+<style>
+body {
+font-family: Georgia, serif;
+margin: 0;
+padding: 0;
+color: #000;
+background-color: #fff;
+}
+header {
+background: #fff;
+padding: 10px 20px;
+border-bottom: 1px solid #000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-top: 20px;
+}
+header h1 {
+font-family: 'Times New Roman', serif;
+font-size: 42px;
+font-weight: bold;
+margin: 0;
+font-style: italic;
+letter-spacing: -1.2px;
+margin-left: 30px;
+}
+.ubicacion a {
+font-size: 30px;
+text-decoration: none;
+color: #0554e7;
+display: inline-flex;
+align-items: center;
+font-weight: bold;
+margin-right: 50px;
+font-style: italic;
+}
+
+.icono-ubicacion {
+display: inline-block;
+width: 30px;
+height: 30px;
+background-image: url('https://cdn-icons-png.flaticon.com/512/684/684908.png');
+background-size: contain;
+background-repeat: no-repeat;
+margin-right: 5px;
+}
+
+nav {
+padding: 10px 20px;
+font-size: 20px;
+color: #333;
+text-align: center;
+font-style: italic;
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
+main {
+margin-bottom: 40px;
+}
+
+.etiqueta {
+display: inline-block;
+background-color: #FFD700;
+color: black;
+font-weight: bold;
+padding: 2px 5px;
+margin-right: 5px;
+}
+.etiqueta2 {
+display: inline-block;
+background-color: #FFD700;
+color: black;
+font-weight: bold;
+padding: 5px;
+margin-right: 0px;
+text-align: left;
+font-size: 20px;
+}
+.titulo {
+font-size: 20px;
+font-weight: bold;
+font-style: italic;
+margin: 10px 20px;
+}
+.subtitulo {
+font-size: 18px;
+margin: 0 20px 20px;
+}
+
+.parrafo {
+font-size: 18px;
+margin: 0 20px 20px;
+line-height: 1.6;
+padding-left: 200px;
+padding-right: 200px;
+}
+
+.imagen {
+width: 100%;
+max-width: 700px;
+display: block;
+margin: 0 auto;
+}
+.pie-foto {
+font-size: 16px;
+text-align: center;
+margin: 5px 20px 20px;
+color: #444;
+}
+.autor {
+text-align: center;
+margin-top: 40px;
+margin-bottom: 0px
+}
+.autor img {
+width: 70px;
+border-radius: 70%;
+margin-right: 10px;
+}
+.autor h3 {
+margin: 10px 0 5px;
+font-weight: bold;
+}
+.autor p {
+font-size: 16px;
+color: #666;
+}
+.share-buttons {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 12px;
+border-top: 1px solid #ccc;
+border-bottom: 1px solid #ccc;
+}
+
+.share-icons {
+display: flex;
+align-items: center;
+}
+
+.share-icons a {
+margin-right: 10px;
+text-decoration: none;
+font-size: 20px;
+padding: 6px;
+border-radius: 50%;
+color: white;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 22px;
+height: 22px;
+}
+
+.share-icons a:last-of-type {
+margin-right: 0;
+}
+
+.facebook { background: #3b5998; }
+.twitter { background: #1da1f2; }
+.whatsapp { background: #25d366; }
+.linkedin { background: #0077b5; }
+
+.contacta {
+background-color: #fff;
+padding: 0px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.contacta a {
+background-color: #ff0;
+padding: 10px 20px;
+font-weight: bold;
+border: none;
+cursor: pointer;
+text-decoration: none;
+color: #000;
+border-radius: 6px;
+width: 50px;
+height: 16px;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+}
+
+footer {
+background: #f5f5f5;
+padding: 20px;
+font-size: 18px;
+color: #555;
+margin-top: 40px;
+text-align: center;
+}
+
+footer a {
+color: #0071c1;
+text-decoration: none;
+margin-right: 0px;
+font-size: 18px;
+font-style: italic;
+}
+
+footer .copyright {
+margin-top: 10px;
+font-size: 18px;
+color: #777;
+}
+@media screen and (max-width: 768px) {
+header {
+/*flex-direction: column;*/
+align-items: flex-start;
+margin-top: 10px;
+}
+
+header h1 {
+font-size: 17px;
+margin-left: 2px;
+text-align: left;
+letter-spacing: -1.2px;
+}
+
+.ubicacion a {
+font-size: 14px;
+margin-right: 2px;
+}
+
+.icono-ubicacion {
+width: 16px;
+height: 16px;
+}
+
+nav {
+font-size: 15px;
+padding: 5px 10px;
+}
+
+.titulo {
+font-size: 16px;
+letter-spacing: -1.2px;
+font-weight: bold;
+font-style: italic;
+margin: 8px 16px;
+}
+
+.subtitulo {
+margin: 10px;
+font-size: 15px;
+}
+
+.parrafo {
+font-size: 16px;
+margin: 10px;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.imagen {
+max-width: 100%;
+height: auto;
+}
+
+.autor {
+text-align: center;
+margin-top: 20px;
+margin-bottom: 0px
+}
+
+.autor img {
+width: 50px;
+margin-bottom: 10px;
+}
+
+.autor h3, .autor p {
+font-size: 15px;
+text-align: center;
+}
+
+.share-buttons {
+/*flex-direction: row;*/
+padding: 10px;
+}
+
+.share-icons {
+justify-content: center;
+margin-bottom: 10px;
+}
+
+.share-icons a {
+font-size: 15px;
+width: 28px;
+height: 28px;
+}
+
+.contacta a {
+font-size: 15px;
+width: auto;
+height: auto;
+padding: 8px 12px;
+}
+
+main {
+margin-bottom: 20px;
+}
+
+.pie-foto {
+font-size: 15px;
+text-align: center;
+margin: 5px 20px 20px;
+color: #444;
+}
+
+footer a {
+font-size: 15px;
+}
+
+footer .copyright {
+font-size: 10px;
+}
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Futuro Incierto</h1>
+<span class="ubicacion">
+<a href="https://www.google.com/maps/place/Ayuntamiento+de+Ferrol/@43.4846238,-8.2376634,17z/data=!3m1!4b1!4m6!3m5!1s0xd2e761003f8855b:0x98d8f1a699f08d8f!8m2!3d43.48462!4d-8.23305!16s%2Fg%2F121k2kg7?entry=ttu&g_ep=EgoyMDI1MDUwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank">
+<i class="icono-ubicacion"></i> Ferrol
+</a>
+</span>
+</header>
+
+<nav>
+<p>"Incertidumbre, soledad y la búsqueda de un camino"</p>
+</nav>
+
+<main>
+<p class="titulo"><span class="etiqueta">Nuevo artículo</span><br><br>El abismo de la incertidumbre: cuando el miedo al futuro lo consume todo</p>
+<p class="subtitulo">Una reflexión honesta sobre la fragilidad del presente y la urgente necesidad de esperanza.</p>
+
+<div class="share-buttons">
+<div class="share-icons">
+<a id="facebook" class="facebook" target="_blank"
+href="https://www.facebook.com/sharer/sharer.php?u=https://lophersson.github.io/online/futuroincierto.html">
+<i class="fab fa-facebook-f"></i>
+</a>
+<a id="twitter" class="twitter" target="_blank"
+href="https://twitter.com/intent/tweet?url=https://lophersson.github.io/online/futuroincierto.html&text=Lee%20este%20interesante%20art%C3%ADculo">
+<i class="fab fa-x-twitter"></i>
+</a>
+<a id="whatsapp" class="whatsapp" target="_blank"
+href="https://api.whatsapp.com/send?text=Lee%20este%20art%C3%ADculo:%20https://lophersson.github.io/online/futuroincierto.html">
+<i class="fab fa-whatsapp"></i>
+</a>
+<a id="linkedin" class="linkedin" target="_blank"
+href="https://www.linkedin.com/shareArticle?mini=true&url=https://lophersson.github.io/online/relacionesfugaces.html&title=Artículo%20recomendado&summary=Te%20puede%20interesar&source=LinkedIn">
+<i class="fab fa-linkedin-in"></i>
+</a>
+</div>
+<div class="contacta">
+<a href="https://lophersson.github.io/online/micurriculum2.html">Contacta</a>
+</div>
+</div>
+
+  <!--<img src="https://cdnb.artstation.com/p/assets/images/images/007/357/737/large/krzysztof-maziarz-concept-art-lonely-man-v01.jpg?1505500669" alt="Hombre solo mirando el horizonte" class="imagen">-->
+
+
+<img src="https://img.freepik.com/premium-photo/photo-man-emotional-dynamic-gestures-sad-man-suffering-depression-depression-health-people-conc_1025753-86158.jpg" alt="Hombre solo mirando el horizonte" class="imagen">
+  
+  
+<p class="pie-foto">Un hombre solo ante un horizonte incierto, simbolizando la sensación de desamparo y la búsqueda de dirección en medio de la incertidumbre.</p>
+
+<div class="autor">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA6ji7INGIlnjkb6VYIm6urn6ZAXlMupy0XA&s" alt="Lopez Rodriguez">
+<h3>HUMBERTO LÓPEZ RODRÍGUEZ</h3>
+<p>FERROL - 24 MAYO 2025 - 20:50</p>
+</div>
+
+<p class="parrafo">
+Últimamente me cuesta encontrar la paz. Vivo con una sensación constante de incertidumbre, como si el suelo bajo mis pies pudiera desvanecerse en cualquier momento. Me preocupa mi presente, pero todavía más me inquieta mi futuro. Estoy en una etapa de mi vida donde muchas cosas no están en su sitio, y esa falta de estabilidad me genera un miedo profundo. No tengo un trabajo estable, ni una fuente de ingresos segura, y eso me hace pensar, con frecuencia, en la posibilidad real de acabar en la calle.
+</p>
+
+<p class="parrafo">
+Vivo con mi padre en un piso de alquiler, y es él quien paga todos los gastos. Yo, sin empleo, no puedo hacer frente a ese compromiso. Me aterra pensar en el día que él ya no esté. No solo perdería a la única persona cercana que tengo, sino que también me quedaría sin hogar, sin apoyo, sin nada. Es un pensamiento que me acompaña incluso cuando intento descansar. A veces, sueño que estoy en la calle, solo, sin rumbo, y me despierto con el corazón acelerado, deseando que solo fuera una pesadilla… pero sabiendo que podría convertirse en realidad.
+</p>
+
+<p class="parrafo">
+No tengo más familia. No hay nadie a quien pueda recurrir si las cosas se tuercen. Esa soledad pesa. Me encantaría tener una pareja, alguien con quien compartir mi vida, alguien que me apoye y a quien pueda cuidar también. Me gustaría tener hijos, formar una familia que me haga sentir que pertenezco a algo, que tengo un hogar más allá de un techo. Pero por ahora, todo eso parece muy lejano, como si estuviera mirando desde una ventana empañada algo que nunca podré alcanzar.
+</p>
+
+<p class="parrafo">
+También me duele no tener amigos. La mayoría de mis días los paso en silencio, sin conversaciones, sin risas, sin planes. Me gustaría tener personas con quienes salir, hablar, compartir preocupaciones o simplemente pasar el rato. Me gustaría poder llamar a alguien y contarle cómo me siento, sin miedo a ser juzgado o ignorado. La ausencia de esos lazos sociales se convierte en una soledad que cala muy hondo.
+</p>
+
+<p class="parrafo">
+Lo que más me asusta no es solo la falta de cosas materiales, sino la falta de afecto, de vínculos, de sentido. Me esfuerzo cada día por mantenerme fuerte, por no venirme abajo, pero a veces la desesperanza me supera. Me veo atrapado en un ciclo de pensamientos negativos del que me cuesta salir. Me juzgo por no haber logrado más, por no haber construido una red de apoyo, por no estar mejor preparado.
+</p>
+
+<p class="parrafo">
+Paso muchas noches en vela, pensando en posibles soluciones, en salidas que tal vez no existen. El miedo a perderlo todo, a quedarme sin techo, sin compañía, sin sentido, es como una sombra que se cuela en mis sueños. Sé que no soy el único con estos temores, pero cuando estás solo, todo se amplifica. La falta de certezas y de estabilidad emocional se convierte en una carga muy difícil de llevar.
+</p>
+
+<p class="parrafo">
+Sé que necesito ayuda. Lo reconozco con humildad. No quiero seguir fingiendo que todo está bien cuando no lo está. Quisiera poder contar con alguien, aunque sea una mano amiga, un consejo, una escucha atenta. No busco lástima, busco comprensión, orientación, apoyo. Necesito sentir que hay esperanza, que no estoy condenado a un destino oscuro e inevitable.
+</p>
+
+<p class="parrafo">
+Todavía hay dentro de mí un deseo muy fuerte de vivir una vida plena, de construir algo bonito, de superar este momento oscuro. Quiero salir adelante, encontrar trabajo, tener un lugar propio, hacer amigos, enamorarme, formar una familia. No es solo un sueño: es mi necesidad más profunda. Y aunque ahora me sienta perdido, sé que buscar ayuda es el primer paso para volver a encontrar el camino.
+</p>  
+
+</main>
+
+<footer>
+<div>
+<p class="titulo"><span class="etiqueta2">Lectura recomendada</span><br></p>
+<a href="https://lophersson.github.io/online/soledad.html">La autenticidad en los vínculos humanos</a>
+</div><br>
+<div class="copyright">
+© 2025 Humberto López Rodríguez. Todos los derechos reservados.
+</div>
+</footer>
+</body>
+</html>
