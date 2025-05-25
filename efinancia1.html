@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lophersson Financiera</title>
+    <style>
+        /* Tu CSS igual, sin cambios */
+        body {
+            background: #132b4e;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .card {
+            background: #2196d3;
+            color: #fff;
+            max-width: 350px;
+            margin: 40px auto;
+            border-radius: 18px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.18);
+            padding: 32px 22px 24px 22px;
+        }
+        .card h1 {
+            color: #ffd600;
+            font-size: 1.8em;
+            margin-top: 3px;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+        .card h2 {
+            color: #ffd600;
+            font-size: 1.25em;
+            margin-top: 3px;
+            margin-bottom: 3px;
+            text-align: center;
+        }
+        .ejemplo {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .ejemplo span {
+            font-size: 1.7em;
+            font-weight: bold;
+            color: #fff;
+        }
+        .cuotas {
+            margin: 18px 0 10px 0;
+        }
+        .cuota {
+            background: #fff;
+            color: #2196d3;
+            border-radius: 8px;
+            padding: 12px 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+        }
+        .cuota img {
+            width: 32px;
+            height: 32px;
+            margin-right: 12px;
+        }
+        .total {
+            margin: 18px 0 5px 0;
+            font-weight: bold;
+            text-align: center;
+            color: #fff;
+        }
+        .intereses {
+            text-align: center;
+            color: #ffd600;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .tasas {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 18px;
+            font-size: 0.98em;
+        }
+        @keyframes reflejoDorado {
+          0% {
+            background-image: linear-gradient(45deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);
+            background-position: 100% 0;
+            color: #1a237e;
+          }
+          25% {
+            background-image: linear-gradient(45deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);
+            background-position: 0 0;
+            color: #1a237e;
+          }
+          50% {
+            background-image: linear-gradient(45deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);
+            background-position: 100% 0;
+            color: #FFD700;
+          }
+          75% {
+            background-image: linear-gradient(45deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);
+            background-position: 0 0;
+            color: #1a237e;
+          }
+          100% {
+            background-image: linear-gradient(45deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);
+            background-position: 100% 0;
+            color: #1a237e;
+          }
+        }
+        .btn {
+          animation: reflejoDorado 2s infinite linear;
+          background-size: 200% 200%;
+          background-repeat: no-repeat;
+          outline: none;
+          display: block;
+          margin: 0 auto;
+          background: yellow;
+          color: blue;
+          border: none;
+          border-radius: 8px;
+          padding: 12px 0;
+          width: 90%;
+          font-size: 1.07em;
+          font-weight: bold;
+          cursor: pointer;
+          text-align: center;
+          text-decoration: none;
+        }
+        .btn:hover {
+            background: #165278;
+        }
+        .editable {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .editable div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .editable label {
+            color: #fff;
+            font-size: 0.98em;
+            flex: 1;
+            text-align: left;
+        }
+        .editable input {
+            background: #eaf5fb;
+            color: #1a4e6b;
+            border: 1px solid #b2d7ee;
+            border-radius: 4px;
+            padding: 2px 4px;
+            width: 80px;
+            font-size: 1em;
+            text-align: right;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .card {
+                max-width: 85%;
+                margin: 16px auto;
+                padding: 16px;
+            }
+            .editable input {
+                width: 20%;
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Lophersson Consulting</h1>
+        <br />
+        <h2>Préstamos - Créditos - Hipotecas</h2>
+        <br />
+        <div class="ejemplo">
+            Solicita ahora mismo<br />
+            <span id="importe-text">52000 €</span>
+        </div>
+        <div class="editable">
+            <div>
+                <label for="importe">Importe:</label>
+                <input type="number" id="importe" value="52000" min="1" step="0.01" />
+            </div>
+            <div>
+                <label for="tae">TAE:</label>
+                <input type="number" id="tae" value="7.079" min="0" step="0.01" />
+            </div>
+            <div>
+                <label for="meses">Meses:</label>
+                <input type="number" id="meses" value="120" min="1" step="1" />
+            </div>
+        </div>
+        <div style="text-align:center; font-size:0.98em; margin-bottom:10px;">
+            y pagarás:
+        </div>
+        <div class="cuotas">
+            <div class="cuota">
+                <img src="https://img.icons8.com/fluency/48/000000/euro-pound-exchange.png" alt="euro" />
+                <span id="cuotas-text"></span>
+            </div>
+        </div>
+        <div class="total" id="total-text"></div>
+        <br />
+        <div class="intereses" id="intereses-text"></div>
+        <div class="tasas" id="tasas-text"></div>
+        <a
+            href="https://wa.me/34658868490?text=Quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20la%20financiaci%C3%B3n%20que%20ofreces"
+            class="btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            >ME INTERESA</a
+        >
+    </div>
+    <script>
+        function actualizar() {
+            let importe = parseFloat(document.getElementById("importe").value);
+            let tae = parseFloat(document.getElementById("tae").value);
+            let meses = parseInt(document.getElementById("meses").value);
+
+            // Conversión de TAE a TIN anual y mensual
+            let tinAnual = (Math.pow(1 + tae / 100, 1 / 12) - 1) * 12 * 100;
+            let interesMensual = tinAnual / 100 / 12;
+
+            let cuotaMensual;
+            if (interesMensual === 0) {
+                cuotaMensual = importe / meses;
+            } else {
+                cuotaMensual =
+                    (importe *
+                        (interesMensual * Math.pow(1 + interesMensual, meses))) /
+                    (Math.pow(1 + interesMensual, meses) - 1);
+            }
+
+            let cuotaMensualRedondeada = parseFloat(cuotaMensual.toFixed(2));
+
+            // Total pagado = cuota mensual * meses
+            let totalPagado = cuotaMensualRedondeada * meses;
+
+            let intereses = parseFloat((totalPagado - importe).toFixed(2));
+
+            // Actualizar la interfaz de usuario
+            document.getElementById(
+                "importe-text"
+            ).textContent = importe.toLocaleString("es-ES", {
+                style: "currency",
+                currency: "EUR",
+            });
+
+            document.getElementById(
+                "cuotas-text"
+            ).textContent = `${meses} cuota${meses === 1 ? "" : "s"} de ${cuotaMensualRedondeada.toLocaleString(
+                "es-ES",
+                { style: "currency", currency: "EUR" }
+            )}/mes`;
+
+            document.getElementById("total-text").innerHTML = `Al final habrás pagado un total de<br>${totalPagado.toLocaleString(
+                "es-ES",
+                { style: "currency", currency: "EUR" }
+            )} en ${meses} mes${meses === 1 ? "" : "es"}.`;
+
+            document.getElementById("intereses-text").innerHTML = `¡${intereses.toLocaleString(
+                "es-ES",
+                { style: "currency", currency: "EUR" }
+            )} de intereses incluidos!`;
+
+            document.getElementById(
+                "tasas-text"
+            ).textContent = `${tae.toFixed(2)}% TAE    ${tinAnual.toFixed(2)}% TIN`;
+        }
+
+        document.getElementById("importe").addEventListener("input", actualizar);
+        document.getElementById("tae").addEventListener("input", actualizar);
+        document.getElementById("meses").addEventListener("input", actualizar);
+
+        actualizar();
+    </script>
+</body>
+</html>
