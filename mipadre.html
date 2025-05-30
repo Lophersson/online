@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Redacción: Mi padre</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:wght@300&family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #333333;
+            color: #ffffff;
+            font-family: 'Abel', 'Montserrat', 'Oxygen', sans-serif;
+            font-weight: 300;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            font-family: 'Abel', sans-serif;
+            font-weight: normal;
+            letter-spacing: 2px;
+            margin: 0 0 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .button {
+    all: unset; /* Elimina estilos por defecto de <button>, sin afectar a <a> */
+    display: inline-block;
+    background-color: #555;
+    color: white;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-family: inherit;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+/* Restaura el cursor de texto por defecto en elementos donde 'all: unset' lo afecta negativamente */
+a.button {
+    text-decoration: none;
+}
+        .button:hover {
+            background-color: #777;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        @media print {
+            body {
+                background-color: #ffffff;
+                color: #000000;
+            }
+            .buttons, .button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Mi padre</h1>
+        <p>
+            Mi padre es un hombre con una conexión emocional extremadamente baja. Es muy solitario, no tiene amigos ni mantiene contacto con ningún familiar, salvo con su hermano, con quien comparte ciertas similitudes en su forma de ser y pensar. Tiene ideas retrógradas y una marcada rigidez mental; está convencido de que siempre tiene la razón. Su narcisismo es notorio: suele decir que los demás son imbéciles y vive en un estado de malhumor constante, lleno de críticas y quejas. Con frecuencia despotrica contra todo el mundo, y disfruta estando solo. Incluso cuando ve las noticias en la televisión, grita con violencia, insultando a quienes aparecen en pantalla, especialmente a políticos.
+        </p>
+        <p>
+            La empatía, la sensibilidad y la comprensión de las emociones ajenas le son completamente ajenas. Considera esas actitudes como una muestra de debilidad y falta de entereza masculina. Tiene un carácter duro, insolente, soberbio y beligerante. Me hace sentir muy mal con sus críticas y comentarios hostiles. Siempre cree que hago todo mal y me reprocha constantemente cualquier cosa. Cuestiona negativamente todo lo que digo, me manda callar, y niega el valor de mis palabras. Muestra indiferencia ante lo que siento, digo o hago, revelando su negligencia como padre emocionalmente ausente.
+        </p>
+        <p>
+            Está plenamente convencido de que voy por mal camino en todas las decisiones que tomo en mi vida. Es un padre frío, distante y nada generoso, ni en lo emocional ni en lo material. Su actitud displicente hace que nuestra relación sea prácticamente nula, incómoda y muy difícil. Por mi parte, intento evitar cualquier interacción para no generar conflictos, sabiendo la opinión tan negativa que tiene sobre mí.
+        </p>
+        <p>
+            Sus amenazas de que terminaré solo y en la calle si no hago lo que él dice me afectan profundamente. A menudo me repite que, cuando él muera, lloraré y me arrepentiré por haberme quedado solo y en la indigencia, sin nadie que me cuide, porque —según él— soy tan pésimo que nadie quiere estar conmigo. Me hace mucho daño con sus comentarios sobre mi escaso éxito social, diciéndome que nadie me quiere y que por eso tampoco me contratan en ninguna empresa.
+        </p>
+        <p>
+            Sus palabras sobre mi futuro laboral también son profundamente dolorosas. Estoy totalmente convencido de que no me quiere, por el trato tan cruel y despectivo que me da. Aunque he intentado llevarme bien con él, me resulta imposible. Siempre está enfadado y, muchas veces, pienso en no hablarle para no provocar su mal carácter ni sus actitudes violentas, que incluyen gritos e insultos hacia mí.
+        </p>
+        <p>
+            Nunca me he sentido valorado por él, ni siquiera cuando, en contadas ocasiones, lo ha intentado —de forma claramente forzada y sin ningún tipo de naturalidad ni sentimiento—. Tiene una imagen de mí profundamente negativa y lamentable.
+        </p>
+        <div class="buttons">
+            <a href="https://www.perplexity.ai" class="button" target="_blank">mi vida</a>
+            <button onclick="window.print();" class="button">imprimir en PDF</button>
+            <a href="https://www.google.com" class="button" target="_blank">mi currículum</a>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; 2025 | Humberto López Rodríguez</p>
+    </footer>
+</body>
+</html>
