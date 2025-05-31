@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Currículum - Humberto López Rodríguez</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:wght@300&family=Oxygen:wght@300&display=swap" rel="stylesheet">
+    
+  <style>
+    body {
+      background-color: #333333;
+      color: #ffffff;
+      font-family: 'Abel', 'Montserrat', 'Oxygen', sans-serif;
+      font-weight: 300;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+    
+    h1, h2 { color: #ffffff; }
+    ul { padding-left: 20px; }
+  
+    .button-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      width: 100%;
+    }
+
+    .button-container button {
+      background-color: #969696;
+      color: #ffffff;
+      font-family: 'Abel', 'Montserrat', 'Oxygen', sans-serif;
+      font-weight: 300;
+      padding: 0.6rem 0.6rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      min-height: 60px;
+      flex-grow: 1;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+    }
+
+    .button-container button:hover {
+      background-color: #333333;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+      color: #aaa;
+      font-weight: 300;
+    }
+    
+    /* --- Media Queries para responsividad --- */
+
+    /* Estilos para pantallas grandes (escritorio) */
+    @media (min-width: 769px) {
+      .button-container button {
+        font-size: 1.5rem; /* Tamaño de fuente para escritorio */
+      }
+    }
+
+    /* Estilos para pantallas pequeñas (móviles) */
+    @media (max-width: 768px) {
+      body {
+        padding-left: 20px; /* Ajuste de padding para móviles */
+        padding-right: 20px; /* Ajuste de padding para móviles */
+      }
+      .button-container {
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+      }
+      .button-container button {
+        font-size: 1.1rem; /* Tamaño de fuente para móviles, puedes ajustarlo */
+        padding: 0.5rem 0.5rem; /* Ajuste del padding para móviles */
+        min-height: 50px;
+      }
+    }
+    
+    /* --- Estilos de impresión --- */
+    @media print {
+      body {
+        background-color: #333333;
+        color: #ffffff;
+        padding: 0;
+      }
+      .section {
+        background: #333333;
+        box-shadow: none;
+        border: 0px solid #eee;
+      }
+      ul.skills li {
+        background: #333333;
+        color: #ffffff;
+      }
+      footer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+      }
+      /* Ocultar botones en la impresión */
+      .button-container {
+        display: none; 
+      }
+    }
+  </style>
+</head>
+<body>
+
+<h1>Humberto López Rodríguez</h1>
+<p><strong>Analista Contable & Desarrollador Web</strong><br>
+📞 Teléfono: +34 658 868 490<br>
+✉️ Email: lophersson@gmail.com</p>
+
+<hr>
+
+<h2>Perfil Profesional</h2>
+<p>
+Profesional proactivo, analítico y orientado a resultados, con amplia experiencia en el sector financiero y tecnológico.
+Especializado en <strong>análisis contable-financiero</strong>, <strong>automatización de procesos</strong> y <strong>desarrollo web de aplicaciones de gestión</strong>.
+Apasionado por la <strong>transformación digital</strong> y la implementación de soluciones basadas en <strong>Machine Learning</strong>, <strong>Data Science</strong> y <strong>tecnologías en la nube</strong> para optimizar la eficiencia y competitividad de las organizaciones.
+</p>
+
+<h2>Datos Personales</h2>
+<ul>
+  <li>Ubicación: Ferrol, España</li>
+  <li>Disponibilidad: Full-Time</li>
+  <li>Nacionalidad: Española</li>
+  <li>Fecha estimada de jubilación: 2050</li>
+</ul>
+
+<h2>Formación Académica</h2>
+<ul>
+  <li><strong>Certificados de Profesionalidad Nivel 3:</strong>
+    <ul>
+      <li>Seguridad Informática (IFCT0109) – Infórmate, 2024</li>
+      <li>Desarrollo Web (IFCD0210) – Academia Postal, 2023</li>
+      <li>Sistemas de Gestión de la Información (IFCD0211) – ntFOR, 2023</li>
+    </ul>
+  </li>
+  <li><strong>Grado en Ciencias Empresariales 90/240 ECTS</strong><br>Universidad de A Coruña (2020)</li>
+  <li><strong>CFGS en Administración y Finanzas</strong><br>CIFP Rodolfo Ucha (2018)</li>
+</ul>
+
+<h2>Experiencia Destacada</h2>
+<ul>
+  <li><strong>Analista contable-financiero</strong><br>BNP Paribas, Ibercaja, Bankinter, Abanca</li>
+  <li><strong>QA Tester y gestor de operaciones</strong><br>Sector financiero y tecnológico</li>
+  <li><strong>Desarrollador web de aplicaciones de gestión</strong><br>Freelance y proyectos personales (HTML, CSS, JavaScript, MySQL, APIs)</li>
+</ul>
+<p><strong>Experiencia en:</strong> Auditoría financiera, planificación fiscal, optimización de recursos, contabilidad NIIF, automatización de reportes, modernización del área financiera.</p>
+
+<h2>Habilidades Destacadas</h2>
+<ul>
+  <li>Transformación digital en entornos financieros</li>
+  <li>Desarrollo web: HTML, CSS, JavaScript, Python, APIs REST</li>
+  <li>Gestión financiera avanzada (Excel, Power BI, SAP, Dynamics)</li>
+  <li>Implementación de IA y Machine Learning en procesos contables</li>
+  <li>Control de costes y análisis de datos con enfoque estratégico</li>
+  <li>Trabajo en equipo y liderazgo multidisciplinar</li>
+</ul>
+
+<h2>Idiomas</h2>
+<ul>
+  <li>Español: Nativo</li>
+  <li>Inglés: Nivel B1 – EOI Ferrol (2010)</li>
+</ul>
+
+   <div class="section">
+  <h2>Otros Datos</h2>
+  <p>Interés en la integración de procesos contables con soluciones web personalizadas, desarrollando herramientas interactivas con HTML, CSS y JavaScript para mejorar la eficiencia y la toma de decisiones financieras. Además, enfocado en el manejo seguro de grandes volúmenes de datos y entornos de Big Data, utilizando tecnologías de backend y bases de datos (MySQL, MongoDB), e implementando medidas de protección de la información conforme a normativas de seguridad informática y buenas prácticas en ciberseguridad.</p>
+</div>
+
+  <div class="button-container">
+      <button onclick="window.print()">PDF</button>
+      <button onclick="window.open('https://wa.me/34658868490', '_blank')">whatsapp</button>
+      <button onclick="window.location.href='tel:+34658868490'">Llamar</button>
+    </div>
+
+    <footer>
+      © 2025 Humberto López Rodríguez
+    </footer>
+</body>
+</html>
