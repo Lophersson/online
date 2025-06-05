@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -52,7 +51,15 @@ font-size: 46px;
 font-weight: 700;
 font-family: "Playfair Display", serif;
 color: #f44336;
-} 
+}
+
+.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente */
+  text-align: center;  /* Centra el texto dentro del h2 y p */
+  margin: 0 auto;      /* Centra el div si tiene ancho fijo (opcional) */
+}
 
 .filter {
 text-align: center;
@@ -232,12 +239,15 @@ height: auto;
 <script>
 window.console = window.console || function(t) {};
 </script>
+
 </head>
 
 <body translate="no">
 <div class="section-padding gallery-section" id="gallery">
 <div class="container">
+
 <!-- Section Title Start -->
+
 <div class="text-center">
 <h2 class="title">mis imágenes</h2>
 <p> selecciona categoría </p>
