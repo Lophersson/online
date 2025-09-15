@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="gl">
+<head>
+  <meta charset="UTF-8">
+  <title>Horario Diario</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 10px 20px;
+    }
+    header h2 {
+      margin: 0;
+    }
+    button {
+      background-color: #f1c40f;
+      border: none;
+      padding: 8px 15px;
+      cursor: pointer;
+      font-size: 14px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 10px;
+      font-size: 15px;
+    }
+    th {
+      background-color: #f1c40f;
+      color: #333;
+      font-weight: bold;
+    }
+    .hora {
+      background-color: #5dade2;
+      color: #fff;
+      font-weight: bold;
+      width: 100px; /* más estrecha */
+    }
+    .recreo {
+      background-color: #e0e0e0;
+      font-style: italic;
+      font-weight: bold;
+    }
+    .gris {
+      background-color: #2c2c2c !important;
+      color: #b5b5b5 !important;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <button onclick="cambiarDia(-1)">← Día anterior</button>
+    <h2 id="tituloDia">Luns</h2>
+    <button onclick="cambiarDia(1)">Día seguinte →</button>
+  </header>
+
+  <table id="tablaHorario">
+    <tr>
+      <th class="hora">Hora</th>
+      <th id="colDia">Luns</th>
+    </tr>
+    <tr><td class="hora">16:00-17:00</td><td></td></tr>
+    <tr><td class="hora">17:00-18:00</td><td></td></tr>
+    <tr><td class="hora">18:00-18:15</td><td></td></tr>
+    <tr><td class="hora">18:15-19:15</td><td></td></tr>
+    <tr><td class="hora">19:15-20:15</td><td></td></tr>
+    <tr><td class="hora">20:15-20:30</td><td></td></tr>
+    <tr><td class="hora">20:30-21:30</td><td></td></tr>
+    <tr><td class="hora">21:30-22:30</td><td></td></tr>
+  </table>
+
+  <script>
+    const dias = ["Luns", "Martes", "Mércores", "Xoves", "Venres"];
+    const horario = {
+      "Luns": [
+        "Bases de datos (Tarde)<br>May S - A.129",
+        "Bases de datos (Tarde)<br>May S - A.129",
+        "Recreo",
+        "Bases de datos (Tarde)<br>May S - A.129",
+        "Linguaxes de marcas (Tarde)<br>Fernando V - A.129",
+        "Recreo",
+        "Contornos de desenvolvemento (Tarde)<br>Jose L - A.129",
+        "Contornos de desenvolvemento (Tarde)<br>Jose L - A.129"
+      ],
+      "Martes": [
+        "Itinerario persoal para a empregabilidade I<br>Cristina A - SENAULA",
+        "Itinerario persoal para a empregabilidade I<br>Cristina A - SENAULA",
+        "Recreo",
+        "Inglés profesional<br>Josefa Loida M - A.129",
+        "Inglés profesional<br>Josefa Loida M - A.129",
+        "Recreo",
+        "Sistemas informáticos (Tarde)<br>Xabier P - A.129",
+        "Sistemas informáticos (Tarde)<br>Xabier P - A.129"
+      ],
+      "Mércores": [
+        "Linguaxes de marcas (Tarde)<br>Fernando V - A.129",
+        "Linguaxes de marcas (Tarde)<br>Fernando V - A.129",
+        "Recreo",
+        "Itinerario persoal para a empregabilidade I<br>Cristina A - SENAULA",
+        "Programación (Tarde)<br>Fernando V - A.129",
+        "Recreo",
+        "Programación (Tarde)<br>Fernando V - A.129",
+        "Programación (Tarde)<br>Fernando V - A.129"
+      ],
+      "Xoves": [
+        "Programación (Tarde)<br>Fernando V - A.129",
+        "Programación (Tarde)<br>Fernando V - A.129",
+        "Recreo",
+        "Programación (Tarde)<br>Fernando V - A.129",
+        "Bases de datos (Tarde)<br>May S - A.129",
+        "Recreo",
+        "Bases de datos (Tarde)<br>May S - A.129",
+        "Bases de datos (Tarde)<br>May S - A.129"
+      ],
+      "Venres": [
+        "Sistemas informáticos (Tarde)<br>Xabier P - A.129",
+        "Sistemas informáticos (Tarde)<br>Xabier P - A.129",
+        "Recreo",
+        "Sistemas informáticos (Tarde)<br>Xabier P - A.129",
+        "Programación (Tarde)<br>Fernando V - A.129",
+        "Recreo",
+        "Programación (Tarde)<br>Fernando V - A.129",
+        "Sostibilidade aplicada ao sistema produtivo<br>Fernando V - A.129"
+      ]
+    };
+
+    let diaActual = 0;
+
+    function cambiarDia(direccion) {
+      diaActual = (diaActual + direccion + dias.length) % dias.length;
+      mostrarDia();
+    }
+
+    function esMateriaGris(texto) {
+      return /(Bases de datos|Sistemas informáticos|Inglés|Itinerario persoal)/i.test(texto);
+    }
+
+    function mostrarDia() {
+      const dia = dias[diaActual];
+      document.getElementById("tituloDia").textContent = dia;
+      document.getElementById("colDia").textContent = dia;
+
+      const filas = document.querySelectorAll("#tablaHorario tr");
+      const materias = horario[dia];
+
+      for (let i = 1; i < filas.length; i++) {
+        const celda = filas[i].children[1];
+        celda.className = "";
+        let materia = materias[i-1];
+
+        if (materia === "Recreo") {
+          celda.textContent = "Recreo";
+          celda.classList.add("recreo");
+        } else {
+          celda.innerHTML = materia;
+          if (esMateriaGris(materia)) {
+            celda.classList.add("gris");
+          }
+        }
+      }
+    }
+
+    mostrarDia();
+  </script>
+</body>
+</html>
