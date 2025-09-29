@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>WebGL Serpentine Shader - Neón Rápido</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #000;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="myCanvas"></canvas>
+
+  <!-- Fragment shader -->
+  <script id="fragment-shader-2d" type="x-shader/x-fragment">
+    #version 300 es
+    precision highp float;
+
+    uniform vec2 iResolution;
+    uniform vec2 iMouse;
+    uniform float iTime;
+
+    out vec4 fragColor;
+
+    #define PI 3.14159265359
+
+    void mainImage(out vec4 fragColor, in vec2 fragCoord) {
+      // Normalized coordinates with aspect correction
+      vec2 uv = (fragCoord - iResolution.xy/2.0) / iResolution.y;
+      vec2 uv0 = uv;
+
+      float scale = 25.0;
+      uv = round(uv * scale) / scale;
+
+      float m = 0.15;
+
+      // iTime is already scaled from JS (ver JS: speed factor)
+      float t = iTime;
+
+      float angle = atan(uv.x, uv.y) + t; // phase includes time (sped up from JS)
+      float r = m / PI * angle;
+
+      uv.x = length(uv.xy) - r;
+      uv.x = mod(uv.x - m, 2.0 * m) - m;
+
+      float stripe = abs(uv.x) / m - m;
+      stripe -= 0.25;
+
+      // restore original uv for the circular dot mask
+      uv = uv0;
+      uv = mod(uv - 1.0/scale/2.0, 1.0/scale) - 1.0/scale/2.0;
+
+      float circle = step(length(uv), max(sqrt(max(m*stripe/scale/2.0, 0.0)), 0.003));
+
+      // compute grid indices for color variety
+      uv = uv0;
+      float row = round(uv.x * scale);
+      float ln  = round(uv.y * scale);
+
+      // combinational modulo to pick color index (0..3)
+      float sum = mod(mod(row, 3.0) + mod(ln, 2.0) + mod(row - ln, 5.0) * mod(row*ln, 3.0), 4.0);
+
+      // Neon palette (bright)
+      vec3 col;
+      if (sum == 0.0) col = vec3(1.00, 0.00, 0.84); // neon magenta / pink
+      if (sum == 1.0) col = vec3(0.00, 1.00, 1.00); // neon cyan
+      if (sum == 2.0) col = vec3(0.65, 1.00, 0.10); // neon lime
+      if (sum == 3.0) col = vec3(1.00, 0.45, 0.00); // neon orange
+
+      // Pulsing glow based on time and cell index to create lively neon shimmer
+      float pulse = 0.70 + 0.40 * sin(t * 6.0 + sum * 1.57);
+      // Slight extra brightness depending on circle size for stronger neons in larger dots
+      float extra = smoothstep(0.003, 0.09, length(uv0 - (floor(uv0 * scale + 0.5)/scale)));
+      col *= (pulse + 0.4 * extra);
+
+      // final color; multiply by circle mask so only dots show
+      vec3 final = circle * col;
+
+      // Add a subtle vignette to emphasize center neon
+      float dist = length((fragCoord - iResolution.xy*0.5) / iResolution.y);
+      final *= smoothstep(1.2, 0.6, dist);
+
+      fragColor = vec4(final, 1.0);
+    }
+
+    void main() {
+      mainImage(fragColor, gl_FragCoord.xy);
+    }
+  </script>
+
+  <script>
+    // Setup
+    const canvas = document.getElementById('myCanvas');
+    const gl = canvas.getContext('webgl2', { antialias: true });
+
+    if (!gl) {
+      document.body.innerHTML = "WebGL2 no disponible en este navegador.";
+      throw new Error("WebGL2 no disponible");
+    }
+
+    // Vertex shader (simple quad)
+    const vertexShaderSource = `#version 300 es
+    in vec2 a_position;
+    void main() {
+      gl_Position = vec4(a_position, 0.0, 1.0);
+    }
+    `;
+
+    const fragmentShaderSource = document.getElementById('fragment-shader-2d').textContent.trim();
+
+    function compileShader(gl, type, source) {
+      const shader = gl.createShader(type);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        const msg = gl.getShaderInfoLog(shader);
+        console.error("Error compilando shader:", msg);
+        gl.deleteShader(shader);
+        throw new Error(msg);
+      }
+      return shader;
+    }
+
+    const vShader = compileShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+    const fShader = compileShader(gl, gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+    const program = gl.createProgram();
+    gl.attachShader(program, vShader);
+    gl.attachShader(program, fShader);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      const msg = gl.getProgramInfoLog(program);
+      console.error("Error linkando programa:", msg);
+      throw new Error(msg);
+    }
+    gl.useProgram(program);
+
+    // Full-screen quad
+    const positions = new Float32Array([
+      -1.0, -1.0,
+       1.0, -1.0,
+      -1.0,  1.0,
+       1.0,  1.0
+    ]);
+
+    const posBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+    const posLoc = gl.getAttribLocation(program, 'a_position');
+    gl.enableVertexAttribArray(posLoc);
+    gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+    // Uniform locations
+    const iResolutionLocation = gl.getUniformLocation(program, 'iResolution');
+    const iMouseLocation = gl.getUniformLocation(program, 'iMouse');
+    const iTimeLocation = gl.getUniformLocation(program, 'iTime');
+
+    // Resize handling
+    function resizeCanvas() {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Mouse (optional effect, kept for compatibility though shader doesn't use it intensively)
+    canvas.addEventListener('mousemove', (ev) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = (ev.clientX - rect.left) * (canvas.width / rect.width);
+      const y = canvas.height - (ev.clientY - rect.top) * (canvas.height / rect.height);
+      gl.uniform2f(iMouseLocation, x, y);
+    });
+
+    // SPEED: factor to increase the animation speed (user requested "aumentes la velocidad")
+    // Puedes ajustar este valor (ej. 2.0 = doble velocidad, 4.0 = 4x). He puesto 3.5 para un aumento notorio.
+    const SPEED_FACTOR = 3.5;
+
+    // Render loop
+    function render(now) {
+      // 'now' is in ms; convert to seconds and apply speed multiplier
+      const timeSeconds = now * 0.001 * SPEED_FACTOR;
+
+      gl.clearColor(0, 0, 0, 1);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+
+      gl.uniform2f(iResolutionLocation, canvas.width, canvas.height);
+      gl.uniform1f(iTimeLocation, timeSeconds);
+
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>
