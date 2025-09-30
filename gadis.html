@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Lista de Alimentos — Calculadora por unidad</title>
+<style>
+  :root{
+    --sz: 8vmin;
+    --sp: 0.35s;
+    --ac: orange;
+    --ic: #ebebeb;
+    --bg1: #1f1f23;
+    --bg2: #2d2d31;
+    --card-bg: rgba(0,0,0,0.12);
+  }
+  *{box-sizing:border-box; transition: all var(--sp) cubic-bezier(0.68,-0.55,0.265,1.55) 0s;}
+  body{
+    margin:0; padding:0;
+    width:100vw; height:100vh; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,var(--bg1),var(--bg2),#101012);
+    position:relative;
+    color:var(--ic);
+  }
+  /* subtle backgrounds */
+  body::before, body::after{
+    content:""; position:absolute; width:100%; height:100%;
+    opacity:0.75; filter:blur(0.75px); z-index:0;
+    background:
+      repeating-conic-gradient(#0002 0.000095%, #fff0 .0005%, #fff0 .005%, #fff0 .0005%),
+      repeating-conic-gradient(#0002 0.00001%, #fff0 .00009%, #fff0 .00075%, #fff0 .000025%);
+  }
+
+  header { z-index:1; width:100%; text-align:center; padding:calc(var(--sz)*0.15) 10px; }
+  h1{
+    /*color:var(--ic);*/
+    color: orange;
+    margin:0 0 calc(var(--sz)*0.05); font-weight:800;
+    font-size:calc(var(--sz)*1.50); letter-spacing: -0.15rem; font-style: italic;
+  }
+
+  .content{
+    position:relative; z-index:1;
+    width:100%; max-width:calc(var(--sz)*8.25);
+    display:flex; flex-wrap:wrap; justify-content:flex-start; align-content:center;
+    background: var(--card-bg); padding: calc(var(--sz)*0.35);
+    border-radius: calc(var(--sz)*0.25);
+    box-shadow: 0 0 calc(var(--sz)*0.01) calc(var(--sz)*0.01) #ebebeb inset;
+    gap: calc(var(--sz)*0.125);
+  }
+
+  label.item {
+    position:relative; display:flex; align-items:center;
+    gap:10px;
+    height: calc(var(--sz)*0.75);
+    background: linear-gradient(0deg,#12172080,#0d121780);
+    border-radius: var(--sz);
+    padding: calc(var(--sz)*0.25) calc(var(--sz)*0.25) calc(var(--sz)*0.25) calc(var(--sz)*0.375);
+    /*font-size: calc(var(--sz)*0.25);*/
+    font-size: 1.8rem;
+    color:var(--ic); cursor:pointer; user-select:none;
+    box-shadow: 0 0 0 calc(var(--sz)*0.015) var(--ic) inset;
+    overflow:hidden; min-width:470px;
+  }
+  label.item .name { text-transform:capitalize; flex:1; color: #fff;}
+  label.item .amount { font-size:1.8rem; font-weigth: bold; font-style: italic; color: #fff; min-width:90px; text-align:right; }
+  
+  label.item::after{
+    content:" "; color: var(--ac); position:relative; width:0; height:0; margin-left:calc(var(--sz)*0.125);
+    border-radius:var(--sz); font-size: 1.8rem;
+    background:
+      linear-gradient(230deg,var(--ac) 0 calc(var(--sz)*0.12), #fff0 0 100%),
+      linear-gradient(142deg,var(--ac) 0 calc(var(--sz)*0.14), #fff0 0 100%),
+      conic-gradient(from 43deg at 43% calc(64% + calc(var(--sz)*0.03)), #fff0 0 0%, var(--ac) 1% 76%, #fff0 77% 100%),
+      conic-gradient(from -45deg at 43% 64%, #fff0 0 0%, var(--ac) 2% 25%, #fff0 26% 100%);
+    transition: width var(--sp) ease, height var(--sp) ease;
+  }
+
+  label.item input[type="checkbox"]{ display:none; }
+
+  label.item.checked {
+    box-shadow: 0 0 0 2px var(--ac) inset;
+    color:var(--ac); font-size: 1.8rem;
+  }
+  label.item.checked::after{
+    width: calc(var(--sz)*0.25); height: calc(var(--sz)*0.25);
+  }
+
+  /* Footer total */
+  .total-bar{
+    margin-top:15px; z-index:1; display:flex; align-items:center; justify-content:space-between;
+    width:100%; max-width:calc(var(--sz)*8.25); padding:12px 18px; border-radius:10px;
+    background: rgba(0,0,0,0.25); box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    color:var(--ic); font-size: 2.5rem;
+  }
+  .total-bar .left{ font-weight:600; }
+  .total-bar .right{ font-weight:700; color: yellow; }
+
+  /* Modal keypad */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(0,0,0,0.6); display:none; z-index:10;
+    align-items:center; justify-content:center; /*padding:20px;*/ padding-top: 26px; padding-bottom: 26px; min-heigth: 900px;
+  }
+  .modal{
+    width:100%; max-width:420px; /*background:linear-gradient(180deg,#0b0b0d,#141417);*/ background: #252f4b;
+    border-radius:12px; color:var(--ic); box-shadow:0 10px 30px rgba(0,0,0,0.6);
+  }
+  .modal h2{ margin:0 0 8px; font-size:1.8rem; }
+  .modal .subtitle{ color:#fff; margin-bottom:6px; font-size:1.8rem; }
+  .display{
+    height:56px; background:#0006; border-radius:8px; display:flex; align-items:center;
+    justify-content:space-between; padding:12px 14px; font-size:1.1rem; color:#fff;
+    margin-bottom:12px;
+  }
+  .display .label{ font-size:1.8rem; color:#ddd; }
+  .display .value{ font-weight:bold; font-size:1.8rem; font-family:monospace; color: yellow; }
+
+  .keypad{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap:8px;
+  }
+  .key{
+    background:linear-gradient(180deg,#1a1a1c,#0e0e10); border-radius:8px; padding:10px; text-align:center;
+    font-size:2.5rem; font-style: italic; font-weight: bold; cursor:pointer; user-select:none; color:var(--ic);
+    box-shadow: inset 0 -2px 0 rgba(0,0,0,0.6);
+  }
+  .key.action{ grid-column: span 3; background:linear-gradient(90deg,#ff8a00,#ff2d95); color:#fff; font-weight:700; }
+  .key.secondary{ background:linear-gradient(180deg,#222,#111); color:#ddd; }
+
+  .modal .row{ display:flex; gap:8px; margin-top:10px; }
+  .modal .btn{ flex:1; padding:8px; border-radius:8px; text-align:center; cursor:pointer; user-select:none; }
+  .btn.cancel{ background: #660033; font-size: 2.5rem; color: #fff ; font-style: italic; font-weigth: bold}
+  .btn.clear{ background:#2565ae; font-size: 2.5rem; color:#fff; font-style: italic; }
+
+  @media screen and (max-width:767px){
+    :root{ --sz:80px; }
+    body{ height:auto; overflow-y:visible; justify-content:flex-start; align-items:center; padding:calc(var(--sz)*0.5); background:#232323;}
+    body::before, body::after{ display:none; }
+    .content{ max-width:100%; padding:0; background:transparent; box-shadow:none; }
+    /*label.item{ font-size:calc(var(--sz)*0.22); height:calc(var(--sz)*0.625); min-width:120px; }*/
+    .modal{ max-width:100%; padding:16px 16px 16px 16px;}
+    
+    label.item {
+    position:relative; display:flex; align-items:center;
+    gap:10px;
+    height: calc(var(--sz)*0.75);
+    background: linear-gradient(0deg,#12172080,#0d121780);
+    border-radius: var(--sz);
+    padding: calc(var(--sz)*0.25) calc(var(--sz)*0.25) calc(var(--sz)*0.25) calc(var(--sz)*0.375);
+    /*font-size: calc(var(--sz)*0.25);*/
+      font-size: 1.8rem;
+    color:var(--ic); cursor:pointer; user-select:none;
+    box-shadow: 0 0 0 calc(var(--sz)*0.015) var(--ic) inset;
+    overflow:hidden; min-width:470px;
+  }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <!--<h1>Gadis</h1>-->
+  
+<h1 style="
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Gadis.svg" 
+       alt="Gadis" 
+       style="width: 480px; height: auto;">
+</h1>
+  
+  
+  <div style="font-size:0.9rem; color:#ccc"> </div>
+</header>
+
+<div class="content" id="itemsContainer">
+  <!-- Items injected by JS as labels -->
+</div>
+
+<div class="total-bar" id="totalBar">
+  <div class="left">Total</div>
+  <div class="right" id="totalValue">€ 0.00</div>
+</div>
+
+<!-- Modal keypad -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" id="modal">
+    <h2 id="modalTitle"></h2>
+    <div class="subtitle" id="modalSubtitle">Cantidad</div>
+
+    <div class="display">
+      <div>
+        <div class="label" id="dispLabel"> </div>
+        <div class="value" id="dispValue">0</div>
+      </div>
+      <div style="text-align:right">
+        <div class="value" id="dispItem">-</div>
+        <div class="label"></div>
+        </div>
+    </div>
+
+    <div class="keypad" id="keypad">
+      <div class="key">1</div>
+      <div class="key">2</div>
+      <div class="key">3</div>
+      <div class="key">4</div>
+      <div class="key">5</div>
+      <div class="key">6</div>
+      <div class="key">7</div>
+      <div class="key">8</div>
+      <div class="key">9</div>
+      <div class="key secondary">.</div>
+      <div class="key">0</div>
+      <div class="key secondary" id="backKey">⌫</div>
+      <div class="key action" id="nextKey">Siguiente</div>
+    </div>
+
+    <div class="row" style="margin-top:12px;">
+      <div class="btn cancel" id="cancelBtn">Cancelar</div>
+      <div class="btn clear" id="clearBtn">Borrar</div>
+    </div>
+  </div> 
+</div>
+  
+    <!-- Botón de imprimir PDF -->
+<div style="width:100%; max-width:calc(var(--sz)*8.25); margin-top:10px; text-align:center;">
+  <button id="printBtn" style="
+    width:100%; padding:12px 0; font-size:1.8rem; font-weight:bold;
+    border:none; border-radius:10px; background:orange; color:#000; cursor:pointer;
+  ">Imprimir PDF</button>
+</div>
+
+<script>
+/* --- Lista de alimentos --- */
+const foods = [
+  'kiwis','leche','huevos','queso','manzanas','plátanos','tomates','jamón',
+  'pollo','carne','arroz','pasta','lechuga','cebollas','pescado','yogures'
+];
+
+/* --- Estado por alimento: { checked, quantity, price, amount } --- */
+const state = {};
+foods.forEach(f => state[f] = { checked:false, quantity:0, price:0, amount:0 });
+
+const itemsContainer = document.getElementById('itemsContainer');
+const totalValueEl = document.getElementById('totalValue');
+
+/* Create UI labels */
+foods.forEach(name => {
+  const label = document.createElement('label');
+  label.className = 'item';
+  label.dataset.name = name;
+
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.id = 'cb_' + name;
+  checkbox.dataset.name = name;
+
+  const spanName = document.createElement('span');
+  spanName.className = 'name';
+  spanName.textContent = name;
+
+  const spanAmount = document.createElement('div');
+  spanAmount.className = 'amount';
+  spanAmount.textContent = '';
+
+  label.appendChild(checkbox);
+  label.appendChild(spanName);
+  label.appendChild(spanAmount);
+
+  itemsContainer.appendChild(label);
+
+  // click handler opens modal to input amounts
+  label.addEventListener('click', (e) => {
+    // If click on the amount area (to edit) or anywhere, open modal.
+    // Prevent double-trigger when toggling checkbox via labels default — we'll control checked manually.
+    e.preventDefault();
+    openModalForItem(name);
+  });
+});
+
+/* Modal elements and keypad */
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalTitle = document.getElementById('modalTitle');
+const modalSubtitle = document.getElementById('modalSubtitle');
+const dispValue = document.getElementById('dispValue');
+const dispLabel = document.getElementById('dispLabel');
+const dispItem = document.getElementById('dispItem');
+const keypad = document.getElementById('keypad');
+const nextKey = document.getElementById('nextKey');
+const cancelBtn = document.getElementById('cancelBtn');
+const clearBtn = document.getElementById('clearBtn');
+const backKey = document.getElementById('backKey');
+
+let currentItem = null;
+let inputStage = 'quantity'; // 'quantity' or 'price'
+let inputBuffer = '0'; // string representation of current numeric input
+
+/* Helper to format currency */
+function fmtCurrency(v){
+  return ' ' + Number (v || 0).toLocaleString('es-ES', {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+/* Open modal to edit a specific item */
+function openModalForItem(name){
+  currentItem = name;
+  inputStage = 'quantity';
+  inputBuffer = state[name].quantity ? String(state[name].quantity) : '0';
+  modalTitle.textContent = ' ' + name;
+  modalSubtitle.textContent = 'Cantidad';
+  dispLabel.textContent = ' ';
+  dispItem.textContent = name;
+  dispValue.textContent = inputBuffer;
+  nextKey.textContent = 'Siguiente';
+  showModal();
+}
+
+/* Show/hide modal functions */
+function showModal(){ modalBackdrop.style.display = 'flex'; modalBackdrop.setAttribute('aria-hidden','false'); }
+function hideModal(){ modalBackdrop.style.display = 'none'; modalBackdrop.setAttribute('aria-hidden','true'); }
+
+/* Keypad clicks */
+keypad.addEventListener('click', (e) => {
+  const t = e.target;
+  if(!t.classList.contains('key')) return;
+  const v = t.textContent.trim();
+  if(t.classList.contains('action')) return; // handled separately
+  if(t.classList.contains('secondary') && v === '.') {
+    if(!inputBuffer.includes('.')) inputBuffer += '.';
+  } else if(t.id === 'backKey' || v === '⌫') {
+    // backspace
+    if(inputBuffer.length <= 1) inputBuffer = '0';
+    else inputBuffer = inputBuffer.slice(0, -1);
+  } else if(/\d/.test(v)){
+    if(inputBuffer === '0') inputBuffer = v;
+    else inputBuffer += v;
+  }
+  // limit to sensible length
+  if(inputBuffer.length > 12) inputBuffer = inputBuffer.slice(0,12);
+  dispValue.textContent = inputBuffer;
+});
+
+/* Next / Accept button */
+nextKey.addEventListener('click', () => {
+  if(!currentItem) return;
+  // parse number
+  let num = parseFloat(inputBuffer.replace(',', '.'));
+  if(Number.isNaN(num) || num < 0) num = 0;
+
+  if(inputStage === 'quantity'){
+    // save temp quantity and move to price
+    state[currentItem].quantity = num;
+    inputStage = 'price';
+    inputBuffer = state[currentItem].price ? String(state[currentItem].price) : '0';
+    modalSubtitle.textContent = 'Introduce precio por unidad (€)';
+    dispLabel.textContent = ' ';
+    dispValue.textContent = inputBuffer;
+    nextKey.textContent = 'Aceptar';
+  } else {
+    // price stage -> finalize
+    state[currentItem].price = num;
+    // compute amount
+    state[currentItem].amount = round2(state[currentItem].quantity * state[currentItem].price);
+    state[currentItem].checked = true;
+    updateUIForItem(currentItem);
+    updateTotal();
+    hideModal();
+  }
+});
+
+/* Cancel & Clear */
+cancelBtn.addEventListener('click', () => {
+  // if cancel during price stage but quantity exists, we return to quantity stage to avoid losing data?
+  // For simplicity: cancel will uncheck the item and discard inputs.
+  if(currentItem){
+    // discard stored values only if item was not previously checked
+    state[currentItem].checked = false;
+    state[currentItem].quantity = state[currentItem].amount ? state[currentItem].quantity : 0;
+    state[currentItem].price = state[currentItem].amount ? state[currentItem].price : 0;
+    state[currentItem].amount = state[currentItem].amount && state[currentItem].amount>0 ? state[currentItem].amount : 0;
+    updateUIForItem(currentItem);
+    updateTotal();
+  }
+  hideModal();
+});
+
+clearBtn.addEventListener('click', () => {
+  inputBuffer = '0'; dispValue.textContent = inputBuffer;
+});
+
+backKey.addEventListener('click', () => {
+  // handled via keypad click listener, but allow direct binding
+  if(inputBuffer.length <= 1) inputBuffer = '0'; else inputBuffer = inputBuffer.slice(0, -1);
+  dispValue.textContent = inputBuffer;
+});
+
+  /* Update visual state for an item */
+function updateUIForItem(name){
+  const labels = document.querySelectorAll('label.item');
+
+  // helper: convertir a número robusto (acepta "1,23", espacios, etc.). Devuelve 0 si inválido.
+  function toNum(v){
+    if (v === null || v === undefined) return 0;
+    if (typeof v === 'string') v = v.trim().replace(',', '.');
+    const n = Number(v);
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  labels.forEach(lbl => {
+    if(lbl.dataset.name === name){
+      const chk = lbl.querySelector('input[type="checkbox"]');
+      const amountEl = lbl.querySelector('.amount');
+
+      // Extrae cantidad y precio desde state (pueden venir como string o number)
+      const qtyRaw   = state[name] && state[name].quantity;
+      const priceRaw = state[name] && state[name].price;
+
+      const qty = toNum(qtyRaw);
+      const price = toNum(priceRaw);
+
+      // calcula amount y lo guarda en state (número con 2 decimales)
+      const amount = +(qty * price).toFixed(2);
+      if (!state[name]) state[name] = {};
+      state[name].amount = Number.isFinite(amount) ? amount : 0;
+
+      // Decide visualización: si está marcado y amount > 0 mostramos sólo el amount
+      if(state[name].checked && state[name].amount > 0){
+        chk.checked = true;
+        lbl.classList.add('checked');
+        amountEl.textContent = fmtCurrency(state[name].amount);
+      } else {
+        chk.checked = false;
+        lbl.classList.remove('checked');
+        amountEl.textContent = '';
+      }
+    }
+  });
+}
+  
+/* Update visual state for an item
+function updateUIForItem(name){
+  const labels = document.querySelectorAll('label.item');
+  labels.forEach(lbl => {
+    if(lbl.dataset.name === name){
+      const chk = lbl.querySelector('input[type="checkbox"]');
+      const amountEl = lbl.querySelector('.amount');
+      if(state[name].checked && state[name].amount > 0){
+        chk.checked = true;
+        lbl.classList.add('checked');
+        amountEl.textContent = ` (${state[name].quantity}×${Number(state[name].price).toFixed(2)}€)` + fmtCurrency(state[name].amount);
+      } else {
+        chk.checked = false;
+        lbl.classList.remove('checked');
+        amountEl.textContent = '';
+      }
+    }
+  });
+}*/
+
+/* Round to 2 decimals */
+function round2(v){ return Math.round((v + Number.EPSILON) * 100) / 100; }
+
+/* Compute total */
+function updateTotal(){
+  let total = 0;
+  for(const k in state){
+    total += Number(state[k].amount || 0);
+  }
+  totalValueEl.textContent = fmtCurrency(total);
+}
+
+/* Clicking outside modal closes and cancels */
+modalBackdrop.addEventListener('click', (e) => {
+  if(e.target === modalBackdrop){
+    // cancel
+    cancelBtn.click();
+  }
+});
+
+/* Allow ESC to cancel modal */
+window.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') {
+    cancelBtn.click();
+  }
+});
+
+/* Initialize UI values from state (all zeros) */
+foods.forEach(f => updateUIForItem(f));
+
+/* Optional: allow long-press to uncheck and clear values */
+let longPressTimer = null;
+itemsContainer.addEventListener('pointerdown', (ev) => {
+  const lbl = ev.target.closest('label.item');
+  if(!lbl) return;
+  const name = lbl.dataset.name;
+  longPressTimer = setTimeout(() => {
+    // long press -> uncheck and clear
+    state[name].checked = false;
+    state[name].quantity = 0;
+    state[name].price = 0;
+    state[name].amount = 0;
+    updateUIForItem(name);
+    updateTotal();
+  }, 700);
+});
+itemsContainer.addEventListener('pointerup', () => { clearTimeout(longPressTimer); longPressTimer = null; });
+itemsContainer.addEventListener('pointerleave', () => { clearTimeout(longPressTimer); longPressTimer = null; });
+
+/* Accessibility: allow keyboard numbers when modal open */
+window.addEventListener('keydown', (e) => {
+  if(modalBackdrop.style.display !== 'flex') return;
+  if(e.key >= '0' && e.key <= '9'){
+    if(inputBuffer === '0') inputBuffer = e.key; else inputBuffer += e.key;
+    if(inputBuffer.length > 12) inputBuffer = inputBuffer.slice(0,12);
+    dispValue.textContent = inputBuffer;
+  } else if(e.key === '.' || e.key === ','){
+    if(!inputBuffer.includes('.')) inputBuffer += '.';
+    dispValue.textContent = inputBuffer;
+  } else if(e.key === 'Backspace'){
+    if(inputBuffer.length <= 1) inputBuffer = '0'; else inputBuffer = inputBuffer.slice(0,-1);
+    dispValue.textContent = inputBuffer;
+  } else if(e.key === 'Enter'){
+    nextKey.click();
+  } else if(e.key === 'Escape'){
+    cancelBtn.click();
+  }
+});
+
+/* Small UX: when user re-opens an already-checked item, allow editing (prefill quantity) */
+function openExistingItem(name){
+  currentItem = name;
+  inputStage = 'quantity';
+  inputBuffer = state[name].quantity ? String(state[name].quantity) : '0';
+  modalTitle.textContent = 'Editar: ' + name;
+  modalSubtitle.textContent = 'Cantidad';
+  dispLabel.textContent = 'Cantidad';
+  dispItem.textContent = name;
+  dispValue.textContent = inputBuffer;
+  nextKey.textContent = 'Siguiente';
+  showModal();
+}
+
+/* Make labels clickable also with checkbox appearance toggling when values exist */
+itemsContainer.addEventListener('dblclick', (e) => {
+  const lbl = e.target.closest('label.item');
+  if(!lbl) return;
+  const name = lbl.dataset.name;
+  // quick edit existing
+  openExistingItem(name);
+});
+
+/* Initialize: support tapping on small devices where clicking label triggers modal; also update when values manually changed */
+document.querySelectorAll('label.item').forEach(lbl => {
+  // show current state if any (initially none)
+  const name = lbl.dataset.name;
+  updateUIForItem(name);
+});
+
+/* Note: if user wants to remove a single item, long-press clears it (mobile) or double-click opens edit. */
+
+/* End of script */
+</script>
+
+<script>
+document.getElementById('printBtn').addEventListener('click', printPDF);
+
+function printPDF(){
+  // Filtra items seleccionados
+  const selectedItems = Object.keys(state).filter(k => state[k].checked && state[k].amount > 0);
+
+  if(selectedItems.length === 0){
+    alert('No hay artículos seleccionados para imprimir.');
+    return;
+  }
+
+  // Construye HTML de la factura
+  let html = `<html><head><title>Factura</title>
+    <style>
+      body{ font-family: Arial, sans-serif; padding:20px; color:#000; }
+      table{ width:100%; border-collapse: collapse; margin-top:20px; }
+      th, td{ border:1px solid #000; padding:8px; text-align:left; }
+      th{ background: #f0f0f0; }
+      .total{ font-weight:bold; font-size:1.2rem; text-align:right; }
+    </style>
+  </head><body>`;
+  html += `<h1>Supermercado Gadis</h1>`;
+  html += `<table><thead><tr>
+    <th>Artículo</th>
+    <th>Cantidad</th>
+    <th>Precio (€)</th>
+    <th>Importe (€)</th>
+  </tr></thead><tbody>`;
+
+  let total = 0;
+  selectedItems.forEach(name => {
+    const item = state[name];
+    total += item.amount;
+    html += `<tr>
+      <td>${name}</td>
+      <td>${item.quantity}</td>
+      <td>${item.price.toFixed(2)}</td>
+      <td>${item.amount.toFixed(2)}</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table>`;
+  html += `<p class="total">Total: € ${total.toFixed(2)}</p>`;
+  html += `</body></html>`;
+
+  // Abrir ventana de impresión
+  const printWindow = window.open('', '', 'width=800,height=600');
+  printWindow.document.write(html);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
+  // printWindow.close(); // opcional: cerrar automáticamente
+}
+</script>
+
+</body>
+</html>
