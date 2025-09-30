@@ -52,14 +52,16 @@
   }
 
   label.item {
-    position:relative; display:flex; align-items:center;
-    gap:10px;
+    position:relative; display: flex;
+align-items: center;
+justify-content: center; /* Centra horizontalmente */
+    gap:8px;
     height: calc(var(--sz)*0.75);
     background: linear-gradient(0deg,#12172080,#0d121780);
     border-radius: var(--sz);
     padding: calc(var(--sz)*0.25) calc(var(--sz)*0.25) calc(var(--sz)*0.25) calc(var(--sz)*0.25);
     /*font-size: calc(var(--sz)*0.25);*/
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     color:var(--ic); cursor:pointer; user-select:none;
     box-shadow: 0 0 0 calc(var(--sz)*0.015) var(--ic) inset;
     overflow:hidden; min-width:360px;
