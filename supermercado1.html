@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Audiowide&family=Rajdhani&family=Exo&family=Share+Tech+Mono&family=Press+Start+2P&family=Nova+Square&display=swap" rel="stylesheet">
+  <title>Supermercado</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #333333;
+      margin: 0;
+      color: #2c3e50;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1e1e1e;
+      color: #f1c40f;
+      padding: 15px 15px;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 30px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+    }
+
+    .contador {
+      display: inline-block;
+      width: 70px;
+      text-align: center;
+      background: #1e1e1e;
+      color: white;
+      padding: 10px 10px;
+      border-radius: 0px;
+      cursor: pointer;
+      font-size: 24px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+    }
+
+    .card {
+      margin: 6px;
+      padding: 10px;
+      border-radius: 12px;
+      color: white;
+    }
+
+    .card h2 {
+      margin: 0;
+      cursor: pointer;
+      font-size: 30px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+    }
+
+    .flecha {
+      float: right;
+      transition: transform 0.3s;
+    }
+
+    .flecha.abierta {
+      transform: rotate(90deg);
+    }
+
+    .elementos {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .elemento {
+      padding: 6px 12px;
+      margin: 5px 0;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.2);
+      font-size: 20px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .elemento.seleccionado {
+      background-color: rgba(0, 128, 0, 0.9);
+    }
+
+    .btn-editar {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+    }
+
+    .btn-editar:hover {
+      background-color: #2980b9;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+    }
+
+    .modal-content {
+      background: #333333;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 450px;
+      margin: 8% auto;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: white;
+    }
+
+    .modal-content ul {
+      list-style: none;
+      padding: 0;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .modal-content li {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #555;
+      align-items: center;
+    }
+
+    .modal-content button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 6px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+    }
+
+    .modal-content .boton-secundario {
+      background-color: #95a5a6;
+      color: white;
+      border: none;
+      padding: 6px 24px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      font-family: 'Exo', sans-serif;
+    }
+
+    .modal-content .btn-verde {
+      background-color: #27ae60;
+    }
+
+    .modal-content .btn-pdf {
+      background-color: #e67e22;
+      margin-right: 10px;
+    }
+
+    .modal-editar {
+      text-align: center;
+    }
+
+    .control-unidades {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .control-unidades button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .control-unidades span {
+      font-size: 24px;
+      min-width: 40px;
+      text-align: center;
+    }
+
+    .input-precio {
+      width: 100%;
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: 2px solid #555;
+      background-color: #444;
+      color: white;
+      text-align: center;
+      font-family: 'Exo', sans-serif;
+      margin: 20px 0;
+    }
+
+    .botones-modal {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .total-carrito {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 15px;
+      background-color: #444;
+      border-radius: 5px;
+      margin-top: 10px;
+      text-align: right;
+    }
+
+    .item-detalle {
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    /* Colores por categoría */
+    .frutas { background-color: #e74c3c; }
+    .carne { background-color: #c0392b; }
+    .pescado { background-color: #3498db; }
+    .lacteos { background-color: #f39c12; }
+    .charcuteria { background-color: #d35400; }
+    .vegetales { background-color: #27ae60; }
+    .despensa { background-color: #8e44ad; }
+    .higiene { background-color: #16a085; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Supermercado</h1>
+    <div id="contador" class="contador">
+      🛒 <span id="totalSeleccionados">0</span>
+    </div>
+  </div>
+
+  <!-- Modal Carrito -->
+  <div id="panel" class="modal">
+    <div class="modal-content">
+      <h3>Carrito de Compras</h3>
+      <ul id="listaSeleccionados"></ul>
+      <div class="total-carrito" id="totalCarrito">Total: 0.00€</div>
+      <div style="text-align: right; margin-top: 15px;">
+        <button class="btn-pdf" onclick="imprimirFactura()">📄 PDF</button>
+        <button onclick="vaciarSeleccion()">Vaciar Todo</button>
+        <button class="boton-secundario" onclick="cerrarPanel()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Editar -->
+  <div id="modalEditar" class="modal">
+    <div class="modal-content modal-editar">
+      <h3 id="tituloEditar">Editar Producto</h3>
+      
+      <div class="control-unidades">
+        <button onclick="cambiarUnidades(-1)">▼</button>
+        <span id="unidadesDisplay">1</span>
+        <button onclick="cambiarUnidades(1)">▲</button>
+      </div>
+
+      <input type="number" id="inputPrecio" class="input-precio" placeholder="Precio unitario (€)" step="0.01" min="0">
+
+      <div class="botones-modal">
+        <button style="background-color: #e74c3c;" onclick="cerrarModalEditar()">Cancelar</button>
+        <button class="btn-verde" onclick="aceptarEdicion()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="categorias-container"></div>
+
+  <script>
+    const productos = [
+      // Frutas
+      { id: "p1", category: "frutas", text: "Manzanas" },
+      { id: "p2", category: "frutas", text: "Plátanos" },
+      { id: "p3", category: "frutas", text: "Naranjas" },
+      { id: "p4", category: "frutas", text: "Fresas" },
+      { id: "p5", category: "frutas", text: "Uvas" },
+      { id: "p6", category: "frutas", text: "Peras" },
+      { id: "p7", category: "frutas", text: "Sandía" },
+      { id: "p8", category: "frutas", text: "Melón" },
+      { id: "p57", category: "frutas", text: "Kiwis" },
+     
+      
+      // Carne
+      { id: "p9", category: "carne", text: "Pechuga de Pollo" },
+      { id: "p10", category: "carne", text: "Ternera" },
+      { id: "p11", category: "carne", text: "Cerdo" },
+      { id: "p12", category: "carne", text: "Cordero" },
+      { id: "p13", category: "carne", text: "Carne Picada" },
+      { id: "p14", category: "carne", text: "Muslos de Pollo" },
+      
+      // Pescado
+      { id: "p15", category: "pescado", text: "Salmón" },
+      { id: "p16", category: "pescado", text: "Merluza" },
+      { id: "p17", category: "pescado", text: "Atún" },
+      { id: "p18", category: "pescado", text: "Bacalao" },
+      { id: "p19", category: "pescado", text: "Gambas" },
+      { id: "p20", category: "pescado", text: "Calamares" },
+      
+      // Lácteos
+      { id: "p21", category: "lacteos", text: "Leche" },
+      { id: "p22", category: "lacteos", text: "Yogurt Natural" },
+      { id: "p23", category: "lacteos", text: "Queso" },
+      { id: "p24", category: "lacteos", text: "Mantequilla" },
+      { id: "p25", category: "lacteos", text: "Nata" },
+      { id: "p26", category: "lacteos", text: "Queso Rallado" },
+      
+      // Charcutería
+      { id: "p27", category: "charcuteria", text: "Jamón Serrano" },
+      { id: "p28", category: "charcuteria", text: "Jamón Cocido" },
+      { id: "p29", category: "charcuteria", text: "Chorizo" },
+      { id: "p30", category: "charcuteria", text: "Salchichón" },
+      { id: "p31", category: "charcuteria", text: "Pavo en lonchas" },
+      { id: "p32", category: "charcuteria", text: "Salchichas" },
+      { id: "p58", category: "charcuteria", text: "Queso fresco" },
+      { id: "p59", category: "charcuteria", text: "Queso curado" },
+  { id: "p60", category: "charcuteria", text: "Queso cremoso" },
+
+      
+      // Vegetales
+      { id: "p33", category: "vegetales", text: "Tomates" },
+      { id: "p34", category: "vegetales", text: "Lechuga" },
+      { id: "p35", category: "vegetales", text: "Zanahorias" },
+      { id: "p36", category: "vegetales", text: "Pimientos" },
+      { id: "p37", category: "vegetales", text: "Cebollas" },
+      { id: "p38", category: "vegetales", text: "Patatas" },
+      { id: "p39", category: "vegetales", text: "Brócoli" },
+      { id: "p40", category: "vegetales", text: "Espinacas" },
+      { id: "p61", category: "vegetales", text: "Ajos" },
+  
+  
+      // Despensa
+      { id: "p41", category: "despensa", text: "Arroz" },
+      { id: "p42", category: "despensa", text: "Pasta" },
+      { id: "p43", category: "despensa", text: "Aceite de Oliva" },
+      { id: "p44", category: "despensa", text: "Harina" },
+      { id: "p45", category: "despensa", text: "Azúcar" },
+      { id: "p46", category: "despensa", text: "Sal" },
+      { id: "p47", category: "despensa", text: "Legumbres" },
+      { id: "p48", category: "despensa", text: "Conserva de atún" },
+  { id: "p62", category: "despensa", text: "Conserva de sardinas" },
+    
+      
+      // Higiene
+      { id: "p49", category: "higiene", text: "Papel Higiénico" },
+      { id: "p50", category: "higiene", text: "Gel de Baño" },
+      { id: "p51", category: "higiene", text: "Champú" },
+      { id: "p52", category: "higiene", text: "Pasta de Dientes" },
+      { id: "p53", category: "higiene", text: "Jabón de Manos" },
+      { id: "p54", category: "higiene", text: "Desodorante" },
+      { id: "p55", category: "higiene", text: "Detergente" },
+      { id: "p56", category: "higiene", text: "Suavizante" }
+    ];
+
+    const carrito = {};
+    let productoEditando = null;
+    let unidadesTemp = 1;
+
+    function agruparPorCategoria(items) {
+      const categorias = {};
+      items.forEach(item => {
+        if (!categorias[item.category]) {
+          categorias[item.category] = [];
+        }
+        categorias[item.category].push(item);
+      });
+      return categorias;
+    }
+
+    function crearTarjetas() {
+      const data = agruparPorCategoria(productos);
+      const contenedor = document.getElementById('categorias-container');
+      contenedor.innerHTML = '';
+
+      for (const categoria in data) {
+        const tarjeta = document.createElement('div');
+        tarjeta.className = `card ${categoria}`;
+
+        const titulo = document.createElement('h2');
+        titulo.innerHTML = `${categoria.charAt(0).toUpperCase() + categoria.slice(1)} <span class="flecha">▶</span>`;
+        titulo.onclick = () => {
+          lista.style.display = lista.style.display === 'block' ? 'none' : 'block';
+          flecha.classList.toggle('abierta');
+        };
+
+        const flecha = titulo.querySelector('.flecha');
+
+        const lista = document.createElement('div');
+        lista.className = 'elementos';
+
+        data[categoria].forEach(producto => {
+          const div = document.createElement('div');
+          div.className = 'elemento';
+          if (carrito[producto.id]) div.classList.add('seleccionado');
+
+          const span = document.createElement('span');
+          span.textContent = producto.text;
+          
+          const btnEditar = document.createElement('button');
+          btnEditar.className = 'btn-editar';
+          btnEditar.textContent = 'Editar';
+          btnEditar.onclick = (e) => {
+            e.stopPropagation();
+            abrirModalEditar(producto);
+          };
+
+          div.appendChild(span);
+          div.appendChild(btnEditar);
+          lista.appendChild(div);
+        });
+
+        tarjeta.appendChild(titulo);
+        tarjeta.appendChild(lista);
+        contenedor.appendChild(tarjeta);
+      }
+    }
+
+    function abrirModalEditar(producto) {
+      productoEditando = producto;
+      unidadesTemp = carrito[producto.id]?.unidades || 1;
+      
+      document.getElementById('tituloEditar').textContent = producto.text;
+      document.getElementById('unidadesDisplay').textContent = unidadesTemp;
+      document.getElementById('inputPrecio').value = carrito[producto.id]?.precio || '';
+      document.getElementById('modalEditar').style.display = 'block';
+    }
+
+    function cerrarModalEditar() {
+      document.getElementById('modalEditar').style.display = 'none';
+      productoEditando = null;
+      unidadesTemp = 1;
+    }
+
+    function cambiarUnidades(delta) {
+      unidadesTemp = Math.max(1, unidadesTemp + delta);
+      document.getElementById('unidadesDisplay').textContent = unidadesTemp;
+    }
+
+    function aceptarEdicion() {
+      const precio = parseFloat(document.getElementById('inputPrecio').value);
+      
+      if (!precio || precio <= 0) {
+        alert('Por favor, introduce un precio válido');
+        return;
+      }
+
+      carrito[productoEditando.id] = {
+        nombre: productoEditando.text,
+        unidades: unidadesTemp,
+        precio: precio
+      };
+
+      actualizarContador();
+      crearTarjetas();
+      cerrarModalEditar();
+    }
+
+    function actualizarContador() {
+      const total = Object.keys(carrito).length;
+      document.getElementById('totalSeleccionados').textContent = total;
+    }
+
+    function cerrarPanel() {
+      document.getElementById('panel').style.display = 'none';
+    }
+
+    function vaciarSeleccion() {
+      if (confirm('¿Estás seguro de que quieres vaciar el carrito?')) {
+        Object.keys(carrito).forEach(key => delete carrito[key]);
+        actualizarContador();
+        crearTarjetas();
+        cerrarPanel();
+      }
+    }
+
+    document.getElementById('contador').onclick = () => {
+      const panel = document.getElementById('panel');
+      const lista = document.getElementById('listaSeleccionados');
+      lista.innerHTML = '';
+
+      let totalGeneral = 0;
+
+      if (Object.keys(carrito).length === 0) {
+        lista.innerHTML = '<li>El carrito está vacío.</li>';
+      } else {
+        Object.keys(carrito).forEach(id => {
+          const item = carrito[id];
+          const subtotal = item.unidades * item.precio;
+          totalGeneral += subtotal;
+
+          const li = document.createElement('li');
+          
+          const infoDiv = document.createElement('div');
+          infoDiv.innerHTML = `
+            <strong>${item.nombre}</strong><br>
+            <span class="item-detalle">${item.unidades} ud. × ${item.precio.toFixed(2)}€ = ${subtotal.toFixed(2)}€</span>
+          `;
+
+          const btn = document.createElement('button');
+          btn.textContent = 'Eliminar';
+          btn.onclick = () => {
+            delete carrito[id];
+            actualizarContador();
+            crearTarjetas();
+            document.getElementById('contador').click();
+          };
+
+          li.appendChild(infoDiv);
+          li.appendChild(btn);
+          lista.appendChild(li);
+        });
+      }
+
+      document.getElementById('totalCarrito').textContent = `Total: ${totalGeneral.toFixed(2)}€`;
+      panel.style.display = 'block';
+    };
+
+    crearTarjetas();
+  </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  function imprimirFactura() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    
+    doc.setFontSize(20);
+    doc.text("FACTURA DE COMPRA", 105, 20, { align: "center" });
+    
+    doc.setFontSize(10);
+    doc.text(`Fecha: ${new Date().toLocaleDateString()}`, 10, 35);
+    doc.text(`Hora: ${new Date().toLocaleTimeString()}`, 10, 42);
+    
+    doc.line(10, 48, 200, 48);
+    
+    doc.setFontSize(12);
+    doc.text("Producto", 10, 56);
+    doc.text("Cant.", 100, 56);
+    doc.text("Precio", 130, 56);
+    doc.text("Subtotal", 170, 56);
+    
+    doc.line(10, 60, 200, 60);
+    
+    let y = 68;
+    let totalGeneral = 0;
+    
+    Object.keys(carrito).forEach((id) => {
+      const item = carrito[id];
+      const subtotal = item.unidades * item.precio;
+      totalGeneral += subtotal;
+      
+      doc.setFontSize(10);
+      doc.text(item.nombre, 10, y);
+      doc.text(item.unidades.toString(), 100, y);
+      doc.text(`${item.precio.toFixed(2)}€`, 130, y);
+      doc.text(`${subtotal.toFixed(2)}€`, 170, y);
+      
+      y += 8;
+      
+      if (y > 270) {
+        doc.addPage();
+        y = 20;
+      }
+    });
+    
+    doc.line(10, y, 200, y);
+    y += 8;
+    
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.text(`TOTAL: ${totalGeneral.toFixed(2)}€`, 170, y);
+    
+    doc.save(`factura_${new Date().getTime()}.pdf`);
+  }
+</script>
+
+</body>
+</html>
