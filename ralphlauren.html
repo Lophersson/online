@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ralph Lauren - Tienda Online</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: #002855;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #c41e3a;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            background-color: #f8f8f8;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            min-height: 50px;
+            color: #002855;
+        }
+
+        .product-price {
+            font-size: 1.5em;
+            color: #c41e3a;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #002855;
+            background: white;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: #002855;
+            color: white;
+        }
+
+        .quantity-display {
+            font-size: 1.2em;
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 12px;
+            background-color: #002855;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: #001a3d;
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .cart-content {
+            background: white;
+            max-width: 800px;
+            margin: 50px auto;
+            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+        }
+
+        .close-cart {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-cart:hover {
+            color: #c41e3a;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            align-items: center;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #002855;
+        }
+
+        .cart-item-price {
+            color: #c41e3a;
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background-color: #c41e3a;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .remove-item:hover {
+            background-color: #a01828;
+        }
+
+        .cart-summary {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-top: 15px;
+            color: #002855;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>RALPH LAUREN</h1>
+        </div>
+    </header>
+
+    <div class="cart-icon" onclick="toggleCart()">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </div>
+
+    <div class="container">
+        <div class="products" id="products"></div>
+    </div>
+
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <span class="close-cart" onclick="toggleCart()">&times;</span>
+            <h2 style="margin-bottom: 30px; color: #002855;">Carrito de Compras</h2>
+            <div id="cartItems"></div>
+            <div class="cart-summary" id="cartSummary" style="display:none;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">0.00€</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>Envío:</span>
+                    <span>Gratis</span>
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="total">0.00€</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = [
+            {
+                id: 1,
+                name: "Camisa Oxford Slim Fit",
+                price: 145.00,
+                image: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-305178_alternate10?$rl_4x5_pdp$",
+                url: "https://www.ralphlauren.es/es/camisa-oxford-slim-fit-646696.html?dwvar_646696_colorname=Blue"
+            },
+            {
+                id: 2,
+                name: "Chaqueta Gorham de Plumón",
+                price: 495.00,
+                image: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-AI710968278009_alternate10?$rl_4x5_pdp$",
+                url: "https://www.ralphlauren.es/es/chaqueta-gorham-de-plumon-3616853682453.html"
+            },
+            {
+                id: 3,
+                name: "Jersey de Algodón en Punto de Ochos",
+                price: 200.00,
+                image: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1396678_alternate10?$rl_4x5_pdp$",
+                url: "https://www.ralphlauren.es/es/jersey-de-algodon-en-punto-de-ochos-3616419531850.html"
+            },
+            {
+                id: 4,
+                name: "Deportiva de Piel Heritage Court II",
+                price: 130.00,
+                image: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1403879_lifestyle?$rl_4x5_pdp$",
+                url: "https://www.ralphlauren.es/es/deportiva-de-piel-heritage-court-ii-573697.html"
+            },
+            {
+                id: 5,
+                name: "Polo Classic Fit Fall Royal",
+                price: 125.00,
+                image: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1357093_alternate10?$rl_4x5_pdp$",
+                url: "https://www.ralphlauren.es/es/polo-classic-fit-de-pique-481542.html"
+            },
+            {
+                id: 6,
+                name: "3 Bóxers de algodón elástico",
+                price: 50.00,
+                image: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1412083_lifestyle?$rl_4x5_pdp$",
+                url: "https://www.ralphlauren.es/es/pantalon-chino-slim-fit-stretch-583850.html"
+            },
+            {
+                id: 7,
+                name: "Pack 6 Calcetines de Media Caña",
+                price: 50.00,
+                image: "https://dtcralphlauren.scene7.com/is/image/PoloGSI/s7-1405603_lifestyle?$rl_4x5_pdp$",
+                url: "https://www.ralphlauren.es/es/6-pares-de-calcetines-de-media-ca%C3%B1a-575025.html"
+            },
+    {
+                id: 8,
+                name: "Reloj Breitling Classic AVI Chronograph 42 P-51 Mustang",
+                price: 5800.00,
+                image: "https://www-breitling.eu.saleor.cloud/media/thumbnails/products/a233803a1b1x1-soldier_6424c29d_thumbnail_2048.webp",
+                url: "https://www.breitling.com/es-es/watches/classic-avi/classic-avi-chronograph-42/A233803A1B1X1/"
+            },
+    {
+                id: 9,
+                name: "Reloj Breitling Professional Endurance Pro 44",
+                price: 3600.00,
+                image: "https://www-breitling.eu.saleor.cloud/media/thumbnails/products/x82310281b1s2-soldier_1395c9ed_thumbnail_2048.webp",
+                url: "https://www.breitling.com/es-es/watches/professional/endurance-pro/X82310281B1S2/"
+            },
+     {
+                id: 10,
+                name: "Reloj Breitling Superocean Automatic 44",
+                price: 5350.00,
+                image: "https://www-breitling.eu.saleor.cloud/media/thumbnails/products/a17376211l2s2-soldier_8fa9640e_thumbnail_2048.webp",
+                url: "https://www.breitling.com/es-es/watches/superocean/superocean-automatic-44-my22/A17376211L2S2/"
+            },
+    {
+                id: 11,
+                name: "Reloj TAG Heuer Carrera Chronograph Extreme Sport",
+                price: 8650.00,
+                image: "https://www.tagheuer.com/on/demandware.static/-/Library-Sites-TagHeuer-Shared/default/dwf1ce45b4/images/sprites/Carrera/CBU2082.FT6275/RTW_backUp.jpg",
+                url: "https://www.tagheuer.com/es/es/relojes/colecciones/tag-heuer-carrera/44-mm-th20-00/CBU2082.FT6275.html"
+            },
+    {
+                id: 12,
+                name: "Reloj TAG Heuer Carrera Chronograph Cuero",
+                price: 6750.00,
+                image: "https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dw82f5f77b/TAG_Heuer_Carrera/CBN2A1A.FC6537/CBN2A1A.FC6537_1000.png?impolicy=resizeTrim&width=1768&height=2212",
+                url: "https://www.tagheuer.com/es/es/relojes/colecciones/tag-heuer-carrera/44-mm-th20-00/CBN2A1A.FC6537.html"
+            },
+    {
+                id: 13,
+                name: "Reloj TAG Heuer Carrera Chronograph Acero",
+                price: 5600.00,
+                image: "https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dwc7500894/TAG_Heuer_Carrera/CBN2A1AA.BA0643/CBN2A1AA.BA0643_1000.png?impolicy=cropresize&width=960&height=960",
+                url: "https://www.tagheuer.com/es/es/relojes/colecciones/tag-heuer-carrera/44-mm-calibre-16-autom%C3%A1tico/CBN2A1AA.BA0643.html"
+            },
+    {
+                id: 14,
+                name: "Reloj TAG Heuer Formula 1 Chronograph Rojo",
+                price: 4950.00,
+                image: "https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dw69d235a1/TAG_Heuer_Formula_1/CBZ2085.FT8093/CBZ2085.FT8093_00.png?impolicy=cropresize&width=960&height=960",
+        url: "https://www.tagheuer.com/es/es/relojes/colecciones/tag-heuer-formula-1/44-mm-calibre-16-autom%C3%A1tico/CBZ2085.FT8093.html"
+            },
+    {
+                id: 15,
+                name: "Reloj TAG Heuer Formula 1 Chronograph Naranja",
+                price: 2150.00,
+                image: "https://www.tagheuer.com/on/demandware.static/-/Sites-tagheuer-master/default/dw2b7d7915/TAG_Heuer_Formula_1/CAZ1014.FT8028/CAZ1014.FT8028_00.png?impolicy=resizeTrim&width=1768&height=2212",
+        url: "https://www.tagheuer.com/es/es/relojes/colecciones/tag-heuer-formula-1/43-mm-cron%C3%B3grafo-de-cuarzo/CAZ1014.FT8028.html"
+            },
+    {
+                id: 16,
+                name: "RELOJ DE HOMBRE FESTINA CHRONO BIKE F20725/2 NEGRO CORREA DE CAUCHO",
+                price: 209.00,
+                image: "https://static6.festinagroup.com/product/festina/watches/detail/big/f20725_2.png",
+        url: "https://festina.com/es-ES/reloj/hombre/festina/reloj-festina-f20725_2-negro-hombre.html?gad_source=1&gad_campaignid=15425833399&gbraid=0AAAAACobHrcuyaYts0NVHML0Od6Zkyq9O&gclid=EAIaIQobChMI8cvazeiSkAMVP6RQBh03GTwPEAQYCCABEgLr3fD_BwE"
+        },
+    {
+                id: 17,
+                name: "Reloj Tissot Seastar 1000 45.5mm",
+                price: 645.00,
+                image: "https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw3fcb5270/product-pictures/8a1f4f0d-d753-4e23-bfd8-8628312fed24_T120-417-11-041-03_shadow.png?sm=fit&sw=1680&sh=1680,gravity=center",
+        url: "https://www.tissotwatches.com/es-es/T1204171104103.html"
+        },
+    {
+                id: 18,
+                name: "Reloj Tissot Supersport Chrono 45.5mm",
+                price: 475.00,
+                image: "https://www.tissotwatches.com/dw/image/v2/BKKD_PRD/on/demandware.static/-/Sites-Tissot-Catalogue/default/dw087ee41b/product-pictures/1ab75cfe-7d38-4139-838e-9db1eb30ad1e_T125-617-16-041-00_shadow.png?sm=fit&sw=1680&sh=1680,gravity=center",
+        url: "https://www.tissotwatches.com/es-es/T1256171604100.html"
+        }
+    
+    
+    
+];
+
+        let cart = {};
+        let quantities = {};
+
+        products.forEach(p => quantities[p.id] = 1);
+
+        function renderProducts() {
+    const container = document.getElementById('products');
+    container.innerHTML = products.map(product => `
+        <div class="product-card">
+            <a href="${product.url}" target="_blank" style="text-decoration:none; color:inherit;">
+                <img src="${product.image}" alt="${product.name}" class="product-image" 
+                     onerror="this.src='https://via.placeholder.com/280x320?text=Ralph+Lauren'">
+            </a>
+            <div class="product-info">
+                <a href="${product.url}" target="_blank" style="text-decoration:none; color:inherit;">
+                    <div class="product-title">${product.name}</div>
+                </a>
+                <div class="product-price">${product.price.toFixed(2)}€</div>
+                <div class="quantity-selector">
+                    <button class="quantity-btn" onclick="changeQuantity(${product.id}, -1)">-</button>
+                    <span class="quantity-display" id="qty-${product.id}">1</span>
+                    <button class="quantity-btn" onclick="changeQuantity(${product.id}, 1)">+</button>
+                </div>
+                <button class="add-to-cart" onclick="addToCart(${product.id})">Añadir al Carrito</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+        function changeQuantity(id, delta) {
+            quantities[id] = Math.max(1, Math.min(10, quantities[id] + delta));
+            document.getElementById(`qty-${id}`).textContent = quantities[id];
+        }
+
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            const qty = quantities[id];
+            
+            if (cart[id]) {
+                cart[id].quantity += qty;
+            } else {
+                cart[id] = { ...product, quantity: qty };
+            }
+            
+            updateCart();
+            quantities[id] = 1;
+            document.getElementById(`qty-${id}`).textContent = 1;
+        }
+
+        function removeFromCart(id) {
+            delete cart[id];
+            updateCart();
+        }
+
+        function updateCart() {
+            const count = Object.values(cart).reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = count;
+            
+            const cartItems = document.getElementById('cartItems');
+            const cartSummary = document.getElementById('cartSummary');
+            
+            if (count === 0) {
+                cartItems.innerHTML = '<div class="empty-cart"><h3>Tu carrito está vacío</h3><p>Añade productos para comenzar tu compra</p></div>';
+                cartSummary.style.display = 'none';
+                return;
+            }
+            
+            cartSummary.style.display = 'block';
+            
+            cartItems.innerHTML = Object.values(cart).map(item => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image" onerror="this.src='https://via.placeholder.com/100?text=RL'">
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${item.price.toFixed(2)}€ x ${item.quantity}</div>
+                        <div style="margin-top: 5px; font-weight: bold;">Subtotal: ${(item.price * item.quantity).toFixed(2)}€</div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart(${item.id})">Eliminar</button>
+                </div>
+            `).join('');
+            
+            const total = Object.values(cart).reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('subtotal').textContent = total.toFixed(2) + '€';
+            document.getElementById('total').textContent = total.toFixed(2) + '€';
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+        }
+
+        renderProducts();
+        updateCart();
+    </script>
+</body>
+</html>
