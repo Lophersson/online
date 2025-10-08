@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Java - 60 Preguntas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .controls {
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .question-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .question-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .question-number {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .category-tag {
+            background: #f093fb;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .answer {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .answer.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .answer-label {
+            color: #1a472a;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .answer-text {
+            color: #2d3748;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .toggle-icon {
+            float: right;
+            color: #667eea;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+
+        .question-card.open .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        .stats {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stats span {
+            font-size: 18px;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>☕ Resumen Java</h1>
+            <p>60 Preguntas Fundamentales con Respuestas</p>
+        </div>
+
+        <div class="controls">
+            <button class="filter-btn active" data-category="todas">Todas</button>
+            <button class="filter-btn" data-category="paquetes">Paquetes</button>
+            <button class="filter-btn" data-category="variables">Variables</button>
+            <button class="filter-btn" data-category="tipos">Tipos</button>
+            <button class="filter-btn" data-category="condiciones">Condiciones</button>
+            <button class="filter-btn" data-category="bucles">Bucles</button>
+            <button class="filter-btn" data-category="strings">Strings</button>
+            <button class="filter-btn" data-category="funciones">Funciones</button>
+            <button class="filter-btn" data-category="arrays">Arrays</button>
+            <button class="filter-btn" data-category="clases">Clases</button>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Buscar preguntas...">
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="stats">
+                Mostrando <span id="showingCount">60</span> de <span id="totalCount">60</span> preguntas
+            </div>
+            <div id="questionsContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // Paquetes (6 preguntas)
+            {
+                category: "paquetes",
+                question: "¿Qué es un paquete en Java?",
+                answer: "Un paquete es un contenedor de clases e interfaces que permite organizar el código de manera lógica y evitar conflictos de nombres. Se declara con la palabra clave 'package' al inicio del archivo."
+            },
+            {
+                category: "paquetes",
+                question: "¿Cómo se importa un paquete en Java?",
+                answer: "Se utiliza la palabra clave 'import' seguida del nombre del paquete y la clase. Ejemplo: 'import java.util.Scanner;' o 'import java.util.*;' para importar todas las clases del paquete."
+            },
+            {
+                category: "paquetes",
+                question: "¿Cuál es la diferencia entre import y package?",
+                answer: "'package' declara a qué paquete pertenece una clase, mientras que 'import' permite usar clases de otros paquetes sin escribir su nombre completo."
+            },
+            {
+                category: "paquetes",
+                question: "¿Qué son los paquetes predefinidos en Java?",
+                answer: "Son paquetes que vienen incluidos con Java, como java.lang (importado automáticamente), java.util (utilidades), java.io (entrada/salida) y java.net (networking)."
+            },
+            {
+                category: "paquetes",
+                question: "¿Cómo se crea un paquete personalizado?",
+                answer: "Se declara al inicio del archivo con 'package nombre.del.paquete;' y se guarda el archivo en una estructura de carpetas que coincida con el nombre del paquete."
+            },
+            {
+                category: "paquetes",
+                question: "¿Qué es el modificador de acceso 'default' en paquetes?",
+                answer: "Es el nivel de acceso que se aplica cuando no se especifica ningún modificador. Permite que la clase o miembro sea accesible solo dentro del mismo paquete."
+            },
+
+            // Variables y Ámbitos (8 preguntas)
+            {
+                category: "variables",
+                question: "¿Qué es una variable en Java?",
+                answer: "Una variable es un espacio en memoria que almacena un valor de un tipo específico. Debe declararse con un tipo de dato antes de usarse."
+            },
+            {
+                category: "variables",
+                question: "¿Cuáles son los tipos de variables según su ámbito?",
+                answer: "Variables locales (dentro de métodos), variables de instancia (atributos de clase) y variables estáticas (compartidas por todas las instancias usando 'static')."
+            },
+            {
+                category: "variables",
+                question: "¿Qué es el ámbito (scope) de una variable?",
+                answer: "Es la región del código donde la variable es accesible. Una variable local solo existe dentro del bloque donde fue declarada."
+            },
+            {
+                category: "variables",
+                question: "¿Qué significa 'final' en una variable?",
+                answer: "Indica que la variable es una constante y su valor no puede cambiar después de ser inicializada. Por convención, se nombran en mayúsculas."
+            },
+            {
+                category: "variables",
+                question: "¿Cuál es la diferencia entre variable de instancia y estática?",
+                answer: "Las variables de instancia pertenecen a cada objeto individual, mientras que las estáticas pertenecen a la clase y son compartidas por todos los objetos."
+            },
+            {
+                category: "variables",
+                question: "¿Qué es el shadowing de variables?",
+                answer: "Ocurre cuando una variable local tiene el mismo nombre que una variable de instancia, ocultando temporalmente a esta última dentro de ese ámbito."
+            },
+            {
+                category: "variables",
+                question: "¿Cómo se inicializan las variables de instancia?",
+                answer: "Se inicializan automáticamente con valores por defecto (0 para números, false para boolean, null para objetos) si no se les asigna un valor explícito."
+            },
+            {
+                category: "variables",
+                question: "¿Qué es la palabra clave 'this' en variables?",
+                answer: "Es una referencia al objeto actual. Se usa para diferenciar entre variables de instancia y parámetros con el mismo nombre, o para llamar a otros constructores."
+            },
+
+            // Tipos de datos (8 preguntas)
+            {
+                category: "tipos",
+                question: "¿Cuáles son los tipos de datos primitivos en Java?",
+                answer: "byte, short, int, long, float, double, char y boolean. Son tipos básicos que no son objetos y se almacenan directamente en memoria."
+            },
+            {
+                category: "tipos",
+                question: "¿Cuál es la diferencia entre int y Integer?",
+                answer: "'int' es un tipo primitivo que almacena valores numéricos. 'Integer' es su clase envolvente (wrapper) que permite usar métodos y almacenar null."
+            },
+            {
+                category: "tipos",
+                question: "¿Qué es el autoboxing en Java?",
+                answer: "Es la conversión automática entre tipos primitivos y sus clases envolventes. Por ejemplo, convertir automáticamente int a Integer y viceversa."
+            },
+            {
+                category: "tipos",
+                question: "¿Cuál es el rango del tipo 'int'?",
+                answer: "El tipo int puede almacenar valores desde -2,147,483,648 hasta 2,147,483,647 (32 bits con signo)."
+            },
+            {
+                category: "tipos",
+                question: "¿Qué diferencia hay entre float y double?",
+                answer: "'float' usa 32 bits y tiene precisión simple (sufijo 'f'). 'double' usa 64 bits, tiene mayor precisión y es el tipo por defecto para números decimales."
+            },
+            {
+                category: "tipos",
+                question: "¿Qué es el casting en Java?",
+                answer: "Es la conversión explícita de un tipo de dato a otro. Puede ser implícito (widening) cuando no hay pérdida de datos, o explícito (narrowing) cuando puede haber pérdida."
+            },
+            {
+                category: "tipos",
+                question: "¿Qué almacena el tipo 'char'?",
+                answer: "Almacena un único carácter Unicode de 16 bits. Se representa entre comillas simples, como 'A' o '5'."
+            },
+            {
+                category: "tipos",
+                question: "¿Qué valores puede tener el tipo boolean?",
+                answer: "Solo puede tener dos valores: true o false. Se usa principalmente en condiciones y expresiones lógicas."
+            },
+
+            // Condiciones (7 preguntas)
+            {
+                category: "condiciones",
+                question: "¿Cómo funciona la estructura if-else?",
+                answer: "Ejecuta un bloque de código si la condición es verdadera, y otro bloque opcional (else) si es falsa. Sintaxis: if (condición) { código } else { código }"
+            },
+            {
+                category: "condiciones",
+                question: "¿Qué es el operador ternario?",
+                answer: "Es una forma abreviada de if-else en una sola línea. Sintaxis: condición ? valorSiVerdadero : valorSiFalso. Ejemplo: int max = (a > b) ? a : b;"
+            },
+            {
+                category: "condiciones",
+                question: "¿Cómo funciona la estructura switch?",
+                answer: "Evalúa una expresión y ejecuta el código del 'case' que coincida. Requiere 'break' para evitar caer en el siguiente caso. Incluye un 'default' opcional."
+            },
+            {
+                category: "condiciones",
+                question: "¿Cuáles son los operadores de comparación?",
+                answer: "== (igual), != (diferente), > (mayor), < (menor), >= (mayor o igual), <= (menor o igual). Devuelven un valor boolean."
+            },
+            {
+                category: "condiciones",
+                question: "¿Cuáles son los operadores lógicos?",
+                answer: "&& (AND lógico), || (OR lógico) y ! (NOT lógico). Se usan para combinar múltiples condiciones."
+            },
+            {
+                category: "condiciones",
+                question: "¿Qué diferencia hay entre == y equals()?",
+                answer: "== compara referencias de objetos (si apuntan al mismo objeto en memoria). equals() compara el contenido de los objetos según su implementación."
+            },
+            {
+                category: "condiciones",
+                question: "¿Qué es el short-circuit en operadores lógicos?",
+                answer: "Es la evaluación perezosa donde && no evalúa el segundo operando si el primero es falso, y || no lo evalúa si el primero es verdadero."
+            },
+
+            // Bucles (7 preguntas)
+            {
+                category: "bucles",
+                question: "¿Cómo funciona el bucle for?",
+                answer: "Ejecuta código un número determinado de veces. Sintaxis: for (inicialización; condición; actualización) { código }. Ejemplo: for (int i = 0; i < 10; i++)"
+            },
+            {
+                category: "bucles",
+                question: "¿Cómo funciona el bucle while?",
+                answer: "Ejecuta código mientras la condición sea verdadera. La condición se evalúa antes de cada iteración. Sintaxis: while (condición) { código }"
+            },
+            {
+                category: "bucles",
+                question: "¿Cuál es la diferencia entre while y do-while?",
+                answer: "'while' evalúa la condición antes de ejecutar, pudiendo no ejecutarse nunca. 'do-while' ejecuta al menos una vez antes de evaluar la condición."
+            },
+            {
+                category: "bucles",
+                question: "¿Qué es el for-each en Java?",
+                answer: "Es un bucle simplificado para recorrer arrays o colecciones. Sintaxis: for (TipoDato elemento : colección) { código }. No permite modificar el índice."
+            },
+            {
+                category: "bucles",
+                question: "¿Para qué sirve la palabra clave 'break'?",
+                answer: "Termina inmediatamente el bucle o switch en el que se encuentra, saltando a la siguiente instrucción después del bucle."
+            },
+            {
+                category: "bucles",
+                question: "¿Para qué sirve la palabra clave 'continue'?",
+                answer: "Salta a la siguiente iteración del bucle sin ejecutar el código restante de la iteración actual."
+            },
+            {
+                category: "bucles",
+                question: "¿Qué son los bucles anidados?",
+                answer: "Son bucles dentro de otros bucles. Se usan comúnmente para trabajar con estructuras multidimensionales como matrices. Cada bucle interno completa todas sus iteraciones por cada iteración del externo."
+            },
+
+            // Strings (6 preguntas)
+            {
+                category: "strings",
+                question: "¿Qué es un String en Java?",
+                answer: "Es una clase que representa una secuencia de caracteres inmutable. Se puede crear con literales entre comillas dobles o con el operador 'new'."
+            },
+            {
+                category: "strings",
+                question: "¿Por qué los Strings son inmutables?",
+                answer: "Una vez creado, su contenido no puede cambiar. Cualquier operación que parezca modificarlo crea un nuevo String en memoria. Esto mejora seguridad y optimización."
+            },
+            {
+                category: "strings",
+                question: "¿Cuál es la diferencia entre String y StringBuilder?",
+                answer: "String es inmutable. StringBuilder es mutable y más eficiente cuando se concatenan muchas cadenas, ya que modifica el objeto existente sin crear nuevos."
+            },
+            {
+                category: "strings",
+                question: "¿Cómo se concatenan Strings?",
+                answer: "Con el operador '+', con el método concat(), o con StringBuilder/StringBuffer. Ejemplo: 'Hola' + ' ' + 'Mundo' o str1.concat(str2)"
+            },
+            {
+                category: "strings",
+                question: "¿Qué métodos importantes tiene la clase String?",
+                answer: "length() (longitud), charAt(i) (carácter en posición), substring() (subcadena), toLowerCase/toUpperCase() (cambiar mayúsculas), trim() (quitar espacios), equals() (comparar)."
+            },
+            {
+                category: "strings",
+                question: "¿Cómo se compara el contenido de dos Strings?",
+                answer: "Se usa el método equals() o equalsIgnoreCase() (ignora mayúsculas). Nunca se debe usar '==' que compara referencias, no contenido."
+            },
+
+            // Funciones y Procedimientos (6 preguntas)
+            {
+                category: "funciones",
+                question: "¿Qué es un método en Java?",
+                answer: "Es un bloque de código reutilizable que pertenece a una clase. Puede recibir parámetros y devolver un valor (función) o no devolver nada (procedimiento con 'void')."
+            },
+            {
+                category: "funciones",
+                question: "¿Cuál es la sintaxis básica de un método?",
+                answer: "modificadorAcceso tipoRetorno nombreMétodo(parámetros) { código; return valor; }. Ejemplo: public int sumar(int a, int b) { return a + b; }"
+            },
+            {
+                category: "funciones",
+                question: "¿Qué es la sobrecarga de métodos?",
+                answer: "Es tener múltiples métodos con el mismo nombre pero diferentes parámetros (cantidad o tipo). Java elige el método correcto según los argumentos pasados."
+            },
+            {
+                category: "funciones",
+                question: "¿Qué diferencia hay entre parámetro y argumento?",
+                answer: "Los parámetros son las variables declaradas en la definición del método. Los argumentos son los valores reales pasados cuando se llama al método."
+            },
+            {
+                category: "funciones",
+                question: "¿Qué es un método estático?",
+                answer: "Se declara con 'static' y pertenece a la clase, no a instancias. Se puede llamar sin crear un objeto: NombreClase.método(). Ejemplo: Math.sqrt()"
+            },
+            {
+                category: "funciones",
+                question: "¿Qué es la palabra clave 'return'?",
+                answer: "Termina la ejecución del método y devuelve un valor al código que lo llamó. En métodos void, se usa 'return;' sin valor para salir anticipadamente."
+            },
+
+            // Arrays (6 preguntas)
+            {
+                category: "arrays",
+                question: "¿Qué es un array en Java?",
+                answer: "Es una estructura de datos que almacena múltiples valores del mismo tipo en posiciones contiguas de memoria, accesibles mediante índices que comienzan en 0."
+            },
+            {
+                category: "arrays",
+                question: "¿Cómo se declara e inicializa un array?",
+                answer: "Declaración: int[] numeros; o int numeros[]. Inicialización: numeros = new int[5]; o directamente: int[] numeros = {1, 2, 3, 4, 5};"
+            },
+            {
+                category: "arrays",
+                question: "¿Cómo se accede a elementos de un array?",
+                answer: "Mediante índices entre corchetes. Ejemplo: array[0] accede al primer elemento. El último elemento está en array[array.length - 1]."
+            },
+            {
+                category: "arrays",
+                question: "¿Qué es un array multidimensional?",
+                answer: "Es un array de arrays. Un array bidimensional se declara: int[][] matriz = new int[3][4]; y se accede: matriz[fila][columna]."
+            },
+            {
+                category: "arrays",
+                question: "¿Cómo se recorre un array?",
+                answer: "Con for tradicional: for(int i=0; i<array.length; i++) o con for-each: for(int elemento : array). El for-each es más simple pero no permite modificar índices."
+            },
+            {
+                category: "arrays",
+                question: "¿Qué es la propiedad 'length' de un array?",
+                answer: "Es un atributo público que indica el número de elementos del array. No es un método, se accede sin paréntesis: array.length"
+            },
+
+            // Clases y POO (6 preguntas)
+            {
+                category: "clases",
+                question: "¿Qué es una clase en Java?",
+                answer: "Es una plantilla o molde que define las propiedades (atributos) y comportamientos (métodos) que tendrán los objetos creados a partir de ella."
+            },
+            {
+                category: "clases",
+                question: "¿Qué es un objeto?",
+                answer: "Es una instancia de una clase. Se crea con 'new': Clase objeto = new Clase(). Cada objeto tiene su propia copia de los atributos de instancia."
+            },
+            {
+                category: "clases",
+                question: "¿Qué es un constructor?",
+                answer: "Es un método especial con el mismo nombre de la clase que se ejecuta al crear un objeto. Se usa para inicializar atributos. Si no se define, Java crea uno por defecto."
+            },
+            {
+                category: "clases",
+                question: "¿Cuáles son los modificadores de acceso?",
+                answer: "public (accesible desde cualquier lugar), private (solo dentro de la clase), protected (clase y subclases) y default/package-private (solo dentro del paquete)."
+            },
+            {
+                category: "clases",
+                question: "¿Qué es la encapsulación?",
+                answer: "Principio de POO que oculta los detalles internos de una clase. Se logra haciendo atributos privados y proporcionando métodos públicos getters y setters para acceder a ellos."
+            },
+            {
+                category: "clases",
+                question: "¿Qué es la herencia en Java?",
+                answer: "Mecanismo que permite crear una clase basada en otra existente usando 'extends'. La clase hija hereda atributos y métodos de la clase padre y puede añadir o sobrescribir funcionalidad."
+            }
+        ];
+
+        let currentFilter = 'todas';
+        let searchTerm = '';
+
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            const filtered = questions.filter(q => {
+                const matchesCategory = currentFilter === 'todas' || q.category === currentFilter;
+                const matchesSearch = q.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                    q.answer.toLowerCase().includes(searchTerm.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="no-results">No se encontraron preguntas que coincidan con tu búsqueda 😕</div>';
+            } else {
+                container.innerHTML = filtered.map((q, index) => `
+                    <div class="question-card" data-index="${index}">
+                        <div class="question-header">
+                            <span class="question-number">Pregunta ${questions.indexOf(q) + 1}</span>
+                            <span class="category-tag">${q.category.toUpperCase()}</span>
+                        </div>
+                        <div class="question-text">
+                            ${q.question}
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="answer">
+                            <div class="answer-label">✓ Respuesta</div>
+                            <div class="answer-text">${q.answer}</div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Add click handlers
+                document.querySelectorAll('.question-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        this.classList.toggle('open');
+                        const answer = this.querySelector('.answer');
+                        answer.classList.toggle('show');
+                    });
+                });
+            }
+
+            document.getElementById('showingCount').textContent = filtered.length;
+            document.getElementById('totalCount').textContent = questions.length;
+        }
+
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.category;
+                renderQuestions();
+            });
+        });
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            searchTerm = e.target.value;
+            renderQuestions();
+        });
+
+        // Initial render
+        renderQuestions();
+    </script>
+</body>
+</html>
