@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2 - Vídeo de Fondo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        .video-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <h1>Vídeo de Fondo Automático</h1>
+        
+        <video autoplay 
+               loop 
+               muted 
+               poster="boletin_03/video/portada-video1.webp">
+            <source src="boletin_03/video/video-fondo.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de vídeo HTML5.
+        </video>
+        
+        <p>Este vídeo se reproduce automáticamente en bucle sin controles visibles.</p>
+    </div>
+</body>
+</html>

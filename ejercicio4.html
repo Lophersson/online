@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 - Formatos Múltiples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        
+        .media-container {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #555;
+            margin-top: 0;
+        }
+        
+        video {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        audio {
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .info {
+            background-color: #e3f2fd;
+            padding: 15px;
+            border-left: 4px solid #2196F3;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicio 4: Compatibilidad de Formatos Multimedia</h1>
+    
+    <div class="media-container">
+        <h2>Vídeo con Múltiples Formatos</h2>
+        
+        <video controls autoplay muted playsinline width="640" height="360">
+            <source src="boletin_03\video\video4.webm" type="video/webm">
+            <source src="boletin_03\video\video4.mp4" type="video/mp4">
+            Tu navegador no soporta la etiqueta de vídeo HTML5. 
+            Por favor, descarga el vídeo para verlo en tu reproductor local.
+        </video>
+        
+        <div class="info">
+            <strong>Nota:</strong> El navegador intentará cargar primero el formato WebM. 
+            Si falla, cargará el formato MP4 como alternativa.
+        </div>
+    </div>
+    
+    <div class="media-container">
+        <h2>Audio con Múltiples Formatos</h2>
+        
+        <audio controls autoplay>
+            <source src="boletin_03\audio\audio4.ogg" type="audio/ogg">
+            <source src="boletin_03\audio\audio4.mp3" type="audio/mpeg">
+            Tu navegador no soporta la etiqueta de audio HTML5. 
+            Por favor, descarga el archivo de audio para escucharlo en tu reproductor favorito.
+        </audio>
+        
+        <div class="info">
+            <strong>Nota:</strong> El navegador intentará cargar primero el formato OGG. 
+            Si falla, cargará el formato MP3 como alternativa. Si ambos fallan, 
+            se mostrará el mensaje de error.
+        </div>
+    </div>
+    
+    <div class="media-container">
+        <h2>Instrucciones de Prueba</h2>
+        <ol>
+            <li>Observa cómo se cargan los archivos correctos (MP4 y MP3)</li>
+            <li>Renombra "video4.mp4" a "video4-backup.mp4" en tu carpeta</li>
+            <li>Renombra "audio4.mp3" a "audio4-backup.mp3" en tu carpeta</li>
+            <li>Recarga la página y observa que aparecen los mensajes de error</li>
+            <li>Los archivos .webm y .ogg fallarán porque son duplicados con extensión incorrecta</li>
+        </ol>
+    </div>
+</body>
+</html>
