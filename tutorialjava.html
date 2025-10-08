@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial: 20 Ejercicios de Java</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: white;
+            color: #667eea;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .exercise {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .exercise:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .exercise-title {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .exercise-number {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin: 5px 5px 15px 0;
+        }
+
+        .tag-paquetes { background: #ffeaa7; color: #d63031; }
+        .tag-ambitos { background: #dfe6e9; color: #2d3436; }
+        .tag-variables { background: #74b9ff; color: #0984e3; }
+        .tag-tipos { background: #a29bfe; color: #6c5ce7; }
+        .tag-condiciones { background: #fd79a8; color: #e84393; }
+        .tag-bucles { background: #fdcb6e; color: #e17055; }
+        .tag-strings { background: #55efc4; color: #00b894; }
+
+        .exercise-content {
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        .exercise-content.show {
+            display: block;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .description {
+            margin-bottom: 15px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .code-container {
+            position: relative;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 8px 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s;
+        }
+
+        .copy-btn:hover {
+            background: #5568d3;
+        }
+
+        .copy-btn.copied {
+            background: #00b894;
+        }
+
+        .explanation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .explanation h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .toggle-icon {
+            transition: transform 0.3s;
+        }
+
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☕ Tutorial de Java</h1>
+            <p class="subtitle">20 Ejercicios Prácticos con Ejemplos Completos</p>
+        </header>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="todos">Todos</button>
+            <button class="filter-btn" data-filter="paquetes">Paquetes</button>
+            <button class="filter-btn" data-filter="ambitos">Ámbitos</button>
+            <button class="filter-btn" data-filter="variables">Variables</button>
+            <button class="filter-btn" data-filter="tipos">Tipos de Datos</button>
+            <button class="filter-btn" data-filter="condiciones">Condiciones</button>
+            <button class="filter-btn" data-filter="bucles">Bucles</button>
+            <button class="filter-btn" data-filter="strings">Strings</button>
+        </div>
+
+        <div id="exercises-container"></div>
+
+        <footer>
+            <p>© 2025 Tutorial de Java - Aprende Programación Paso a Paso</p>
+        </footer>
+    </div>
+
+    <script>
+        const exercises = [
+            {
+                number: 1,
+                title: "Crear un paquete básico",
+                category: "paquetes",
+                description: "Aprende a crear y organizar clases en paquetes.",
+                code: `// archivo: com/miempresa/utilidades/Calculadora.java
+package com.miempresa.utilidades;
+
+public class Calculadora {
+    public int sumar(int a, int b) {
+        return a + b;
+    }
+    
+    public int restar(int a, int b) {
+        return a - b;
+    }
+}
+
+// archivo: Main.java
+import com.miempresa.utilidades.Calculadora;
+
+public class Main {
+    public static void main(String[] args) {
+        Calculadora calc = new Calculadora();
+        System.out.println("Suma: " + calc.sumar(5, 3));
+        System.out.println("Resta: " + calc.restar(5, 3));
+    }
+}`,
+                explanation: "Los paquetes organizan las clases en Java. Usa 'package' al inicio del archivo y 'import' para usar clases de otros paquetes."
+            },
+            {
+                number: 2,
+                title: "Importar paquetes",
+                category: "paquetes",
+                description: "Diferentes formas de importar clases y paquetes.",
+                code: `// Importar clase específica
+import java.util.Scanner;
+
+// Importar todas las clases de un paquete
+import java.util.*;
+
+// Importar clase estática
+import static java.lang.Math.PI;
+import static java.lang.Math.pow;
+
+public class ImportExample {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<String> lista = new ArrayList<>();
+        
+        System.out.println("PI = " + PI);
+        System.out.println("2^3 = " + pow(2, 3));
+        
+        sc.close();
+    }
+}`,
+                explanation: "Puedes importar clases específicas, paquetes completos con *, o miembros estáticos para usarlos sin prefijo de clase."
+            },
+            {
+                number: 3,
+                title: "Ámbito de variables locales",
+                category: "ambitos",
+                description: "Variables declaradas dentro de métodos o bloques.",
+                code: `public class AmbitoLocal {
+    public static void main(String[] args) {
+        int x = 10; // Variable local al método main
+        
+        if (x > 5) {
+            int y = 20; // Variable local al bloque if
+            System.out.println("x = " + x);
+            System.out.println("y = " + y);
+        }
+        
+        // System.out.println(y); // ERROR: y no existe aquí
+        
+        for (int i = 0; i < 3; i++) {
+            int z = i * 2; // Variable local al bucle
+            System.out.println("z = " + z);
+        }
+        
+        // System.out.println(i); // ERROR: i no existe aquí
+    }
+}`,
+                explanation: "Las variables locales solo existen dentro del bloque {} donde se declaran. No son accesibles fuera de su ámbito."
+            },
+            {
+                number: 4,
+                title: "Ámbito de variables de instancia",
+                category: "ambitos",
+                description: "Variables que pertenecen a objetos de una clase.",
+                code: `public class Persona {
+    // Variables de instancia (accesibles en toda la clase)
+    private String nombre;
+    private int edad;
+    
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre; // 'this' se refiere al objeto actual
+        this.edad = edad;
+    }
+    
+    public void mostrarInfo() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+    }
+    
+    public void cumplirAnios() {
+        edad++; // Puede acceder y modificar variables de instancia
+        System.out.println("¡Feliz cumpleaños! Ahora tienes " + edad);
+    }
+    
+    public static void main(String[] args) {
+        Persona p = new Persona("Ana", 25);
+        p.mostrarInfo();
+        p.cumplirAnios();
+    }
+}`,
+                explanation: "Las variables de instancia pertenecen a cada objeto y son accesibles desde cualquier método de la clase."
+            },
+            {
+                number: 5,
+                title: "Variables estáticas (de clase)",
+                category: "ambitos",
+                description: "Variables compartidas por todas las instancias de una clase.",
+                code: `public class Contador {
+    // Variable estática compartida por todos los objetos
+    private static int totalObjetos = 0;
+    
+    // Variable de instancia única para cada objeto
+    private int id;
+    
+    public Contador() {
+        totalObjetos++; // Incrementa el contador compartido
+        this.id = totalObjetos;
+    }
+    
+    public void mostrarInfo() {
+        System.out.println("ID: " + id);
+        System.out.println("Total objetos: " + totalObjetos);
+    }
+    
+    public static void main(String[] args) {
+        Contador c1 = new Contador();
+        Contador c2 = new Contador();
+        Contador c3 = new Contador();
+        
+        c1.mostrarInfo();
+        c2.mostrarInfo();
+        c3.mostrarInfo();
+    }
+}`,
+                explanation: "Las variables estáticas (static) son compartidas por todos los objetos de la clase. Solo existe una copia en memoria."
+            },
+            {
+                number: 6,
+                title: "Declaración de variables",
+                category: "variables",
+                description: "Diferentes formas de declarar e inicializar variables.",
+                code: `public class DeclaracionVariables {
+    public static void main(String[] args) {
+        // Declaración simple
+        int numero;
+        numero = 10;
+        
+        // Declaración con inicialización
+        int edad = 25;
+        
+        // Múltiples variables del mismo tipo
+        int x = 1, y = 2, z = 3;
+        
+        // Variables finales (constantes)
+        final double PI = 3.14159;
+        final String PAIS = "España";
+        
+        // PI = 3.14; // ERROR: no se puede modificar
+        
+        System.out.println("Número: " + numero);
+        System.out.println("Edad: " + edad);
+        System.out.println("Suma: " + (x + y + z));
+        System.out.println("PI: " + PI);
+        System.out.println("País: " + PAIS);
+    }
+}`,
+                explanation: "Puedes declarar variables con o sin inicialización. Las variables 'final' son constantes que no pueden cambiar."
+            },
+            {
+                number: 7,
+                title: "Tipos de datos primitivos",
+                category: "tipos",
+                description: "Los 8 tipos de datos primitivos en Java.",
+                code: `public class TiposPrimitivos {
+    public static void main(String[] args) {
+        // Enteros
+        byte pequeno = 127;           // -128 a 127
+        short corto = 32000;          // -32,768 a 32,767
+        int entero = 2000000;         // -2^31 a 2^31-1
+        long largo = 9000000000L;     // -2^63 a 2^63-1
+        
+        // Decimales
+        float decimal = 3.14f;        // 32 bits
+        double doble = 3.141592653589793; // 64 bits
+        
+        // Otros
+        char letra = 'A';             // Un solo carácter
+        boolean verdadero = true;     // true o false
+        
+        System.out.println("byte: " + pequeno);
+        System.out.println("short: " + corto);
+        System.out.println("int: " + entero);
+        System.out.println("long: " + largo);
+        System.out.println("float: " + decimal);
+        System.out.println("double: " + doble);
+        System.out.println("char: " + letra);
+        System.out.println("boolean: " + verdadero);
+    }
+}`,
+                explanation: "Java tiene 8 tipos primitivos: byte, short, int, long (enteros), float, double (decimales), char y boolean."
+            },
+            {
+                number: 8,
+                title: "Conversión de tipos (casting)",
+                category: "tipos",
+                description: "Convertir entre diferentes tipos de datos.",
+                code: `public class ConversionTipos {
+    public static void main(String[] args) {
+        // Conversión automática (widening)
+        int entero = 100;
+        double doble = entero; // int -> double (automático)
+        System.out.println("Int a Double: " + doble);
+        
+        // Conversión manual (narrowing)
+        double pi = 3.14159;
+        int enteroPI = (int) pi; // double -> int (manual)
+        System.out.println("Double a Int: " + enteroPI);
+        
+        // Conversión de String a número
+        String textoNumero = "123";
+        int numero = Integer.parseInt(textoNumero);
+        double decimal = Double.parseDouble("45.67");
+        
+        System.out.println("String a Int: " + numero);
+        System.out.println("String a Double: " + decimal);
+        
+        // Conversión de número a String
+        int edad = 25;
+        String textoEdad = String.valueOf(edad);
+        System.out.println("Int a String: " + textoEdad);
+    }
+}`,
+                explanation: "La conversión automática ocurre de tipos pequeños a grandes. La conversión manual requiere casting y puede perder datos."
+            },
+            {
+                number: 9,
+                title: "Operadores y tipos",
+                category: "tipos",
+                description: "Operaciones aritméticas con diferentes tipos.",
+                code: `public class OperadoresTipos {
+    public static void main(String[] args) {
+        // Operaciones aritméticas
+        int a = 10, b = 3;
+        System.out.println("Suma: " + (a + b));
+        System.out.println("Resta: " + (a - b));
+        System.out.println("Multiplicación: " + (a * b));
+        System.out.println("División entera: " + (a / b));
+        System.out.println("Módulo: " + (a % b));
+        
+        // División con decimales
+        double division = (double) a / b;
+        System.out.println("División decimal: " + division);
+        
+        // Incremento y decremento
+        int x = 5;
+        System.out.println("x++: " + (x++)); // Muestra 5, luego incrementa
+        System.out.println("x ahora: " + x); // Muestra 6
+        System.out.println("++x: " + (++x)); // Incrementa, luego muestra 7
+        
+        // Operadores compuestos
+        int num = 10;
+        num += 5;  // num = num + 5
+        System.out.println("num += 5: " + num);
+    }
+}`,
+                explanation: "Los operadores aritméticos funcionan diferente según el tipo. La división de enteros trunca el resultado."
+            },
+            {
+                number: 10,
+                title: "Condicional if-else",
+                category: "condiciones",
+                description: "Estructura básica de decisión.",
+                code: `import java.util.Scanner;
+
+public class CondicionalIfElse {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Introduce tu edad: ");
+        int edad = sc.nextInt();
+        
+        // If simple
+        if (edad >= 18) {
+            System.out.println("Eres mayor de edad");
+        }
+        
+        // If-else
+        if (edad >= 18) {
+            System.out.println("Puedes votar");
+        } else {
+            System.out.println("No puedes votar todavía");
+        }
+        
+        // If-else if-else
+        if (edad < 12) {
+            System.out.println("Eres un niño");
+        } else if (edad < 18) {
+            System.out.println("Eres un adolescente");
+        } else if (edad < 65) {
+            System.out.println("Eres un adulto");
+        } else {
+            System.out.println("Eres un adulto mayor");
+        }
+        
+        sc.close();
+    }
+}`,
+                explanation: "El if-else permite ejecutar código según una condición. Usa else if para múltiples condiciones."
+            },
+            {
+                number: 11,
+                title: "Operadores lógicos",
+                category: "condiciones",
+                description: "AND, OR y NOT en condiciones.",
+                code: `public class OperadoresLogicos {
+    public static void main(String[] args) {
+        int edad = 25;
+        boolean tieneLicencia = true;
+        double saldo = 1500.0;
+        
+        // AND (&&) - Ambas deben ser verdaderas
+        if (edad >= 18 && tieneLicencia) {
+            System.out.println("Puedes conducir");
+        }
+        
+        // OR (||) - Al menos una debe ser verdadera
+        if (edad < 18 || !tieneLicencia) {
+            System.out.println("No puedes conducir");
+        } else {
+            System.out.println("Puedes conducir");
+        }
+        
+        // NOT (!) - Invierte el valor
+        if (!tieneLicencia) {
+            System.out.println("Necesitas sacar la licencia");
+        }
+        
+        // Combinación de operadores
+        if ((edad >= 18 && tieneLicencia) && saldo >= 1000) {
+            System.out.println("Puedes alquilar un coche");
+        }
+        
+        // Operador ternario
+        String mensaje = (edad >= 18) ? "Mayor" : "Menor";
+        System.out.println("Eres " + mensaje + " de edad");
+    }
+}`,
+                explanation: "Los operadores lógicos permiten combinar condiciones: && (AND), || (OR), ! (NOT). El operador ternario es una forma corta de if-else."
+            },
+            {
+                number: 12,
+                title: "Switch-case",
+                category: "condiciones",
+                description: "Selección múltiple de opciones.",
+                code: `import java.util.Scanner;
+
+public class SwitchCase {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Introduce un día (1-7): ");
+        int dia = sc.nextInt();
+        
+        // Switch tradicional
+        switch (dia) {
+            case 1:
+                System.out.println("Lunes");
+                break;
+            case 2:
+                System.out.println("Martes");
+                break;
+            case 3:
+                System.out.println("Miércoles");
+                break;
+            case 4:
+                System.out.println("Jueves");
+                break;
+            case 5:
+                System.out.println("Viernes");
+                break;
+            case 6:
+            case 7:
+                System.out.println("Fin de semana");
+                break;
+            default:
+                System.out.println("Día inválido");
+        }
+        
+        // Determinar tipo de día
+        String tipoDia;
+        switch (dia) {
+            case 1: case 2: case 3: case 4: case 5:
+                tipoDia = "Día laboral";
+                break;
+            case 6: case 7:
+                tipoDia = "Fin de semana";
+                break;
+            default:
+                tipoDia = "Día inválido";
+        }
+        System.out.println(tipoDia);
+        
+        sc.close();
+    }
+}`,
+                explanation: "Switch evalúa una expresión y ejecuta el caso correspondiente. 'break' previene la ejecución de casos siguientes."
+            },
+            {
+                number: 13,
+                title: "Bucle for",
+                category: "bucles",
+                description: "Iteración con contador.",
+                code: `public class BucleFor {
+    public static void main(String[] args) {
+        // For básico
+        System.out.println("Números del 1 al 10:");
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        
+        // For descendente
+        System.out.println("\\nCuenta regresiva:");
+        for (int i = 10; i >= 1; i--) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        
+        // For con saltos
+        System.out.println("\\nNúmeros pares del 2 al 20:");
+        for (int i = 2; i <= 20; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+        
+        // For anidado (tabla de multiplicar)
+        System.out.println("\\nTabla del 5:");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("5 x " + i + " = " + (5 * i));
+        }
+        
+        // For-each con array
+        int[] numeros = {10, 20, 30, 40, 50};
+        System.out.println("\\nArray con for-each:");
+        for (int num : numeros) {
+            System.out.print(num + " ");
+        }
+    }
+}`,
+                explanation: "El for se usa cuando sabes cuántas veces iterar. For-each simplifica la iteración sobre arrays y colecciones."
+            },
+            {
+                number: 14,
+                title: "Bucle while",
+                category: "bucles",
+                description: "Iteración con condición previa.",
+                code: `import java.util.Scanner;
+
+public class BucleWhile {
+    public static void main(String[] args) {
+        // While básico
+        int contador = 1;
+        System.out.println("Contando del 1 al 5:");
+        while (contador <= 5) {
+            System.out.println(contador);
+            contador++;
+        }
+        
+        // While con entrada de usuario
+        Scanner sc = new Scanner(System.in);
+        String respuesta = "";
+        
+        while (!respuesta.equalsIgnoreCase("salir")) {
+            System.out.print("\\nEscribe algo (o 'salir' para terminar): ");
+            respuesta = sc.nextLine();
+            
+            if (!respuesta.equalsIgnoreCase("salir")) {
+                System.out.println("Escribiste: " + respuesta);
+            }
+        }
+        
+        System.out.println("¡Programa terminado!");
+        
+        // Validación de entrada
+        int numero = -1;
+        while (numero < 0 || numero > 10) {
+            System.out.print("\\nIntroduce un número entre 0 y 10: ");
+            numero = sc.nextInt();
+            
+            if (numero < 0 || numero > 10) {
+                System.out.println("Número inválido. Intenta de nuevo.");
+            }
+        }
+        System.out.println("Número válido: " + numero);
+        
+        sc.close();
+    }
+}`,
+                explanation: "While evalúa la condición antes de cada iteración. Se usa cuando no sabes cuántas veces iterar."
+            },
+            {
+                number: 15,
+                title: "Bucle do-while",
+                category: "bucles",
+                description: "Iteración con condición posterior.",
+                code: `import java.util.Scanner;
+
+public class BucleDoWhile {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        // Do-while básico (se ejecuta al menos una vez)
+        int numero;
+        do {
+            System.out.print("Introduce un número positivo: ");
+            numero = sc.nextInt();
+            
+            if (numero <= 0) {
+                System.out.println("¡Debe ser positivo!");
+            }
+        } while (numero <= 0);
+        
+        System.out.println("Número válido: " + numero);
+        
+        // Menú con do-while
+        int opcion;
+        do {
+            System.out.println("\\n--- MENÚ ---");
+            System.out.println("1. Sumar");
+            System.out.println("2. Restar");
+            System.out.println("3. Multiplicar");
+            System.out.println("4. Dividir");
+            System.out.println("0. Salir");
+            System.out.print("Elige una opción: ");
+            opcion = sc.nextInt();
+            
+            switch (opcion) {
+                case 1:
+                    System.out.println("Has elegido Sumar");
+                    break;
+                case 2:
+                    System.out.println("Has elegido Restar");
+                    break;
+                case 3:
+                    System.out.println("Has elegido Multiplicar");
+                    break;
+                case 4:
+                    System.out.println("Has elegido Dividir");
+                    break;
+                case 0:
+                    System.out.println("¡Hasta luego!");
+                    break;
+                default:
+                    System.out.println("Opción inválida");
+            }
+        } while (opcion != 0);
+        
+        sc.close();
+    }
+}`,
+                explanation: "Do-while garantiza al menos una ejecución porque evalúa la condición después del bloque. Ideal para menús y validaciones."
+            },
+            {
+                number: 16,
+                title: "Break y Continue",
+                category: "bucles",
+                description: "Controlar el flujo de bucles.",
+                code: `public class BreakContinue {
+    public static void main(String[] args) {
+        // Break: Sale del bucle completamente
+        System.out.println("Ejemplo de break:");
+        for (int i = 1; i <= 10; i++) {
+            if (i == 6) {
+                System.out.println("¡Se encontró el 6! Saliendo...");
+                break; // Sale del bucle
+            }
+            System.out.println(i);
+        }
+        
+        // Continue: Salta a la siguiente iteración
+        System.out.println("\\nEjemplo de continue (impares):");
+        for (int i = 1; i <= 10; i++) {
+            if (i % 2 == 0) {
+                continue; // Salta los pares
+            }
+            System.out.println(i);
+        }
+        
+        // Búsqueda con break
+        System.out.println("\\nBuscar número en array:");
+        int[] numeros = {5, 12, 8, 21, 3, 17, 9};
+        int buscar = 21;
+        boolean encontrado = false;
+        
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] == buscar) {
+                System.out.println("Encontrado en posición: " + i);
+                encontrado = true;
+                break;
+            }
+        }
+        
+        if (!encontrado) {
+            System.out.println("No encontrado");
+        }
+    }
+}`,
+                explanation: "Break termina el bucle inmediatamente. Continue salta a la siguiente iteración sin ejecutar el código restante."
+            },
+            {
+                number: 17,
+                title: "Operaciones básicas con Strings",
+                category: "strings",
+                description: "Métodos fundamentales de la clase String.",
+                code: `public class OperacionesString {
+    public static void main(String[] args) {
+        String texto = "Hola Mundo";
+        
+        // Longitud
+        System.out.println("Longitud: " + texto.length());
+        
+        // Mayúsculas y minúsculas
+        System.out.println("Mayúsculas: " + texto.toUpperCase());
+        System.out.println("Minúsculas: " + texto.toLowerCase());
+        
+        // Acceder a caracteres
+        System.out.println("Primer carácter: " + texto.charAt(0));
+        System.out.println("Último carácter: " + texto.charAt(texto.length() - 1));
+        
+        // Subcadenas
+        System.out.println("Substring(0,4): " + texto.substring(0, 4));
+        System.out.println("Substring(5): " + texto.substring(5));
+        
+        // Buscar
+        System.out.println("Contiene 'Mundo': " + texto.contains("Mundo"));
+        System.out.println("Índice de 'Mundo': " + texto.indexOf("Mundo"));
+        System.out.println("Empieza con 'Hola': " + texto.startsWith("Hola"));
+        System.out.println("Termina con 'Mundo': " + texto.endsWith("Mundo"));
+        
+        // Reemplazar
+        System.out.println("Reemplazar: " + texto.replace("Mundo", "Java"));
+        
+        // Espacios
+        String conEspacios = "  texto  ";
+        System.out.println("Con trim: '" + conEspacios.trim() + "'");
+    }
+}`,
+                explanation: "String tiene muchos métodos útiles. Son inmutables, por lo que los métodos retornan nuevos Strings sin modificar el original."
+            },
+            {
+                number: 18,
+                title: "Comparación de Strings",
+                category: "strings",
+                description: "Formas correctas de comparar cadenas.",
+                code: `public class ComparacionStrings {
+    public static void main(String[] args) {
+        String s1 = "Hola";
+        String s2 = "Hola";
+        String s3 = new String("Hola");
+        String s4 = "hola";
+        
+        // INCORRECTO: usar == compara referencias
+        System.out.println("s1 == s2: " + (s1 == s2)); // true (mismo objeto en pool)
+        System.out.println("s1 == s3: " + (s1 == s3)); // false (diferentes objetos)
+        
+        // CORRECTO: usar equals() compara contenido
+        System.out.println("\\ns1.equals(s2): " + s1.equals(s2)); // true
+        System.out.println("s1.equals(s3): " + s1.equals(s3)); // true
+        System.out.println("s1.equals(s4): " + s1.equals(s4)); // false
+        
+        // Ignorar mayúsculas/minúsculas
+        System.out.println("\\ns1.equalsIgnoreCase(s4): " + s1.equalsIgnoreCase(s4)); // true
+        
+        // Comparar orden alfabético
+        String a = "manzana";
+        String b = "banana";
+        System.out.println("\\nComparar orden:");
+        System.out.println("'manzana'.compareTo('banana'): " + a.compareTo(b)); // > 0
+        System.out.println("'banana'.compareTo('manzana'): " + b.compareTo(a)); // < 0
+        System.out.println("'hola'.compareTo('hola'): " + "hola".compareTo("hola")); // 0
+        
+        // Verificar vacío
+        String vacio = "";
+        String nulo = null;
+        System.out.println("\\nVacío: " + vacio.isEmpty()); // true
+        System.out.println("Longitud 0: " + (vacio.length() == 0)); // true
+        // System.out.println(nulo.isEmpty()); // ERROR: NullPointerException
+    }
+}`,
+                explanation: "NUNCA uses == para comparar Strings. Usa equals() para comparar contenido y equalsIgnoreCase() para ignorar mayúsculas."
+            },
+            {
+                number: 19,
+                title: "Concatenación y formato de Strings",
+                category: "strings",
+                description: "Diferentes formas de construir y formatear cadenas.",
+                code: `public class ConcatenacionStrings {
+    public static void main(String[] args) {
+        String nombre = "Juan";
+        int edad = 25;
+        double altura = 1.75;
+        
+        // Concatenación con +
+        String mensaje1 = "Hola, soy " + nombre + " y tengo " + edad + " años";
+        System.out.println(mensaje1);
+        
+        // concat()
+        String mensaje2 = "Hola ".concat(nombre).concat("!");
+        System.out.println(mensaje2);
+        
+        // StringBuilder (eficiente para muchas concatenaciones)
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nombre: ").append(nombre);
+        sb.append(", Edad: ").append(edad);
+        sb.append(", Altura: ").append(altura);
+        System.out.println(sb.toString());
+        
+        // String.format (estilo printf)
+        String mensaje3 = String.format("Me llamo %s, tengo %d años y mido %.2f metros", 
+                                        nombre, edad, altura);
+        System.out.println(mensaje3);
+        
+        // Text blocks (Java 15+)
+        String html = """
+                <html>
+                    <body>
+                        <h1>Hola %s</h1>
+                        <p>Edad: %d</p>
+                    </body>
+                </html>
+                """.formatted(nombre, edad);
+        System.out.println(html);
+        
+        // Repetir String
+        System.out.println("=".repeat(30));
+        
+        // Join
+        String lista = String.join(", ", "Java", "Python", "JavaScript");
+        System.out.println("Lenguajes: " + lista);
+    }
+}`,
+                explanation: "Para concatenar muchas veces usa StringBuilder. String.format permite formateo avanzado con especificadores como %s, %d, %f."
+            },
+            {
+                number: 20,
+                title: "Procesamiento avanzado de Strings",
+                category: "strings",
+                description: "Split, validaciones y transformaciones.",
+                code: `public class ProcesamientoStrings {
+    public static void main(String[] args) {
+        // Split: dividir String en array
+        String frase = "Java,Python,JavaScript,C++";
+        String[] lenguajes = frase.split(",");
+        
+        System.out.println("Lenguajes:");
+        for (String lenguaje : lenguajes) {
+            System.out.println("- " + lenguaje);
+        }
+        
+        // Split con regex
+        String texto = "uno123dos456tres789";
+        String[] partes = texto.split("\\\\d+"); // \\d+ = uno o más dígitos
+        System.out.println("\\nPartes: " + String.join(", ", partes));
+        
+        // Validar String
+        String email = "usuario@ejemplo.com";
+        if (email.contains("@") && email.contains(".")) {
+            System.out.println("\\nEmail válido (básico)");
+        }
+        
+        // Contar palabras
+        String oracion = "Esta es una oración de ejemplo";
+        String[] palabras = oracion.split(" ");
+        System.out.println("\\nNúmero de palabras: " + palabras.length);
+        
+        // Invertir String
+        String original = "Hola Mundo";
+        String invertida = new StringBuilder(original).reverse().toString();
+        System.out.println("\\nOriginal: " + original);
+        System.out.println("Invertida: " + invertida);
+        
+        // Palíndromo
+        String palabra = "anilina";
+        String limpia = palabra.toLowerCase().replaceAll("[^a-z]", "");
+        String reversed = new StringBuilder(limpia).reverse().toString();
+        boolean esPalindromo = limpia.equals(reversed);
+        System.out.println("\\n'" + palabra + "' es palíndromo: " + esPalindromo);
+        
+        // Contar ocurrencias
+        String buscarEn = "la casa de la esquina";
+        String buscarQue = "la";
+        int count = 0;
+        int index = 0;
+        while ((index = buscarEn.indexOf(buscarQue, index)) != -1) {
+            count++;
+            index++;
+        }
+        System.out.println("\\n'" + buscarQue + "' aparece " + count + " veces");
+    }
+}`,
+                explanation: "Split divide Strings por separadores. StringBuilder.reverse() invierte cadenas. Los métodos de String permiten validaciones y búsquedas complejas."
+            }
+        ];
+
+        const container = document.getElementById('exercises-container');
+        
+        function renderExercises(filter = 'todos') {
+            container.innerHTML = '';
+            
+            exercises.forEach(ex => {
+                if (filter === 'todos' || ex.category === filter) {
+                    const exerciseDiv = document.createElement('div');
+                    exerciseDiv.className = 'exercise';
+                    exerciseDiv.dataset.category = ex.category;
+                    
+                    exerciseDiv.innerHTML = `
+                        <div class="exercise-header" onclick="toggleExercise(${ex.number})">
+                            <div>
+                                <span class="exercise-number">#${ex.number}</span>
+                                <span class="exercise-title">${ex.title}</span>
+                            </div>
+                            <span class="toggle-icon" id="icon-${ex.number}">▼</span>
+                        </div>
+                        <div>
+                            <span class="category-tag tag-${ex.category}">${ex.category.toUpperCase()}</span>
+                        </div>
+                        <div class="exercise-content" id="content-${ex.number}">
+                            <p class="description">${ex.description}</p>
+                            <div class="code-container">
+                                <button class="copy-btn" onclick="copyCode(${ex.number})">Copiar</button>
+                                <pre><code id="code-${ex.number}">${escapeHtml(ex.code)}</code></pre>
+                            </div>
+                            <div class="explanation">
+                                <h4>💡 Explicación:</h4>
+                                <p>${ex.explanation}</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    container.appendChild(exerciseDiv);
+                }
+            });
+        }
+
+        function toggleExercise(num) {
+            const content = document.getElementById(`content-${num}`);
+            const icon = document.getElementById(`icon-${num}`);
+            
+            content.classList.toggle('show');
+            icon.classList.toggle('rotated');
+        }
+
+        function copyCode(num) {
+            const code = document.getElementById(`code-${num}`).textContent;
+            const btn = event.target;
+            
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = '✓ Copiado';
+                btn.classList.add('copied');
+                
+                setTimeout(() => {
+                    btn.textContent = 'Copiar';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Event listeners para filtros
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                renderExercises(this.dataset.filter);
+            });
+        });
+
+        // Renderizar ejercicios inicialmente
+        renderExercises();
+    </script>
+</body>
+</html>
