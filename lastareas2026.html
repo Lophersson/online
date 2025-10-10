@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin-top: 20px;
+            padding: 10px;
+            padding-bottom: 100px;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 900;
+            font-style: italic;
+            letter-spacing: -2.75px;
+        }
+
+        .counter-badge {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            background-color: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .counter-badge:hover {
+            background-color: #444;
+        }
+
+        .counter-badge::before {
+            content: '📋';
+            font-size: 24px;
+        }
+
+        .counter-number {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #22c55e;
+            color: #000;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .category {
+            margin-bottom: 5px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .category-header {
+            padding: 10px 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: opacity 0.3s;
+        }
+
+        .category-header:hover {
+            opacity: 0.8;
+        }
+
+        .category-title {
+            font-size: 28px;
+            font-style: italic;
+            font-weight: 900;
+            letter-spacing: -0.75px;
+        }
+
+        .arrow {
+            font-size: 28px;
+            transition: transform 0.3s;
+        }
+
+        .arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .tasks {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: #1a1a1a;
+            font-size: 20px;
+            font-style: italic;
+            font-weigth: 800;
+        }
+
+        .tasks.open {
+            max-height: 1000px;
+        }
+
+        .task {
+            padding: 4px 10px;
+            border-bottom: 1px solid #2a2a2a;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            color: grey;
+        }
+
+        .task:hover {
+            background-color: #252525;
+        }
+
+        .task:last-child {
+            border-bottom: none;
+        }
+
+        .task.selected {
+            background-color: #60fe4d;
+            color: #000;
+        }
+
+        .task::before {
+            content: '-';
+            margin-right: 4px;
+            font-size: 18px;
+        }
+
+        .task.selected::before {
+            content: '✓';
+            font-weight: bold;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.open {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .selected-task-item {
+            padding: 15px;
+            background-color: #2a2a2a;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background-color: #ef4444;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #dc2626;
+        }
+
+        .print-btn {
+            width: 100%;
+            margin-top: 20px;
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .print-btn:hover {
+            background-color: #2563eb;
+        }
+
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            
+            #printContent, #printContent * {
+                visibility: visible;
+            }
+            
+            #printContent {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+
+        .print-content {
+            display: none;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #888;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Gestor de tareas</h1>
+        <div class="counter-badge" onclick="openModal()">
+            <span class="counter-number" id="counter">0</span>
+        </div>
+    </div>
+
+    <div id="categories"></div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">tareas seleccionadas</h2>
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+            </div>
+            <div id="selectedTasksList"></div>
+        </div>
+    </div>
+
+    <div class="print-content" id="printContent"></div>
+
+    <script>
+        const categories = {
+            'organización y administración': {
+                color: '#ef4444',
+                tasks: ['contabilidad diaria', 'presupuestos', 'listas de coches', 'sueldos y capital', 'registros web, apps y contraseñas', 'guardar archivos del móvil', 'guardar archivos de la tablet', 'guardar archivos del portátil a discos duros', 'guardar chats de whatsapp', 'guardar mails', 'guardar archivos de nubes']
+            },
+            'hogar': {
+                color: '#f97316',
+                tasks: ['ordenar armario', 'ropa y calzado', 'trastero, vender cosas', 'cajones y estanterias', 'limpiar suelo y muebles', 'vajilla y limpiar cocina', 'baños y terraza', 'cocinar algo rico', 'pertenencias', 'libros', 'material de oficina y estudio', 'lavadora ropa', 'planchar camisas y camisetas', 'cambiar sabanas cama', 'limpiar el colchón']
+            },
+            'cuidado personal': {
+                color: '#eab308',
+                tasks: ['ducha', 'cabello', 'desayunar', 'comer', 'merendar', 'cenar', 'lavar los dientes', 'cortar las uñas', 'cuidado de la piel - nivea', 'cuidar los pies', 'afeitado', 'desodorante', 'perfume', 'crema de manos', 'balsamo de labios', 'dormir', 'pasear', 'ejercicio fisico', 'medicación y tratamientos']
+            },
+            'coche': {
+                color: '#22c55e',
+                tasks: ['repostar gasoil', 'neumáticos', 'limpieza interior', 'limpieza exterior', 'quitar cosas del maletero', 'ambientador', 'taller', 'itv', 'impuesto municipal', 'parking', 'peajes', 'accesorios', 'recambios']
+            },
+            'personas': {
+                color: '#06b6d4',
+                tasks: ['contactos de telefono', 'redes sociales', 'cumpleaños', 'cafés', 'comidas', 'cenas', 'cine', 'eventos']
+            },
+            'profesional': {
+                color: '#3b82f6',
+                tasks: ['curriculum', 'infojobs', 'linkedin', 'web', 'github']
+            },
+            'ocio y cultura': {
+                color: '#8b5cf6',
+                tasks: ['internet', 'televisión', 'videojuegos', 'gastronomia', 'nutrición', 'moda', 'relojes', 'gafas', 'coches', 'zapatos', 'decoración', 'viviendas', 'arquitectura', 'ciudades', 'pueblos', 'viajes', 'electrónica', 'perfumes', 'restaurantes', 'paisajes', 'musica', 'cine', 'eventos', 'exposiciones', 'ferias', 'deportes']
+            },
+            'oficial': {
+                color: '#ec4899',
+                tasks: ['estudios', 'médicos', 'concello', 'xunta', 'administracion central']
+            }
+        };
+
+        let selectedTasks = {};
+
+        function init() {
+            const container = document.getElementById('categories');
+            
+            Object.entries(categories).forEach(([catName, catData]) => {
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'category';
+                
+                const header = document.createElement('div');
+                header.className = 'category-header';
+                header.style.backgroundColor = catData.color;
+                header.onclick = () => toggleCategory(catName);
+                
+                const title = document.createElement('div');
+                title.className = 'category-title';
+                title.textContent = catName;
+                
+                const arrow = document.createElement('div');
+                arrow.className = 'arrow';
+                arrow.id = `arrow-${catName}`;
+                arrow.textContent = '▼';
+                
+                header.appendChild(title);
+                header.appendChild(arrow);
+                
+                const tasksDiv = document.createElement('div');
+                tasksDiv.className = 'tasks';
+                tasksDiv.id = `tasks-${catName}`;
+                
+                catData.tasks.forEach(task => {
+                    const taskDiv = document.createElement('div');
+                    taskDiv.className = 'task';
+                    taskDiv.textContent = task;
+                    taskDiv.onclick = () => toggleTask(catName, task);
+                    tasksDiv.appendChild(taskDiv);
+                });
+                
+                categoryDiv.appendChild(header);
+                categoryDiv.appendChild(tasksDiv);
+                container.appendChild(categoryDiv);
+            });
+        }
+
+        function toggleCategory(catName) {
+            const tasksDiv = document.getElementById(`tasks-${catName}`);
+            const arrow = document.getElementById(`arrow-${catName}`);
+            tasksDiv.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        function toggleTask(category, task) {
+            const key = `${category}|${task}`;
+            
+            if (selectedTasks[key]) {
+                delete selectedTasks[key];
+            } else {
+                selectedTasks[key] = { category, task };
+            }
+            
+            updateUI();
+        }
+
+        function updateUI() {
+            const count = Object.keys(selectedTasks).length;
+            document.getElementById('counter').textContent = count;
+            
+            Object.entries(categories).forEach(([catName, catData]) => {
+                catData.tasks.forEach(task => {
+                    const key = `${catName}|${task}`;
+                    const taskDiv = Array.from(document.querySelectorAll('.task')).find(
+                        el => el.textContent === task && el.parentElement.id === `tasks-${catName}`
+                    );
+                    if (taskDiv) {
+                        if (selectedTasks[key]) {
+                            taskDiv.classList.add('selected');
+                        } else {
+                            taskDiv.classList.remove('selected');
+                        }
+                    }
+                });
+            });
+
+            if (count > 0) {
+                // Counter updated
+            } else {
+                // Counter updated
+            }
+        }
+
+        function openModal() {
+            const modal = document.getElementById('modal');
+            const list = document.getElementById('selectedTasksList');
+            list.innerHTML = '';
+            
+            if (Object.keys(selectedTasks).length === 0) {
+                list.innerHTML = '<div class="empty-message">no hay tareas seleccionadas</div>';
+            } else {
+                Object.entries(selectedTasks).forEach(([key, data]) => {
+                    const item = document.createElement('div');
+                    item.className = 'selected-task-item';
+                    
+                    const text = document.createElement('div');
+                    text.innerHTML = `<strong>${data.category}</strong><br>${data.task}`;
+                    
+                    const btn = document.createElement('button');
+                    btn.className = 'delete-btn';
+                    btn.textContent = 'eliminar';
+                    btn.onclick = () => {
+                        delete selectedTasks[key];
+                        updateUI();
+                        openModal();
+                    };
+                    
+                    item.appendChild(text);
+                    item.appendChild(btn);
+                    list.appendChild(item);
+                });
+                
+                const printBtn = document.createElement('button');
+                printBtn.className = 'print-btn';
+                printBtn.textContent = 'imprimir';
+                printBtn.onclick = printTasks;
+                list.appendChild(printBtn);
+            }
+            
+            modal.classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('open');
+        }
+
+        function printTasks() {
+            const printContent = document.getElementById('printContent');
+            printContent.innerHTML = '<h1 style="color: #000; margin-bottom: 20px;">tareas seleccionadas</h1>';
+            
+            Object.entries(selectedTasks).forEach(([key, data]) => {
+                const item = document.createElement('div');
+                item.style.marginBottom = '10px';
+                item.style.color = '#000';
+                item.innerHTML = `• ${data.task}`;
+                printContent.appendChild(item);
+            });
+            
+            window.print();
+        }
+
+        init();
+    </script>
+</body>
+</html>
