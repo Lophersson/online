@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Presupuestos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: #1e293b;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            padding: 40px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #f1f5f9;
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .month-box {
+            background: linear-gradient(145deg, #334155, #475569);
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 400px;
+        }
+
+        .month-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .month-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .expense-list {
+            list-style: none;
+            flex-grow: 1;
+            margin-bottom: 15px;
+        }
+
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: transform 0.2s ease;
+        }
+
+        .expense-item:hover {
+            transform: translateX(3px);
+        }
+
+        .expense-name {
+            flex-grow: 1;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .expense-price {
+            font-weight: 700;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        .month-total {
+            border-top: 3px solid #60a5fa;
+            padding-top: 10px;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1.1em;
+            color: #f1f5f9;
+        }
+
+        /* Colores por temática - Versión oscura */
+        .bancos {
+            background: linear-gradient(135deg, #5b21b6, #7c3aed);
+            color: white;
+        }
+
+        .gastos_corrientes {
+            background: linear-gradient(135deg, #be123c, #e11d48);
+            color: white;
+        }
+
+        .compras_2025 {
+            background: linear-gradient(135deg, #0369a1, #0284c7);
+            color: white;
+        }
+
+        .inBox {
+            background: linear-gradient(135deg, #047857, #059669);
+            color: white;
+        }
+
+        .compras_especiales {
+            background: linear-gradient(135deg, #c026d3, #d946ef);
+            color: white;
+        }
+
+        .compras_personales {
+            background: linear-gradient(135deg, #0891b2, #06b6d4);
+            color: white;
+        }
+
+        .undefined {
+            background: linear-gradient(135deg, #64748b, #475569);
+            color: white;
+        }
+
+        .grand-total-section {
+            background: linear-gradient(145deg, #334155, #1e293b);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            color: white;
+            text-align: center;
+            border: 2px solid #475569;
+        }
+
+        .grand-total-title {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #f1f5f9;
+        }
+
+        .grand-total-amount {
+            font-size: 3em;
+            font-weight: 900;
+            color: #34d399;
+        }
+
+        .summary-section {
+            margin-top: 40px;
+        }
+
+        .summary-title {
+            font-size: 2em;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .category-tables {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+
+        .category-table {
+            background: linear-gradient(145deg, #334155, #475569);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-table-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f1f5f9;
+        }
+
+        .category-table-list {
+            list-style: none;
+        }
+
+        .category-table-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            background: #1e293b;
+            font-weight: 500;
+            color: #e2e8f0;
+        }
+
+        .category-table-total {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 3px solid #60a5fa;
+            text-align: right;
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #f1f5f9;
+        }
+
+        @media (max-width: 1600px) {
+            .grid-container {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-tables {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Dashboard de Presupuestos 2025-2026</h1>
+        
+        <div class="grand-total-section">
+            <div class="grand-total-title">Total General</div>
+            <div class="grand-total-amount" id="grand-total">0,00 €</div>
+        </div>
+
+        <div class="grid-container" id="months-grid"></div>
+
+        <div class="summary-section">
+            <h2 class="summary-title">📊 Resumen por Categorías</h2>
+            <div class="category-tables" id="category-summary"></div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            "Octubre 2025": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 4.00},
+                    {name: "Sorteos", amount: 5.00},
+                    {name: "Supermercado", amount: 4.00},
+                    {name: "Farmacia", amount: 2.00}
+                ],
+                "Compras 2025": [
+                    {name: "Ambientadores casa y coche", amount: 10.00},
+                    {name: "Agenda 2026", amount: 10.00}
+                    
+                ],
+                "Compras 2026": [],
+                "Compras Especiales": [
+                    {name: "Plumas amarillo", amount: 495.00},
+                    {name: "Bóxers", amount: 50.00}
+                ]
+            },
+            "Noviembre 2025": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 30.00},
+                    {name: "Cafés", amount: 4.00},
+                    {name: "Sorteos", amount: 5.00},
+                    {name: "Supermercado", amount: 4.00},
+                    {name: "Parking", amount: 2.00},
+                    {name: "Peaje", amount: 6.00},
+                    {name: "Farmacia", amount: 2.00},
+                    {name: "Cine", amount: 9.00},
+                    {name: "Comidas/Cenas", amount: 25.00}
+                ],
+                "Compras 2025": [
+                    {name: "Hugo Boss EDP 50 ml", amount: 50.00},
+                    {name: "Panama Jack", amount: 120.00}
+                    
+                ],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Diciembre 2025": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 30.00},
+                    {name: "Cafés", amount: 4.00},
+                    {name: "Sorteos", amount: 5.00},
+                    {name: "Supermercado", amount: 5.00},
+                    {name: "Farmacia", amount: 2.00},
+                    {name: "Cine", amount: 9.00},
+                    {name: "Comidas/Cenas", amount: 25.00}
+                ],
+                "Compras 2025": [
+                    {name: "Funda de móvil", amount: 15.00},
+                    {name: "Pantalla de cristal", amount: 20.00},
+                    {name: "Zapatillas de casa", amount: 26.00},
+                    {name: "Festina Rosa", amount: 167.00},
+                    
+                ],
+                "Compras 2026": [],
+                "Compras Especiales": [
+                    {name: "Dr. Martens 1460", amount: 140.00},
+                    {name: "Correa amarilla", amount: 32.00},
+                    {name: "Polo azul", amount: 125.00},
+                    {name: "Otros", amount: 47.00},
+                    {name: "Camisa", amount: 145.00},
+                    {name: "Sneakers blancos", amount: 130.00},
+                    {name: "Calcetines", amount: 50.00}
+                ]
+            },
+            "Enero 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [
+                    {name: "Vaqueros Jack & Jones x2", amount: 60.00},    
+                    {name: "Women'secret", amount: 9.00},
+                    {name: "Jabones Dove", amount: 2.00}
+                ],
+                "Compras Especiales": [
+                    {name: "Cinturón tricolor", amount: 8.00},
+                    {name: "Airfryer", amount: 60.00},
+                    {name: "Sabana bajera", amount: 20.00}
+                ]
+            },
+            "Febrero 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [
+                    {name: "Papelería", amount: 2.00},
+                    {name: "Colonia té verde", amount: 5.00}
+                ],
+                "Compras Especiales": [
+                    {name: "Leggings", amount: 8.00},
+                    {name: "Funda tablet", amount: 20.00},
+                    {name: "Funda edredón", amount: 40.00}
+                ]
+            },
+            "Marzo 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Cine", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [
+                    {name: "Juego PS5", amount: 70.00}
+                ],
+                "Compras Especiales": [
+                    {name: "Tissot", amount: 645.00},
+                    {name: "Cortinas", amount: 40.00},
+                    {name: "Jersey rosa", amount: 200.00}
+                ]
+            },
+            "Abril 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [
+                    {name: "Otros", amount: 6.00}
+                ],
+                "Compras Especiales": [
+                    {name: "Toalla XL", amount: 30.00},
+                    {name: "Protector colchón", amount: 20.00}
+                ]
+            },
+            "Mayo 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Junio 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Julio 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Agosto 2026": {
+                "Gastos Corrientes": [
+                   {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Septiembre 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Octubre 2026": {
+                "Gastos Corrientes": [
+                   {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Noviembre 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            },
+            "Diciembre 2026": {
+                "Gastos Corrientes": [
+                    {name: "Gasoil", amount: 0.00},
+                    {name: "Cafés", amount: 0.00},
+                    {name: "Sorteos", amount: 0.00},
+                    {name: "Supermercado", amount: 0.00},
+                    {name: "Farmacia", amount: 0.00},
+                    {name: "Parking", amount: 0.00},
+                    {name: "Peaje", amount: 0.00},
+                    {name: "Cine", amount: 0.00},
+                    {name: "Comidas/Cenas", amount: 0.00}
+                ],
+                "Compras 2025": [],
+                "Compras 2026": [],
+                "Compras Especiales": []
+            }
+        };
+
+        function formatAmount(amount) {
+            return amount.toFixed(2).replace('.', ',') + ' €';
+        }
+
+        function getCategoryClass(category) {
+            const classMap = {
+                "Gastos Corrientes": "gastos_corrientes",
+                "Compras 2025": "compras_2025",
+                "Compras 2026": "inBox",
+                "Compras Especiales": "compras_especiales"
+            };
+            return classMap[category] || "undefined";
+        }
+
+        function calculateMonthTotal(month) {
+            let total = 0;
+            for (let category in data[month]) {
+                data[month][category].forEach(item => {
+                    total += item.amount;
+                });
+            }
+            return total;
+        }
+
+        function renderMonths() {
+            const container = document.getElementById('months-grid');
+            let html = '';
+            let grandTotal = 0;
+
+            for (let month in data) {
+                const monthTotal = calculateMonthTotal(month);
+                grandTotal += monthTotal;
+
+                html += `
+                    <div class="month-box">
+                        <div class="month-title">${month}</div>
+                        <ul class="expense-list">
+                `;
+
+                for (let category in data[month]) {
+                    const categoryClass = getCategoryClass(category);
+                    data[month][category].forEach((item) => {
+                        html += `
+                            <li class="expense-item ${categoryClass}">
+                                <span class="expense-name">${item.name}</span>
+                                <span class="expense-price">${formatAmount(item.amount)}</span>
+                            </li>
+                        `;
+                    });
+                }
+
+                html += `
+                        </ul>
+                        <div class="month-total">Total: ${formatAmount(monthTotal)}</div>
+                    </div>
+                `;
+            }
+
+            container.innerHTML = html;
+            document.getElementById('grand-total').textContent = formatAmount(grandTotal);
+        }
+
+        function renderCategorySummary() {
+            const container = document.getElementById('category-summary');
+            let html = '';
+            const categories = ["Gastos Corrientes", "Compras 2025", "Compras 2026", "Compras Especiales"];
+
+            categories.forEach(categoryName => {
+                let items = {};
+                let categoryTotal = 0;
+
+                for (let month in data) {
+                    if (data[month][categoryName]) {
+                        data[month][categoryName].forEach(item => {
+                            if (!items[item.name]) {
+                                items[item.name] = 0;
+                            }
+                            items[item.name] += item.amount;
+                            categoryTotal += item.amount;
+                        });
+                    }
+                }
+
+                html += `
+                    <div class="category-table">
+                        <div class="category-table-title" style="border-color: ${getCategoryBorderColor(categoryName)}">
+                            ${categoryName}
+                        </div>
+                        <ul class="category-table-list">
+                `;
+
+                for (let itemName in items) {
+                    html += `
+                        <li class="category-table-item">
+                            <span>${itemName}</span>
+                            <span>${formatAmount(items[itemName])}</span>
+                        </li>
+                    `;
+                }
+
+                html += `
+                        </ul>
+                        <div class="category-table-total">
+                            Total: ${formatAmount(categoryTotal)}
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function getCategoryBorderColor(category) {
+            const colorMap = {
+                "Gastos Corrientes": "#e11d48",
+                "Compras 2025": "#0284c7",
+                "Compras 2026": "#059669",
+                "Compras Especiales": "#d946ef"
+            };
+            return colorMap[category] || "#60a5fa";
+        }
+
+        renderMonths();
+        renderCategorySummary();
+    </script>
+</body>
+</html>
