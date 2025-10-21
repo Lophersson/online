@@ -1,0 +1,543 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Preguntas y respuestas — Temario (3ª Versión)</title>
+  <!--<style>
+    :root{--bg:#071229;--card:#061022;--accent:#34d399;--text:#e6f0fb}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; background:linear-gradient(180deg,#021022 0%, #07162a 100%); color:var(--text); margin:0;padding:30px}
+    .container{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    h1{font-size:20px;margin:0}
+    .desc{color:#9ebad1;margin:0;font-size:14px}
+    .grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:14px}
+    details{background:var(--card);padding:14px;border-radius:10px;border:1px solid rgba(52,211,153,0.06)}
+    summary{cursor:pointer;font-weight:600}
+    summary::-webkit-details-marker{display:none}
+    .tag{font-size:12px;color:#93b5c6;margin-top:6px}
+    .ans{margin-top:10px;color:#dff3ff;line-height:1.45}
+    footer{margin-top:20px;font-size:13px;color:#9fb5c8}
+    @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
+  </style>-->
+  <style>
+  :root {
+  --bg: #f0fdf4;
+  --card: #ffffff;
+  --accent: #ff6b9d;
+  --text: #1a5c3a;
+  --verde-cesped: #7fdc4f;
+  --amarillo: #ffd93d;
+  --coral: #ff6b6b;
+  --pistacho: #d4f4a7;
+  --rosa: #ffb3d9;
+  --azul-celeste: #89d4f7;
+}
+
+body {
+  font-family: 'Nunito', 'Quicksand', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  background: linear-gradient(135deg, #fff9e6 0%, #e0f7fa 50%, #fce4ec 100%);
+  color: var(--text);
+  margin: 0;
+  padding: 30px;
+  animation: fondoSutil 10s ease-in-out infinite alternate;
+}
+
+@keyframes fondoSutil {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  animation: aparecer 0.6s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 20px;
+  background: linear-gradient(120deg, var(--amarillo) 0%, var(--coral) 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3),
+              0 0 40px rgba(127, 220, 79, 0.2);
+  animation: brilloHeader 3s ease-in-out infinite;
+}
+
+@keyframes brilloHeader {
+  0%, 100% { box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3), 0 0 40px rgba(127, 220, 79, 0.2); }
+  50% { box-shadow: 0 12px 35px rgba(255, 107, 157, 0.5), 0 0 60px rgba(127, 220, 79, 0.4); }
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 800;
+}
+
+.desc {
+  color: #ffffff;
+  margin: 0;
+  font-size: 14px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+details {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 18px;
+  border: 3px solid transparent;
+  background-image: linear-gradient(white, white),
+                    linear-gradient(120deg, var(--verde-cesped), var(--azul-celeste), var(--rosa));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 4px 15px rgba(127, 220, 79, 0.15),
+              0 8px 30px rgba(137, 212, 247, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+details:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(255, 107, 157, 0.25),
+              0 15px 50px rgba(127, 220, 79, 0.2);
+  border-color: var(--verde-cesped);
+}
+
+details[open] {
+  background: linear-gradient(135deg, #ffffff 0%, var(--pistacho) 100%);
+  box-shadow: 0 15px 40px rgba(212, 244, 167, 0.4),
+              0 0 50px rgba(127, 220, 79, 0.3);
+  animation: pulsoAbierto 0.5s ease-out;
+}
+
+@keyframes pulsoAbierto {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+  transition: color 0.3s ease;
+  position: relative;
+  padding-left: 28px;
+}
+
+summary::before {
+  content: '✨';
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+  animation: girar 2s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+summary:hover {
+  color: var(--coral);
+  text-shadow: 0 0 10px rgba(255, 107, 109, 0.3);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--azul-celeste);
+  margin-top: 6px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 4px 10px;
+  background: linear-gradient(90deg, var(--pistacho), var(--azul-celeste));
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(137, 212, 247, 0.3);
+}
+
+.ans {
+  margin-top: 10px;
+  color: #2d5a40;
+  line-height: 1.6;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border-left: 4px solid var(--verde-cesped);
+  box-shadow: inset 0 2px 8px rgba(127, 220, 79, 0.1);
+  animation: deslizarAbajo 0.4s ease-out;
+}
+
+@keyframes deslizarAbajo {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #4a8a5f;
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(90deg, var(--rosa), var(--amarillo), var(--azul-celeste));
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(255, 179, 217, 0.3);
+  font-weight: 600;
+}
+
+@media (min-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+  
+  .botones-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.boton {
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Nunito', 'Quicksand', system-ui;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15),
+              0 0 30px rgba(127, 220, 79, 0.3);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.boton::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(45deg);
+  animation: brilloBoton 3s linear infinite;
+}
+
+@keyframes brilloBoton {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.boton:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25),
+              0 0 50px rgba(255, 107, 157, 0.5);
+}
+
+.boton:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.boton-1 {
+  background: linear-gradient(135deg, var(--verde-cesped) 0%, #5bc42a 100%);
+}
+
+.boton-2 {
+  background: linear-gradient(135deg, var(--amarillo) 0%, #ffc107 100%);
+}
+
+.boton-3 {
+  background: linear-gradient(135deg, var(--coral) 0%, #ff4757 100%);
+}
+
+.boton-4 {
+  background: linear-gradient(135deg, var(--azul-celeste) 0%, #4daef7 100%);
+}
+
+@media (min-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+ 
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Oposiciones Ayuntamiento de A Coruña 2025 — Temario (versión 3)</h1>
+        <p class="desc">Preguntas con sus respuestas correctas.</p>
+      </div>
+    </header><div class="grid">
+
+      <div class="botones-container">
+  <a href="https://lophersson.github.io/online/oposicionescoru1.html" target="_blank" rel="noopener noreferrer" class="boton boton-1">📚 Versión 1</a>
+  <a href="https://lophersson.github.io/online/oposicionescoru2.html" target="_blank" rel="noopener noreferrer" class="boton boton-2">📝 Versión 2</a>
+  <a href="https://lophersson.github.io/online/oposicionescoru3.html" target="_blank" rel="noopener noreferrer" class="boton boton-3">📊 Versión 3</a>
+  <a href="https://lophersson.github.io/online/oposicionescoru4.html" target="_blank" rel="noopener noreferrer" class="boton boton-4">💡 Versión 4</a>
+</div>
+      
+  <!-- PARTE COMÚN (10 temas) -->
+  <details>
+    <summary>PC - Tema 1: ¿Qué contenidos recoge el Título Preliminar de la Constitución Española?</summary>
+    <div class="tag">Tema 1 — Constitución: Título preliminar</div>
+    <div class="ans">El Título Preliminar consagra la soberanía nacional, la forma política del Estado (monarquía parlamentaria), principios constitucionales, la protección de derechos fundamentales y el ordenamiento jurídico como norma suprema.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 2: ¿Qué requisitos debe cumplir el proceso de investidura del Presidente del Gobierno?</summary>
+    <div class="tag">Tema 2 — Investidura y responsabilidades</div>
+    <div class="ans">El candidato propuesto por el Rey necesita mayoría absoluta en la primera votación del Congreso o mayoría simple en una segunda votación; el Gobierno es políticamente responsable ante las Cortes y puede ser retirado por moción de censura.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 3: ¿Qué funciones principales tiene el Tribunal Constitucional?</summary>
+    <div class="tag">Tema 3 — Tribunal Constitucional</div>
+    <div class="ans">Controla la constitucionalidad de las leyes, resuelve recursos de amparo, conflictos de competencias entre poderes o territorios y conoce otros procedimientos constitucionales establecidos en la ley.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 4: ¿Qué contenido esencial regula un Estatuto de Autonomía?</summary>
+    <div class="tag">Tema 4 — Estatutos de Autonomía</div>
+    <div class="ans">El Estatuto define la atribución de competencias, la organización de los poderes autonómicos, la competencia legislativa y ejecutiva, derechos específicos y el procedimiento de reforma estatutaria.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 5: ¿Qué clases de normas integran el bloque de constitucionalidad?</summary>
+    <div class="tag">Tema 5 — Bloque de constitucionalidad</div>
+    <div class="ans">Forman parte la propia Constitución, tratados internacionales, principios del derecho internacional y, en interpretación amplia, normas y principios que informan la interpretación constitucional, que tienen rango superior a la ley ordinaria.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 6: ¿Qué papel desempeña el Parlamento Europeo en la elaboración del Derecho de la UE?</summary>
+    <div class="tag">Tema 6 — Parlamento Europeo</div>
+    <div class="ans">El Parlamento comparte la función legislativa con el Consejo en la mayoría de procedimientos, controla a la Comisión, aprueba el presupuesto de la UE y representa democráticamente a los ciudadanos europeos.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 7: Según la Ley de Bases del Régimen Local, ¿qué principios deben regir la actuación municipal?</summary>
+    <div class="tag">Tema 7 — Principios municipales</div>
+    <div class="ans">Principios de autonomía local, eficiencia, transparencia, participación ciudadana y coordinación con otras administraciones, ajustados a la legalidad estatal y autonómica.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 8: ¿Qué garantías ofrece la normativa de protección de datos respecto al consentimiento?</summary>
+    <div class="tag">Tema 8 — Protección de datos: consentimiento</div>
+    <div class="ans">El consentimiento debe ser libre, informado, específico e inequívoco; la normativa exige transparencia y posibilita otros fundamentos jurídicos para el tratamiento (contrato, obligación legal, interés público).</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 9: ¿Qué obligaciones básicas impone la Ley de Prevención de Riesgos Laborales al empresario?</summary>
+    <div class="tag">Tema 9 — Prevención: obligaciones empresariales</div>
+    <div class="ans">Evaluar riesgos, planificar la prevención, formar e informar a los trabajadores, adoptar medidas preventivas y facilitar medios y recursos para la seguridad y salud laboral.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 10: ¿Qué obligaciones contiene la Ley para la Igualdad efectiva entre mujeres y hombres en materia de empleo público?</summary>
+    <div class="tag">Tema 10 — Igualdad en el empleo público</div>
+    <div class="ans">Exige igualdad de trato y oportunidades, elaboración de planes de igualdad, medidas contra la brecha salarial y acciones positivas para corregir desigualdades en la selección y promoción en la administración.</div>
+  </details>
+
+  <!-- PARTE ESPECÍFICA (27 temas) -->
+
+  <details>
+    <summary>PE - Tema 1: ¿Qué mecanismos impiden la desviación de poder en la actuación administrativa?</summary>
+    <div class="tag">PE 1 — Desviación de poder</div>
+    <div class="ans">La motivación, el control judicial, el principio de finalidad y la obligación de ajustarse a la ley limitan la desviación de poder; la desviación puede implicar nulidad del acto administrativo.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 2: ¿Qué principios informan la actuación de la Administración según la Ley 39/2015?</summary>
+    <div class="tag">PE 2 — Principios de actuación</div>
+    <div class="ans">Principios como eficacia, proporcionalidad, transparencia, eficiencia, colaboración, buena fe y seguridad jurídica, que guían la actividad administrativa y el procedimiento.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 3: ¿Qué formalidades debe respetar la forma de un acto administrativo?</summary>
+    <div class="tag">PE 3 — Forma y motivación</div>
+    <div class="ans">Debe plasmarse por escrito cuando la ley lo exija, incluir motivación cuando afecte derechos o intereses, identificar el órgano, y ser notificado a los interesados con indicación de recursos.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 4: ¿Qué plazos y cómputos son relevantes en la instrucción del procedimiento administrativo?</summary>
+    <div class="tag">PE 4 — Plazos procesales</div>
+    <div class="ans">Plazos de iniciación, audiencia, subsanación, resolución y recursos; el cómputo puede ser en días hábiles o naturales según la materia y la notificación válida marca el inicio de los plazos.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 5: ¿Qué supuestos justifican la terminación anticipada de un procedimiento administrativo?</summary>
+    <div class="tag">PE 5 — Finalización anticipada</div>
+    <div class="ans">Renuncia del solicitante, imposibilidad sobrevenida, desistimiento, caducidad, o resolución que pone fin al procedimiento por requisitos incumplidos; también finalizaciones por acuerdo o mutuo conocimiento.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 6: ¿Qué régimen jurídico aplicable tienen los convenios entre Administraciones?</summary>
+    <div class="tag">PE 6 — Convenios</div>
+    <div class="ans">Los convenios deben respetar principios de legalidad y competencias, establecer objeto, duración, obligaciones y financiación, y suelen exigir autorización o publicidad según la normativa aplicable.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 7: ¿Qué elementos deben garantizar los servicios digitales municipales según la ordenanza?</summary>
+    <div class="tag">PE 7 — Servicios digitales</div>
+    <div class="ans">Accesibilidad, interoperabilidad, seguridad, integridad de datos, derecho a la asistencia y mecanismos de notificación electrónica y acreditación de actos administrativos digitales.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 8: ¿Qué límites temporales existen para interponer un recurso contencioso-administrativo?</summary>
+    <div class="tag">PE 8 — Plazos contencioso-administrativo</div>
+    <div class="ans">Los plazos varían según el acto impugnado; habitualmente son dos meses desde la notificación para recursos ordinarios y otros plazos específicos para resoluciones de carácter particular o actos expresos.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 9: ¿Qué garantías procesales debe respetar el procedimiento sancionador?</summary>
+    <div class="tag">PE 9 — Garantías sancionadoras</div>
+    <div class="ans">Principios de legalidad, tipicidad, proporcionalidad, presunción de inocencia, derecho a defensa, audiencia y motivación de la resolución sancionadora.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 10: ¿Qué especialidades tiene la responsabilidad patrimonial frente a la Administración?</summary>
+    <div class="tag">PE 10 — Responsabilidad patrimonial</div>
+    <div class="ans">Requiere daño efectivo, antijuridicidad y relación causal; existen plazos y procedimientos administrativos específicos para reclamar la indemnización y posibilidad de recurso jurisdiccional.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 11: ¿Qué trámites exige la inscripción de bienes en el inventario público?</summary>
+    <div class="tag">PE 11 — Inventario de bienes</div>
+    <div class="ans">Registro de características, valoración, titularidad y afectación jurídica; actualización periódica y control contable para asegurar la gestión patrimonial adecuada.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 12: ¿Qué distingue a un contrato administrativo de un contrato privado?</summary>
+    <div class="tag">PE 12 — Contratos administrativos</div>
+    <div class="ans">Los contratos administrativos están sujetos al Derecho público y reconocen prerrogativas y obligaciones especiales de la Administración (modificación, resolución, control), mientras que los privados se rigen por el Derecho civil/mercantil.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 13: ¿Qué función tiene el recurso especial en materia de contratación?</summary>
+    <div class="tag">PE 13 — Recurso especial</div>
+    <div class="ans">Es un medio extraordinario de impugnación ante órganos administrativos o jurisdiccionales especializados que busca garantizar la legalidad y la protección de la competencia en contrataciones públicas.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 14: ¿Qué documentación mínima exige el expediente de contratación?</summary>
+    <div class="tag">PE 14 — Expediente de contratación</div>
+    <div class="ans">Memoria justificativa, pliegos administrativos y técnicos, presupuesto base de licitación, acreditación de capacidad y solvencia, y justificantes de la tramitación y publicidad.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 15: ¿Qué efectos tiene la adjudicación sobre las obligaciones contractuales?</summary>
+    <div class="tag">PE 15 — Efectos de la adjudicación</div>
+    <div class="ans">La adjudicación crea obligaciones contractuales vinculantes para las partes: ejecución, garantías, responsabilidad por incumplimiento y sujeta a control y fiscalización administrativa y contable.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 16: ¿Qué procedimiento exige la aprobación de una ordenanza municipal?</summary>
+    <div class="tag">PE 16 — Aprobación de ordenanzas</div>
+    <div class="ans">Iniciativa, informe técnico y jurídico, propuesta por el órgano competente, debate y aprobación por el pleno, trámite de audiencia y publicación para su entrada en vigor.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 17: ¿Qué efectos jurídicos tiene la inscripción en el padrón municipal?</summary>
+    <div class="tag">PE 17 — Efectos del padrón</div>
+    <div class="ans">Acredita residencia, sirve para prestaciones y servicios públicos, determina censos electorales y tiene efectos administrativos y fiscales vinculados a la residencia municipal.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 18: ¿Qué función cumple la junta de gobierno local?</summary>
+    <div class="tag">PE 18 — Junta de gobierno</div>
+    <div class="ans">Es el órgano colegiado que asiste al alcalde en la dirección de la administración municipal, adopta acuerdos ejecutivos y prepara asuntos para el pleno según la normativa local.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 19: ¿Qué especialidades contempla la gestión económico-financiera en municipios de gran población?</summary>
+    <div class="tag">PE 19 — Gestión económica de grandes municipios</div>
+    <div class="ans">Necesidad de sistemas avanzados de control interno, planificación plurianual, mayor capacidad de gestión de deuda e instrumentos financieros adaptados a proyectos de gran envergadura.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 20: ¿Qué instrumentos permiten la transferencia de competencias a entidades locales?</summary>
+    <div class="tag">PE 20 — Transferencia y encomienda</div>
+    <div class="ans">Convenios, trasferencia normativa, encomiendas de gestión y convenios de colaboración que formalizan la cesión o delegación de funciones entre administraciones según la normativa aplicable.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 21: ¿Qué régimen jurídico regula la adquisición de la condición de miembro de una corporación local?</summary>
+    <div class="tag">PE 21 — Condición de miembro</div>
+    <div class="ans">La adquisición deriva de la proclamación provisional y toma de posesión tras las elecciones; la suspensión o pérdida se regula por causas de ineligibilidad, incompatibilidad, renuncia o sentencia firme.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 22: ¿Qué requisitos exige la convocatoria válida de una sesión plenaria?</summary>
+    <div class="tag">PE 22 — Convocatoria de sesiones</div>
+    <div class="ans">Debe anunciarse con antelación suficiente, incluir el orden del día, respetar las formalidades de convocación establecidas en el reglamento y garantizar la publicidad y asistencia de miembros.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 23: ¿Qué actos motivan la impugnación administrativa en el ámbito local?</summary>
+    <div class="tag">PE 23 — Actos impugnables</div>
+    <div class="ans">Actos y acuerdos que causan indefensión o lesionan intereses legítimos de ciudadanos o entidades, como licencias, ordenanzas, acuerdos de pleno o actos de disposición patrimonial.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 24: ¿Qué clases de personal conforman la plantilla de una Administración pública?</summary>
+    <div class="tag">PE 24 — Clases de personal</div>
+    <div class="ans">Personal funcionario de carrera, personal laboral, personal eventual y personal interino, cada uno con régimen jurídico específico respecto a selección, derechos y deberes.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 25: ¿Qué contenido mínimo debe incluir un código de conducta para empleados públicos?</summary>
+    <div class="tag">PE 25 — Código de conducta</div>
+    <div class="ans">Principios éticos, obligaciones de imparcialidad, confidencialidad, prevención de conflictos de interés, reglas sobre regalos y compatibilidades, y sanciones por incumplimiento.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 26: ¿Qué procedimientos disciplinarios se siguen por incompatibilidades del personal?</summary>
+    <div class="tag">PE 26 — Incompatibilidades</div>
+    <div class="ans">Investigación, instrucción y expediente sancionador con audiencia al interesado; pueden dar lugar a sanciones disciplinarias y medidas correctoras para restablecer la legalidad.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 27: ¿Qué fases comprende la elaboración y aprobación del presupuesto municipal?</summary>
+    <div class="tag">PE 27 — Fases presupuestarias</div>
+    <div class="ans">Formulación por la administración local, informe de intervención, debate y aprobación por el pleno, publicación y ejecución con control y posibles modificaciones mediante procedimientos oficiales.</div>
+  </details>
+
+</div>
+
+<footer>Versión 3 generada en formato consistente con las dos primeras: 10 preguntas de Parte Común + 27 de Parte Específica, cada una con su respuesta.</footer>
+
+  </div>
+</body>
+</html>

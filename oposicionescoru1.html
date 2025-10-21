@@ -1,0 +1,597 @@
+<!doctype html>
+
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Preguntas y respuestas - Temario</title>
+  <!--<style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#7dd3fc;--text:#e6eef8}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial; background:linear-gradient(180deg,#071025 0%, #08152a 100%); color:var(--text); margin:0;padding:32px}
+    .wrap{max-width:980px;margin:0 auto}
+    header{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+    h1{font-size:20px;margin:0}
+    p.lead{margin:0;color:#a9c7d8}
+    .grid{display:grid;grid-template-columns:1fr;gap:10px;margin-top:18px}
+    details{background:var(--card);padding:14px;border-radius:10px;border:1px solid rgba(125,211,252,0.08)}
+    summary{cursor:pointer;font-weight:600;list-style:none;outline:none}
+    summary::-webkit-details-marker{display:none}
+    .meta{font-size:12px;color:#93b5c6;margin-top:6px}
+    .answer{margin-top:10px;color:#dff3ff;line-height:1.45}
+    footer{margin-top:22px;font-size:13px;color:#9fb5c8}
+    @media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+  </style>-->
+  <style>
+  
+  :root {
+  --bg: #f0fdf4;
+  --card: #ffffff;
+  --accent: #ff6b9d;
+  --text: #1a5c3a;
+  --verde-cesped: #7fdc4f;
+  --amarillo: #ffd93d;
+  --coral: #ff6b6b;
+  --pistacho: #d4f4a7;
+  --rosa: #ffb3d9;
+  --azul-celeste: #89d4f7;
+}
+
+body {
+  font-family: 'Nunito', 'Quicksand', 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  background: linear-gradient(135deg, #fff9e6 0%, #e0f7fa 50%, #fce4ec 100%);
+  color: var(--text);
+  margin: 0;
+  padding: 30px;
+  animation: fondoSutil 10s ease-in-out infinite alternate;
+}
+
+@keyframes fondoSutil {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  animation: aparecer 0.6s ease-out;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 20px;
+  background: linear-gradient(120deg, var(--amarillo) 0%, var(--coral) 100%);
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3),
+              0 0 40px rgba(127, 220, 79, 0.2);
+  animation: brilloHeader 3s ease-in-out infinite;
+}
+
+@keyframes brilloHeader {
+  0%, 100% { box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3), 0 0 40px rgba(127, 220, 79, 0.2); }
+  50% { box-shadow: 0 12px 35px rgba(255, 107, 157, 0.5), 0 0 60px rgba(127, 220, 79, 0.4); }
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 800;
+}
+
+.desc {
+  color: #ffffff;
+  margin: 0;
+  font-size: 14px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 14px;
+}
+
+details {
+  background: var(--card);
+  padding: 18px;
+  border-radius: 18px;
+  border: 3px solid transparent;
+  background-image: linear-gradient(white, white),
+                    linear-gradient(120deg, var(--verde-cesped), var(--azul-celeste), var(--rosa));
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  box-shadow: 0 4px 15px rgba(127, 220, 79, 0.15),
+              0 8px 30px rgba(137, 212, 247, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+details:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 12px 35px rgba(255, 107, 157, 0.25),
+              0 15px 50px rgba(127, 220, 79, 0.2);
+  border-color: var(--verde-cesped);
+}
+
+details[open] {
+  background: linear-gradient(135deg, #ffffff 0%, var(--pistacho) 100%);
+  box-shadow: 0 15px 40px rgba(212, 244, 167, 0.4),
+              0 0 50px rgba(127, 220, 79, 0.3);
+  animation: pulsoAbierto 0.5s ease-out;
+}
+
+@keyframes pulsoAbierto {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--text);
+  transition: color 0.3s ease;
+  position: relative;
+  padding-left: 28px;
+}
+
+summary::before {
+  content: '✨';
+  position: absolute;
+  left: 0;
+  font-size: 18px;
+  animation: girar 2s linear infinite;
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+summary:hover {
+  color: var(--coral);
+  text-shadow: 0 0 10px rgba(255, 107, 109, 0.3);
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+.tag {
+  font-size: 12px;
+  color: var(--azul-celeste);
+  margin-top: 6px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 4px 10px;
+  background: linear-gradient(90deg, var(--pistacho), var(--azul-celeste));
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(137, 212, 247, 0.3);
+}
+
+.ans {
+  margin-top: 10px;
+  color: #2d5a40;
+  line-height: 1.6;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border-left: 4px solid var(--verde-cesped);
+  box-shadow: inset 0 2px 8px rgba(127, 220, 79, 0.1);
+  animation: deslizarAbajo 0.4s ease-out;
+}
+
+@keyframes deslizarAbajo {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #4a8a5f;
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(90deg, var(--rosa), var(--amarillo), var(--azul-celeste));
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(255, 179, 217, 0.3);
+  font-weight: 600;
+}
+
+.botones-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 25px 0;
+  flex-wrap: wrap;
+}
+
+.boton {
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Nunito', 'Quicksand', system-ui;
+  border: none;
+  border-radius: 18px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15),
+              0 0 30px rgba(127, 220, 79, 0.3);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.boton::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transform: rotate(45deg);
+  animation: brilloBoton 3s linear infinite;
+}
+
+@keyframes brilloBoton {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.boton:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25),
+              0 0 50px rgba(255, 107, 157, 0.5);
+}
+
+.boton:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.boton-1 {
+  background: linear-gradient(135deg, var(--verde-cesped) 0%, #5bc42a 100%);
+}
+
+.boton-2 {
+  background: linear-gradient(135deg, var(--amarillo) 0%, #ffc107 100%);
+}
+
+.boton-3 {
+  background: linear-gradient(135deg, var(--coral) 0%, #ff4757 100%);
+}
+
+.boton-4 {
+  background: linear-gradient(135deg, var(--azul-celeste) 0%, #4daef7 100%);
+}
+
+@media (min-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Oposiciones Ayuntamiento de A Coruña 2025 — Temario (versión 1)</h1>
+        <p class="desc">Preguntas con sus respuestas correctas.</p>
+      </div>
+    </header><div class="grid">
+
+      <div class="botones-container">
+  <a href="https://lophersson.github.io/online/oposicionescoru1.html" target="_blank" rel="noopener noreferrer" class="boton boton-1">📚 Versión 1</a>
+  <a href="https://lophersson.github.io/online/oposicionescoru2.html" target="_blank" rel="noopener noreferrer" class="boton boton-2">📝 Versión 2</a>
+  <a href="https://lophersson.github.io/online/oposicionescoru3.html" target="_blank" rel="noopener noreferrer" class="boton boton-3">📊 Versión 3</a>
+  <a href="https://lophersson.github.io/online/oposicionescoru4.html" target="_blank" rel="noopener noreferrer" class="boton boton-4">💡 Versión 4</a>
+</div>
+      
+  <!-- PARTE COMÚN (10 temas) -->
+  <details>
+    <summary>PC - Tema 1: ¿Cuál es la naturaleza del Estado según la Constitución Española de 1978?</summary>
+    <div class="meta">Tema 1 — Constitución española</div>
+    <div class="answer">La Constitución define a España como un Estado social y democrático de Derecho; reconoce valores superiores como la libertad, la justicia, la igualdad y el pluralismo político, y regula derechos y deberes fundamentales con garantías y procedimientos de reforma constitucional.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 2: ¿Cuál es la relación constitucional entre el Gobierno y las Cortes Generales?</summary>
+    <div class="meta">Tema 2 — Gobierno y Cortes</div>
+    <div class="answer">El Gobierno ejerce la función ejecutiva y está políticamente responsable ante las Cortes Generales, que controlan su acción (investidura, moción de censura, interpelaciones) y ejercen la función legislativa y de control; existen órganos constitucionales de control como el Tribunal de Cuentas y el Valedor do Pobo (defensor del pueblo autonómico).</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 3: ¿Qué papel asigna la Constitución al poder judicial y al Tribunal Constitucional?</summary>
+    <div class="meta">Tema 3 — Poder judicial y organización territorial</div>
+    <div class="answer">La Constitución garantiza la independencia del poder judicial; el Tribunal Constitucional tutela la supremacía constitucional y resuelve conflictos de constitucionalidad y competencias; además regula el modelo económico y el régimen de distribución competencial entre Estado y Comunidades Autónomas.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 4: ¿Qué recoge el Estatuto de Autonomía de Galicia respecto a su poder institucional?</summary>
+    <div class="meta">Tema 4 — Estatuto de Autonomía de Galicia</div>
+    <div class="answer">El Estatuto regula la estructura institucional galega: Parlamento (órgano legislativo), Xunta e seu presidente (órgano executivo), sistema de administración de justicia en Galicia, competencias autonómicas, y órganos de control autonómicos como o Valedor do Pobo e o Consello de Contas; establece asimismo el procedimiento de reforma estatutaria.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 5: ¿Qué es el principio de jerarquía normativa en el sistema de fuentes del Derecho?</summary>
+    <div class="meta">Tema 5 — Fuentes del ordenamiento jurídico</div>
+    <div class="answer">El principio de jerarquía establece que las normas de rango inferior deben respetar las de rango superior; las fuentes incluyen la Constitución, las leyes y normas con rango de ley, los tratados internacionales, y el Derecho de la UE, con reglas de coordinación entre ordenamientos estatal y autonómicos.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 6: ¿Cuáles son los principales órganos de la Unión Europea y su función general?</summary>
+    <div class="meta">Tema 6 — Unión Europea</div>
+    <div class="answer">Los principales órganos son el Consejo Europeo (dirección política), el Consejo (órgano legislativo junto al Parlamento), la Comisión Europea (iniciativa y ejecución), el Parlamento Europeo (legislación y control) y el Tribunal de Justicia de la UE (interpretación y aplicación del Derecho de la UE).</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 7: ¿Qué define la Ley 7/1985 sobre régimen local respecto al municipio?</summary>
+    <div class="meta">Tema 7 — Régimen local</div>
+    <div class="answer">La Ley regula el municipio como entidad básica del régimen local, su territorio, competencias propias y especiales, y la organización provincial y otras entidades locales (áreas metropolitanas, mancomunidades, consorcios, entidades locales menores), así como la participación en federaciones de municipios.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 8: ¿Qué derechos y principios básicos establece la Ley Orgánica 3/2018 sobre protección de datos?</summary>
+    <div class="meta">Tema 8 — Protección de datos y transparencia</div>
+    <div class="answer">La ley consagra principios como minimización, licitud, lealtad y transparencia; reconoce derechos de acceso, rectificación, supresión, limitación, oposición y portabilidad; regula responsables y encargados del tratamiento. Además la Ley 19/2013 regula la transparencia y el acceso a la información pública.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 9: ¿Cuál es el objetivo principal de la Ley 31/1995 de prevención de riesgos laborales?</summary>
+    <div class="meta">Tema 9 — Prevención de riesgos laborales</div>
+    <div class="answer">Proteger la seguridad y la salud de los trabajadores mediante medidas de prevención, obligaciones de empleadores y trabajadores, servicios de prevención y participación y consulta de los trabajadores; regula derechos y deberes y el marco de aplicación.</div>
+  </details>
+
+  <details>
+    <summary>PC - Tema 10: ¿Qué establece la Ley Orgánica 3/2007 sobre igualdad efectiva entre mujeres y hombres?</summary>
+    <div class="meta">Tema 10 — Igualdad</div>
+    <div class="answer">Reconoce el principio de igualdad y prohíbe la discriminación por sexo; ordena políticas públicas para la igualdad efectiva, medidas en el empleo y la administración pública; la Ley 7/2023 refuerza condiciones de igualdad en Galicia.</div>
+  </details>
+
+  <!-- PARTE ESPECÍFICA (37 temas) -->
+
+  <details>
+    <summary>PE - Tema 1: ¿Qué es el principio de legalidad en la Administración Pública?</summary>
+    <div class="meta">Tema PE 1 — Principio de legalidad</div>
+    <div class="answer">Significa que la actuación administrativa debe ajustarse a la ley; las potestades administrativas están sometidas a derecho y las decisiones discrecionales tienen límites y control judicial para evitar desviación de poder.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 2: ¿Quiénes son los interesados en el procedimiento administrativo según la Ley 39/2015?</summary>
+    <div class="meta">Tema PE 2 — Procedimiento administrativo (interesados)</div>
+    <div class="answer">Son las personas físicas o jurídicas y las entidades a las que afecta el procedimiento o interesadas en su resultado; la Ley 39/2015 regula sus derechos, presentación de solicitudes, plazos y participación.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 3: ¿Qué distingue a los actos administrativos en cuanto a nulidad y anulabilidad?</summary>
+    <div class="meta">Tema PE 3 — Actos administrativos</div>
+    <div class="answer">La nulidad afecta a actos con vicios graves (falta total de competencia, objeto imposible) que se consideran inexistentes; la anulabilidad se refiere a defectos subsanables que permiten la declaración de anulabilidad y recursos o revisión en vía administrativa.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 4: ¿Qué garantías básicas ofrece el procedimiento administrativo común?</summary>
+    <div class="meta">Tema PE 4 — Garantías del procedimiento</div>
+    <div class="answer">Garantías como audiencia, derecho a ser informado, motivación de los actos, impulso de oficio, plazos razonables, y participación; regulación de iniciación, ordenación e instrucción del procedimiento.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 5: ¿Qué comprende la finalización y ejecución del procedimiento administrativo?</summary>
+    <div class="meta">Tema PE 5 — Finalización y ejecución</div>
+    <div class="answer">Incluye la resolución o terminación por silencio, la ejecución de los actos administrativos por la Administración, medidas de ejecución forzosa y la tramitación simplificada prevista para procedimientos de menor complejidad.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 6: ¿Qué regula la Ley 40/2015 sobre la estructura de los órganos administrativos?</summary>
+    <div class="meta">Tema PE 6 — Ley 40/2015</div>
+    <div class="answer">Regula la organización del sector público, tipos de órganos administrativos (unipersonales y colegiados), su competencia, reglas de abstención y recusación, y la regulación de convenios entre Administraciones.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 7: ¿Qué derechos digitales reconoce la ordenanza de administración digital del Concello da Coruña?</summary>
+    <div class="meta">Tema PE 7 — Administración digital local</div>
+    <div class="answer">Reconoce derechos y deberes ciudadanos en relación con los servicios digitales, interoperabilidad, acceso a datos y documentos, notificaciones electrónicas y la existencia de una red de apoyo a la administración digital y servicios digitales municipales.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 8: ¿Cuál es la naturaleza de la jurisdicción contencioso-administrativa?</summary>
+    <div class="meta">Tema PE 8 — Jurisdicción contencioso-administrativa</div>
+    <div class="answer">Es la jurisdicción especializada que controla la legalidad de la actuación administrativa, con órganos y competencias determinadas, regulando legitimación, objeto del recurso y causas de inadmisibilidad.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 9: ¿Qué principios rigen el ejercicio de la potestad sancionadora administrativa?</summary>
+    <div class="meta">Tema PE 9 — Potestad sancionadora</div>
+    <div class="answer">Principios de legalidad, tipicidad, proporcionalidad, presunción de inocencia, irretroactividad y prohibición de doble sanción; regula procedimientos sancionadores y clases de sanciones y su aplicación en el ámbito local.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 10: ¿Qué supone la responsabilidad patrimonial de las Administraciones Públicas?</summary>
+    <div class="meta">Tema PE 10 — Responsabilidad de la Administración</div>
+    <div class="answer">La obligación de reparar daños causados por funcionamiento anormal de los servicios públicos; establece requisitos, acción de responsabilidad y especialidades del procedimiento administrativo y patrimonial.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 11: ¿Cómo se clasifican los bienes de las entidades locales?</summary>
+    <div class="meta">Tema PE 11 — Patrimonio público</div>
+    <div class="answer">En bienes de dominio público (inalienables, inembargables, imprescriptibles) y bienes patrimoniales; existe obligación de inventario y régimen jurídico específico para la utilización, autorizaciones y concesiones demaniales.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 12: ¿Qué finalidad tienen las directivas europeas sobre contratación pública?</summary>
+    <div class="meta">Tema PE 12 — Contratos del sector público</div>
+    <div class="answer">Asegurar la libre concurrencia, transparencia y no discriminación en los procedimientos de contratación pública; la Ley de Contratos del Sector Público delimita tipos contractuales, contratos sujetos a regulación armonizada y contratación menor.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 13: ¿Qué principios deben guiar la celebración de contratos del sector público?</summary>
+    <div class="meta">Tema PE 13 — Disposiciones generales contratación</div>
+    <div class="answer">Principios de eficacia, racionalidad, publicidad, concurrencia y libertad de pactos dentro del marco legal; regulación de perfección, forma del contrato, competencia y recursos especiales en materia de contratación.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 14: ¿Qué documentación mínima exige la preparación de un contrato público?</summary>
+    <div class="meta">Tema PE 14 — Preparación de contratos</div>
+    <div class="answer">Expediente de contratación con memoria, pliegos de cláusulas administrativas y prescripciones técnicas, valoración del presupuesto base de licitación, comprobación de capacidad y solvencia del contratista y garantías exigibles.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 15: ¿Qué potestades especiales tiene la Administración en la ejecución de contratos?</summary>
+    <div class="meta">Tema PE 15 — Adjudicación y ejecución</div>
+    <div class="answer">Puede ejercer prerrogativas como modificación unilaterales en determinados supuestos, resolución por incumplimiento, suspensión o extinción del contrato, y regular la cesión y subcontratación conforme a la ley.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 16: ¿Qué instrumentos normativos tienen las entidades locales para regularse?</summary>
+    <div class="meta">Tema PE 16 — Fuentes del ordenamiento local</div>
+    <div class="answer">Reglamentos y ordenanzas municipales que deben ajustarse a la regulación estatal y autonómica básica; la potestad normativa local se ejercita mediante procedimientos de elaboración y aprobación previstos legalmente.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 17: ¿Qué documentos y registros definen la población y sus derechos en el municipio?</summary>
+    <div class="meta">Tema PE 17 — Municipio y padrón</div>
+    <div class="answer">El padrón municipal identifica a la población y es base de derechos y deberes de los vecinos; además el municipio tiene competencia sobre información y participación ciudadana.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 18: ¿Cuáles son los órganos necesarios en la organización municipal ordinaria?</summary>
+    <div class="meta">Tema PE 18 — Organización municipal</div>
+    <div class="answer">Los órganos necesarios son el alcalde, los tenientes de alcalde, el pleno y la junta de gobierno local; pueden existir órganos complementarios según la organización municipal.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 19: ¿Qué caracteriza el régimen organizativo de municipios de gran población?</summary>
+    <div class="meta">Tema PE 19 — Grandes municipios</div>
+    <div class="answer">Adaptaciones organizativas y competencias especiales para asegurar la eficacia: órganos y funcionamiento adaptados, mayor estructura de gestión y especial regulación económico-financiera.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 20: ¿Cómo se determinan las competencias municipales?</summary>
+    <div class="meta">Tema PE 20 — Competencias municipales</div>
+    <div class="answer">Mediante la normativa que distingue competencias propias, delegadas y otras; la sostenibilidad financiera de la hacienda local condiciona el ejercicio y financiación de dichas competencias y existen mecanismos de colaboración con Administraciones estatal y autonómica.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 21: ¿Qué regula el sistema electoral local?</summary>
+    <div class="meta">Tema PE 21 — Sistema electoral local</div>
+    <div class="answer">Las causas de ineligibilidad e incompatibilidades, el proceso de elección de concejales y alcaldes, constitución y duración del mandato corporativo, y instrumentos como la censura y la cuestión de confianza; además el recurso contencioso-electoral.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 22: ¿Qué requisitos legales deben cumplir las sesiones de los órganos de gobierno local?</summary>
+    <div class="meta">Tema PE 22 — Régimen de sesiones</div>
+    <div class="answer">Regulación de convocatoria, celebración, debate, votaciones, control y fiscalización del pleno, actas y posibilidad de concello aberto y régimen de delegación de competencias.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 23: ¿Qué particularidades tiene el procedimiento administrativo de las entidades locales?</summary>
+    <div class="meta">Tema PE 23 — Procedimiento local</div>
+    <div class="answer">Tiene singularidades en impugnación de actos y acuerdos locales, recursos administrativos y jurisdiccionales, formalidades de certificaciones, comunicaciones, notificaciones, publicaciones y registro de documentos.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 24: ¿Qué situaciones administrativas regulan la relación del personal con la Administración?</summary>
+    <div class="meta">Tema PE 24 — Personal: adquisición y pérdida</div>
+    <div class="answer">Clase de personal, procedimientos de selección y acceso, adquisición y pérdida de la relación de servicio, y situaciones administrativas como excedencias, suspensiones y ceses reguladas por el estatuto del personal.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 25: ¿Qué derechos económicos y de protección social tienen los empleados públicos?</summary>
+    <div class="meta">Tema PE 25 — Derechos y deberes</div>
+    <div class="answer">Derechos retributivos, permisos, licencias, vacaciones, protección social y derechos colectivos; además código de conducta y obligaciones en el desempeño del servicio público.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 26: ¿Qué regula el régimen disciplinario y las incompatibilidades del personal público?</summary>
+    <div class="meta">Tema PE 26 — Régimen disciplinario</div>
+    <div class="answer">Establece faltas y sanciones, procedimientos disciplinarios, garantías del personal y normas sobre incompatibilidades para prevenir conflictos de interés y asegurar la neutralidad del servicio público.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 27: ¿Qué contiene conceptualmente el presupuesto general de las entidades locales?</summary>
+    <div class="meta">Tema PE 27 — Presupuesto local</div>
+    <div class="answer">Concepto y contenido del presupuesto, elaboración, aprobación y bases de ejecución, con mención especial a la prórroga presupuestaria y su régimen jurídico.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 28: ¿Qué es el crédito presupuestario y cómo se modifica?</summary>
+    <div class="meta">Tema PE 28 — Estructura orzamentaria</div>
+    <div class="answer">El crédito es la autorización de gasto por capítulos y aplicaciones; las modificaciones de crédito tienen clases (transferencias, ampliaciones, créditos extraordinarios) y tramitación legal específica.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 29: ¿Qué modalidades de pago se reconocen en la ejecución del presupuesto?</summary>
+    <div class="meta">Tema PE 29 — Execución do orzamento</div>
+    <div class="answer">Pagos en firme, a justificar, anticipos de caja fija, gastos plurianuales y proyectos de gasto; y reglas sobre facturas y requisitos para su presentación en el registro.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 30: ¿Qué es la liquidación del presupuesto y qué efectos tiene?</summary>
+    <div class="meta">Tema PE 30 — Liquidación do orzamento</div>
+    <div class="answer">Proceso de cierre contable del ejercicio que determina remanentes de crédito y resultado presupuestario, con efectos en la consolidación y nuevas bases de ejecución para ejercicios siguientes.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 31: ¿Qué reglamenta la actividad subvencional de las entidades locales?</summary>
+    <div class="meta">Tema PE 31 — Subvenciones</div>
+    <div class="answer">Normativa autonómica y estatal sobre concesión de subvenciones: órganos competentes, beneficiarios, procedimientos de concesión, justificación, control financiero, reintegro e infracciones y sanciones; incluye ordenanzas municipales reguladoras.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 32: ¿Cuáles son los principios del ordenamiento tributario local?</summary>
+    <div class="meta">Tema PE 32 — Ordenamento tributario</div>
+    <div class="answer">Principios de legalidad, capacidad económica, igualdad, generalidad y no confiscatoriedad; regula tributos locales, obligados tributarios y recursos de las haciendas locales, y ordenanzas fiscales.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 33: ¿Cómo se gestiona la recaudación en periodo voluntario y ejecutivo?</summary>
+    <div class="meta">Tema PE 33 — Xestión e recadación</div>
+    <div class="answer">La gestión incluye liquidación, notificación y recaudación en periodo voluntario; en periodo ejecutivo se aplican medidas coactivas. Existe regulación sobre ingresos indebidos y revisión administrativa de actos de gestión tributaria.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 34: ¿Qué tipos de recursos locales existen y cuál es su naturaleza?</summary>
+    <div class="meta">Tema PE 34 — Recursos das facendas locais</div>
+    <div class="answer">Tributos locales como tasas, precios públicos, contribuciones especiales y prestaciones patrimoniales no tributarias; participación en tributos del Estado y CCAA y operaciones de crédito para financiar servicios.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 35: ¿Qué impuesto grava la propiedad inmobiliaria urbana?</summary>
+    <div class="meta">Tema PE 35 — Impuestos locales</div>
+    <div class="answer">El Impuesto sobre Bienes Inmuebles (IBI) grava la propiedad inmobiliaria urbana y rústica; junto a otros tributos locales como IAE, IVTM, ICIO y el Impuesto sobre el Incremento de Valor de los Terrenos de Naturaleza Urbana.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 36: ¿Cuáles son las categorías básicas del suelo según la Ley 2/2016 de Galicia?</summary>
+    <div class="meta">Tema PE 36 — Solo en Galicia</div>
+    <div class="answer">Clasificación en suelo rústico, suelo urbano, suelo urbanizable y suelo de núcleo rural; la ley regula objetivos, principios y régimen urbanístico y la función urbanística de la propiedad del suelo.</div>
+  </details>
+
+  <details>
+    <summary>PE - Tema 37: ¿Qué documentos habilitan la intervención en la edificación y uso del suelo?</summary>
+    <div class="meta">Tema PE 37 — Intervención urbanística</div>
+    <div class="answer">Títulos habilitantes de naturaleza urbanística como licencias, permisos y declaraciones responsables; la ordenanza municipal regula procedimientos de intervención, control en ejecución de obras e implantación de actividades.</div>
+  </details>
+
+</div>
+
+<footer>Documento generado: preguntas y respuestas por tema. Úsalo como punto de estudio y repaso rápido.</footer>
+
+  </div>
+</body>
+</html>
