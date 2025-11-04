@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modelo de negocio — Tienda online de alimentos delicatessen</title>
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#d1b87d;
+      --muted:#9aa6b2;
+      --text:#e6eef3;
+      --glass: rgba(255,255,255,0.03);
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background: linear-gradient(180deg,var(--bg), #071226 80%);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:32px;
+    }
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 1fr 360px;
+      gap:24px;
+      align-items:start;
+    }
+
+    header{
+      grid-column: 1 / -1;
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-bottom:6px;
+    }
+
+    .logo{
+      width:64px;
+      height:64px;
+      background:linear-gradient(135deg,var(--accent), #b19156);
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#1c1a10;
+      font-weight:700;
+      box-shadow:0 6px 18px rgba(0,0,0,0.4);
+      font-size:20px;
+    }
+
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:14px}
+
+    .card{
+      background:linear-gradient(180deg,var(--card), var(--glass));
+      padding:20px;
+      border-radius:12px;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.6);
+    }
+
+    .main{min-height:300px}
+    .section{margin-bottom:18px}
+    .section h2{
+      margin:0 0 10px 0;
+      font-size:16px;
+      color:var(--accent);
+    }
+    .section p{margin:0;color:var(--muted);line-height:1.5;font-size:14px}
+
+    ul.points{margin:10px 0 0 18px;color:var(--muted)}
+    ul.points li{margin-bottom:8px}
+
+    .kpi-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    .kpi{
+      background:rgba(255,255,255,0.02);
+      padding:12px;border-radius:10px;text-align:center;
+    }
+    .kpi strong{display:block;font-size:18px;color:var(--text)}
+    .kpi small{display:block;color:var(--muted);font-size:12px;margin-top:6px}
+
+    aside h3{margin:0 0 8px 0;color:var(--accent)}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:13px;margin-right:6px;margin-bottom:6px}
+
+    footer{
+      grid-column:1 / -1;
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    .sources{font-size:12px;color:var(--muted)}
+    a.ref{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+    }
+
+    @media (max-width:900px){
+      .wrap{grid-template-columns: 1fr; padding:12px}
+      aside{order:2}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="logo">TD</div>
+      <div>
+        <h1>Modelo de negocio — Tienda online de alimentos delicatessen</h1>
+        <p class="lead">Negocio propio, con producción o abastecimiento directo de proveedores locales, centrado en la venta online de productos gourmet y artesanales.</p>
+      </div>
+    </header>
+
+    <main class="card main">
+      <section class="section">
+        <h2>1. ¿Qué es la tienda online?</h2>
+        <p>Se trata de una <strong>tienda digital especializada en alimentos delicatessen</strong> (quesos, embutidos, conservas, vinos, chocolates, aceites, productos ecológicos, etc.), que opera sin depender de otros negocios minoristas. Compra directamente a productores o elabora sus propios productos artesanales, asegurando calidad, exclusividad y trazabilidad local.</p>
+      </section>
+
+      <section class="section">
+        <h2>2. Actores clave</h2>
+        <ul class="points">
+          <li><strong>Clientes:</strong> consumidores que valoran la gastronomía artesanal, la sostenibilidad y la compra directa al productor.</li>
+          <li><strong>Proveedores locales:</strong> agricultores, ganaderos, bodegas y obradores artesanos.</li>
+          <li><strong>Tienda online:</strong> el propio negocio que gestiona catálogo, marketing, logística y servicio al cliente.</li>
+          <li><strong>Distribución:</strong> reparto propio o mediante empresas de transporte locales de confianza.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>3. Fuentes de ingresos</h2>
+        <ul class="points">
+          <li><strong>Venta directa online:</strong> margen entre el coste de compra/producción y el precio de venta al cliente final.</li>
+          <li><strong>Cajas de suscripción gourmet:</strong> envío mensual de productos seleccionados.</li>
+          <li><strong>Pedidos corporativos o regalos de empresa:</strong> cestas personalizadas.</li>
+          <li><strong>Eventos y degustaciones locales:</strong> promoción y venta directa en ferias o colaboraciones gastronómicas.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>4. Estructura de costes</h2>
+        <p>Los costes se dividen entre la <strong>compra o producción</strong> de alimentos, <strong>almacenaje y embalaje</strong>, <strong>transporte</strong>, <strong>marketing digital</strong> (redes, SEO, publicidad) y <strong>mantenimiento web</strong>. Al ser un modelo propio, el margen bruto puede ser más alto que en un marketplace, pero requiere inversión inicial en inventario y control logístico.</p>
+      </section>
+
+      <section class="section">
+        <h2>5. Ventajas competitivas</h2>
+        <ul class="points">
+          <li>Relación directa con productores: control de calidad y precios más competitivos.</li>
+          <li>Identidad de marca propia y coherente.</li>
+          <li>Mayor fidelización del cliente gracias a la personalización y autenticidad.</li>
+          <li>Modelo sostenible, basado en producción local y cadena corta de suministro.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>6. Riesgos y retos</h2>
+        <ul class="points">
+          <li><strong>Gestión de inventario:</strong> productos perecederos requieren control estricto.</li>
+          <li><strong>Competencia digital:</strong> grandes e-commerce y marketplaces gourmet.</li>
+          <li><strong>Costes logísticos:</strong> envíos refrigerados o frágiles pueden encarecer el servicio.</li>
+          <li><strong>Escalabilidad:</strong> limitada al tamaño del almacén o producción artesanal.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2>7. Indicadores clave</h2>
+        <div class="kpi-grid">
+          <div class="kpi"><strong>Clientes recurrentes</strong><small>Tasa de fidelización mensual</small></div>
+          <div class="kpi"><strong>Valor medio de pedido</strong><small>Ticket promedio por compra</small></div>
+          <div class="kpi"><strong>Margen bruto</strong><small>Diferencia entre venta y coste total</small></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="card">
+      <h3>Palabras clave</h3>
+      <div class="pill">Gourmet</div>
+      <div class="pill">Producto local</div>
+      <div class="pill">Sostenible</div>
+      <div class="pill">Venta directa</div>
+      <div class="pill">Tienda online</div>
+
+      <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0">
+
+      <h3>Modelo Canvas (resumen)</h3>
+      <p style="color:var(--muted);font-size:13px">
+        <strong>Propuesta:</strong> alimentos artesanos y exclusivos.  
+        <strong>Clientes:</strong> amantes de la gastronomía de calidad.  
+        <strong>Canales:</strong> tienda web, redes y ferias locales.  
+        <strong>Ingresos:</strong> ventas, suscripciones, regalos.  
+        <strong>Costes:</strong> producción, envíos, marketing.
+      </p>
+
+      <hr style="border:none;height:1px;background:rgba(255,255,255,0.03);margin:12px 0">
+
+      <h3>Notas</h3>
+      <p style="color:var(--muted);font-size:13px">Un modelo propio requiere control integral de la experiencia del cliente, pero ofrece independencia frente a plataformas externas y mejor posicionamiento de marca.</p>
+    </aside>
+
+    <footer>
+      <div class="sources">
+        Análisis elaborado para un modelo local y sostenible de venta online de productos delicatessen.
+      </div>
+      <div style="font-size:12px;color:var(--muted)">Versión explicativa — Ejemplo educativo</div>
+    </footer>
+  </div>
+</body>
+</html>
