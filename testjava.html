@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Programación Java MP0485</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 30px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .question {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question-header {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .code-block {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .code-block .keyword {
+            color: #c678dd;
+        }
+
+        .code-block .string {
+            color: #98c379;
+        }
+
+        .code-block .number {
+            color: #d19a66;
+        }
+
+        .code-block .comment {
+            color: #5c6370;
+            font-style: italic;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            font-size: 15px;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .results {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .results h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .score {
+            font-size: 48px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 20px 0;
+        }
+
+        .reset-btn {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .reset-btn:hover {
+            background: #5a6268;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #e3f2fd;
+            color: #1976d2;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .tag.theory {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .tag.practice {
+            background: #e8f5e9;
+            color: #388e3c;
+        }
+
+        .tag.syntax {
+            background: #fff3e0;
+            color: #f57c00;
+        }
+
+        .tag.debug {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .question {
+                padding: 20px;
+            }
+
+            .code-block {
+                font-size: 12px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>☕ Test de Programación Java MP0485</h1>
+            <p>Teoría, Sintaxis, Depuración y Práctica de Java</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressBar"></div>
+        </div>
+
+        <div class="content">
+            <form id="quizForm">
+                <!-- Las preguntas se generarán dinámicamente -->
+            </form>
+
+            <button type="button" class="submit-btn" id="submitBtn">Enviar Respostas</button>
+
+            <div class="results" id="results">
+                <h2>Resultados do Test</h2>
+                <div class="score" id="scoreDisplay"></div>
+                <p id="resultMessage"></p>
+                <button type="button" class="reset-btn" id="resetBtn">Repetir Test</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            // PREGUNTAS TEÓRICAS
+            {
+                type: 'theory',
+                question: "¿Cuál es la principal característica de Java que lo hace multiplataforma?",
+                options: [
+                    "La Java Virtual Machine (JVM)",
+                    "El uso de JavaScript",
+                    "La compatibilidad con C++",
+                    "El compilador gcc"
+                ],
+                correct: 0
+            },
+            {
+                type: 'theory',
+                question: "¿Qué es la sobrecarga de métodos (overloading)?",
+                options: [
+                    "Ejecutar demasiados métodos al mismo tiempo",
+                    "Definir múltiples métodos con el mismo nombre pero diferentes parámetros",
+                    "Heredar métodos de una clase padre",
+                    "Crear métodos muy largos"
+                ],
+                correct: 1
+            },
+            {
+                type: 'theory',
+                question: "¿Qué palabra clave se usa para heredar de una clase en Java?",
+                options: [
+                    "implements",
+                    "inherits",
+                    "extends",
+                    "inherit"
+                ],
+                correct: 2
+            },
+            {
+                type: 'theory',
+                question: "¿Cuál es la diferencia entre '==' y '.equals()' en Java?",
+                options: [
+                    "No hay diferencia, son lo mismo",
+                    "== compara referencias, .equals() compara contenido",
+                    "== es más rápido que .equals()",
+                    ".equals() solo funciona con números"
+                ],
+                correct: 1
+            },
+            {
+                type: 'theory',
+                question: "¿Qué es un constructor en Java?",
+                options: [
+                    "Un método que destruye objetos",
+                    "Un método especial que inicializa objetos al crearlos",
+                    "Una variable de clase",
+                    "Un tipo de bucle"
+                ],
+                correct: 1
+            },
+            {
+                type: 'theory',
+                question: "¿Qué palabra clave indica que un método no devuelve ningún valor?",
+                options: [
+                    "null",
+                    "none",
+                    "void",
+                    "empty"
+                ],
+                correct: 2
+            },
+            {
+                type: 'theory',
+                question: "¿Qué es la encapsulación en POO?",
+                options: [
+                    "Poner el código en cápsulas",
+                    "Ocultar los datos internos de una clase usando modificadores de acceso",
+                    "Comprimir el código Java",
+                    "Crear clases abstractas"
+                ],
+                correct: 1
+            },
+            {
+                type: 'theory',
+                question: "¿Cuál es el modificador de acceso más restrictivo en Java?",
+                options: [
+                    "public",
+                    "protected",
+                    "default",
+                    "private"
+                ],
+                correct: 3
+            },
+            {
+                type: 'theory',
+                question: "¿Qué es un método estático (static)?",
+                options: [
+                    "Un método que no cambia nunca",
+                    "Un método que pertenece a la clase, no a instancias",
+                    "Un método muy lento",
+                    "Un método que solo funciona con números"
+                ],
+                correct: 1
+            },
+            {
+                type: 'theory',
+                question: "¿Qué es una interfaz en Java?",
+                options: [
+                    "La pantalla del usuario",
+                    "Un contrato que define métodos que una clase debe implementar",
+                    "Una clase especial para gráficos",
+                    "Un tipo de variable"
+                ],
+                correct: 1
+            },
+            
+            // PREGUNTAS DE SINTAXIS
+            {
+                type: 'syntax',
+                question: "¿Cuál es la sintaxis correcta para declarar un array de enteros en Java?",
+                options: [
+                    "int[] numeros = new int[5];",
+                    "int numeros[] = array(5);",
+                    "array<int> numeros = new array(5);",
+                    "int numeros = new int[5];"
+                ],
+                correct: 0
+            },
+            {
+                type: 'syntax',
+                question: "¿Cómo se declara correctamente una constante en Java?",
+                options: [
+                    "const int MAX = 100;",
+                    "final int MAX = 100;",
+                    "constant int MAX = 100;",
+                    "readonly int MAX = 100;"
+                ],
+                correct: 1
+            },
+            {
+                type: 'syntax',
+                question: "¿Cuál es la forma correcta de crear un bucle for que itere de 0 a 9?",
+                options: [
+                    "for (int i = 0; i < 10; i++)",
+                    "for (i = 0; i <= 9; i++)",
+                    "for int i = 0 to 9",
+                    "for (int i = 0; i < 10)"
+                ],
+                correct: 0
+            },
+            {
+                type: 'syntax',
+                question: "¿Cómo se define correctamente el método main en Java?",
+                options: [
+                    "public void main(String args)",
+                    "static void main(String[] args)",
+                    "public static void main(String[] args)",
+                    "public main(String[] args)"
+                ],
+                correct: 2
+            },
+            {
+                type: 'syntax',
+                question: "¿Cuál es la sintaxis correcta para un bloque try-catch?",
+                options: [
+                    "try { } catch { }",
+                    "try { } catch (Exception e) { }",
+                    "try catch (Exception e) { }",
+                    "try { } exception (e) { }"
+                ],
+                correct: 1
+            },
+            
+            // PREGUNTAS PRÁCTICAS - QUÉ DEVUELVE EL CÓDIGO
+            {
+                type: 'practice',
+                question: "¿Qué imprime el siguiente código?",
+                code: `int x = 5;
+int y = 10;
+System.out.println(x + y);`,
+                options: [
+                    "510",
+                    "15",
+                    "5 10",
+                    "Error de compilación"
+                ],
+                correct: 1
+            },
+            {
+                type: 'practice',
+                question: "¿Qué imprime este código?",
+                code: `String texto = "Hola";
+texto += " Mundo";
+System.out.println(texto);`,
+                options: [
+                    "Hola",
+                    "Mundo",
+                    "Hola Mundo",
+                    "Error de compilación"
+                ],
+                correct: 2
+            },
+            {
+                type: 'practice',
+                question: "¿Cuál es el resultado de este código?",
+                code: `int a = 10;
+int b = a++;
+System.out.println(b);`,
+                options: [
+                    "10",
+                    "11",
+                    "9",
+                    "Error de compilación"
+                ],
+                correct: 0
+            },
+            {
+                type: 'practice',
+                question: "¿Qué imprime este código?",
+                code: `for (int i = 0; i < 3; i++) {
+    System.out.print(i + " ");
+}`,
+                options: [
+                    "0 1 2",
+                    "1 2 3",
+                    "0 1 2 3",
+                    "1 2"
+                ],
+                correct: 0
+            },
+            {
+                type: 'practice',
+                question: "¿Cuál es el valor de 'resultado'?",
+                code: `int x = 5;
+int y = 2;
+int resultado = x % y;`,
+                options: [
+                    "2",
+                    "2.5",
+                    "1",
+                    "0"
+                ],
+                correct: 2
+            },
+            {
+                type: 'practice',
+                question: "¿Qué imprime este código?",
+                code: `int[] numeros = {1, 2, 3, 4, 5};
+System.out.println(numeros[2]);`,
+                options: [
+                    "1",
+                    "2",
+                    "3",
+                    "4"
+                ],
+                correct: 2
+            },
+            {
+                type: 'practice',
+                question: "¿Cuál es el resultado?",
+                code: `String s1 = "Java";
+String s2 = "Java";
+System.out.println(s1 == s2);`,
+                options: [
+                    "true",
+                    "false",
+                    "Java",
+                    "Error"
+                ],
+                correct: 0
+            },
+            {
+                type: 'practice',
+                question: "¿Qué imprime este código?",
+                code: `int x = 10;
+if (x > 5) {
+    System.out.println("Mayor");
+} else {
+    System.out.println("Menor");
+}`,
+                options: [
+                    "Mayor",
+                    "Menor",
+                    "10",
+                    "true"
+                ],
+                correct: 0
+            },
+            {
+                type: 'practice',
+                question: "¿Cuál es el resultado de este código?",
+                code: `double resultado = 10 / 4;
+System.out.println(resultado);`,
+                options: [
+                    "2.5",
+                    "2.0",
+                    "2",
+                    "3.0"
+                ],
+                correct: 1
+            },
+            {
+                type: 'practice',
+                question: "¿Qué imprime este código?",
+                code: `String texto = "JAVA";
+System.out.println(texto.toLowerCase());`,
+                options: [
+                    "JAVA",
+                    "java",
+                    "Java",
+                    "jAvA"
+                ],
+                correct: 1
+            },
+            {
+                type: 'practice',
+                question: "¿Cuál es el resultado?",
+                code: `int x = 5;
+x += 3;
+x *= 2;
+System.out.println(x);`,
+                options: [
+                    "13",
+                    "16",
+                    "11",
+                    "10"
+                ],
+                correct: 1
+            },
+            
+            // PREGUNTAS DE DEPURACIÓN - ¿ES CORRECTO?
+            {
+                type: 'debug',
+                question: "¿Este código es correcto?",
+                code: `public class Prueba {
+    public static void main(String[] args) {
+        int x = 5;
+        System.out.println(x);
+    }
+}`,
+                options: [
+                    "Sí, es correcto",
+                    "No, falta el punto y coma en la declaración de x",
+                    "No, main debe ser privado",
+                    "No, String[] args es incorrecto"
+                ],
+                correct: 0
+            },
+            {
+                type: 'debug',
+                question: "¿Este código compilará correctamente?",
+                code: `int numero;
+System.out.println(numero);`,
+                options: [
+                    "Sí, imprimirá 0",
+                    "Sí, imprimirá null",
+                    "No, la variable no está inicializada",
+                    "Sí, imprimirá un valor aleatorio"
+                ],
+                correct: 2
+            },
+            {
+                type: 'debug',
+                question: "¿Hay algún error en este código?",
+                code: `String nombre = "Juan";
+nombre = null;
+System.out.println(nombre.length());`,
+                options: [
+                    "No hay error",
+                    "Sí, NullPointerException en tiempo de ejecución",
+                    "Sí, error de compilación",
+                    "Sí, String no tiene el método length()"
+                ],
+                correct: 1
+            },
+            {
+                type: 'debug',
+                question: "¿Este código es correcto?",
+                code: `int[] numeros = new int[3];
+numeros[0] = 10;
+numeros[1] = 20;
+numeros[3] = 30;`,
+                options: [
+                    "Sí, es correcto",
+                    "No, ArrayIndexOutOfBoundsException",
+                    "No, falta inicializar numeros[2]",
+                    "No, sintaxis incorrecta"
+                ],
+                correct: 1
+            },
+            {
+                type: 'debug',
+                question: "¿Qué error tiene este código?",
+                code: `public void calcular() {
+    int resultado = 10 + 20;
+    return resultado;
+}`,
+                options: [
+                    "No tiene error",
+                    "void no puede retornar un valor",
+                    "Falta el punto y coma",
+                    "resultado debe ser double"
+                ],
+                correct: 1
+            },
+            
+            // MÁS PREGUNTAS DE CORRECCIÓN
+            {
+                type: 'debug',
+                question: "¿Cuál es el error en este código?",
+                code: `public class Persona {
+    private String nombre;
+    
+    public Persona(String nombre) {
+        nombre = nombre;
+    }
+}`,
+                options: [
+                    "No hay error",
+                    "Debe usar 'this.nombre = nombre;'",
+                    "El constructor debe ser privado",
+                    "nombre debe ser public"
+                ],
+                correct: 1
+            },
+            {
+                type: 'debug',
+                question: "¿Este switch está bien escrito?",
+                code: `int dia = 3;
+switch (dia) {
+    case 1:
+        System.out.println("Lunes");
+    case 2:
+        System.out.println("Martes");
+    case 3:
+        System.out.println("Miércoles");
+}`,
+                options: [
+                    "Sí, está perfecto",
+                    "No, faltan los break",
+                    "No, switch no acepta int",
+                    "No, faltan llaves en los case"
+                ],
+                correct: 1
+            },
+            {
+                type: 'debug',
+                question: "¿Qué problema tiene este código?",
+                code: `String texto = "Hola";
+char letra = texto[0];`,
+                options: [
+                    "No hay problema",
+                    "Debe usar texto.charAt(0)",
+                    "String no tiene caracteres",
+                    "Falta punto y coma"
+                ],
+                correct: 1
+            },
+            {
+                type: 'practice',
+                question: "¿Qué imprime este código?",
+                code: `int x = 5;
+System.out.println(++x);`,
+                options: [
+                    "5",
+                    "6",
+                    "4",
+                    "Error"
+                ],
+                correct: 1
+            },
+            {
+                type: 'practice',
+                question: "¿Cuál es el resultado final de x?",
+                code: `int x = 10;
+if (x > 5) {
+    x = x * 2;
+}
+if (x > 15) {
+    x = x - 5;
+}`,
+                options: [
+                    "10",
+                    "15",
+                    "20",
+                    "25"
+                ],
+                correct: 1
+            },
+            {
+                type: 'theory',
+                question: "¿Qué palabra clave se usa para prevenir que una clase sea heredada?",
+                options: [
+                    "static",
+                    "final",
+                    "private",
+                    "sealed"
+                ],
+                correct: 1
+            },
+            {
+                type: 'practice',
+                question: "¿Qué devuelve este código?",
+                code: `String s = "Java";
+System.out.println(s.substring(1, 3));`,
+                options: [
+                    "Ja",
+                    "av",
+                    "ava",
+                    "Jav"
+                ],
+                correct: 1
+            },
+            {
+                type: 'debug',
+                question: "¿Este código tiene algún error?",
+                code: `final int MAX = 100;
+MAX = 200;`,
+                options: [
+                    "No, es correcto",
+                    "Sí, no se puede modificar una variable final",
+                    "Sí, final debe ir al final",
+                    "Sí, MAX debe ser minúscula"
+                ],
+                correct: 1
+            },
+            {
+                type: 'practice',
+                question: "¿Qué imprime este bucle while?",
+                code: `int i = 0;
+while (i < 3) {
+    System.out.print(i + " ");
+    i++;
+}`,
+                options: [
+                    "0 1 2",
+                    "0 1 2 3",
+                    "1 2 3",
+                    "Bucle infinito"
+                ],
+                correct: 0
+            }
+        ];
+
+        const form = document.getElementById('quizForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const results = document.getElementById('results');
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        const resultMessage = document.getElementById('resultMessage');
+        const resetBtn = document.getElementById('resetBtn');
+        const progressBar = document.getElementById('progressBar');
+
+        // Generar preguntas
+        function generateQuiz() {
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                
+                let tagText = '';
+                let tagClass = '';
+                switch(q.type) {
+                    case 'theory':
+                        tagText = 'TEORÍA';
+                        tagClass = 'theory';
+                        break;
+                    case 'syntax':
+                        tagText = 'SINTAXIS';
+                        tagClass = 'syntax';
+                        break;
+                    case 'practice':
+                        tagText = 'PRÁCTICA';
+                        tagClass = 'practice';
+                        break;
+                    case 'debug':
+                        tagText = 'DEPURACIÓN';
+                        tagClass = 'debug';
+                        break;
+                }
+                
+                let codeHTML = '';
+                if (q.code) {
+                    codeHTML = `<div class="code-block">${escapeHtml(q.code)}</div>`;
+                }
+                
+                questionDiv.innerHTML = `
+                    <span class="tag ${tagClass}">${tagText}</span>
+                    <div class="question-header">${index + 1}. ${q.question}</div>
+                    ${codeHTML}
+                    <div class="options">
+                        ${q.options.map((option, optIndex) => `
+                            <div class="option">
+                                <input type="radio" name="q${index}" value="${optIndex}" id="q${index}_${optIndex}">
+                                <label for="q${index}_${optIndex}">${option}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                form.appendChild(questionDiv);
+            });
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/&/g, '&amp;')
+                      .replace(/</g, '&lt;')
+                      .replace(/>/g, '&gt;')
+                      .replace(/"/g, '&quot;')
+                      .replace(/'/g, '&#039;');
+        }
+
+        // Actualizar barra de progreso
+        function updateProgress() {
+            const totalQuestions = questions.length;
+            let answered = 0;
+            
+            questions.forEach((_, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected) answered++;
+            });
+            
+            const progress = (answered / totalQuestions) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        // Event listeners para actualizar progreso
+        document.addEventListener('change', (e) => {
+            if (e.target.type === 'radio') {
+                updateProgress();
+            }
+        });
+
+        // Enviar test
+        submitBtn.addEventListener('click', () => {
+            let score = 0;
+            let answered = 0;
+
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const options = document.querySelectorAll(`input[name="q${index}"]`);
+                
+                if (selected) {
+                    answered++;
+                    const selectedValue = parseInt(selected.value);
+                    
+                    options.forEach((option, optIndex) => {
+                        const optionDiv = option.closest('.option');
+                        if (optIndex === q.correct) {
+                            optionDiv.classList.add('correct');
+                        } else if (selectedValue === optIndex) {
+                            optionDiv.classList.add('incorrect');
+                        }
+                        option.disabled = true;
+                    });
+                    
+                    if (selectedValue === q.correct) {
+                        score++;
+                    }
+                }
+            });
+
+            if (answered < questions.length) {
+                alert(`Por favor, responde todas las preguntas. Te faltan ${questions.length - answered} preguntas.`);
+                return;
+            }
+
+            const percentage = ((score / questions.length) * 100).toFixed(1);
+            scoreDisplay.textContent = `${score} / ${questions.length} (${percentage}%)`;
+            
+            if (percentage >= 90) {
+                resultMessage.textContent = '¡Excelente! Dominas Java muy bien. 🏆';
+            } else if (percentage >= 70) {
+                resultMessage.textContent = '¡Muy bien! Buen conocimiento de Java. 👍';
+            } else if (percentage >= 50) {
+                resultMessage.textContent = 'Aprobado, pero necesitas practicar más. 💻';
+            } else {
+                resultMessage.textContent = 'Necesitas repasar más Java. ¡Ánimo! 📚';
+            }
+
+            results.classList.add('show');
+            submitBtn.disabled = true;
+            
+            // Scroll a resultados
+            results.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // Reset test
+        resetBtn.addEventListener('click', () => {
+            form.reset();
+            results.classList.remove('show');
+            submitBtn.disabled = false;
+            progressBar.style.width = '0%';
+            
+            document.querySelectorAll('.option').forEach(option => {
+                option.classList.remove('correct', 'incorrect');
+            });
+            
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.disabled = false;
+            });
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Inicializar
+        generateQuiz();
+    </script>
+</body>
+</html>
