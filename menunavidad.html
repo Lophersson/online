@@ -265,19 +265,30 @@ h2 {
   color: #1a1a2e;
 }
 @media print {
+* {
+  color: #000 !important;
+  opacity: 1 !important;
+  filter: none !important;
+  text-shadow: none !important;
+  background: transparent !important;
+}
+  
   body {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+print-color-adjust: exact !important;
     color: #000 !important;
     background: #fff !important;
     overflow: visible !important;
     text-shadow: none !important;
   opacity: 1 !important;
   filter: none !important;
-  }
+    }
   header, .tabs, .tab, .titulo-con-imagenes span.icon, .print-btn {
     display: none !important;
   }
+  
+
+
   .content {
     display: block !important;
     background: #fff !important;
@@ -285,6 +296,7 @@ h2 {
     padding: 0 !important;
     margin: 0 !important;
     max-width: 100% !important;
+    font-size: 1.3em !important; /* aumente de 1.06em */
   }
   h1, h2, h3, h4, h5, h6, p, ul, li, .course, .ingredients-section, .ingredient-course {
     color: #000 !important;
@@ -292,11 +304,6 @@ h2 {
     box-shadow: none !important;
     border: none !important;
     text-shadow: none !important;
-  }
-  .content {
-    font-size: 1.06em !important;
-    margin: 0;
-    padding: 0;
   }
   .course, .ingredient-course {
     margin-bottom: 9px !important;
@@ -324,21 +331,22 @@ h2 {
     margin-bottom: 7px !important;
     border-left: none !important;
   }
+  
   h2 {
     margin-bottom: 6px !important;
-    font-size: 1.6em !important;
+    font-size: 2.2em !important;
     color: #000 !important;
     text-align: left !important;
   }
   h3, .ingredients-title {
     color: #000 !important;
     margin-bottom: 4px !important;
-    font-size: 1.08em !important;
+    font-size: 1.4em !important;
   }
   .course-description {
     margin-bottom: 6px !important;
     color: #000 !important;
-    font-size: 1em !important;
+    font-size: 1.15em !important;
     text-align: left !important;
   }
   ul, li {
@@ -957,4 +965,5 @@ function printAllMenus() {
 </script>
 </body>
 </html>
+
 
