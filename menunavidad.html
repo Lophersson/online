@@ -365,6 +365,28 @@ margin-bottom: 2px !important;
 }
 }
 /* --- FIN PRINT OVERRIDES --- */
+.blink-name {
+  display: inline-block;
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 8px;
+  animation: colorBlink 1s infinite;
+}
+
+@keyframes colorBlink {
+  0% { color: red; }
+  25% { color: orange; }
+  50% { color: limegreen; }
+  75% { color: cyan; }
+  100% { color: magenta; }
+}
+
+.blink-name:hover {
+  text-decoration: underline;
+}
+
 </style>
 </head>
 <body>
@@ -852,4 +874,5 @@ printBtns.forEach(btn => btn.style.display = '');
 </script>
 </body>
 </html>
+
 
