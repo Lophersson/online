@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Equipamiento - Minimal Tech Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@1,300;1,400;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f1113;
+  --panel:#17181a;
+  --muted:#9aa0a6;
+  --accent:#bfc6ca;
+  --glass:rgba(255,255,255,0.03);
+  --radius:14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(180deg, var(--bg), #0b0b0b);
+  font-family: 'Nunito', system-ui;
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* CONTENEDOR PRINCIPAL */
+.wrap {
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.4);
+}
+
+/* HEADER */
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+  letter-spacing: 0.5px;
+}
+
+p.lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+button {
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--accent);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* TARJETAS */
+.grid {
+  margin-top: 16px;
+}
+
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.04);
+  margin-bottom: 18px;
+}
+
+/* Títulos */
+.room-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.room-title h2 {
+  font-size: 18px;
+  margin: 0;
+  flex: 1;
+}
+
+.room-total {
+  font-size: 13px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* LISTA */
+ul.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul.items li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 4px;
+  gap: 10px;
+}
+
+ul.items li .name {
+  font-size: 14px;
+  flex: 1;
+}
+
+ul.items li .price {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+/* TOTAL FOOTER */
+footer.total {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.total-amount {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.small, .muted {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* RESPONSIVE */
+@media (max-width:600px){
+  h1 { font-size: 18px; }
+  .room-title h2 { font-size: 16px; }
+  ul.items li .name,
+  ul.items li .price { font-size: 13px; }
+  button { font-size: 12px; }
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>Equipamiento - Minimal Tech Home</h1>
+    <p class="lead">Lista minimalista y domótica — ocupa todo el ancho real en móvil y portátil.</p>
+  </div>
+
+  <div class="controls">
+    <button id="togglePrices">Ocultar precios</button>
+    <button id="exportJson">Exportar JSON</button>
+    <button id="printBtn">Imprimir</button>
+  </div>
+</header>
+
+<section class="grid" id="roomsGrid"></section>
+
+<footer class="total">
+  <div>
+    <div class="muted">Total estimado</div>
+    <div class="total-amount" id="totalAmount">€0</div>
+  </div>
+  <div class="small">Presupuesto objetivo: <strong>€20.000</strong></div>
+</footer>
+
+</div>
+
+<script>
+/* --- TODAS LAS ESTANCIAS ORIGINALES --- */
+const data = [
+  {room: 'Salón', items:[
+    {name:'Sofá modular minimalista', price:1800},
+    {name:'Mesa de centro baja', price:300},
+    {name:'Pareja altavoces smart (Sonos Era)', price:400},
+    {name:'TV OLED 55"', price:900},
+    {name:'Mueble multimedia minimal', price:350},
+    {name:'Kit iluminación inteligente (Hue)', price:200},
+  ]},
+
+  {room:'Cocina', items:[
+    {name:'Placa de inducción empotrada', price:800},
+    {name:'Horno empotrable multifunción', price:800},
+    {name:'Frigorífico integrado', price:1000},
+    {name:'Lavavajillas integrado', price:500},
+    {name:'Mesa comedor extensible + 4 sillas', price:700},
+    {name:'Grifería monomando', price:200},
+    {name:'Vajilla para 6', price:200},
+    {name:'Cubiertos 24 piezas', price:200},
+    {name:'Set ollas + sartenes', price:200},
+    {name:'Utensilios cocina + tablas', price:60},
+    {name:'Escoba/recogedor + fregona + cubo', price:50},
+  ]},
+
+  {room:'Entrada', items:[
+    {name:'Cerradura inteligente', price:250},
+    {name:'Consola pared + zapatero/perchero', price:150},
+  ]},
+
+  {room:'Baños (2)', items:[
+    {name:'Espejos LED antivaho (x2)', price:400},
+    {name:'Grifería/termostato ducha (ambos)', price:400},
+    {name:'Toallas (sets)', price:120},
+    {name:'Cortinas/estores baños', price:150},
+  ]},
+
+  {room:'Dormitorios (2)', items:[
+    {name:'Camas (estructura+somier+colchón) x2', price:1800},
+    {name:'Ropa de cama completa', price:240},
+    {name:'Almohadas', price:80},
+    {name:'Armario empotrado / ropero modular', price:1200},
+    {name:'Mesillas', price:200},
+    {name:'TV 43" x2', price:600},
+    {name:'Equipo de sonido 360° x2', price:700},
+    {name:'Estanterías y cajoneras', price:400},
+    {name:'Cortinas/estores dormitorios', price:300},
+  ]},
+
+  {room:'Despacho', items:[
+    {name:'Mesa de trabajo minimal', price:400},
+    {name:'Silla ergonómica premium', price:600},
+    {name:'Monitor 27" 4K', price:300},
+    {name:'Estantería / cajonera', price:300},
+    {name:'Iluminación LED ajustable (panel/tira)', price:200},
+  ]},
+
+  {room:'Robot y limpieza', items:[
+    {name:'Robot aspirador-mopa (Roborock S8 equiv.)', price:450},
+  ]},
+
+  {room:'Domótica / Iluminación / Red', items:[
+    {name:'Termostato inteligente', price:200},
+    {name:'Hub domótico / Home Assistant mini-PC', price:300},
+    {name:'Kit enchufes inteligentes y sensores', price:300},
+    {name:'Puntos de luz de techo (10 luminarias aprox.)', price:250},
+    {name:'Instalación eléctrica / empotrar luces', price:800},
+    {name:'Tiras LED y accesorios', price:80},
+  ]},
+
+  {room:'Otros', items:[
+    {name:'Cubos basura (cocina, baños)', price:120},
+    {name:'Plancha + tabla', price:80},
+    {name:'Limpieza y consumibles iniciales', price:50},
+  ]}
+];
+
+/* --- FUNCIONES --- */
+const roomsGrid = document.getElementById("roomsGrid");
+const totalAmountEl = document.getElementById("totalAmount");
+
+function formatEUR(v){
+  return new Intl.NumberFormat('es-ES',{
+    style:'currency', currency:'EUR', maximumFractionDigits:0
+  }).format(v);
+}
+
+function render(){
+  roomsGrid.innerHTML = "";
+  let totalGeneral = 0;
+
+  data.forEach(section=>{
+    const card = document.createElement("article");
+    card.className = "card";
+
+    /* título */
+    const title = document.createElement("div");
+    title.className = "room-title";
+
+    const h = document.createElement("h2");
+    h.textContent = section.room;
+
+    const totalBox = document.createElement("div");
+    totalBox.className = "room-total";
+
+    title.appendChild(h);
+    title.appendChild(totalBox);
+    card.appendChild(title);
+
+    /* lista */
+    const list = document.createElement("ul");
+    list.className = "items";
+
+    section.items.forEach(it=>{
+      const li = document.createElement("li");
+
+      const name = document.createElement("div");
+      name.className="name";
+      name.textContent = it.name;
+
+      const price = document.createElement("div");
+      price.className="price";
+      price.textContent = formatEUR(it.price);
+
+      li.appendChild(name);
+      li.appendChild(price);
+      list.appendChild(li);
+    });
+
+    card.appendChild(list);
+    roomsGrid.appendChild(card);
+
+    /* calcular */
+    const suma = section.items.reduce((a,b)=>a+b.price,0);
+    totalBox.textContent = "Total: " + formatEUR(suma);
+    totalGeneral += suma;
+  });
+
+  totalAmountEl.textContent = formatEUR(totalGeneral);
+}
+
+render();
+
+/* OCULTAR PRECIOS */
+let pricesHidden = false;
+document.getElementById("togglePrices").addEventListener("click", ()=>{
+  pricesHidden = !pricesHidden;
+  document.querySelectorAll(".price").forEach(el=>{
+    el.style.visibility = pricesHidden ? "hidden" : "visible";
+  });
+  document.getElementById("togglePrices").textContent =
+    pricesHidden ? "Mostrar precios" : "Ocultar precios";
+});
+
+document.getElementById("exportJson").addEventListener("click", ()=>{
+  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "equipamiento_minimal.json";
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+document.getElementById("printBtn").addEventListener("click", ()=> window.print());
+</script>
+
+</body>
+</html>

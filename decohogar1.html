@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decoración piso minimalista y tecnológico</title>
+<style>
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: radial-gradient(circle at top left, #1b1b1b 0%, #111 100%);
+    color: #ccc;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  header {
+    text-align: center;
+    padding: 40px 20px;
+    color: #1c86ff;
+    text-shadow: 0 0 15px #1c86ff;
+    font-size: 1.8em;
+    font-weight: 200;
+    letter-spacing: 2px;
+    animation: neonFlicker 3s infinite alternate;
+  }
+
+  @keyframes neonFlicker {
+    0%, 100% { text-shadow: 0 0 10px #1c86ff, 0 0 20px #1c86ff; }
+    50% { text-shadow: 0 0 20px #1c86ff, 0 0 40px #1c86ff; }
+  }
+
+  main {
+    width: 90%;
+    max-width: 900px;
+    margin: auto;
+    background: rgba(30, 30, 30, 0.6);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px #8cbdf5;
+    animation: float 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-6px); }
+  }
+
+  h2 {
+    color: #1c86ff;
+    text-shadow: 0 0 6px #1c86ff;
+    border-bottom: 1px solid #8cbdf5;
+    padding-bottom: 5px;
+    font-weight: 300;
+    font-size: 1.4em;
+  }
+
+  p, li {
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  section {
+    margin-bottom: 30px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+
+  li::before {
+    content: "• ";
+    color: #1c86ff;
+    margin-right: 8px;
+  }
+
+  .item-name {
+    flex: 1;
+  }
+
+  .item-price {
+    text-align: right;
+    color: #1c86ff;
+    font-weight: 400;
+    min-width: 100px;
+  }
+
+  .subtotal {
+    color: #1c86ff;
+    text-align: right;
+    font-style: italic;
+    margin-top: 12px;
+    font-weight: 400;
+    font-size: 1.05em;
+  }
+
+  .total {
+    background: linear-gradient(90deg, #1c86ff, #1c86ff);
+    padding: 12px;
+    border: 1px solid #8cbdf5;
+    border-radius: 8px;
+    margin-top: 25px;
+    text-align: center;
+    color: #7ab8ff;
+    font-weight: 400;
+    text-shadow: 0 0 8px #1c86ff;
+    font-size: 1.2em;
+    font-style: italic;
+  }
+
+  footer {
+    text-align: center;
+    padding: 25px;
+    font-size: 0.9em;
+    color: #1c86ff;
+    text-shadow: 0 0 5px #000;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #1c86ff;
+    margin: 25px 0;
+  }
+
+  .summary {
+    text-align: center;
+    font-weight: 300;
+  }
+</style>
+</head>
+<body>
+
+<header>Decoración piso minimalista y tecnológico</header>
+
+<main>
+  <section class="summary">
+    <p>Importe total estimado: <span id="totalGeneral">€0</span></p>
+    <p>Margen libre restante: <span id="margenLibre">€0</span></p>
+  </section>
+
+  <hr>
+
+  <section>
+    <h2>Salón</h2>
+    <ul>
+      <li><span class="item-name">Sofá modular minimalista</span><span class="item-price" data-price="1500">€1.500</span></li>
+      <li><span class="item-name">Cojines y mantas</span><span class="item-price" data-price="300">€300</span></li>
+      <li><span class="item-name">Mesa de centro baja</span><span class="item-price" data-price="300">€200</span></li>
+      <li><span class="item-name">Mesa comedor extensible + 4 sillas</span><span class="item-price" data-price="1600">€1600</span></li>
+      <li><span class="item-name">Sistema de audio 360</span><span class="item-price" data-price="600">€600</span></li>
+      <li><span class="item-name">TV QLED 85" - Sony Bravia 9, XR</span><span class="item-price" data-price="4000">€4000</span></li>
+      <li><span class="item-name">Muebles de almacenamiento con cajones</span><span class="item-price" data-price="700">€700</span></li>
+      <li><span class="item-name">Estanterías</span><span class="item-price" data-price="400">€400</span></li>
+      <li><span class="item-name">Iluminación techo y lectura</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Cortinas</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Otros</span><span class="item-price" data-price="200">€200</span></li>
+    </ul>
+    <div class="subtotal">Subtotal salón = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Cocina</h2>
+    <ul>
+      <li><span class="item-name">Placa de inducción empotrada</span><span class="item-price" data-price="800">€800</span></li>
+      <li><span class="item-name">Campana extractora</span><span class="item-price" data-price="600">€600</span></li>
+      <li><span class="item-name">Horno empotrable multifunción</span><span class="item-price" data-price="800">€800</span></li>
+      <li><span class="item-name">Microondas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Frigorífico integrado</span><span class="item-price" data-price="1800">€1.800</span></li>
+      <li><span class="item-name">Lavavajillas integrado</span><span class="item-price" data-price="800">€800</span></li>
+      <li><span class="item-name">Lavavadora</span><span class="item-price" data-price="800">€800</span></li>
+      <li><span class="item-name">Batidora/Exprimidor/Parilla</span><span class="item-price" data-price="300">€300</span></li>
+      <li><span class="item-name">Grifería monomando</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Vajilla completa</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Cubiertos 24 piezas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Set ollas + sartenes</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Utensilios cocina + tablas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Escoba/recogedor, fregona/cubo</span><span class="item-price" data-price="100">€100</span></li>
+    </ul>
+    <div class="subtotal">Subtotal cocina = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Entrada / seguridad</h2>
+    <ul>
+      <li><span class="item-name">Cerradura inteligente</span><span class="item-price" data-price="250">€250</span></li>
+      <li><span class="item-name">Mueble con cajones, zapatero y perchero</span><span class="item-price" data-price="150">€150</span></li>
+    </ul>
+    <div class="subtotal">Subtotal entrada = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Baño 1</h2>
+    <ul>
+      <li><span class="item-name">Espejo LED antivaho</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Grifería/termostato ducha y rociador</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Toallas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Utensilios baño</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Alfombrilla y cubo ropa</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Secador de toallas</span><span class="item-price" data-price="200">€200</span></li>
+    </ul>
+    <div class="subtotal">Subtotal baño 1 = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Baño 2</h2>
+    <ul>
+      <li><span class="item-name">Espejo LED antivaho</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Grifería/termostato ducha y rociador</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Toallas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Utensilios de baño</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Alfombrilla y cubo ropa</span><span class="item-price" data-price="100">€100</span></li>
+    </ul>
+    <div class="subtotal">Subtotal baño 2 = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Dormitorio 1</h2>
+    <ul>
+      <li><span class="item-name">Cama completa</span><span class="item-price" data-price="1800">€1800</span></li>
+      <li><span class="item-name">Ropa de cama</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Almohadas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Armario/ropero</span><span class="item-price" data-price="600">€600</span></li>
+      <li><span class="item-name">Mesillas y lámparas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">TV 43"</span><span class="item-price" data-price="800">€800</span></li>
+      <li><span class="item-name">Equipo de sonido 360°</span><span class="item-price" data-price="400">€400</span></li>
+      <li><span class="item-name">Estanterías y cajoneras</span><span class="item-price" data-price="400">€400</span></li>
+      <li><span class="item-name">Cortinas/estores</span><span class="item-price" data-price="200">€200</span></li>
+    </ul>
+    <div class="subtotal">Subtotal dormitorio 1 = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Dormitorio 2</h2>
+    <ul>
+      <li><span class="item-name">Cama completa</span><span class="item-price" data-price="1800">€1800</span></li>
+      <li><span class="item-name">Ropa de cama</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Almohadas</span><span class="item-price" data-price="100">€100</span></li>
+      <li><span class="item-name">Armario/ropero</span><span class="item-price" data-price="1200">€1200</span></li>
+      <li><span class="item-name">Mesillas y lámparas</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">TV 43"</span><span class="item-price" data-price="800">€800</span></li>
+      <li><span class="item-name">Equipo de sonido 360°</span><span class="item-price" data-price="400">€400</span></li>
+      <li><span class="item-name">Estanterías y cajoneras</span><span class="item-price" data-price="400">€400</span></li>
+      <li><span class="item-name">Cortinas/estores</span><span class="item-price" data-price="200">€200</span></li>
+    </ul>
+    <div class="subtotal">Subtotal dormitorio 2 = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Despacho / oficina</h2>
+    <ul>
+      <li><span class="item-name">Mesa de trabajo minimalista</span><span class="item-price" data-price="400">€400</span></li>
+      <li><span class="item-name">Silla ergonómica premium</span><span class="item-price" data-price="600">€600</span></li>
+      <li><span class="item-name">Estantería/cajonera</span><span class="item-price" data-price="300">€300</span></li>
+      <li><span class="item-name">Iluminación LED ajustable</span><span class="item-price" data-price="200">€200</span></li>
+    </ul>
+    <div class="subtotal">Subtotal despacho = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Robot y limpieza</h2>
+    <ul>
+      <li><span class="item-name">Robot aspirador-mopa</span><span class="item-price" data-price="600">€600</span></li>
+    </ul>
+    <div class="subtotal">Subtotal robot = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Domótica, puntos de luz y red</h2>
+    <ul>
+      <li><span class="item-name">Termostato inteligente</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Hub domótico/microPC</span><span class="item-price" data-price="300">€300</span></li>
+      <li><span class="item-name">Enchufes y sensores</span><span class="item-price" data-price="300">€300</span></li>
+      <li><span class="item-name">Focos de techo inteligentes</span><span class="item-price" data-price="300">€300</span></li>
+      <li><span class="item-name">Instalación eléctrica/empotrado</span><span class="item-price" data-price="800">€800</span></li>
+      <li><span class="item-name">Tiras LED y accesorios</span><span class="item-price" data-price="100">€100</span></li>
+    </ul>
+    <div class="subtotal">Subtotal domótica + iluminación = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <section>
+    <h2>Otros</h2>
+    <ul>
+      <li><span class="item-name">Cubos de reciclaje x3</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Plancha y tabla</span><span class="item-price" data-price="200">€200</span></li>
+      <li><span class="item-name">Material de limpieza</span><span class="item-price" data-price="100">€100</span></li>
+    </ul>
+    <div class="subtotal">Subtotal otros = <span class="subtotal-value">€0</span></div>
+  </section>
+
+  <div class="total">Total = <span id="totalFinal">€0</span> <span id="margenInfo"></span></div>
+</main>
+
+<footer>Diseño estético minimalista inspirado en tecnología y eficiencia.</footer>
+
+<script>
+  function formatPrice(num) {
+    return '€' + num.toLocaleString('es-ES');
+  }
+
+  function calculateBudget() {
+    const presupuestoMaximo = 36000;
+    let totalGeneral = 0;
+
+    // Calcular subtotal de cada sección
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      const items = section.querySelectorAll('.item-price');
+      let subtotal = 0;
+      
+      items.forEach(item => {
+        const price = parseFloat(item.getAttribute('data-price'));
+        subtotal += price;
+      });
+
+      const subtotalElement = section.querySelector('.subtotal-value');
+      if (subtotalElement) {
+        subtotalElement.textContent = formatPrice(subtotal);
+        totalGeneral += subtotal;
+      }
+    });
+
+    // Actualizar total general
+    document.getElementById('totalFinal').textContent = formatPrice(totalGeneral);
+    document.getElementById('totalGeneral').textContent = formatPrice(totalGeneral);
+
+    // Calcular margen libre
+    const margenLibre = presupuestoMaximo - totalGeneral;
+    document.getElementById('margenLibre').textContent = formatPrice(margenLibre);
+    document.getElementById('margenInfo').textContent = `(margen libre ${formatPrice(margenLibre)})`;
+  }
+
+  // Ejecutar cálculo al cargar la página
+  calculateBudget();
+</script>
+
+</body>
+</html>
