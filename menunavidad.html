@@ -266,9 +266,14 @@ h2 {
 }
 @media print {
   body {
-    background: #fff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
     color: #000 !important;
+    background: #fff !important;
     overflow: visible !important;
+    text-shadow: none !important;
+  opacity: 1 !important;
+  filter: none !important;
   }
   header, .tabs, .tab, .titulo-con-imagenes span.icon, .print-btn {
     display: none !important;
@@ -952,3 +957,4 @@ function printAllMenus() {
 </script>
 </body>
 </html>
+
