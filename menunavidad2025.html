@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menús Navidad 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #d4af37;
+        min-height: 100vh;
+    }
+    header {
+        background: linear-gradient(135deg, rgba(26,26,46,0.95) 0%, rgba(22,33,62,0.95) 100%);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        padding: 50px 20px 40px;
+        box-shadow: 0 4px 20px rgba(212, 175, 55, 0.2);
+        border-bottom: 2px solid #d4af37;
+    }
+    h1 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 3.5em;
+        font-weight: 700;
+        color: #d4af37;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        letter-spacing: 3px;
+        margin-bottom: 10px;
+    }
+    .subtitle {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.1em;
+        font-weight: 300;
+        color: #f0e6d2;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+    }
+    .tabs {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0;
+        margin: 30px auto;
+        max-width: 900px;
+    }
+    .tab {
+        flex: 1;
+        min-width: 180px;
+        padding: 20px 15px;
+        cursor: pointer;
+        text-align: center;
+        font-family: 'Cormorant Garamond', serif;
+        font-weight: 600;
+        font-size: 1.3em;
+        border: none;
+        background: rgba(26, 26, 46, 0.8);
+        color: #d4af37;
+        transition: all 0.4s ease;
+        border-bottom: 3px solid transparent;
+        letter-spacing: 1px;
+    }
+    .tab:hover:not(.active) {
+        background: rgba(212, 175, 55, 0.1);
+        border-bottom: 3px solid #d4af37;
+        transform: translateY(-2px);
+    }
+    .tab.active {
+        background: linear-gradient(135deg, #d4af37 0%, #c9a030 100%);
+        color: #1a1a2e;
+        border-bottom: 3px solid #f0e6d2;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+    }
+    .content {
+        display: none;
+        max-width: 1000px;
+        margin: 0 auto 50px;
+        padding: 40px;
+        animation: fadeIn 0.8s ease;
+    }
+    .content.active {
+        display: block;
+    }
+    h2 {
+        font-family: 'Cormorant Garamond', serif;
+        text-align: center;
+        font-size: 2.8em;
+        font-weight: 700;
+        margin-bottom: 40px;
+        color: #d4af37;
+        text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+        letter-spacing: 2px;
+    }
+    .course {
+        background: linear-gradient(135deg, rgba(240, 230, 210, 0.05) 0%, rgba(212, 175, 55, 0.08) 100%);
+        backdrop-filter: blur(10px);
+        padding: 35px 40px;
+        margin-bottom: 30px;
+        border-radius: 15px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s ease;
+    }
+    .course:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 35px rgba(212, 175, 55, 0.2);
+        border: 1px solid rgba(212, 175, 55, 0.5);
+    }
+    .course-header {
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .course-type {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.9em;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: #f0e6d2;
+        margin-bottom: 10px;
+    }
+    .course-name {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 2em;
+        font-weight: 700;
+        color: #d4af37;
+        letter-spacing: 1px;
+    }
+    .course-description {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.05em;
+        line-height: 1.8;
+        color: #f0e6d2;
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: 300;
+    }
+    .ingredients-section {
+        margin-top: 40px;
+        padding-top: 35px;
+        border-top: 2px solid rgba(212, 175, 55, 0.4);
+    }
+    .ingredients-title {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.8em;
+        font-weight: 600;
+        color: #d4af37;
+        text-align: center;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+    }
+    .menu-ingredients {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+    .ingredient-course {
+        background: rgba(240, 230, 210, 0.03);
+        padding: 20px;
+        border-radius: 10px;
+        border-left: 3px solid #d4af37;
+    }
+    .ingredient-course h4 {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.3em;
+        color: #d4af37;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .ingredient-course ul {
+        list-style: none;
+        padding: 0;
+    }
+    .ingredient-course li {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.95em;
+        color: #f0e6d2;
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        font-weight: 300;
+    }
+    .ingredient-course li:last-child {
+        border-bottom: none;
+    }
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2.5em;
+        }
+        .tab {
+            min-width: 140px;
+            font-size: 1.1em;
+            padding: 15px 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .course-name {
+            font-size: 1.6em;
+        }
+    }
+
+    .titulo-con-imagenes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* separación entre imágenes y texto */
+}
+
+.titulo-con-imagenes img {
+    width: 40px;  /* ajusta el tamaño que quieras */
+    height: auto;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+    <div class="titulo-con-imagenes">
+    <img src="1.png" alt="Decoración izquierda">
+    <h1>Menús de Navidad</h1>
+    <img src="2.png" alt="Decoración derecha">
+</div>
+    <p class="subtitle">Temporada 2025</p>
+</header>
+
+<div class="tabs">
+    <button class="tab active" onclick="showMenu(0)">Nochebuena</button>
+    <button class="tab" onclick="showMenu(1)">Navidad</button>
+    <button class="tab" onclick="showMenu(2)">Fin de Año</button>
+    <button class="tab" onclick="showMenu(3)">Año Nuevo</button>
+</div>
+
+<div class="content active">
+    <div class="titulo-con-imagenes">
+    <img src="3.png" alt="Decoración izquierda">
+    <h2>Menú de Nochebuena</h2>
+    <img src="4.png" alt="Decoración derecha">
+</div>
+    
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Entrante</p>
+            <h3 class="course-name">Crema de Marisco</h3>
+        </div>
+        <p class="course-description">
+            Delicada crema elaborada con los mejores mariscos del Atlántico, 
+            suavemente perfumada con brandy y terminada con un toque de nata fresca. 
+            Servida con gambas salteadas y perejil de nuestra huerta.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Plato Principal</p>
+            <h3 class="course-name">Solomillo de Cerdo al Hojaldre</h3>
+        </div>
+        <p class="course-description">
+            Medallón de solomillo de cerdo ibérico envuelto en masa de hojaldre crujiente, 
+            sobre una cama de cebolla caramelizada con manzana verde y vino blanco. 
+            Acompañado de puré de patata mantecoso y verduras de temporada asadas.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Postre</p>
+            <h3 class="course-name">Tarta de Turrón</h3>
+        </div>
+        <p class="course-description">
+            Exquisita tarta elaborada con turrón artesanal de Jijona, 
+            sobre base de galleta tostada y coronada con almendras laminadas. 
+            Un homenaje a la tradición navideña española.
+        </p>
+    </div>
+
+    <div class="ingredients-section">
+        <h3 class="ingredients-title">Ingredientes para 4 Personas</h3>
+        <div class="menu-ingredients">
+            <div class="ingredient-course">
+                <h4>Crema de Marisco</h4>
+                <ul>
+                    <li>400 g de gambas</li>
+                    <li>300 g de mejillones</li>
+                    <li>1 cebolla mediana</li>
+                    <li>1 zanahoria</li>
+                    <li>2 tomates maduros</li>
+                    <li>60 ml de brandy</li>
+                    <li>1 litro de caldo de pescado</li>
+                    <li>200 ml de nata para cocinar</li>
+                    <li>Perejil fresco</li>
+                    <li>Aceite de oliva, sal y pimienta</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Solomillo al Hojaldre</h4>
+                <ul>
+                    <li>800 g de solomillo de cerdo ibérico</li>
+                    <li>400 g de masa de hojaldre</li>
+                    <li>2 cebollas grandes</li>
+                    <li>2 manzanas verdes</li>
+                    <li>50 g de mantequilla</li>
+                    <li>100 ml de vino blanco</li>
+                    <li>1 huevo (para pincelar)</li>
+                    <li>800 g de patatas</li>
+                    <li>Verduras variadas (calabacín, pimiento, berenjena)</li>
+                    <li>Sal, pimienta y tomillo</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Tarta de Turrón</h4>
+                <ul>
+                    <li>300 g de turrón blando de Jijona</li>
+                    <li>500 ml de nata para montar</li>
+                    <li>200 ml de leche</li>
+                    <li>4 hojas de gelatina neutra</li>
+                    <li>80 g de azúcar</li>
+                    <li>200 g de galletas María</li>
+                    <li>100 g de mantequilla</li>
+                    <li>Almendras laminadas para decorar</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="titulo-con-imagenes">
+    <img src="4.png" alt="Decoración izquierda">
+    <h2>Menú de Navidad</h2>
+    <img src="5.png" alt="Decoración derecha">
+</div>
+    
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Entrante</p>
+            <h3 class="course-name">Selección de Quesos y Jamón Ibérico</h3>
+        </div>
+        <p class="course-description">
+            Cuidada selección de quesos artesanales españoles acompañados de jamón ibérico de bellota, 
+            servidos con pan tostado, dátiles Medjool, aceitunas gordal y reducción de vino de Jerez.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Plato Principal</p>
+            <h3 class="course-name">Pavo Relleno de Castañas</h3>
+        </div>
+        <p class="course-description">
+            Pavo asado de corral, relleno de castañas asadas, pistachos tostados y hierbas aromáticas. 
+            Glaseado con mantequilla y miel, acompañado de su propio jugo reducido. 
+            Servido con patatas asadas y verduras de temporada.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Postre</p>
+            <h3 class="course-name">Mousse de Chocolate Navideño</h3>
+        </div>
+        <p class="course-description">
+            Suave mousse de chocolate negro 70% cacao, con toques de naranja confitada 
+            y decorado con virutas de chocolate blanco. Una explosión de sabor y textura.
+        </p>
+    </div>
+
+    <div class="ingredients-section">
+        <h3 class="ingredients-title">Ingredientes para 4 Personas</h3>
+        <div class="menu-ingredients">
+            <div class="ingredient-course">
+                <h4>Tabla de Quesos y Jamón</h4>
+                <ul>
+                    <li>200 g de jamón ibérico de bellota</li>
+                    <li>150 g de queso manchego curado</li>
+                    <li>150 g de queso de cabra</li>
+                    <li>100 g de queso azul (Cabrales o Roquefort)</li>
+                    <li>150 g de queso Idiazábal</li>
+                    <li>12 rebanadas de pan tostado</li>
+                    <li>200 g de dátiles Medjool</li>
+                    <li>150 g de aceitunas gordal</li>
+                    <li>Nueces y membrillo</li>
+                    <li>Vino de Jerez para reducción</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Pavo Relleno</h4>
+                <ul>
+                    <li>1 pavo de 3-4 kg</li>
+                    <li>300 g de castañas asadas</li>
+                    <li>100 g de pistachos tostados</li>
+                    <li>150 g de pan rallado</li>
+                    <li>1 cebolla grande</li>
+                    <li>4 dientes de ajo</li>
+                    <li>500 ml de caldo de pollo</li>
+                    <li>100 g de mantequilla</li>
+                    <li>50 ml de miel</li>
+                    <li>Romero, tomillo, sal y pimienta</li>
+                    <li>800 g de patatas</li>
+                    <li>Verduras variadas para guarnición</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Mousse de Chocolate</h4>
+                <ul>
+                    <li>300 g de chocolate negro 70%</li>
+                    <li>400 ml de nata para montar</li>
+                    <li>4 huevos</li>
+                    <li>60 g de azúcar</li>
+                    <li>100 g de naranja confitada</li>
+                    <li>50 g de chocolate blanco (para decorar)</li>
+                    <li>Ralladura de naranja</li>
+                    <li>1 pizca de sal</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="titulo-con-imagenes">
+    <img src="6.png" alt="Decoración izquierda">
+    <h2>Menú de Fin de Año</h2>
+    <img src="7.png" alt="Decoración derecha">
+</div>
+    
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Entrante</p>
+            <h3 class="course-name">Selección de Canapés</h3>
+        </div>
+        <p class="course-description">
+            Exquisita variedad de canapés gourmet: pan de centeno con salmón ahumado y crema de queso, 
+            tostas con jamón ibérico y huevo de codorniz, volovanes con mousse de atún rojo 
+            y tartaletas de foie con compota de manzana a la sidra.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Plato Principal</p>
+            <h3 class="course-name">Cordero Asado al Romero</h3>
+        </div>
+        <p class="course-description">
+            Paletilla de cordero lechal asado a baja temperatura, aromático con romero fresco, 
+            ajo confitado y vino blanco. Acompañado de patatas panadera y cebolla caramelizada. 
+            Su jugo natural completa esta joya de la cocina tradicional.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Postre</p>
+            <h3 class="course-name">Copa de Uvas con Crema de Mascarpone</h3>
+        </div>
+        <p class="course-description">
+            Tradicionales uvas de la suerte servidas en copa de cristal con crema de mascarpone 
+            aromatizada con vainilla de Madagascar, terminadas con ralladura de limón 
+            y una delicada crocante de almendra.
+        </p>
+    </div>
+
+    <div class="ingredients-section">
+        <h3 class="ingredients-title">Ingredientes para 4 Personas</h3>
+        <div class="menu-ingredients">
+            <div class="ingredient-course">
+                <h4>Canapés Variados</h4>
+                <ul>
+                    <li>8 rebanadas de pan de centeno</li>
+                    <li>200 g de salmón ahumado</li>
+                    <li>150 g de queso crema</li>
+                    <li>8 rebanadas de pan tostado</li>
+                    <li>100 g de jamón ibérico</li>
+                    <li>8 huevos de codorniz</li>
+                    <li>8 bases de volovanes</li>
+                    <li>200 g de atún rojo</li>
+                    <li>8 bases de tartaletas</li>
+                    <li>150 g de foie</li>
+                    <li>2 manzanas</li>
+                    <li>Eneldo, cebollino y perejil</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Cordero Asado</h4>
+                <ul>
+                    <li>1,5 kg de paletilla de cordero lechal</li>
+                    <li>8 dientes de ajo</li>
+                    <li>200 ml de vino blanco</li>
+                    <li>6 ramitas de romero fresco</li>
+                    <li>1 kg de patatas</li>
+                    <li>2 cebollas grandes</li>
+                    <li>100 ml de aceite de oliva virgen extra</li>
+                    <li>500 ml de caldo de carne</li>
+                    <li>Sal y pimienta negra</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Copa de Uvas</h4>
+                <ul>
+                    <li>500 g de uvas blancas sin pepitas</li>
+                    <li>250 g de mascarpone</li>
+                    <li>200 ml de nata para montar</li>
+                    <li>80 g de azúcar</li>
+                    <li>1 vaina de vainilla de Madagascar</li>
+                    <li>Ralladura de 2 limones</li>
+                    <li>50 g de almendras laminadas</li>
+                    <li>Hojas de menta fresca</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <div class="titulo-con-imagenes">
+    <img src="9.jpg" alt="Decoración izquierda">
+    <h2>Menú de Año Nuevo</h2>
+    <img src="10.jpg" alt="Decoración derecha">
+</div>
+    
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Entrante</p>
+            <h3 class="course-name">Ensalada Templada de Gambas y Mango</h3>
+        </div>
+        <p class="course-description">
+            Jugosas gambas salteadas sobre lecho de canónigos frescos, 
+            con mango maduro, cebolla morada encurtida y vinagreta de miel y mostaza antigua. 
+            Un contraste perfecto entre lo dulce y lo salado.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Plato Principal</p>
+            <h3 class="course-name">Merluza en Salsa Verde</h3>
+        </div>
+        <p class="course-description">
+            Lomos de merluza de pincho del Cantábrico en su tradicional salsa verde, 
+            elaborada con ajo, perejil y vino blanco, acompañada de almejas gallegas. 
+            Un clásico de la cocina española que celebra el sabor del mar.
+        </p>
+    </div>
+
+    <div class="course">
+        <div class="course-header">
+            <p class="course-type">Postre</p>
+            <h3 class="course-name">Flan de Naranja</h3>
+        </div>
+        <p class="course-description">
+            Cremoso flan artesanal perfumado con naranja valenciana, 
+            sobre caramelo líquido elaborado en el momento. 
+            Decorado con gajos de naranja caramelizada y hojas de menta.
+        </p>
+    </div>
+
+    <div class="ingredients-section">
+        <h3 class="ingredients-title">Ingredientes para 4 Personas</h3>
+        <div class="menu-ingredients">
+            <div class="ingredient-course">
+                <h4>Ensalada de Gambas</h4>
+                <ul>
+                    <li>20 gambas grandes (500 g aprox.)</li>
+                    <li>2 mangos maduros</li>
+                    <li>150 g de canónigos</li>
+                    <li>1 cebolla morada</li>
+                    <li>60 ml de aceite de oliva virgen extra</li>
+                    <li>30 ml de vinagre de manzana</li>
+                    <li>2 cucharadas de miel</li>
+                    <li>1 cucharada de mostaza antigua</li>
+                    <li>Zumo de medio limón</li>
+                    <li>Sal y pimienta</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Merluza en Salsa Verde</h4>
+                <ul>
+                    <li>4 lomos de merluza de 200 g cada uno</li>
+                    <li>500 g de almejas gallegas</li>
+                    <li>6 dientes de ajo</li>
+                    <li>1 manojo grande de perejil fresco</li>
+                    <li>150 ml de vino blanco</li>
+                    <li>2 cucharadas de harina</li>
+                    <li>300 ml de caldo de pescado</li>
+                    <li>100 ml de aceite de oliva</li>
+                    <li>Sal y pimienta blanca</li>
+                </ul>
+            </div>
+            <div class="ingredient-course">
+                <h4>Flan de Naranja</h4>
+                <ul>
+                    <li>1 lata de leche condensada (397 g)</li>
+                    <li>500 ml de leche entera</li>
+                    <li>5 huevos</li>
+                    <li>Ralladura de 2 naranjas</li>
+                    <li>100 ml de zumo de naranja natural</li>
+                    <li>150 g de azúcar (para el caramelo)</li>
+                    <li>2 naranjas adicionales (para decorar)</li>
+                    <li>Hojas de menta fresca</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showMenu(index) {
+    const tabs = document.querySelectorAll('.tab');
+    const contents = document.querySelectorAll('.content');
+    tabs.forEach((tab, i) => {
+        tab.classList.toggle('active', i === index);
+        contents[i].classList.toggle('active', i === index);
+    });
+}
+</script>
+
+</body>
+
+</html>
