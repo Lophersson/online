@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcas de Coches Más Vendidas en España 2025</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #777777;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #666666;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #2a2a2a;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 18px;
+      border: 1px solid #3a3a3a;
+      transition: 0.2s;
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+    }
+
+    .card:hover {
+      background-color: #333333;
+      border-color: #555555;
+    }
+
+    .card.active {
+      background-color: #ffeb3b;
+      color: black;
+    }
+
+    select {
+      margin-top: 10px;
+      width: 100%;
+      padding: 4px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #selectedCount {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      background-color: #ffeb3b;
+      color: black;
+      padding: 10px 16px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      user-select: none;
+      z-index: 1000;
+      display: none;
+    }
+
+    /* Modal styles */
+    #modal {
+      display: none;
+      position: fixed;
+      z-index: 1500;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    #modalContent {
+      background-color: #1a1a1a;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 12px;
+      width: 300px;
+      color: #eee;
+      position: relative;
+    }
+
+    #modalContent h2 {
+      margin-top: 0;
+      color: #ffeb3b;
+      text-align: center;
+    }
+
+    #modalClose {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 24px;
+      color: #ffeb3b;
+      user-select: none;
+    }
+
+    ul.selected-models {
+      list-style-type: none;
+      padding-left: 10px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    ul.selected-models li {
+      margin: 6px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Marcas de coches más vendidas en España 2025</h1>
+
+  <div class="grid" id="cardsGrid">
+    <div class="card" data-brand="Toyota">
+      Toyota
+      <select multiple>
+        <option value="Corolla">Corolla</option>
+        <option value="Yaris">Yaris</option>
+        <option value="RAV4">RAV4</option>
+      </select>
+    </div>
+    <div class="card" data-brand="Volkswagen">
+      Volkswagen
+      <select multiple>
+        <option value="Golf">Golf</option>
+        <option value="Polo">Polo</option>
+        <option value="T-Roc">T-Roc</option>
+      </select>
+    </div>
+    <div class="card" data-brand="Renault">
+      Renault
+      <select multiple>
+        <option value="Clio">Clio</option>
+        <option value="Captur">Captur</option>
+        <option value="Megane">Megane</option>
+      </select>
+    </div>
+    <!-- Más cards con modelos -->
+    <div class="card" data-brand="Dacia">
+      Dacia
+      <select multiple>
+        <option value="Sandero">Sandero</option>
+        <option value="Duster">Duster</option>
+      </select>
+    </div>
+    <div class="card" data-brand="Hyundai">
+  Hyundai
+  <select multiple>
+    <option value="Tucson">Tucson</option>
+    <option value="i20">i20</option>
+    <option value="Kona">Kona</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Kia">
+  KIA
+  <select multiple>
+    <option value="Sportage">Sportage</option>
+    <option value="Ceed">Ceed</option>
+    <option value="Sorento">Sorento</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Seat">
+  SEAT
+  <select multiple>
+    <option value="Ibiza">Ibiza</option>
+    <option value="Leon">Leon</option>
+    <option value="Arona">Arona</option>
+  </select>
+</div>
+
+<div class="card" data-brand="MG">
+  MG
+  <select multiple>
+    <option value="ZS">ZS</option>
+    <option value="EHS">EHS</option>
+    <option value="Marvel R">Marvel R</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Peugeot">
+  Peugeot
+  <select multiple>
+    <option value="208">208</option>
+    <option value="2008">2008</option>
+    <option value="3008">3008</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Nissan">
+  Nissan
+  <select multiple>
+    <option value="Qashqai">Qashqai</option>
+    <option value="Juke">Juke</option>
+    <option value="Leaf">Leaf</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Mercedes-Benz">
+  Mercedes-Benz
+  <select multiple>
+    <option value="A-Class">A-Class</option>
+    <option value="GLA">GLA</option>
+    <option value="C-Class">C-Class</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Cupra">
+  Cupra
+  <select multiple>
+    <option value="Formentor">Formentor</option>
+    <option value="Born">Born</option>
+    <option value="Ateca">Ateca</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Citroën">
+  Citroën
+  <select multiple>
+    <option value="C3">C3</option>
+    <option value="C4">C4</option>
+    <option value="C5 Aircross">C5 Aircross</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Ford">
+  Ford
+  <select multiple>
+    <option value="Focus">Focus</option>
+    <option value="Kuga">Kuga</option>
+    <option value="Puma">Puma</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Opel">
+  Opel
+  <select multiple>
+    <option value="Corsa">Corsa</option>
+    <option value="Mokka">Mokka</option>
+    <option value="Grandland">Grandland</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Suzuki">
+  Suzuki
+  <select multiple>
+    <option value="Swift">Swift</option>
+    <option value="Vitara">Vitara</option>
+    <option value="Ignis">Ignis</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Skoda">
+  Skoda
+  <select multiple>
+    <option value="Octavia">Octavia</option>
+    <option value="Kamiq">Kamiq</option>
+    <option value="Karoq">Karoq</option>
+  </select>
+</div>
+
+<div class="card" data-brand="BMW">
+  BMW
+  <select multiple>
+    <option value="Serie 1">Serie 1</option>
+    <option value="X1">X1</option>
+    <option value="Serie 3">Serie 3</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Honda">
+  Honda
+  <select multiple>
+    <option value="Civic">Civic</option>
+    <option value="HR-V">HR-V</option>
+    <option value="Jazz">Jazz</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Audi">
+  Audi
+  <select multiple>
+    <option value="A3">A3</option>
+    <option value="Q3">Q3</option>
+    <option value="A1">A1</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Mini">
+  Mini
+  <select multiple>
+    <option value="Cooper">Cooper</option>
+    <option value="Countryman">Countryman</option>
+    <option value="Clubman">Clubman</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Jeep">
+  Jeep
+  <select multiple>
+    <option value="Renegade">Renegade</option>
+    <option value="Compass">Compass</option>
+    <option value="Wrangler">Wrangler</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Fiat">
+  Fiat
+  <select multiple>
+    <option value="500">500</option>
+    <option value="Panda">Panda</option>
+    <option value="Tipo">Tipo</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Volvo">
+  Volvo
+  <select multiple>
+    <option value="XC40">XC40</option>
+    <option value="XC60">XC60</option>
+    <option value="V40">V40</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Mazda">
+  Mazda
+  <select multiple>
+    <option value="CX-30">CX-30</option>
+    <option value="CX-5">CX-5</option>
+    <option value="Mazda 3">Mazda 3</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Tesla">
+  Tesla
+  <select multiple>
+    <option value="Model 3">Model 3</option>
+    <option value="Model Y">Model Y</option>
+    <option value="Model X">Model X</option>
+  </select>
+</div>
+
+<div class="card" data-brand="Alpine">
+  Alpine
+  <select multiple>
+    <option value="A110">A110</option>
+    <option value="A110S">A110S</option>
+    <option value="A110 Legende">A110 Legende</option>
+  </select>
+</div>
+
+  
+  
+  </div>
+
+  <!-- Icono contador -->
+  <div id="selectedCount" title="Modelos seleccionados"></div>
+
+  <!-- Modal -->
+  <div id="modal">
+    <div id="modalContent">
+      <span id="modalClose">&times;</span>
+      <h2>Modelos Seleccionados</h2>
+      <ul class="selected-models" id="selectedModelsList"></ul>
+    </div>
+  </div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const selectedCount = document.getElementById('selectedCount');
+    const modal = document.getElementById('modal');
+    const modalClose = document.getElementById('modalClose');
+    const selectedModelsList = document.getElementById('selectedModelsList');
+
+    let selectedModels = new Map(); // Map of brand -> Set of models
+
+    // Function to update selected count icon and modal list
+    function updateSelectedInfo() {
+      // Count total selected models
+      let totalSelected = 0;
+      selectedModels.forEach(modelsSet => totalSelected += modelsSet.size);
+
+      if(totalSelected > 0) {
+        selectedCount.style.display = 'block';
+        selectedCount.textContent = totalSelected;
+      } else {
+        selectedCount.style.display = 'none';
+      }
+    }
+
+    // Update the modal list content
+    function showModalList() {
+      selectedModelsList.innerHTML = '';
+      if(selectedModels.size === 0) {
+        selectedModelsList.innerHTML = '<li>No hay modelos seleccionados.</li>';
+      } else {
+        selectedModels.forEach((modelsSet, brand) => {
+          const brandItem = document.createElement('li');
+          brandItem.textContent = brand + ':';
+          const ulModels = document.createElement('ul');
+          ulModels.style.listStyle = 'circle';
+          modelsSet.forEach(model => {
+            const modelItem = document.createElement('li');
+            modelItem.textContent = model;
+            ulModels.appendChild(modelItem);
+          });
+          brandItem.appendChild(ulModels);
+          selectedModelsList.appendChild(brandItem);
+        });
+      }
+      modal.style.display = 'block';
+    }
+
+    // Close modal handler
+    modalClose.onclick = () => modal.style.display = 'none';
+
+    // Close modal on outside click
+    window.onclick = event => {
+      if(event.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+
+    cards.forEach(card => {
+      const select = card.querySelector('select');
+
+      // Hide the select initially
+      select.style.display = 'none';
+
+      card.addEventListener('click', event => {
+        // Avoid toggling if clicked inside select to allow multi-select
+        if (event.target.tagName === 'SELECT' || event.target.tagName === 'OPTION') return;
+
+        // Toggle active class
+        const isActive = card.classList.contains('active');
+        cards.forEach(c => {
+          c.classList.remove('active');
+          c.querySelector('select').style.display = 'none';
+        });
+
+        if (!isActive) {
+          card.classList.add('active');
+          select.style.display = 'block';
+        }
+      });
+
+      // Handle select multiple change
+      select.addEventListener('change', () => {
+        const brand = card.getAttribute('data-brand');
+        const selectedOptions = Array.from(select.selectedOptions).map(opt => opt.value);
+
+        if(selectedOptions.length > 0) {
+          selectedModels.set(brand, new Set(selectedOptions));
+        } else {
+          selectedModels.delete(brand);
+        }
+        updateSelectedInfo();
+      });
+    });
+
+    // Show modal on icon click
+    selectedCount.addEventListener('click', showModalList);
+  </script>
+</body>
+</html>
