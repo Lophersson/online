@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Post - Atlantis Travel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .post-container {
+            background: white;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            max-width: 470px;
+            width: 100%;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            padding: 14px 16px;
+            border-bottom: 1px solid #efefef;
+        }
+
+        .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+        }
+
+        .profile-pic-inner {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #262626;
+            font-size: 14px;
+        }
+
+        .username {
+            font-weight: 600;
+            font-size: 14px;
+            color: #262626;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: #000;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #262626;
+            transition: background 0.2s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .carousel-btn.prev {
+            left: 10px;
+        }
+
+        .carousel-btn.next {
+            right: 10px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 4px;
+        }
+
+        .indicator {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: background 0.3s;
+        }
+
+        .indicator.active {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .post-actions {
+            padding: 6px 16px 8px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .action-btn svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.1s;
+        }
+
+        .action-btn:active svg {
+            transform: scale(0.9);
+        }
+
+        .like-btn.liked svg {
+            animation: likeAnimation 0.4s ease;
+        }
+
+        @keyframes likeAnimation {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.3); }
+            50% { transform: scale(0.9); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .post-likes {
+            padding: 0 16px 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #262626;
+        }
+
+        .post-caption {
+            padding: 0 16px 16px;
+            font-size: 14px;
+            color: #262626;
+            line-height: 18px;
+        }
+
+        .post-caption .username {
+            margin-right: 6px;
+        }
+
+        .post-date {
+            padding: 0 16px 16px;
+            font-size: 10px;
+            color: #8e8e8e;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+    <div class="post-container">
+        <!-- Header -->
+        <div class="post-header">
+            <div class="profile-pic">
+                <div class="profile-pic-inner">AT</div>
+            </div>
+            <span class="username">atlantistravel</span>
+        </div>
+
+        <!-- Carousel -->
+        <div class="carousel-container">
+            <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+            
+            <div class="carousel-track" id="carouselTrack">
+                <div class="carousel-slide">
+                    <img src="https://media.istockphoto.com/id/876560704/es/foto/fuji-de-jap%C3%B3n-en-la-primavera.jpg?s=612x612&w=0&k=20&c=xx0xzo4GV4mJdEDPztEGMuMsmeBJru28Nh0KYDSNW6E=" alt="Monte Fuji">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://www.advantour.com/img/japan/japan-travel/cultural-itsukushima-shrine.jpg" alt="Templo japonés">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://wp-content.miviaje.com/2018/09/comida-japonesa.jpg" alt="Calle de Tokio">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://image.urlaubspiraten.de/1024/image/upload/v1603288184/mediavault_images/gaf4wre0zmzobfp0ppfn.jpg" alt="Cerezos en flor">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://elviajerofeliz.com/wp-content/uploads/2020/10/ciudades-de-japon-10.jpg" alt="Fushimi Inari">
+                </div>
+            </div>
+
+            <div class="carousel-indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="post-actions">
+            <button class="action-btn like-btn" id="likeBtn" onclick="toggleLike()">
+                <svg id="heartIcon" aria-label="Me gusta" fill="none" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z" stroke="currentColor" stroke-width="2"></path>
+                </svg>
+            </button>
+            <button class="action-btn">
+                <svg aria-label="Comentar" fill="none" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+            </button>
+            <button class="action-btn">
+                <svg aria-label="Compartir" fill="none" height="24" viewBox="0 0 24 24" width="24">
+                    <line stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
+                    <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Likes -->
+        <div class="post-likes">
+            <span id="likesCount">1,234</span> Me gusta
+        </div>
+
+        <!-- Caption -->
+        <div class="post-caption">
+            <span class="username">atlantistravel</span>
+            ✨ Descubre la magia de Japón con nosotros 🇯🇵 Desde el majestuoso Monte Fuji hasta los templos milenarios de Kioto, vive una experiencia inolvidable. ¿Listo para tu próxima aventura? 🌸
+            <br><br>
+            #Japón #ViajesAtlantis #MonteFuji #Kioto #Tokio #ViajarPorAsia
+        </div>
+
+        <!-- Date -->
+        <div class="post-date">
+            hace 2 horas
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 5;
+        let isLiked = false;
+        let likesCount = 1234;
+
+        function updateCarousel() {
+            const track = document.getElementById('carouselTrack');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function toggleLike() {
+            const likeBtn = document.getElementById('likeBtn');
+            const heartIcon = document.getElementById('heartIcon');
+            const likesCountElement = document.getElementById('likesCount');
+            
+            isLiked = !isLiked;
+            
+            if (isLiked) {
+                heartIcon.setAttribute('fill', '#ed4956');
+                heartIcon.style.stroke = '#ed4956';
+                likeBtn.classList.add('liked');
+                likesCount++;
+            } else {
+                heartIcon.setAttribute('fill', 'none');
+                heartIcon.style.stroke = 'currentColor';
+                likeBtn.classList.remove('liked');
+                likesCount--;
+            }
+            
+            likesCountElement.textContent = likesCount.toLocaleString('es-ES');
+        }
+
+        // Soporte para deslizar con el dedo en móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const carousel = document.querySelector('.carousel-container');
+
+        carousel.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carousel.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+            }
+        }
+    </script>
+</body>
+</html>
