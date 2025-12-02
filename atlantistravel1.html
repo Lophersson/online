@@ -66,84 +66,17 @@
             color: #262626;
         }
 
-        .carousel-container {
+        .video-container {
             position: relative;
             width: 100%;
-            overflow: hidden;
             aspect-ratio: 1;
             background: #000;
         }
 
-        .carousel-track {
-            display: flex;
-            transition: transform 0.3s ease;
-            height: 100%;
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-slide img {
+        .video-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: #262626;
-            transition: background 0.2s;
-            z-index: 10;
-        }
-
-        .carousel-btn:hover {
-            background: rgba(255, 255, 255, 1);
-        }
-
-        .carousel-btn.prev {
-            left: 10px;
-        }
-
-        .carousel-btn.next {
-            right: 10px;
-        }
-
-        .carousel-indicators {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 4px;
-        }
-
-        .indicator {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            transition: background 0.3s;
-        }
-
-        .indicator.active {
-            background: rgba(255, 255, 255, 1);
         }
 
         .post-actions {
@@ -221,36 +154,12 @@
             <span class="username">atlantistravel</span>
         </div>
 
-        <!-- Carousel -->
-        <div class="carousel-container">
-            <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
-            <button class="carousel-btn next" onclick="nextSlide()">›</button>
-            
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide">
-                    <img src="https://media.istockphoto.com/id/876560704/es/foto/fuji-de-jap%C3%B3n-en-la-primavera.jpg?s=612x612&w=0&k=20&c=xx0xzo4GV4mJdEDPztEGMuMsmeBJru28Nh0KYDSNW6E=" alt="Monte Fuji">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://www.advantour.com/img/japan/japan-travel/cultural-itsukushima-shrine.jpg" alt="Templo japonés">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://wp-content.miviaje.com/2018/09/comida-japonesa.jpg" alt="Calle de Tokio">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://image.urlaubspiraten.de/1024/image/upload/v1603288184/mediavault_images/gaf4wre0zmzobfp0ppfn.jpg" alt="Cerezos en flor">
-                </div>
-                <div class="carousel-slide">
-                    <img src="https://elviajerofeliz.com/wp-content/uploads/2020/10/ciudades-de-japon-10.jpg" alt="Fushimi Inari">
-                </div>
-            </div>
-
-            <div class="carousel-indicators">
-                <div class="indicator active"></div>
-                <div class="indicator"></div>
-                <div class="indicator"></div>
-                <div class="indicator"></div>
-                <div class="indicator"></div>
-            </div>
+        <!-- Video -->
+        <div class="video-container">
+            <video controls loop muted playsinline>
+                <source src="https://raw.githubusercontent.com/Lophersson/online/refs/heads/main/videoatlantis1.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
         </div>
 
         <!-- Actions -->
@@ -293,30 +202,8 @@
     </div>
 
     <script>
-        let currentSlide = 0;
-        const totalSlides = 5;
         let isLiked = false;
         let likesCount = 1234;
-
-        function updateCarousel() {
-            const track = document.getElementById('carouselTrack');
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            
-            const indicators = document.querySelectorAll('.indicator');
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
-        }
-
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateCarousel();
-        }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
 
         function toggleLike() {
             const likeBtn = document.getElementById('likeBtn');
@@ -338,30 +225,6 @@
             }
             
             likesCountElement.textContent = likesCount.toLocaleString('es-ES');
-        }
-
-        // Soporte para deslizar con el dedo en móviles
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        const carousel = document.querySelector('.carousel-container');
-
-        carousel.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-
-        carousel.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) {
-                nextSlide();
-            }
-            if (touchEndX > touchStartX + 50) {
-                prevSlide();
-            }
         }
     </script>
 </body>
